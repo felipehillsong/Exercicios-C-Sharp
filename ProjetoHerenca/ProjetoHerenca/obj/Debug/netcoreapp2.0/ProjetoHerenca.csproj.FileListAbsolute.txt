@@ -1,0 +1,11 @@
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\bin\Debug\netcoreapp2.0\ProjetoHerenca.deps.json
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\bin\Debug\netcoreapp2.0\ProjetoHerenca.runtimeconfig.json
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\bin\Debug\netcoreapp2.0\ProjetoHerenca.runtimeconfig.dev.json
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\bin\Debug\netcoreapp2.0\ProjetoHerenca.dll
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\bin\Debug\netcoreapp2.0\ProjetoHerenca.pdb
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.csprojAssemblyReference.cache
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.AssemblyInfoInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.AssemblyInfo.cs
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.dll
+C:\Users\Felipe\Desktop\Projetos C#\ProjetoHerenca\ProjetoHerenca\obj\Debug\netcoreapp2.0\ProjetoHerenca.pdb

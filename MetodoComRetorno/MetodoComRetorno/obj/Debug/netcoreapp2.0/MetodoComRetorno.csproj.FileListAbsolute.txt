@@ -1,0 +1,11 @@
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\bin\Debug\netcoreapp2.0\MetodoComRetorno.deps.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\bin\Debug\netcoreapp2.0\MetodoComRetorno.runtimeconfig.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\bin\Debug\netcoreapp2.0\MetodoComRetorno.runtimeconfig.dev.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\bin\Debug\netcoreapp2.0\MetodoComRetorno.dll
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\bin\Debug\netcoreapp2.0\MetodoComRetorno.pdb
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.csprojAssemblyReference.cache
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.AssemblyInfoInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.AssemblyInfo.cs
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.dll
+C:\Users\Felipe\Desktop\Projetos C#\MetodoComRetorno\MetodoComRetorno\obj\Debug\netcoreapp2.0\MetodoComRetorno.pdb

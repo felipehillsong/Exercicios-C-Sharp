@@ -1,0 +1,10 @@
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\bin\Debug\netcoreapp2.0\MetodoSemRetorno.deps.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\bin\Debug\netcoreapp2.0\MetodoSemRetorno.runtimeconfig.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\bin\Debug\netcoreapp2.0\MetodoSemRetorno.runtimeconfig.dev.json
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\bin\Debug\netcoreapp2.0\MetodoSemRetorno.dll
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\bin\Debug\netcoreapp2.0\MetodoSemRetorno.pdb
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\obj\Debug\netcoreapp2.0\MetodoSemRetorno.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\obj\Debug\netcoreapp2.0\MetodoSemRetorno.AssemblyInfoInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\obj\Debug\netcoreapp2.0\MetodoSemRetorno.AssemblyInfo.cs
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\obj\Debug\netcoreapp2.0\MetodoSemRetorno.dll
+C:\Users\Felipe\Desktop\Projetos C#\MetodoSemRetorno\MetodoSemRetorno\obj\Debug\netcoreapp2.0\MetodoSemRetorno.pdb

@@ -1,0 +1,14 @@
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\CursoCSharp.deps.json
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\CursoCSharp.runtimeconfig.json
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\CursoCSharp.runtimeconfig.dev.json
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\CursoCSharp.dll
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\CursoCSharp.pdb
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.csprojAssemblyReference.cache
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.AssemblyInfoInputs.cache
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.AssemblyInfo.cs
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.dll
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.pdb
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\Encapsulamento.dll
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\bin\Debug\netcoreapp2.0\Encapsulamento.pdb
+C:\Users\Felipe\Desktop\Projetos C#\CursoCSharp\CursoCSharp\obj\Debug\netcoreapp2.0\CursoCSharp.csproj.CopyComplete
