@@ -1,0 +1,6 @@
+C:\Users\Felipe\Desktop\LOG\LOG\bin\Debug\LOG.exe.config
+C:\Users\Felipe\Desktop\LOG\LOG\bin\Debug\LOG.exe
+C:\Users\Felipe\Desktop\LOG\LOG\bin\Debug\LOG.pdb
+C:\Users\Felipe\Desktop\LOG\LOG\obj\Debug\LOG.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\LOG\LOG\obj\Debug\LOG.exe
+C:\Users\Felipe\Desktop\LOG\LOG\obj\Debug\LOG.pdb
