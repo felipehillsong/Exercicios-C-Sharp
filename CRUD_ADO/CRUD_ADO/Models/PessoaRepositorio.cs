@@ -115,6 +115,33 @@ namespace CRUD_ADO.Models {
                 return p;
             }
         }
+
+        public override Pessoa DetailsById(int id) {
+            using (var conn = new SqlConnection(StringConnection)) {
+                string sql = "Select usuarioId, Nome, Cargo, Data FROM usuarios WHERE usuarioId=@usuarioId";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@usuarioId", id);
+                Pessoa p = null;
+                try {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection)) {
+                        if (reader.HasRows) {
+                            if (reader.Read()) {
+                                p = new Pessoa();
+                                p.Id = (int)reader["usuarioId"];
+                                p.Nome = reader["nome"].ToString();
+                                p.Cargo = reader["cargo"].ToString();
+                                p.Data = DateTime.Parse(reader["data"].ToString());
+
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    throw e;
+                }
+                return p;
+            }
+        }
         ///<summary>Salva a pessoa no banco
         ///<param name="entity">Referência de Pessoa que será salva.</param>
         ///</summary>

@@ -15,5 +15,6 @@ namespace CRUD_ADO.Models {
         public abstract void Update(TEntity entity);
         public abstract void Delete(TEntity entity);
         public abstract TEntity DeleteById(TKey id);
+        public abstract TEntity DetailsById(TKey id);
     }
 }

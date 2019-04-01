@@ -16,10 +16,18 @@ namespace CRUD_ADO.Controllers {
         public ActionResult Index() {
             return View(repositorio.GetAll());
         }
-
+        /// <summary>
+        /// vai criar uma View trazendo os detalhes da pessoa, a pessoa sera pega pelo id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         // GET: Pessoa/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        public ActionResult Details(int Id) {
+            var pessoa = repositorio.DetailsById(Id);
+            if (pessoa == null) {
+                return HttpNotFound();
+            }
+            return View(pessoa);
         }
         /// <summary>
         /// vai criar na View uma tela de cadastro de pssoaas
@@ -37,15 +45,13 @@ namespace CRUD_ADO.Controllers {
         /// <returns></returns>
         // POST: Pessoa/Create
         [HttpPost]
-        public ActionResult Create(Pessoa pessoa) {
-            // TODO: Add insert logic here
+        public ActionResult Create(Pessoa pessoa) {            
             if (ModelState.IsValid) {
                 repositorio.Save(pessoa);
                 return RedirectToAction("Index");
             } else {
                 return View(pessoa);
             }
-
         }
 
        /// <summary>
@@ -60,7 +66,7 @@ namespace CRUD_ADO.Controllers {
                 return HttpNotFound();
             }
             return View(pessoa);
-        }
+        }        
 
         /// <summary>
         /// quando clicar no botão salvar na tela de editar, sera salvo no banco e vai retornar para a tela Index
@@ -85,7 +91,7 @@ namespace CRUD_ADO.Controllers {
         /// <returns></returns>
         // GET: Pessoa/Delete/5
         public ActionResult Delete(int Id) {
-            var pessoa = repositorio.GetById(Id);
+            var pessoa = repositorio.DeleteById(Id);
             if (pessoa == null) {
                 return HttpNotFound();
             }
