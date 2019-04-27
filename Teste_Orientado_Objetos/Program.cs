@@ -10,8 +10,8 @@ namespace Teste_Orientado_Objetos
     {
         static void Main(string[] args)
         {
-            ContaPai c = new ContaPai();
-            c.Processamento();                                                    
+            ContaPai contas = new ContaPai();            
+            contas.Processamento();
         }
     }
 }
