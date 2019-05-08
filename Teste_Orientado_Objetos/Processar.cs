@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Teste_Orientado_Objetos {
-    public class Processar {        
+namespace Teste_Orientado_Objetos {   
+    public class Processar {
+        public Banco dadosBanco;           
         public void Processamento()
         {
             ContaTitular titular = new ContaTitular();
@@ -61,10 +62,17 @@ namespace Teste_Orientado_Objetos {
 
             contaTitular.Trasnferencia(valorTransferencia, contaTitular, contaRecebeDeposito);           
 
-            Console.WriteLine("O saldo da conta do cliente " + contaDeposito.Nome + " e " + contaRecebeDeposito.Saldo);
+            Console.WriteLine("\n\n\n\nO saldo da conta do cliente " + contaDeposito.Nome + " e " + contaRecebeDeposito.Saldo);
 
             Console.WriteLine("Saldo do titular " + titular.Nome + " e de " + contaTitular.Saldo);
 
+            Banco banco = new Banco();
+            banco.NomeBanco();
+            banco.EnderecoCompleto();
+
+            Processar acessar = new Processar();
+            acessar.dadosBanco = banco;
+            Console.WriteLine(banco);                         
         }  
     }
 }

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Teste_Orientado_Objetos.exe" size="10208">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Teste_Orientado_Objetos.exe" size="10720">
       <assemblyIdentity name="Teste_Orientado_Objetos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4jgcDr0tnlJjc+Vy+M5OtNg136OAF7mjVEZmOb4DQxg=</dsig:DigestValue>
+        <dsig:DigestValue>AZqQ1YLIWjKfAsY169+fa7+lAJ+xU9H6N2/CgG/kVTE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

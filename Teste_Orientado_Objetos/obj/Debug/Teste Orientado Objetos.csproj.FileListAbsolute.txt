@@ -26,7 +26,6 @@ C:\Users\Felipe\Documents\Projetos C#\Teste_Orientado_Objetos\obj\Debug\Teste Or
 C:\Users\Felipe\Documents\Projetos C#\Teste_Orientado_Objetos\obj\Debug\Teste2.exe
 C:\Users\Felipe\Documents\Projetos C#\Teste_Orientado_Objetos\obj\Debug\Teste2.pdb
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste Orientado Objetos.csproj.CoreCompileInputs.cache
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste Orientado Objetos.csprojAssemblyReference.cache
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\bin\Debug\Teste_Orientado_Objetos.exe.config
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\bin\Debug\Teste_Orientado_Objetos.exe.manifest
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\bin\Debug\Teste_Orientado_Objetos.application
