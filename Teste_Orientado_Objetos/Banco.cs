@@ -14,7 +14,7 @@ namespace Teste_Orientado_Objetos
         
         public void NomeBanco()
         {
-            this.Nome = "\n\n\nItaú";
+            this.Nome = "\n\n\nBanco Itaú";
             Console.WriteLine(this.Nome);                        
         }
 
