@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textoTitular = new System.Windows.Forms.TextBox();
             this.textoNumero = new System.Windows.Forms.TextBox();
             this.textoSaldo = new System.Windows.Forms.TextBox();
@@ -44,9 +45,10 @@
             this.depositoOK = new System.Windows.Forms.Button();
             this.saqueOK = new System.Windows.Forms.Button();
             this.limparOK = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Tipo = new System.Windows.Forms.Label();
             this.transacao = new System.Windows.Forms.Button();
+            this.nomesConta = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.comboContas = new System.Windows.Forms.ComboBox();
             this.textoTransacao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -57,7 +59,6 @@
             this.textoTitular.Name = "textoTitular";
             this.textoTitular.Size = new System.Drawing.Size(100, 20);
             this.textoTitular.TabIndex = 0;
-            this.textoTitular.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textoNumero
             // 
@@ -191,28 +192,6 @@
             this.limparOK.UseVisualStyleBackColor = true;
             this.limparOK.Click += new System.EventHandler(this.limparOK_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Conta Corrente",
-            "Conta Poupança"});
-            this.comboBox1.Location = new System.Drawing.Point(429, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(134, 21);
-            this.comboBox1.TabIndex = 16;
-            this.comboBox1.Text = "Selecione uma opção";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // Tipo
-            // 
-            this.Tipo.AutoSize = true;
-            this.Tipo.Location = new System.Drawing.Point(395, 60);
-            this.Tipo.Name = "Tipo";
-            this.Tipo.Size = new System.Drawing.Size(31, 13);
-            this.Tipo.TabIndex = 17;
-            this.Tipo.Text = "Tipo:";
-            // 
             // transacao
             // 
             this.transacao.Location = new System.Drawing.Point(335, 248);
@@ -222,6 +201,30 @@
             this.transacao.Text = "Transações";
             this.transacao.UseVisualStyleBackColor = true;
             this.transacao.Click += new System.EventHandler(this.Transacao_Click);
+            // 
+            // nomesConta
+            // 
+            this.nomesConta.AutoSize = true;
+            this.nomesConta.Location = new System.Drawing.Point(383, 51);
+            this.nomesConta.Name = "nomesConta";
+            this.nomesConta.Size = new System.Drawing.Size(43, 13);
+            this.nomesConta.TabIndex = 21;
+            this.nomesConta.Text = "Contas:";
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // comboContas
+            // 
+            this.comboContas.FormattingEnabled = true;
+            this.comboContas.Location = new System.Drawing.Point(432, 48);
+            this.comboContas.Name = "comboContas";
+            this.comboContas.Size = new System.Drawing.Size(121, 21);
+            this.comboContas.TabIndex = 22;
+            this.comboContas.Text = "Escolha a Conta";
+            this.comboContas.SelectedIndexChanged += new System.EventHandler(this.ComboContas_SelectedIndexChanged);
             // 
             // textoTransacao
             // 
@@ -245,11 +248,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 358);
+            this.Controls.Add(this.comboContas);
+            this.Controls.Add(this.nomesConta);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textoTransacao);
             this.Controls.Add(this.transacao);
-            this.Controls.Add(this.Tipo);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.limparOK);
             this.Controls.Add(this.saqueOK);
             this.Controls.Add(this.depositoOK);
@@ -292,9 +295,10 @@
         private System.Windows.Forms.Button depositoOK;
         private System.Windows.Forms.Button saqueOK;
         private System.Windows.Forms.Button limparOK;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label Tipo;
         private System.Windows.Forms.Button transacao;
+        private System.Windows.Forms.Label nomesConta;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ComboBox comboContas;
         private System.Windows.Forms.TextBox textoTransacao;
         private System.Windows.Forms.Label label1;
     }

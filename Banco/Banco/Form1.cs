@@ -11,37 +11,32 @@ namespace Banco
 {
     public partial class Form1 : Form
     {
-        private Conta c1;
-        private ContaPoupanca c2;
-        private TotalizadorDeContas t;
+        private Conta[] contas;        
 
         public Form1()
-        {
-            this.c1 = new Conta();
-            this.c2 = new ContaPoupanca();
-            this.t = new TotalizadorDeContas();
+        {            
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           Conta c1 = new Conta();
-           c1.Numero = 1;
+            contas = new Conta[3];
+            this.contas[0] = new Conta();
+            this.contas[0].Titular = new Cliente("Felipe", 01583888608, 7883219);
+            this.contas[0].Numero = 1;
 
-           Cliente cliente = new Cliente("Felipe", 01583888608, 7883219);
-           c1.Titular = cliente;
+            this.contas[1] = new ContaPoupanca();
+            this.contas[1].Titular = new Cliente("Polyana", 55454854, 5646847);
+            this.contas[1].Numero = 2;
 
-           textoTitular.Text = c1.Titular.Nome;
-           textoCPF.Text = Convert.ToString(c1.Titular.CPF);
-           textoRG.Text = Convert.ToString(c1.Titular.RG);
-           textoNumero.Text = Convert.ToString(c1.Numero);
-           textoSaldo.Text = Convert.ToString(c1.Saldo);          
+            this.contas[2] = new ContaCorrente();
+            this.contas[2].Titular = new Cliente("Rogerio", 125354, 24564514);
+            this.contas[2].Numero = 3;
 
+            foreach (Conta conta in contas)
+            {
+                comboContas.Items.Add(conta.Titular.Nome);
+            }
         }
 
         private void textoNumero_TextChanged(object sender, EventArgs e)
@@ -57,19 +52,23 @@ namespace Banco
         private void depositoOK_Click(object sender, EventArgs e)
         {
             string valorDigitado = textoValor.Text;
-            double valorOperacao = Convert.ToDouble(valorDigitado);
+            double valorDeposito = Convert.ToDouble(valorDigitado);
 
-            if (comboBox1.SelectedIndex == 0)
+            if (comboContas.SelectedIndex == 0)
             {                
-                c1.Deposita(valorOperacao);
-                textoSaldo.Text = Convert.ToString(this.c1.Saldo);               
+                contas[0].Deposita(valorDeposito);
+                textoSaldo.Text = Convert.ToString(this.contas[0].Saldo);               
             }
 
-            if(comboBox1.SelectedIndex == 1)
-            {                
-                c2.Deposita(valorOperacao);
-                textoSaldo.Text = Convert.ToString(this.c2.Saldo);
-                
+            if(comboContas.SelectedIndex == 1)
+            {
+                contas[1].Deposita(valorDeposito);
+                textoSaldo.Text = Convert.ToString(this.contas[1].Saldo);                
+            }
+            if (comboContas.SelectedIndex == 2)
+            {
+                contas[2].Deposita(valorDeposito);
+                textoSaldo.Text = Convert.ToString(this.contas[2].Saldo);
             }
             MessageBox.Show("Deposito feito com sucesso!");
 
@@ -83,18 +82,22 @@ namespace Banco
         private void saqueOK_Click(object sender, EventArgs e)
         {
             string valorDigitado = textoValor.Text;
-            double valorOperacao = Convert.ToDouble(valorDigitado);
+            double valorSaque = Convert.ToDouble(valorDigitado);
 
-            if (comboBox1.SelectedIndex == 0)
-            {               
-                c1.Saca(valorOperacao);
-                textoSaldo.Text = Convert.ToString(this.c1.Saldo);               
+            if (comboContas.SelectedIndex == 0)
+            {
+                contas[0].Saca(valorSaque);
+                textoSaldo.Text = Convert.ToString(this.contas[0].Saldo);               
             }
-            if(comboBox1.SelectedIndex == 1)
-            {                
-                c2.Saca(valorOperacao);
-                textoSaldo.Text = Convert.ToString(this.c2.Saldo);
-                
+            if(comboContas.SelectedIndex == 1)
+            {
+                contas[1].Saca(valorSaque);
+                textoSaldo.Text = Convert.ToString(this.contas[1].Saldo);                
+            }
+            if (comboContas.SelectedIndex == 2)
+            {
+                contas[2].Saca(valorSaque);
+                textoSaldo.Text = Convert.ToString(this.contas[2].Saldo);
             }
             MessageBox.Show("Saque feito com sucesso!");
         }
@@ -113,26 +116,33 @@ namespace Banco
         {
             textoValor.Text = string.Empty;
             textoSaldo.Text = string.Empty;            
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                     
-        }
+        }       
 
         private void Transacao_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0)
+            /*if (comboBox1.SelectedIndex == 0)
             {
-                t.Soma(c1);
+                t.Soma(contas[0]);
                 textoTransacao.Text = Convert.ToString(t.valortotal);
-            }
+            }*/
                 
         }
 
         private void TextBox1_TextChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void ComboContas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indice = comboContas.SelectedIndex;
+            Conta selecionada = contas[indice];
+            textoTitular.Text = selecionada.Titular.Nome;
+            textoCPF.Text = Convert.ToString(selecionada.Titular.CPF);
+            textoRG.Text = Convert.ToString(selecionada.Titular.RG);
+            textoSaldo.Text = Convert.ToString(selecionada.Saldo);
+            textoNumero.Text = Convert.ToString(selecionada.Numero);
+            
         }
     }
 }

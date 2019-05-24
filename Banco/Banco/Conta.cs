@@ -8,14 +8,14 @@ namespace Banco
         public double Saldo { get; private set; }
         public Cliente Titular { get; set; }
 
-        public void Deposita(double valorOperacao)
+        public virtual void Deposita(double valorDeposito)
         {
-            this.Saldo += valorOperacao;
+            this.Saldo += valorDeposito;
         }
 
-        public virtual void Saca(double valorOperacao)
+        public virtual void Saca(double valorSaque)
         {
-            this.Saldo -= valorOperacao;
+            this.Saldo -= valorSaque;
         }
     }
 }
