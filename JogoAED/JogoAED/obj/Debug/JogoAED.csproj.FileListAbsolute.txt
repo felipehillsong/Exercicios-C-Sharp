@@ -10,3 +10,9 @@ C:\Users\user\Desktop\JogoAED\JogoAED\obj\Debug\JogoAED.exe
 C:\Users\user\Desktop\JogoAED\JogoAED\obj\Debug\JogoAED.pdb
 C:\Users\user\Desktop\JogoAED\JogoAED\bin\Debug\JogoAED.pdb
 C:\Users\user\Desktop\JogoAED\JogoAED\obj\Debug\JogoAED.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\bin\Debug\JogoAED.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\bin\Debug\JogoAED.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\obj\Debug\JogoAED.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\obj\Debug\JogoAED.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\obj\Debug\JogoAED.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\JogoAED\JogoAED\obj\Debug\JogoAED.pdb

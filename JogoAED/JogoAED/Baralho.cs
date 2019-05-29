@@ -124,17 +124,19 @@ namespace JogoAED
             
         }
 
-        public void Embaralhar()
+        public IEnumerable Embaralhar()
         {
             var embaralhar = new Random();
-            var cartas = Cartas.OrderBy(x => embaralhar.Next()).Select(x => x.Face + "\n" + x.Naipe + "\n" + "Peso: " + x.Peso + "\n");
-            foreach(var carta in cartas)
-            {
-                Console.WriteLine(carta);
-            }     
-
-            
+            var cartas = Cartas.OrderBy(x => embaralhar.Next()).Select(x => x.Face + "\n" + x.Naipe + "\n" + "Peso: " + x.Peso + "\n");            
+            return cartas.FirstOrDefault();
         } 
+
+        public void PegarCartas()
+        {
+            IEnumerable cartas = Embaralhar();
+            Console.WriteLine(cartas);
+            
+        }
         
         
     }

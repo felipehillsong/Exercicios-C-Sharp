@@ -10,7 +10,8 @@ namespace JogoAED
         public void Processamento()
         {
             Baralho baralho = new Baralho();
-            baralho.Embaralhar();            
+            baralho.Embaralhar();
+            baralho.PegarCartas();
         }
     }
 }
