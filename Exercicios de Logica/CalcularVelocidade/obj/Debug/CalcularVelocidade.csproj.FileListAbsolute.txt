@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\bin\Debug\CalcularVelocidade.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\bin\Debug\CalcularVelocidade.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\bin\Debug\CalcularVelocidade.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\obj\Debug\CalcularVelocidade.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\obj\Debug\CalcularVelocidade.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\obj\Debug\CalcularVelocidade.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CalcularVelocidade\obj\Debug\CalcularVelocidade.pdb
