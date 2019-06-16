@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\bin\Debug\NotasConcurso.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\bin\Debug\NotasConcurso.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\bin\Debug\NotasConcurso.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\obj\Debug\NotasConcurso.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\obj\Debug\NotasConcurso.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\obj\Debug\NotasConcurso.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\NotasConcurso\obj\Debug\NotasConcurso.pdb

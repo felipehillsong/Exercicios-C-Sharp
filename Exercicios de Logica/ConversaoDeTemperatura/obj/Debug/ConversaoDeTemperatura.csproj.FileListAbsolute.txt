@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\bin\Debug\ConversaoDeTemperatura.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\bin\Debug\ConversaoDeTemperatura.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\bin\Debug\ConversaoDeTemperatura.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\obj\Debug\ConversaoDeTemperatura.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\obj\Debug\ConversaoDeTemperatura.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\obj\Debug\ConversaoDeTemperatura.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\ConversaoDeTemperatura\obj\Debug\ConversaoDeTemperatura.pdb
