@@ -48,8 +48,9 @@ namespace Exercicio_Switch_Case
         }
         
         public void EscolherOperacao(double num1, string oper, double num2)
-        {          
-            switch (oper)
+        {
+            this.Operador = oper;
+            switch (this.Operador)
             {
                 case "+":
                     double soma = Somar(num1, num2);

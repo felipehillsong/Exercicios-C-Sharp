@@ -5,3 +5,10 @@ C:\Users\Leonardo\Desktop\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\
 C:\Users\Leonardo\Desktop\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.csproj.CoreCompileInputs.cache
 C:\Users\Leonardo\Desktop\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.exe
 C:\Users\Leonardo\Desktop\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\bin\Debug\Exercicio_Switch_Case.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\bin\Debug\Exercicio_Switch_Case.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\bin\Debug\Exercicio_Switch_Case.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicio_Switch_Case\Exercicio_Switch_Case\obj\Debug\Exercicio_Switch_Case.pdb
