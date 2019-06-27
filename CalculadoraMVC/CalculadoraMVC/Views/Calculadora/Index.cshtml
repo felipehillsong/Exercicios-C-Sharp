@@ -1,0 +1,27 @@
+﻿@model CalculadoraMVC.Models.CalculadoraModel
+@using (Html.BeginForm("Resultado", "Calculadora", null, FormMethod.Post))
+{
+    <br />
+    <legend class="text-center">Calculadora Simples</legend>
+    <div class="container">
+        <div class="text-center">
+            <strong>PRIMEIRO NUMERO</strong><br />
+            @Html.TextBoxFor(model => model.Numero1, new { @Class = "form-control text-center", @style = "margin:auto", @type = "number" })
+        </div>
+        <br />
+        <div class="text-center">
+            <strong>OPERADOR</strong>
+            @Html.TextBoxFor(model => model.Operador, new { @Class = "form-control text-center", @Required = "required", @style = "margin:auto" })
+        </div>
+        <br />
+        <div class="text-center">
+            <strong>SEGUNDO NUMERO</strong>
+            @Html.TextBoxFor(model => model.Numero2, new { @Class = "form-control text-center", @style = "margin:auto", @type = "number" })
+        </div>
+        <br />        
+        <div class="text-center">
+            <button class="btn-success form-control btn-primary" style="width:100px; margin:auto" type="submit">Calcular</button>
+        </div>
+    </div>
+
+}
