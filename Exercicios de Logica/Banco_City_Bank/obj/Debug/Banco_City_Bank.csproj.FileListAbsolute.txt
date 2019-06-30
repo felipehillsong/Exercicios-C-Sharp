@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\bin\Debug\Banco_City_Bank.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\bin\Debug\Banco_City_Bank.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\bin\Debug\Banco_City_Bank.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\obj\Debug\Banco_City_Bank.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\obj\Debug\Banco_City_Bank.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\obj\Debug\Banco_City_Bank.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Banco_City_Bank\obj\Debug\Banco_City_Bank.pdb
