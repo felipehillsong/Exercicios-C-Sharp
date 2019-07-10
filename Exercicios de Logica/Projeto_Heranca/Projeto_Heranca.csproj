@@ -42,10 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Conta.cs" />
-    <Compile Include="ContaCorrente.cs" />
-    <Compile Include="ContaPoupanca.cs" />
+    <Compile Include="Cliente\Cliente.cs" />
+    <Compile Include="Cliente\ClienteFisico.cs" />
+    <Compile Include="Cliente\ClienteJuridico.cs" />
+    <Compile Include="Conta\Conta.cs" />
+    <Compile Include="Conta\ContaCorrente.cs" />
+    <Compile Include="Conta\ContaPoupanca.cs" />
+    <Compile Include="Processamento.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

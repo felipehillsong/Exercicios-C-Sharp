@@ -1,0 +1,28 @@
+﻿@model Exemplo_Razor.Models.Usuario
+
+<h2>Formulario Simples</h2>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+    <div>
+        @Html.LabelFor(x => x.Login) <br />
+        @Html.EditorFor(x => x.Login)
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+        <div><br />            
+            @Html.LabelFor(x => x.Senha)<br />
+            @Html.EditorFor(x => x.Senha)
+            @Html.ValidationMessageFor(x=> x.Senha)
+        </div>
+        <div>
+            <br />
+            @Html.LabelFor(x => x.Idade)<br />
+            @Html.EditorFor(x => x.Idade)
+            @Html.ValidationMessageFor(x => x.Idade)
+        </div>
+        <div><br />
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </div>
+    }
+</div>
