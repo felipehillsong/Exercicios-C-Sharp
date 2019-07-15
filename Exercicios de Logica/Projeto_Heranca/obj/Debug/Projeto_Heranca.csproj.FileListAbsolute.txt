@@ -4,3 +4,4 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Heranc
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Heranca\obj\Debug\Projeto_Heranca.csproj.CoreCompileInputs.cache
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Heranca\obj\Debug\Projeto_Heranca.exe
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Heranca\obj\Debug\Projeto_Heranca.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Heranca\obj\Debug\Projeto_Heranca.csprojAssemblyReference.cache
