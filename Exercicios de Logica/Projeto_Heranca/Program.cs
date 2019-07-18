@@ -10,6 +10,8 @@ namespace Projeto_Heranca
     {
         static void Main(string[] args)
         {
+            Processamento processamento = new Processamento();
+            processamento.Processar();            
         }
     }
 }

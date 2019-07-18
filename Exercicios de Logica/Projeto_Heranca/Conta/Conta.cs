@@ -21,7 +21,7 @@ namespace Projeto_Heranca
             return this.SaldoInicial;
         }        
 
-        public abstract void Deposito(double valorDeposito);
+        public abstract double Deposito(double valorDeposito);
 
         public abstract double Saque(double valorSaque);
     }

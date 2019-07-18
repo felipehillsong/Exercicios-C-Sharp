@@ -13,12 +13,15 @@ namespace Projeto_Heranca
             Console.WriteLine("----------BANCO SILVA S/A----------");
 
             Console.WriteLine("\nEntre com o nome do cliente: ");
-            string nome = Console.ReadLine();            
+            string nome = Console.ReadLine();
+
+            Console.WriteLine("Entre com o CPF do cliente: ");
+            double cpf = double.Parse(Console.ReadLine());
 
             Console.WriteLine("Qual tipo de clinte que é? Digite 1 para cliente fisico ou 2 para cliente juridico: ");
             int tipoCliente = int.Parse(Console.ReadLine());
 
-            TipoCliente(nome, tipoCliente);
+            TipoCliente(nome, cpf, tipoCliente );
 
             Console.WriteLine("Qual tipo de conta o cliente possui? Digite 1 para Conta Corrente ou 2 para Conta Poucança:  ");
             int tipoConta = int.Parse(Console.ReadLine());
@@ -26,40 +29,83 @@ namespace Projeto_Heranca
             Console.WriteLine("Entre com o numero da conta do cliente: ");
             int numero = int.Parse(Console.ReadLine());
 
-            TipoConta(tipoConta, numero);
+            Console.WriteLine("Entre com o valor de deposito: ");
+            double valorDeposito = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Entre com o valor do saque: ");
+            double valorSaque = double.Parse(Console.ReadLine());
+
+            TipoConta(tipoConta, numero, valorDeposito, valorSaque);
 
         }
 
-        public void TipoCliente(string nome, int tipoCliente)
+        private void TipoCliente(string nome, double cpf, int tipoCliente)
         {
-            if(tipoCliente == 1)
-            {
-                ClienteFisico clienteFisico = new ClienteFisico();
-                clienteFisico.PegarNome(nome);                
-            }
-            if(tipoCliente == 2)
-            {
-                ClienteJuridico clienteJuridico = new ClienteJuridico();
-                clienteJuridico.PegarNome(nome);
-            }
-            else
-            {
-                Console.WriteLine("Tipo de cliente ou tipo de conta errado!");
-            }                 
-        }
+            try
+            {                
+                switch (tipoCliente)
+                {
+                    case 1:
+                        ClienteFisico clienteFisico = new ClienteFisico();
+                        clienteFisico.PegarNome(nome);
+                        clienteFisico.PegarCPF(cpf);
+                        Console.WriteLine("Cliente do tipo Fisico");
+                        break;
+                    case 2:
+                        ClienteJuridico clienteJuridico = new ClienteJuridico();
+                        clienteJuridico.PegarNome(nome);
+                        clienteJuridico.PegarCPF(cpf);
+                        Console.WriteLine("Cliente do tipo Juridico");
+                        break;
+                    default:
+                        Console.WriteLine("Tipo de cliente está errado!");
+                        Environment.Exit(0);
+                        break;
+                }
 
-        public void TipoConta(int tipoConta, int numero)
+                
+            }
+            catch(Exception e)
+            {
+
+                Console.WriteLine("Tipo de cliente errado! " + e.Message);
+            }            
+                           
+        }     
+
+        private void TipoConta(int tipoConta, int numero, double valorDeposito, double valorSaque)
         {
-            if(tipoConta == 1)
+            try
             {
-                ContaCorrente conta = new ContaCorrente();
-                conta.NumeroConta(numero);
+                switch (tipoConta)
+                {
+                    case 1:
+                        ContaCorrente contaCorrente = new ContaCorrente();
+                        Console.WriteLine("Tipo de conta do cliente é Conta Corrente");
+                        contaCorrente.NumeroConta(numero);
+                        contaCorrente.Deposito(valorDeposito);
+                        contaCorrente.Saque(valorSaque);                        
+                        break;
+                    case 2:
+                        ContaPoupanca contaPoupanca = new ContaPoupanca();
+                        Console.WriteLine("Tipo de conta do cliente é Conta Poupança");
+                        contaPoupanca.NumeroConta(numero);
+                        contaPoupanca.Deposito(valorDeposito);
+                        contaPoupanca.Saque(valorSaque);                        
+                        break;
+                    default:
+                        Console.WriteLine("Tipo de conta errado!");
+                        Environment.Exit(0);
+                        break;
+                }
             }
-            if(tipoConta == 2)
+            catch(Exception e)
             {
-                ContaPoupanca contaPoupanca = new ContaPoupanca();
-                contaPoupanca.NumeroConta(numero);
-            }
+
+                Console.WriteLine("Tipo de dodos errados " + e.Message);
+            }           
+
+            
         }
     }
 }

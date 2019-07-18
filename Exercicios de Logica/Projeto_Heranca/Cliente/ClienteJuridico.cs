@@ -11,11 +11,13 @@ namespace Projeto_Heranca
         public override void PegarNome(string nome)
         {
             this.Nome = nome;
+            Console.WriteLine("Cliente: " + this.Nome);
         }
 
-        public override void PegarCPF(float cpf)
+        public override void PegarCPF(double cpf)
         {
             this.CPF = cpf;
+            Console.WriteLine("CPF do cliete é: " + this.CPF);
         }
     }
 }

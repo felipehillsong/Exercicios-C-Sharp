@@ -10,10 +10,10 @@ namespace Projeto_Heranca
     {
         protected string Nome { get; set; }
 
-        protected float CPF { get; set; }
+        protected double CPF { get; set; }
 
         public abstract void PegarNome(string nome);
 
-        public abstract void PegarCPF(float cpf);
+        public abstract void PegarCPF(double cpf);
     }
 }
