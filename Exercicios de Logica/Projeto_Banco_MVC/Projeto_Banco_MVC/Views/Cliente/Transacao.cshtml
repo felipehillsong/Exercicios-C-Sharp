@@ -1,0 +1,22 @@
+﻿@using (Html.BeginForm("Extrato", "Cliente", null, FormMethod.Post))
+{
+    <br />
+    <legend>Transação Bancária</legend>
+
+    <select class="form-control" name="tipoCliente">
+        Selecione o tipo de cliente
+        <option value="1">Cliente Fisico</option>
+        <option value="2">Cliente Juridico</option>
+    </select>
+    <br />
+    <p>
+        Nome do Cliente<br />
+        <input class="form-control" type="text" name="nome" />
+    </p>
+    <p>
+        CPF do Cliente<br />
+        <input class="form-control" type="number" name="cpf" />
+    </p>
+
+    <button class="btn btn-success" type="submit">Enviar</button>
+}
