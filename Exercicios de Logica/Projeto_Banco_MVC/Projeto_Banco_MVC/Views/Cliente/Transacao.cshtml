@@ -8,7 +8,13 @@
         <option value="1">Cliente Fisico</option>
         <option value="2">Cliente Juridico</option>
     </select>
-    <br />
+    <br /><br />
+    <select class="form-control" name="tipoConta">
+        Selecione o tipo de cliente
+        <option value="3">Conta Corrente</option>
+        <option value="4">Cliente Poupança</option>
+    </select>
+    <br /><br />
     <p>
         Nome do Cliente<br />
         <input class="form-control" type="text" name="nome" />
@@ -17,6 +23,18 @@
         CPF do Cliente<br />
         <input class="form-control" type="number" name="cpf" />
     </p>
+    <p>
+        Saldo em conta
+        <input type="text" class="form-control" readonly name="saldoInicial" value="@ViewBag.SaldoInicial" />
+    </p>
+    <p>
+        Entre com Valor de Deposito
+        <input type="number" class="form-control" name="deposito" />
+    </p>
+    <p>
+        Entre com o valor de Saque
+        <input type="number" class="form-control" name="saque" />
+    </p>    
 
     <button class="btn btn-success" type="submit">Enviar</button>
 }

@@ -13,6 +13,8 @@ namespace Projeto_Banco_MVC.Models
 
         protected double SaldoFinal { get; set; }
 
+        protected double SaldoFinalizado { get; set; }
+
         public abstract int NumeroConta(int Numero);
 
         public abstract double SaldoComeco();

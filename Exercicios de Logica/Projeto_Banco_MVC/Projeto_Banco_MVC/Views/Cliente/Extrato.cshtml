@@ -1,6 +1,7 @@
 ﻿<h2>Extrato</h2>
 <p>
-    @ViewBag.Mensagem
+    @ViewBag.Mensagem<br />
+    @ViewBag.MensagemConta
 </p>
 <p>
     <strong>Nome do Cliente</strong><br />
@@ -11,4 +12,27 @@
     <strong>CPF do Cliente</strong><br />
     <input class="form-control" type="text" name="cpf" readonly value="@ViewBag.CPF " />
 </p>
+<br />
+<p>
+    Saldo em conta
+    <input type="text" class="form-control" readonly name="saldoInicial" value="@ViewBag.SaldoInicial" />
+</p>
+<br />
+<p>
+    <strong>Valor de Deposito</strong>
+    <input class="form-control" type="text" readonly name="valorDeposito" value="@ViewBag.FoiDepositado" />
+</p>
+<br />
+<p>
+    <strong>Valor de Saque</strong>
+    <input class="form-control" type="text" readonly name="valorDeposito" value="@ViewBag.FoiSacado" />
+</p>
+<br />
+<p>
+    <strong>Saldo Final</strong><br />
+    @ViewBag.MensagemDesconto
+    <input class="form-control" type="text" readonly name="valorDeposito" value="@ViewBag.SaldoFinal" />
+</p>
+
+
 

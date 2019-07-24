@@ -73,78 +73,78 @@ C:\Users\WEBAJATO2\source\repos\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Pr
 C:\Users\WEBAJATO2\source\repos\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CopyComplete
 C:\Users\WEBAJATO2\source\repos\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.dll
 C:\Users\WEBAJATO2\source\repos\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.pdb
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.dll.config
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.pdb
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.exe
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.exe.config
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.rsp
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.exe
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.exe.config
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.rsp
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.AppContext.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Console.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Compression.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Pipes.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.AccessControl.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Claims.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Principal.Windows.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.ValueTuple.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XPath.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.exe
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.exe.config
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.rsp
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\VBCSCompiler.exe
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Helpers.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Mvc.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Razor.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Deployment.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Razor.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Razor.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Deployment.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Razor.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Helpers.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Mvc.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Razor.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.Deployment.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.Razor.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Helpers.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Mvc.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csprojAssemblyReference.cache
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CoreCompileInputs.cache
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CopyComplete
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.pdb
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.dll.config
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Projeto_Banco_MVC.pdb
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.exe
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.exe.config
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csc.rsp
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.exe
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.exe.config
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\csi.rsp
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.AppContext.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Console.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Compression.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Claims.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.ValueTuple.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.exe
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.exe.config
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\vbc.rsp
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\VBCSCompiler.exe
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Helpers.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Mvc.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Razor.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Razor.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Razor.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Webpages.Razor.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Helpers.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\System.Web.Mvc.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Razor.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.Razor.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Helpers.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Mvc.resources.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csprojAssemblyReference.cache
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CoreCompileInputs.cache
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CopyComplete
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.pdb

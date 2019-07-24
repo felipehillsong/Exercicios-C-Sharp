@@ -107,6 +107,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cliente\ClienteFisico.cs" />
     <Compile Include="Cliente\ClienteJuridico.cs" />
+    <Compile Include="Conta\ContaCorrente.cs" />
+    <Compile Include="Conta\ContaPoupanca.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Conta\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
