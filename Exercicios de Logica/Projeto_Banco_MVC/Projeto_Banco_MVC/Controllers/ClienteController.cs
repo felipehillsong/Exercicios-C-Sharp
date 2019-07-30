@@ -17,13 +17,11 @@ namespace Projeto_Banco_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Extrato(FormCollection form, int tipoConta, double deposito, double saque, int tipoCliente, string nome, double cpf)
+        public ActionResult Extrato(FormCollection form, string tipoConta, double deposito, double saque, string tipoCliente, string nome, double cpf)
         {
-            tipoCliente = Convert.ToInt32(form["tipoCliente"]);
-
-            if (tipoCliente == 1)
+            if (tipoCliente == "clienteFisico")
             {
-                ClienteFisico clienteFisico = new ClienteFisico();
+                ClienteFisico clienteFisico = new ClienteFisico();               
 
                 nome = form["nome"];
                 cpf = Convert.ToDouble(form["cpf"]);
@@ -32,7 +30,7 @@ namespace Projeto_Banco_MVC.Controllers
                 ViewBag.CPF = clienteFisico.PegarCPF(cpf);
             }
 
-            if (tipoCliente == 2)
+            if (tipoCliente == "clienteJuridico")
             {
                 ClienteJuridico clienteJuridico = new ClienteJuridico();
 
@@ -43,7 +41,7 @@ namespace Projeto_Banco_MVC.Controllers
                 ViewBag.CPF = clienteJuridico.PegarCPF(cpf);
             }
 
-            if (tipoConta == 3)
+            if (tipoConta == "contaCorrente")
             {
                 ContaCorrente contaCorrente = new ContaCorrente();
 
@@ -58,7 +56,7 @@ namespace Projeto_Banco_MVC.Controllers
                 ViewBag.SaldoFinal = contaCorrente.MostrarSaldoFinal();
             }
 
-            if(tipoConta == 4)
+            if(tipoConta == "contaPoupanca")
             {
                 ContaPoupanca contaPoupanca = new ContaPoupanca();
 

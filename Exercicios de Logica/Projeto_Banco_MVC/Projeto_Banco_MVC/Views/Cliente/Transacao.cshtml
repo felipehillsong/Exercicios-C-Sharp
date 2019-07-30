@@ -1,39 +1,40 @@
-﻿@using (Html.BeginForm("Extrato", "Cliente", null, FormMethod.Post))
+﻿@model Projeto_Banco_MVC.Models.Cliente
+@using (Html.BeginForm("Extrato", "Cliente", null, FormMethod.Post))
 {
     <br />
     <legend>Transação Bancária</legend>
 
     <select class="form-control" name="tipoCliente">
         Selecione o tipo de cliente
-        <option value="1">Cliente Fisico</option>
-        <option value="2">Cliente Juridico</option>
+        <option value="clienteFisico">Cliente Fisico</option>
+        <option value="clienteJuridico">Cliente Juridico</option>
     </select>
     <br /><br />
-    <select class="form-control" name="tipoConta">
+    <select class="form-control" name="tipoConta" id="tipoConta">
         Selecione o tipo de cliente
-        <option value="3">Conta Corrente</option>
-        <option value="4">Cliente Poupança</option>
+        <option value="contaCorrente">Conta Corrente</option>
+        <option value="contaPoupanca">Cliente Poupança</option>
     </select>
     <br /><br />
     <p>
         Nome do Cliente<br />
-        <input class="form-control" type="text" name="nome" />
+        <input class="form-control" required type="text" name="nome" />
     </p>
     <p>
         CPF do Cliente<br />
-        <input class="form-control" type="number" name="cpf" />
+        <input class="form-control" required type="number" name="cpf" />
     </p>
     <p>
         Saldo em conta
-        <input type="text" class="form-control" readonly name="saldoInicial" value="@ViewBag.SaldoInicial" />
+        <input type="text" class="form-control" required readonly name="saldoInicial" id="saldoinicial" />
     </p>
     <p>
         Entre com Valor de Deposito
-        <input type="number" class="form-control" name="deposito" />
+        <input type="number" class="form-control" required name="deposito" />
     </p>
     <p>
         Entre com o valor de Saque
-        <input type="number" class="form-control" name="saque" />
+        <input type="number" class="form-control" required name="saque" />
     </p>    
 
     <button class="btn btn-success" type="submit">Enviar</button>

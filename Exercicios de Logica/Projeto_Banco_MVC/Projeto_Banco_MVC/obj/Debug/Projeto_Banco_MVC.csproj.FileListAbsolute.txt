@@ -143,8 +143,13 @@ C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Ba
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Webpages.Razor.resources.dll
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Helpers.resources.dll
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\pt-br\System.Web.Mvc.resources.dll
-C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csprojAssemblyReference.cache
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CoreCompileInputs.cache
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.csproj.CopyComplete
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.dll
 C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\obj\Debug\Projeto_Banco_MVC.pdb
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.abstractions.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.core.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.execution.desktop.dll
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.abstractions.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.core.xml
+C:\Users\Desenvolvimento\Documents\Exercicios C#\Exercicios de Logica\Projeto_Banco_MVC\Projeto_Banco_MVC\bin\xunit.execution.desktop.xml
