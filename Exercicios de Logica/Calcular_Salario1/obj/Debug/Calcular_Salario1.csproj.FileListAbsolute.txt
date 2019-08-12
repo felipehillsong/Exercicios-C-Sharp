@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\bin\Debug\Calcular_Salario1.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\bin\Debug\Calcular_Salario1.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\bin\Debug\Calcular_Salario1.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\obj\Debug\Calcular_Salario1.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\obj\Debug\Calcular_Salario1.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\obj\Debug\Calcular_Salario1.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Calcular_Salario1\obj\Debug\Calcular_Salario1.pdb
