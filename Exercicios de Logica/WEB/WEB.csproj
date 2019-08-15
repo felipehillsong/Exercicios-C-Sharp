@@ -109,7 +109,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Conexao\BD.cs" />
     <Compile Include="Conexao\UsuarioAplicacao.cs" />
+    <Compile Include="Controllers\CadastroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -132,6 +134,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Usuarios\Usuarios.cshtml" />
+    <Content Include="Views\Cadastro\Cadastro.cshtml" />
+    <Content Include="Views\Usuarios\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -69,6 +69,17 @@ namespace WEB.Conexao
 
         }
 
+        public Usuarios SelectById(int id)
+        {
+            using (bd = new BD())
+            {
+                var exeQuery = string.Format("SELECT * FROM usuarios WHERE id = {0}", id);
+                var retorno = bd.ExecutaComandoComRetorno(exeQuery);
+                return LerDadosDoBanco(retorno).FirstOrDefault();
+            }
+
+        }
+
         private List<Usuarios> LerDadosDoBanco(SqlDataReader reader)
         {
             var usuarios = new List<Usuarios>();
