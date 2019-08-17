@@ -1,0 +1,204 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\WEB.dll.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\csc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\csc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\csc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\csi.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\csi.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.AppContext.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\vbc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\vbc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\vbc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\VBCSCompiler.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Helpers.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Mvc.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Razor.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.Razor.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Razor.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Webpages.Razor.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Helpers.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\System.Web.Mvc.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Razor.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Webpages.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Webpages.Razor.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Helpers.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\bin\pt-br\System.Web.Mvc.resources.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\obj\Debug\WEB.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\obj\Debug\WEB.csproj.CopyComplete
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\obj\Debug\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\WEB\obj\Debug\WEB.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\WEB.dll.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\csc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\csc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\csc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\csi.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\csi.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.AppContext.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\vbc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\vbc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\vbc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\obj\Debug\WEB.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\obj\Debug\WEB.csproj.CopyComplete
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD C# E ASP.NET MVC\CRUD Comandos Simples\WEB\obj\Debug\WEB.pdb
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll.config
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.pdb
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe.config
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.rsp
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.exe
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.rsp
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.AppContext.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe.config
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.rsp
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csprojAssemblyReference.cache
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CopyComplete
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Desktop\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.AppContext.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CopyComplete
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\WEB.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\csi.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.AppContext.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\vbc.rsp
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.csproj.CopyComplete
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET MVC Comandos Simples\WEB\obj\Debug\WEB.pdb
