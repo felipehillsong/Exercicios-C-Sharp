@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Conexao\BD.cs" />
+    <Compile Include="Conexao\IRepositorio.cs" />
     <Compile Include="Conexao\UsuarioAplicacao.cs" />
     <Compile Include="Conexao\UsuarioAplicacaoADO.cs" />
     <Compile Include="Controllers\CadastroController.cs" />

@@ -21,7 +21,7 @@ namespace WEB_ADO.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioAplicacao = new UsuarioAplicacao();
+                var usuarioAplicacao = new UsuarioAplicacaoADO();
                 usuarioAplicacao.Salvar(usuarios);
                 return RedirectToAction("Usuarios", "Usuarios");
             }

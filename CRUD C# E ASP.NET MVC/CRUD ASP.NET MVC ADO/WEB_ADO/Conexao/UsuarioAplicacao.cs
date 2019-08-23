@@ -7,18 +7,18 @@ using WEB_ADO.Models;
 
 namespace WEB_ADO.Conexao
 {
-    class UsuarioAplicacao
+    public class UsuarioAplicacao
     {
-        public UsuarioAplicacaoADO comando { get; private set; }
+        public IRepositorio<Usuarios> comando { get; private set; }
 
-        public UsuarioAplicacao()
+        public UsuarioAplicacao(IRepositorio<Usuarios> repo)
         {
-            comando = new UsuarioAplicacaoADO();
+            comando = repo;
         }
 
-        public void Delete(int id)
+        public void Delete(Usuarios usuarios)
         {
-            comando.Delete(id);
+            comando.Delete(usuarios);
         }
        
         public void Salvar(Usuarios usuarios)
@@ -26,13 +26,13 @@ namespace WEB_ADO.Conexao
             comando.Salvar(usuarios);
         }
 
-        public List<Usuarios> Select()
+        public IEnumerable<Usuarios> Select()
         {
             return comando.Select();
 
         }
 
-        public Usuarios SelectById(int id)
+        public Usuarios SelectById(string id)
         {
             return comando.SelectById(id);
 

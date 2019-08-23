@@ -13,14 +13,14 @@ namespace WEB_ADO.Controllers
         // GET: Usuarios
         public ActionResult Usuarios()
         {
-            var usuario = new UsuarioAplicacao();
+            var usuario = new UsuarioAplicacaoADO();
             var listaUsuarios = usuario.Select();
             return View(listaUsuarios);
         }
 
-        public ActionResult Editar(int id)
+        public ActionResult Editar(string id)
         {
-            var usuarioAplicacao = new UsuarioAplicacao();
+            var usuarioAplicacao = new UsuarioAplicacaoADO();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -34,16 +34,16 @@ namespace WEB_ADO.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioAplicacao = new UsuarioAplicacao();
+                var usuarioAplicacao = new UsuarioAplicacaoADO();
                 usuarioAplicacao.Salvar(usuarios);
                 return RedirectToAction("Usuarios", "Usuarios");
             }
             return View(usuarios);
         }
 
-        public ActionResult Detalhes(int id)
+        public ActionResult Detalhes(string id)
         {
-            var usuarioAplicacao = new UsuarioAplicacao();
+            var usuarioAplicacao = new UsuarioAplicacaoADO();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -52,9 +52,9 @@ namespace WEB_ADO.Controllers
             return View(usuario);
         }
 
-        public ActionResult Excluir(int id)
+        public ActionResult Excluir(string id)
         {
-            var usuarioAplicacao = new UsuarioAplicacao();
+            var usuarioAplicacao = new UsuarioAplicacaoADO();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -64,10 +64,10 @@ namespace WEB_ADO.Controllers
         }
 
         [HttpPost, ActionName("Excluir")]
-        public ActionResult ExcluirConfirmar(int id)
+        public ActionResult ExcluirConfirmar(Usuarios usuarios)
         {
-            var usuarioAplicacao = new UsuarioAplicacao();
-            usuarioAplicacao.Delete(id);
+            var usuarioAplicacao = new UsuarioAplicacaoADO();
+            usuarioAplicacao.Delete(usuarios);
             return RedirectToAction("Usuarios", "Usuarios");
         }
     }

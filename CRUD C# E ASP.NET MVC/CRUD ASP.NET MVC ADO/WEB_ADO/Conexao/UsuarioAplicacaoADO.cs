@@ -7,7 +7,7 @@ using WEB_ADO.Models;
 
 namespace WEB_ADO.Conexao
 {
-    public class UsuarioAplicacaoADO
+    public class UsuarioAplicacaoADO:IRepositorio<Usuarios>
     {
         private BD bd;
 
@@ -36,11 +36,11 @@ namespace WEB_ADO.Conexao
             }
         }
 
-        public void Delete(int id)
+        public void Delete(Usuarios usuarios)
         {
             using (bd = new BD())
             {
-                var exeQuery = string.Format("DELETE FROM usuarios WHERE id = {0}", id);
+                var exeQuery = string.Format("DELETE FROM usuarios WHERE id = {0}", usuarios.Id);
                 bd.ExecutarComandoSemRetorno(exeQuery);
             }
         }
@@ -58,7 +58,7 @@ namespace WEB_ADO.Conexao
             }
         }
 
-        public List<Usuarios> Select()
+        public IEnumerable<Usuarios> Select()
         {
             using (bd = new BD())
             {
@@ -69,7 +69,7 @@ namespace WEB_ADO.Conexao
 
         }
 
-        public Usuarios SelectById(int id)
+        public Usuarios SelectById(string id)
         {
             using (bd = new BD())
             {
@@ -86,7 +86,7 @@ namespace WEB_ADO.Conexao
             while (reader.Read())
             {
                 var dados = new Usuarios()
-                {
+                {                    
                     Id = int.Parse(reader["id"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Cargo = reader["cargo"].ToString(),
