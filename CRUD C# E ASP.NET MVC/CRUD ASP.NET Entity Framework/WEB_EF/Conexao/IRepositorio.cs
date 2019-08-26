@@ -16,6 +16,6 @@ namespace WEB_EF.Conexao
 
         IEnumerable<T> Select();
 
-        T SelectById(string id);
+        T SelectById(int id);
     }
 }

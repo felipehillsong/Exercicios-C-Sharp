@@ -53,3 +53,7 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET 
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\obj\Debug\WEB_EF.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\obj\Debug\WEB_EF.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\obj\Debug\WEB_EF.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\bin\EntityFramework.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\bin\EntityFramework.SqlServer.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\bin\EntityFramework.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\CRUD C# E ASP.NET MVC\CRUD ASP.NET Entity Framework\WEB_EF\bin\EntityFramework.SqlServer.xml

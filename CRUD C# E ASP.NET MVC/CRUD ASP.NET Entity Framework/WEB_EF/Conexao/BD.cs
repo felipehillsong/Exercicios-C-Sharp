@@ -1,47 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using WEB_EF.Models;
 
 namespace WEB_EF.Conexao
 {
-    class BD : IDisposable
+    public class BD : DbContext
     {
-        private readonly SqlConnection conexao;
+        public BD() : base("conexaoBD")
+        {
 
-        public BD()
-        {
-            conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["conexaoBD"].ConnectionString);
-            conexao.Open();
-        }
-        //usa para INSERT, UPTADE E DELETE
-        public void ExecutarComandoSemRetorno(string exeQuery)
-        {
-            var comando = new SqlCommand
-            {
-                CommandText = exeQuery,
-                CommandType = CommandType.Text,
-                Connection = conexao
-            };
-
-            comando.ExecuteNonQuery();
-        }
-        //usa apenas para SELECT
-        public SqlDataReader ExecutaComandoComRetorno(string exeQuery)
-        {
-            var comandoSelect = new SqlCommand(exeQuery, conexao);
-            return comandoSelect.ExecuteReader();
         }
 
-        public void Dispose()
+        public DbSet<Usuarios> usuarios { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            if (conexao.State == ConnectionState.Open)
-            {
-                conexao.Close();
-            }
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Usuarios>().Property(x => x.Nome).IsRequired().HasColumnType("varchar").HasMaxLength(75);
+            modelBuilder.Entity<Usuarios>().Property(x => x.Cargo).IsRequired().HasColumnType("varchar").HasMaxLength(75);
+            modelBuilder.Entity<Usuarios>().Property(x => x.Data).IsRequired().HasColumnType("date");
         }
+
     }
 }

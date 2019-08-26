@@ -13,14 +13,14 @@ namespace WEB_EF.Controllers
         // GET: Usuarios
         public ActionResult Usuarios()
         {
-            var usuario = new UsuarioAplicacaoADO();
+            var usuario = new UsuarioRepositorioEF();
             var listaUsuarios = usuario.Select();
             return View(listaUsuarios);
         }
 
-        public ActionResult Editar(string id)
+        public ActionResult Editar(int id)
         {
-            var usuarioAplicacao = new UsuarioAplicacaoADO();
+            var usuarioAplicacao = new UsuarioRepositorioEF();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -34,16 +34,16 @@ namespace WEB_EF.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioAplicacao = new UsuarioAplicacaoADO();
+                var usuarioAplicacao = new UsuarioRepositorioEF();
                 usuarioAplicacao.Salvar(usuarios);
                 return RedirectToAction("Usuarios", "Usuarios");
             }
             return View(usuarios);
         }
 
-        public ActionResult Detalhes(string id)
+        public ActionResult Detalhes(int id)
         {
-            var usuarioAplicacao = new UsuarioAplicacaoADO();
+            var usuarioAplicacao = new UsuarioRepositorioEF();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -52,9 +52,9 @@ namespace WEB_EF.Controllers
             return View(usuario);
         }
 
-        public ActionResult Excluir(string id)
+        public ActionResult Excluir(int id)
         {
-            var usuarioAplicacao = new UsuarioAplicacaoADO();
+            var usuarioAplicacao = new UsuarioRepositorioEF();
             var usuario = usuarioAplicacao.SelectById(id);
             if (usuario == null)
             {
@@ -66,7 +66,7 @@ namespace WEB_EF.Controllers
         [HttpPost, ActionName("Excluir")]
         public ActionResult ExcluirConfirmar(Usuarios usuarios)
         {
-            var usuarioAplicacao = new UsuarioAplicacaoADO();
+            var usuarioAplicacao = new UsuarioRepositorioEF();
             usuarioAplicacao.Delete(usuarios);
             return RedirectToAction("Usuarios", "Usuarios");
         }

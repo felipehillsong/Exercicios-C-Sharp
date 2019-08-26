@@ -21,7 +21,7 @@ namespace WEB_EF.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioAplicacao = new UsuarioAplicacaoADO();
+                var usuarioAplicacao = new UsuarioRepositorioEF();
                 usuarioAplicacao.Salvar(usuarios);
                 return RedirectToAction("Usuarios", "Usuarios");
             }
