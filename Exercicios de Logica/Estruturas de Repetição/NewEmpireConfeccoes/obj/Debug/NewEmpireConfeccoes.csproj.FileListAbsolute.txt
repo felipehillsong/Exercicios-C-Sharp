@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\bin\Debug\NewEmpireConfeccoes.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\bin\Debug\NewEmpireConfeccoes.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\bin\Debug\NewEmpireConfeccoes.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\obj\Debug\NewEmpireConfeccoes.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\obj\Debug\NewEmpireConfeccoes.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\obj\Debug\NewEmpireConfeccoes.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NewEmpireConfeccoes\obj\Debug\NewEmpireConfeccoes.pdb
