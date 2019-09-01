@@ -12,21 +12,21 @@ namespace NewEmpireConfeccoes
 
         private double SalarioHora { get; set; }       
 
-        public void MostrarNome(string nome)
-        {
-            this.Nome = nome;
-            Console.WriteLine("O nome do funcionario é: "+Nome);            
+        private string PegarNome(string nome)
+        {                  
+            return this.Nome = nome;
         }     
 
-        public void MostrarSalario(double hora, double salario)
+        public void MostrarSalario(string nome, double hora, double salario)
         {
-             this.SalarioHora = salario;
+            string nomeFuncionario = PegarNome(nome);
+            this.SalarioHora = salario;
 
             double salarioBruto = hora * SalarioHora;
             double descontoINSS = 11 * salarioBruto / 100;
             double salarioLiquido = salarioBruto - descontoINSS;
 
-            Console.WriteLine("O salario bruto do funcionario "+this.Nome +" é: "+salarioBruto+". O salario liquido é: "+salarioLiquido);
+            Console.WriteLine("O salario bruto do funcionario "+ nomeFuncionario + " é: "+salarioBruto+". O salario liquido é: "+salarioLiquido);
         }
     }
 }

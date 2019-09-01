@@ -14,8 +14,7 @@ namespace NewEmpireConfeccoes
             {
                 Funcionarios funcionarios = new Funcionarios();
                 Console.WriteLine("Entre com o nome do Funcionario");
-                string nome = Console.ReadLine();
-                funcionarios.MostrarNome(nome);
+                string nome = Console.ReadLine();                
 
                 Console.WriteLine("Entre com as horas trabalhadas do funcionario " + nome + ".");
                 double hora = double.Parse(Console.ReadLine());
@@ -23,7 +22,7 @@ namespace NewEmpireConfeccoes
                 Console.WriteLine("Qual o salario por hora do funcionario " + nome + "?");
                 double salario = double.Parse(Console.ReadLine());
 
-                funcionarios.MostrarSalario(hora, salario);
+                funcionarios.MostrarSalario(nome, hora, salario);
             }
             
         }
