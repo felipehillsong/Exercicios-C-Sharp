@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\bin\Debug\AlgoritimoMediaHomem.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\bin\Debug\AlgoritimoMediaHomem.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\bin\Debug\AlgoritimoMediaHomem.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\obj\Debug\AlgoritimoMediaHomem.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\obj\Debug\AlgoritimoMediaHomem.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\obj\Debug\AlgoritimoMediaHomem.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoMediaHomem\obj\Debug\AlgoritimoMediaHomem.csprojAssemblyReference.cache

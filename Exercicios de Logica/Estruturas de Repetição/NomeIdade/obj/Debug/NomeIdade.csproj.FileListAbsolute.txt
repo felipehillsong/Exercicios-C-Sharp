@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\bin\Debug\NomeIdade.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\bin\Debug\NomeIdade.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\bin\Debug\NomeIdade.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\obj\Debug\NomeIdade.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\obj\Debug\NomeIdade.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\obj\Debug\NomeIdade.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\NomeIdade\obj\Debug\NomeIdade.pdb
