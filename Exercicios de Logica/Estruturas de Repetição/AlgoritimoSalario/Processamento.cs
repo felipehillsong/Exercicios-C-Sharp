@@ -101,13 +101,6 @@ namespace AlgoritimoSalario
             Console.WriteLine("O  maior salario é: "+ maiorSalario);
             Console.WriteLine("O funcionário que contem o menor salário que é " + menorSalario + " é o(a): " + nomeMenor);
             Console.WriteLine("O funcionário que contem o maior salário que é "+maiorSalario +" é o(a): "+ nomeMaior);
-            
-
-
-
-
-
-
         }
     }
 }
