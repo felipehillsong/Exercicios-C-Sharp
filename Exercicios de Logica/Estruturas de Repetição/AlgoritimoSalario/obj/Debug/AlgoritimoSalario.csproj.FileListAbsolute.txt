@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\bin\Debug\AlgoritimoSalario.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\bin\Debug\AlgoritimoSalario.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\bin\Debug\AlgoritimoSalario.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\obj\Debug\AlgoritimoSalario.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\obj\Debug\AlgoritimoSalario.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\obj\Debug\AlgoritimoSalario.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\AlgoritimoSalario\obj\Debug\AlgoritimoSalario.pdb
