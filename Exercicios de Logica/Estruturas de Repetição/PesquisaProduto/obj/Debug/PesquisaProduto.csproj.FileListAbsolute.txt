@@ -1,0 +1,7 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\bin\Debug\PesquisaProduto.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\bin\Debug\PesquisaProduto.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\bin\Debug\PesquisaProduto.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\obj\Debug\PesquisaProduto.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\obj\Debug\PesquisaProduto.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\obj\Debug\PesquisaProduto.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\PesquisaProduto\obj\Debug\PesquisaProduto.pdb
