@@ -95,7 +95,6 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\b
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\bin\pt-br\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\bin\pt-br\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\bin\pt-br\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.csproj.CoreCompileInputs.cache
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.pdb
