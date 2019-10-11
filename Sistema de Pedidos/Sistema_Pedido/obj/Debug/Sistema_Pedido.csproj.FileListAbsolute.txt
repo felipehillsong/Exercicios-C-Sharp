@@ -99,3 +99,6 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\o
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.pdb
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.Migrations.InitialCreate.resources
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.csproj.GenerateResource.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema de Pedidos\Sistema_Pedido\obj\Debug\Sistema_Pedido.Migrations.AddComentarioFieldModelProduto.resources
