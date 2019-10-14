@@ -10,107 +10,107 @@ using Sistema_Loja.Models;
 
 namespace Sistema_Loja.Controllers
 {
-    public class ProdutoController : Controller
+    public class TipoDocumentoController : Controller
     {
         private Sistema_LojaContext db = new Sistema_LojaContext();
 
-        // GET: Produto
+        // GET: TipoDocumento
         public ActionResult Index()
         {
-            return View(db.Produtoes.ToList());
+            return View(db.TipoDocumentoes.ToList());
         }
 
-        // GET: Produto/Details/5
+        // GET: TipoDocumento/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            if (tipoDocumento == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(tipoDocumento);
         }
 
-        // GET: Produto/Create
+        // GET: TipoDocumento/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Produto/Create
+        // POST: TipoDocumento/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Create([Bind(Include = "TipoDocumentoId,Descricao")] TipoDocumento tipoDocumento)
         {
             if (ModelState.IsValid)
             {
-                db.Produtoes.Add(produto);
+                db.TipoDocumentoes.Add(tipoDocumento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(produto);
+            return View(tipoDocumento);
         }
 
-        // GET: Produto/Edit/5
+        // GET: TipoDocumento/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            if (tipoDocumento == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(tipoDocumento);
         }
 
-        // POST: Produto/Edit/5
+        // POST: TipoDocumento/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Edit([Bind(Include = "TipoDocumentoId,Descricao")] TipoDocumento tipoDocumento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(produto).State = EntityState.Modified;
+                db.Entry(tipoDocumento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(produto);
+            return View(tipoDocumento);
         }
 
-        // GET: Produto/Delete/5
+        // GET: TipoDocumento/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            if (tipoDocumento == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(tipoDocumento);
         }
 
-        // POST: Produto/Delete/5
+        // POST: TipoDocumento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Produto produto = db.Produtoes.Find(id);
-            db.Produtoes.Remove(produto);
+            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            db.TipoDocumentoes.Remove(tipoDocumento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

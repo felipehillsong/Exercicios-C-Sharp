@@ -9,7 +9,7 @@ namespace Sistema_Loja.Models
     public class Produto
     {
         [Key]
-        public int Id { get; set; }
+        public int ProdutoId { get; set; }
 
         public string Descricao { get; set; }
 

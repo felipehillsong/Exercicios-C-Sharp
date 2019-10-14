@@ -13,7 +13,7 @@
         <h4>Editar Produto - @Html.DisplayFor(model => model.Descricao)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProdutoId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })

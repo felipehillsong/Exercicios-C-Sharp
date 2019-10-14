@@ -10,107 +10,112 @@ using Sistema_Loja.Models;
 
 namespace Sistema_Loja.Controllers
 {
-    public class ProdutoController : Controller
+    public class FuncionarioController : Controller
     {
         private Sistema_LojaContext db = new Sistema_LojaContext();
 
-        // GET: Produto
+        // GET: Funcionario
         public ActionResult Index()
         {
-            return View(db.Produtoes.ToList());
+            var funcionarios = db.Funcionarios.Include(f => f.TipoDocumento);
+            return View(funcionarios.ToList());
         }
 
-        // GET: Produto/Details/5
+        // GET: Funcionario/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Funcionario funcionario = db.Funcionarios.Find(id);
+            if (funcionario == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(funcionario);
         }
 
-        // GET: Produto/Create
+        // GET: Funcionario/Create
         public ActionResult Create()
         {
+            ViewBag.TipoDocumentoId = new SelectList(db.TipoDocumentoes, "TipoDocumentoId", "Descricao");
             return View();
         }
 
-        // POST: Produto/Create
+        // POST: Funcionario/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Create([Bind(Include = "FuncionarioId,Nome,Sobrenome,Salario,Comissao,Nascimento,Cadastro,Email,TipoDocumentoId")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                db.Produtoes.Add(produto);
+                db.Funcionarios.Add(funcionario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(produto);
+            ViewBag.TipoDocumentoId = new SelectList(db.TipoDocumentoes, "TipoDocumentoId", "Descricao", funcionario.TipoDocumentoId);
+            return View(funcionario);
         }
 
-        // GET: Produto/Edit/5
+        // GET: Funcionario/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Funcionario funcionario = db.Funcionarios.Find(id);
+            if (funcionario == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            ViewBag.TipoDocumentoId = new SelectList(db.TipoDocumentoes, "TipoDocumentoId", "Descricao", funcionario.TipoDocumentoId);
+            return View(funcionario);
         }
 
-        // POST: Produto/Edit/5
+        // POST: Funcionario/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Edit([Bind(Include = "FuncionarioId,Nome,Sobrenome,Salario,Comissao,Nascimento,Cadastro,Email,TipoDocumentoId")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(produto).State = EntityState.Modified;
+                db.Entry(funcionario).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(produto);
+            ViewBag.TipoDocumentoId = new SelectList(db.TipoDocumentoes, "TipoDocumentoId", "Descricao", funcionario.TipoDocumentoId);
+            return View(funcionario);
         }
 
-        // GET: Produto/Delete/5
+        // GET: Funcionario/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Funcionario funcionario = db.Funcionarios.Find(id);
+            if (funcionario == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(funcionario);
         }
 
-        // POST: Produto/Delete/5
+        // POST: Funcionario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Produto produto = db.Produtoes.Find(id);
-            db.Produtoes.Remove(produto);
+            Funcionario funcionario = db.Funcionarios.Find(id);
+            db.Funcionarios.Remove(funcionario);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
