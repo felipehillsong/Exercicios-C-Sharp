@@ -1,0 +1,11 @@
+C:\Users\UZ17147\Desktop\JEAD\JEAD\bin\Debug\JEAD.exe.config
+C:\Users\UZ17147\Desktop\JEAD\JEAD\bin\Debug\JEAD.exe
+C:\Users\UZ17147\Desktop\JEAD\JEAD\bin\Debug\JEAD.pdb
+C:\Users\UZ17147\Desktop\JEAD\JEAD\obj\Debug\JEAD.exe
+C:\Users\UZ17147\Desktop\JEAD\JEAD\obj\Debug\JEAD.pdb
+C:\Users\UZ17147\Desktop\JEAD\JEAD\obj\Debug\JEAD.csprojResolveAssemblyReference.cache
+I:\JEAD\JEAD\bin\Debug\JEAD.exe.config
+I:\JEAD\JEAD\bin\Debug\JEAD.exe
+I:\JEAD\JEAD\bin\Debug\JEAD.pdb
+I:\JEAD\JEAD\obj\Debug\JEAD.exe
+I:\JEAD\JEAD\obj\Debug\JEAD.pdb
