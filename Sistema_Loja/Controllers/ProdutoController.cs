@@ -12,7 +12,15 @@ namespace Sistema_Loja.Controllers
 {
     public class ProdutoController : Controller
     {
-        private Sistema_LojaContext db = new Sistema_LojaContext();
+        private Sistema_LojaContext db { get; set; }
+
+        private Produto produto { get; set; }
+
+        public ProdutoController()
+        {
+            db = new Sistema_LojaContext();
+            produto = new Produto();
+        }
 
         // GET: Produto
         public ActionResult Index()
@@ -27,7 +35,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
+            produto = db.Produtoes.Find(id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -65,7 +73,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
+            produto = db.Produtoes.Find(id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -96,7 +104,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
+            produto = db.Produtoes.Find(id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -109,7 +117,7 @@ namespace Sistema_Loja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Produto produto = db.Produtoes.Find(id);
+            produto = db.Produtoes.Find(id);
             db.Produtoes.Remove(produto);
             db.SaveChanges();
             return RedirectToAction("Index");

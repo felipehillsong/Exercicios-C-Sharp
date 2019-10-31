@@ -12,7 +12,15 @@ namespace Sistema_Loja.Controllers
 {
     public class TipoDocumentoController : Controller
     {
-        private Sistema_LojaContext db = new Sistema_LojaContext();
+        private Sistema_LojaContext db { get; set; }
+
+        private TipoDocumento tipoDocumento { get; set; }
+
+        public TipoDocumentoController()
+        {
+            db = new Sistema_LojaContext();
+            tipoDocumento = new TipoDocumento();
+        }
 
         // GET: TipoDocumento
         public ActionResult Index()
@@ -27,7 +35,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            tipoDocumento = db.TipoDocumentoes.Find(id);
             if (tipoDocumento == null)
             {
                 return HttpNotFound();
@@ -65,7 +73,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            tipoDocumento = db.TipoDocumentoes.Find(id);
             if (tipoDocumento == null)
             {
                 return HttpNotFound();
@@ -96,7 +104,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            tipoDocumento = db.TipoDocumentoes.Find(id);
             if (tipoDocumento == null)
             {
                 return HttpNotFound();
@@ -109,7 +117,7 @@ namespace Sistema_Loja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoDocumento tipoDocumento = db.TipoDocumentoes.Find(id);
+            tipoDocumento = db.TipoDocumentoes.Find(id);
             db.TipoDocumentoes.Remove(tipoDocumento);
             db.SaveChanges();
             return RedirectToAction("Index");

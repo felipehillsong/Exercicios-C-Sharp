@@ -217,4 +217,3 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\bin\pt-br\Microsoft.Ow
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.pdb
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.csprojAssemblyReference.cache

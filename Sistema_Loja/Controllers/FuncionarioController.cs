@@ -12,7 +12,16 @@ namespace Sistema_Loja.Controllers
 {
     public class FuncionarioController : Controller
     {
-        private Sistema_LojaContext db = new Sistema_LojaContext();
+        private Sistema_LojaContext db { get; set; }
+
+        private Funcionario funcionario { get; set; }
+
+        public FuncionarioController()
+        {
+            db = new Sistema_LojaContext();
+            funcionario = new Funcionario();
+        }
+        
 
         // GET: Funcionario
         public ActionResult Index()
@@ -28,7 +37,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Funcionario funcionario = db.Funcionarios.Find(id);
+            funcionario = db.Funcionarios.Find(id);
             if (funcionario == null)
             {
                 return HttpNotFound();
@@ -68,7 +77,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Funcionario funcionario = db.Funcionarios.Find(id);
+            funcionario = db.Funcionarios.Find(id);
             if (funcionario == null)
             {
                 return HttpNotFound();
@@ -101,7 +110,7 @@ namespace Sistema_Loja.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Funcionario funcionario = db.Funcionarios.Find(id);
+            funcionario = db.Funcionarios.Find(id);
             if (funcionario == null)
             {
                 return HttpNotFound();
@@ -114,7 +123,7 @@ namespace Sistema_Loja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Funcionario funcionario = db.Funcionarios.Find(id);
+            funcionario = db.Funcionarios.Find(id);
             db.Funcionarios.Remove(funcionario);
             db.SaveChanges();
             return RedirectToAction("Index");
