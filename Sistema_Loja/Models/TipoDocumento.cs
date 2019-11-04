@@ -10,7 +10,9 @@ namespace Sistema_Loja.Models
     {
         [Key]
         public int TipoDocumentoId { get; set; }
-
+        
+        [Display(Name = "Tipo do Documento")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
         public string Descricao { get; set; }
 
 

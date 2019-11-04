@@ -10,21 +10,36 @@ namespace Sistema_Loja.Models
     {
         [Key]
         public int FuncionarioId { get; set; }
-        [Display(Name ="Primeiro nome")]
-        public string Nome { get; set; }
+        [Display(Name ="Nome")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [StringLength(30, ErrorMessage = "Limite de 30 caracteres")]
+        public string Nome { get; set; }       
         [Display(Name = "Sobrenome")]
-        public string Sobrenome { get; set; }
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [StringLength(30, ErrorMessage = "Limite de 30 caracteres")]
+        public string Sobrenome { get; set; }       
         [Display(Name = "Salario")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
         public decimal Salario { get; set; }
         [Display(Name = "Comissão")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = false)]
         public float Comissao { get; set; }
-        [Display(Name = "Nascimento")]
+        [Display(Name = "Data de Nascimento")]        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]        
         public DateTime Nascimento { get; set; }
         [Display(Name = "Cadastro")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Cadastro { get; set; }
         [Display(Name = "Email")]
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
+        [StringLength(50, ErrorMessage = "Limite de 50 caracteres")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Display(Name = "Primeiro nome")]
+        
+        [Required(ErrorMessage = "Você precisa entrar com {0}")]
         public int TipoDocumentoId { get; set; }
 
 
