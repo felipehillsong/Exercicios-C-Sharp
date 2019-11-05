@@ -119,7 +119,16 @@ namespace Sistema_Loja.Controllers
         {
             tipoDocumento = db.TipoDocumentoes.Find(id);
             db.TipoDocumentoes.Remove(tipoDocumento);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+           
             return RedirectToAction("Index");
         }
 
