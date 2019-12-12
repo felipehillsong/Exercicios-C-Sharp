@@ -1,0 +1,6 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\bin\Debug\TabelaHash.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\bin\Debug\TabelaHash.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\bin\Debug\TabelaHash.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\obj\Debug\TabelaHash.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\obj\Debug\TabelaHash.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\TabelaHash\obj\Debug\TabelaHash.pdb

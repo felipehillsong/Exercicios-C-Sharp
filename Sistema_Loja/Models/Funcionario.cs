@@ -29,7 +29,7 @@ namespace Sistema_Loja.Models
         [Display(Name = "Data de Nascimento")]        
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]        
         public DateTime Nascimento { get; set; }
-        [Display(Name = "Cadastro")]
+        [Display(Name = "Data de Cadastro")]
         [Required(ErrorMessage = "Você precisa entrar com {0}")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Cadastro { get; set; }
