@@ -13,7 +13,6 @@ namespace TabelaHash
         {
             var processamento = new Processamento();
             processamento.Processar();
-            string teste = "teste";
         }
     }
 }
