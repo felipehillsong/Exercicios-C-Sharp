@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -38,8 +39,8 @@ namespace Sistema_Loja.Models
         [StringLength(50, ErrorMessage = "Limite de 50 caracteres")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public int Idade { get { return DateTime.Now.Year - Nascimento.Year; } }
-        
+        [NotMapped]
+        public int Idade { get { return DateTime.Now.Year - Nascimento.Year; } }        
         [Required(ErrorMessage = "Você precisa entrar com {0}")]
         public int TipoDocumentoId { get; set; }
 
