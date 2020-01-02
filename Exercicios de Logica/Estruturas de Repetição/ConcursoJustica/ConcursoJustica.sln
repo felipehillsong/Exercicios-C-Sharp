@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcursoJustica", "ConcursoJustica\ConcursoJustica.csproj", "{26B345C2-CEA2-4BD6-9952-1076FE8600D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26B345C2-CEA2-4BD6-9952-1076FE8600D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B345C2-CEA2-4BD6-9952-1076FE8600D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B345C2-CEA2-4BD6-9952-1076FE8600D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B345C2-CEA2-4BD6-9952-1076FE8600D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43191F1B-B057-4E37-BAFE-BD7FA0ECCDFE}
+	EndGlobalSection
+EndGlobal

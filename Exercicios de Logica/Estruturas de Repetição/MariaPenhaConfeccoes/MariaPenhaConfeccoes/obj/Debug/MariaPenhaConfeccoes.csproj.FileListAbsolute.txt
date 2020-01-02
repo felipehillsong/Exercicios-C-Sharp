@@ -1,0 +1,6 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\bin\Debug\MariaPenhaConfeccoes.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\bin\Debug\MariaPenhaConfeccoes.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\bin\Debug\MariaPenhaConfeccoes.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\obj\Debug\MariaPenhaConfeccoes.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\obj\Debug\MariaPenhaConfeccoes.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\MariaPenhaConfeccoes\MariaPenhaConfeccoes\obj\Debug\MariaPenhaConfeccoes.pdb
