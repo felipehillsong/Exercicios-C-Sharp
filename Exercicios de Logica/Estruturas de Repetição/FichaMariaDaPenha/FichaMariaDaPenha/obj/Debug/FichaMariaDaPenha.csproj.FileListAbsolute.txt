@@ -1,0 +1,6 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\bin\Debug\FichaMariaDaPenha.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\bin\Debug\FichaMariaDaPenha.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\bin\Debug\FichaMariaDaPenha.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\obj\Debug\FichaMariaDaPenha.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\obj\Debug\FichaMariaDaPenha.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\FichaMariaDaPenha\FichaMariaDaPenha\obj\Debug\FichaMariaDaPenha.pdb
