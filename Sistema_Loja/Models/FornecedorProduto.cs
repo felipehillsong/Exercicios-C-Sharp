@@ -13,7 +13,7 @@ namespace Sistema_Loja.Models
         public int FornecedorId { get; set; }
         public int ProdutoId { get; set; }
 
-        public virtual Fornecdedor Fornecdedor { get; set; }
+        public virtual Fornecedor Fornecedor { get; set; }
         public virtual Produto Produto { get; set; }
 
 

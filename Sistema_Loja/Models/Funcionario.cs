@@ -28,7 +28,8 @@ namespace Sistema_Loja.Models
         [DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = false)]
         public float Comissao { get; set; }
         [Display(Name = "Data de Nascimento")]        
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]   
+        [DataType(DataType.Date)]
         public DateTime Nascimento { get; set; }
         [Display(Name = "Data de Cadastro")]
         [Required(ErrorMessage = "Você precisa entrar com {0}")]

@@ -1,11 +1,13 @@
 ﻿@model Sistema_Loja.Models.Produto
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Details";
 }
 
+<h2>Details</h2>
+
 <div>
-    <h4>Detalhe do Produto - @Html.DisplayFor(model => model.Descricao)</h4>
+    <h4>Produto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Ultima Compra")
+            @Html.DisplayNameFor(model => model.UltimaCompra)
         </dt>
 
         <dd>
@@ -39,6 +41,7 @@
         <dd>
             @Html.DisplayFor(model => model.Estoque)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Comentario)
         </dt>
@@ -50,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ProdutoId }) |
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProdutoId }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

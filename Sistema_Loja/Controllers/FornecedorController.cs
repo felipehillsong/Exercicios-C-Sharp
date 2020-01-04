@@ -10,107 +10,107 @@ using Sistema_Loja.Models;
 
 namespace Sistema_Loja.Controllers
 {
-    public class ProdutoController : Controller
+    public class FornecedorController : Controller
     {
         private Sistema_LojaContext db = new Sistema_LojaContext();
 
-        // GET: Produto
+        // GET: Fornecedor
         public ActionResult Index()
         {
-            return View(db.Produtoes.ToList());
+            return View(db.Fornecedor.ToList());
         }
 
-        // GET: Produto/Details/5
+        // GET: Fornecedor/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Fornecedor fornecedor = db.Fornecedor.Find(id);
+            if (fornecedor == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(fornecedor);
         }
 
-        // GET: Produto/Create
+        // GET: Fornecedor/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Produto/Create
+        // POST: Fornecedor/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Create([Bind(Include = "FornecedorId,Nome,Sobrenome,Telefone,Endereco,Email")] Fornecedor fornecedor)
         {
             if (ModelState.IsValid)
             {
-                db.Produtoes.Add(produto);
+                db.Fornecedor.Add(fornecedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(produto);
+            return View(fornecedor);
         }
 
-        // GET: Produto/Edit/5
+        // GET: Fornecedor/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Fornecedor fornecedor = db.Fornecedor.Find(id);
+            if (fornecedor == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(fornecedor);
         }
 
-        // POST: Produto/Edit/5
+        // POST: Fornecedor/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProdutoId,Descricao,Preco,UltimaCompra,Estoque,Comentario")] Produto produto)
+        public ActionResult Edit([Bind(Include = "FornecedorId,Nome,Sobrenome,Telefone,Endereco,Email")] Fornecedor fornecedor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(produto).State = EntityState.Modified;
+                db.Entry(fornecedor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(produto);
+            return View(fornecedor);
         }
 
-        // GET: Produto/Delete/5
+        // GET: Fornecedor/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = db.Produtoes.Find(id);
-            if (produto == null)
+            Fornecedor fornecedor = db.Fornecedor.Find(id);
+            if (fornecedor == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(fornecedor);
         }
 
-        // POST: Produto/Delete/5
+        // POST: Fornecedor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Produto produto = db.Produtoes.Find(id);
-            db.Produtoes.Remove(produto);
+            Fornecedor fornecedor = db.Fornecedor.Find(id);
+            db.Fornecedor.Remove(fornecedor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

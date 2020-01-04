@@ -17,5 +17,6 @@ namespace Sistema_Loja.Models
 
 
         public virtual ICollection<Funcionario> Funcionarios { get; set; }
+        public virtual ICollection<Customizar> Customizar { get; set; }
     }
 }
