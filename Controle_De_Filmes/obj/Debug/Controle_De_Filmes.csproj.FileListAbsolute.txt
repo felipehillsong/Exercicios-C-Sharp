@@ -116,7 +116,6 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\bin\pt-br\System
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.csprojAssemblyReference.cache
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.Migrations.Initial.resources
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.csproj.GenerateResource.cache
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.csproj.CoreCompileInputs.cache
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Controle_De_Filmes\obj\Debug\Controle_De_Filmes.pdb

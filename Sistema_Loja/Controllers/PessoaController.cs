@@ -39,7 +39,10 @@ namespace Sistema_Loja.Controllers
         // GET: Pessoa/Create
         public ActionResult Create()
         {
-            ViewBag.TipoDocumentoId = new SelectList(db.TipoDocumentoes, "TipoDocumentoId", "Descricao");
+            var list = db.TipoDocumentoes.ToList();
+            list.Add(new TipoDocumento { TipoDocumentoId = 0, Descricao = "[Selecione um tipo de documento]" });
+            list = list.OrderBy(x => x.Descricao).ToList();
+            ViewBag.TipoDocumentoId = new SelectList(list, "TipoDocumentoId", "Descricao");
             return View();
         }
 
@@ -53,7 +56,16 @@ namespace Sistema_Loja.Controllers
             if (ModelState.IsValid)
             {
                 db.Customizars.Add(customizar);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    
+                }
+                
                 return RedirectToAction("Index");
             }
 
