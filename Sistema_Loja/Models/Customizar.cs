@@ -23,10 +23,11 @@ namespace Sistema_Loja.Models
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
         [Display(Name = "Documento")]
         public string Documento { get; set; }
         public int TipoDocumentoId { get; set; }
+
         public virtual TipoDocumento TipoDocumento { get; set; }
+        public virtual ICollection<Ordem> Ordem { get; set; }
     }
 }
