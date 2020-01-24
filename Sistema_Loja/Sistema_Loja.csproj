@@ -181,7 +181,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomizarController.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -294,16 +293,10 @@
     <Content Include="Views\Pessoa\Details.cshtml" />
     <Content Include="Views\Pessoa\Edit.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
-    <Content Include="Views\NovaOrdem.cshtml" />
-    <Content Include="Views\Customizar\Create.cshtml" />
-    <Content Include="Views\Customizar\Delete.cshtml" />
-    <Content Include="Views\Customizar\Details.cshtml" />
-    <Content Include="Views\Customizar\Edit.cshtml" />
-    <Content Include="Views\Customizar\Index.cshtml" />
+    <Content Include="Views\Ordens\NovaOrdem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ordens\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
