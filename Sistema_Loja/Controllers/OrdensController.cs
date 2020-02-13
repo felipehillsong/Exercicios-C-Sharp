@@ -24,6 +24,22 @@ namespace Sistema_Loja.Controllers
             ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
             return View(ordemView);
         }
+        [HttpPost]
+        public ActionResult NovaOrdem(OrdemView ordemView)
+        {
+            var list = db.Customizars.ToList();
+            list = list.OrderBy(x => x.NomeCompleto).ToList();
+            ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
+            return View(ordemView);
+        }
+
+        public ActionResult AddProduto(ProdutoOrdem produtoOrdem)
+        {
+            var list = db.Produtoes.ToList();
+            list = list.OrderBy(x => x.Descricao).ToList();
+            ViewBag.ProdutoId = new SelectList(list, "ProdutoId", "Descricao");
+            return View(produtoOrdem);
+        }
 
         protected override void Dispose(bool disposing)
         {

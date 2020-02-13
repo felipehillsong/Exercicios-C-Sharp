@@ -19,5 +19,9 @@
             @Html.ValidationMessageFor(model => model.Customizar.CustomizarId, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @Html.ActionLink("Adicionar Produto", "AddProduto", new { }, new { @class="btn btn-primary"})    
+    <input type="submit" value="Criar Ordem" id="NovaOrdem" class="btn btn-default" />        
+   
 </div>
 }
