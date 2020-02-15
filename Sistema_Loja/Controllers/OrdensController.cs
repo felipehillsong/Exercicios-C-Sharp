@@ -19,7 +19,8 @@ namespace Sistema_Loja.Controllers
             ordemView.Customizar = new Customizar();
             ordemView.ProdutoOrdem = new List<ProdutoOrdem>();            
 
-            var list = db.Customizars.ToList();            
+            var list = db.Customizars.ToList();
+            list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente]" });
             list = list.OrderBy(x => x.NomeCompleto).ToList();
             ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
             return View(ordemView);
@@ -28,6 +29,7 @@ namespace Sistema_Loja.Controllers
         public ActionResult NovaOrdem(OrdemView ordemView)
         {
             var list = db.Customizars.ToList();
+            list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente]" });
             list = list.OrderBy(x => x.NomeCompleto).ToList();
             ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
             return View(ordemView);
@@ -36,9 +38,19 @@ namespace Sistema_Loja.Controllers
         public ActionResult AddProduto(ProdutoOrdem produtoOrdem)
         {
             var list = db.Produtoes.ToList();
+            list.Add(new ProdutoOrdem { ProdutoId = 0, Descricao = "[Selecione um produto]" });
             list = list.OrderBy(x => x.Descricao).ToList();
             ViewBag.ProdutoId = new SelectList(list, "ProdutoId", "Descricao");
             return View(produtoOrdem);
+        }
+        [HttpPost]
+        public ActionResult AddProduto(FormCollection form)
+        {
+            var list = db.Produtoes.ToList();
+            list.Add(new ProdutoOrdem { ProdutoId = 0, Descricao = "[Selecione um produto]" });
+            list = list.OrderBy(x => x.Descricao).ToList();
+            ViewBag.ProdutoId = new SelectList(list, "ProdutoId", "Descricao");
+            return View();
         }
 
         protected override void Dispose(bool disposing)
