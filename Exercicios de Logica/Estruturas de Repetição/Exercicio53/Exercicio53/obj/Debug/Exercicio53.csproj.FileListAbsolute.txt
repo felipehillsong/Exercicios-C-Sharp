@@ -1,0 +1,6 @@
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\bin\Debug\Exercicio53.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\bin\Debug\Exercicio53.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\bin\Debug\Exercicio53.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\obj\Debug\Exercicio53.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\obj\Debug\Exercicio53.exe
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Exercicios de Logica\Estruturas de Repetição\Exercicio53\Exercicio53\obj\Debug\Exercicio53.pdb
