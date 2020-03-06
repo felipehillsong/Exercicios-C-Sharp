@@ -83,8 +83,9 @@ namespace Exercicio53
             }
 
             Console.WriteLine($"Maior Nota {maiorNota}, menor nota {menorNota}");
-            Console.WriteLine($"Reprovados {disciplina.Reprovados}");
+            Console.WriteLine($"Reprovados {disciplina.TotalReprovados}");
             Console.WriteLine($"Media de nota da turma é {disciplina.NotaMediaTurma}");
+            Console.WriteLine($"Porcentagem de reprovados por frequencia entre o total de reprovados é {disciplina.PorcentagemReprovadosFrequencia}");
         }
     }
 }

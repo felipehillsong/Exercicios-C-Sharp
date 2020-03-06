@@ -16,11 +16,19 @@ namespace Exercicio53
 
         public double Nota3 { get; set; }
 
-        public double NotaFinal { get; set; }
+        private double NotaFinal { get; set; }
 
         public int Frequencia { get; set; }
 
-        public int Reprovados { get; set; }
+        private int ReprovadosNota { get; set; }
+
+        private int ReprovadosFrequncia { get; set; }
+
+        private double ReprovadosPorFrequencia { get; set; }
+
+        public int TotalReprovados { get; set; }
+
+        public double PorcentagemReprovadosFrequencia { get; set; }
 
         public double NotaMediaTurma { get; set; }
 
@@ -28,20 +36,32 @@ namespace Exercicio53
 
         public void Dados(Disciplina disciplina, int resposta)
         {
-            disciplina.NotaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;
-            this.SomaNotas += disciplina.NotaFinal;
+            this.NotaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;
+            this.SomaNotas += this.NotaFinal;
 
-            if (disciplina.NotaFinal >= 60 && disciplina.Frequencia >= 40)
+            if (NotaFinal >= 60 && disciplina.Frequencia >= 40)
             {
-                Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média { disciplina.NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Aprovado");
+                Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média { NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Aprovado");
             }
-            else if (disciplina.NotaFinal < 60 || disciplina.Frequencia < 40)
+            else if (NotaFinal < 60 || disciplina.Frequencia < 40)
             {
-                this.Reprovados += 1;
-                Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média { disciplina.NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Reprovado");
+                if(disciplina.Frequencia < 40)
+                {
+                    ReprovadosFrequncia += 1;
+
+                }
+                else if(NotaFinal < 60)
+                {
+                    ReprovadosNota += 1;
+                }
+                
+                Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média {NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Reprovado");
             }
 
             NotaMediaTurma = SomaNotas / resposta;
+            TotalReprovados = ReprovadosFrequncia + ReprovadosNota;
+            ReprovadosPorFrequencia = ReprovadosFrequncia;
+            PorcentagemReprovadosFrequencia = (ReprovadosPorFrequencia / TotalReprovados) * 100;
         }
     }
 }
