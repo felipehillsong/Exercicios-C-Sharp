@@ -18,20 +18,30 @@ namespace Exercicio53
 
         public double NotaFinal { get; set; }
 
-        public int Frequencia { get; set; }        
+        public int Frequencia { get; set; }
 
-        public void Dados(Disciplina disciplina)
+        public int Reprovados { get; set; }
+
+        public double NotaMediaTurma { get; set; }
+
+        private double SomaNotas { get; set; }
+
+        public void Dados(Disciplina disciplina, int resposta)
         {
-            disciplina.NotaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;            
+            disciplina.NotaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;
+            this.SomaNotas += disciplina.NotaFinal;
 
             if (disciplina.NotaFinal >= 60 && disciplina.Frequencia >= 40)
             {
                 Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média { disciplina.NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Aprovado");
             }
-            else if(disciplina.NotaFinal < 60 || disciplina.Frequencia < 40)
+            else if (disciplina.NotaFinal < 60 || disciplina.Frequencia < 40)
             {
+                this.Reprovados += 1;
                 Console.WriteLine($"O aluno com matricula {disciplina.Matricula} obteve as notas {disciplina.Nota1}, {disciplina.Nota2} e {disciplina.Nota3}, e oteve a média { disciplina.NotaFinal}. E sua frequencia foi de {disciplina.Frequencia}. Seu status é Reprovado");
             }
+
+            NotaMediaTurma = SomaNotas / resposta;
         }
     }
 }

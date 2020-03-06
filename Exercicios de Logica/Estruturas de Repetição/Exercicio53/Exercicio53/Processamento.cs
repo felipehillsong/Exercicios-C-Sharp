@@ -8,7 +8,7 @@ namespace Exercicio53
 {
     public class Processamento
     {
-        public Disciplina disciplina { get; set; }
+        public Disciplina disciplina { get; set; }        
 
         public Processamento()
         {
@@ -17,10 +17,14 @@ namespace Exercicio53
 
         public void Processar()
         {
+            int resposta = 0;
             double maiorNota = 0;
             double menorNota = 0;
             double notaFinal = 0;
             int s = 0;
+
+            Console.WriteLine("Quantos alunos deseja cadastrar as notas?");
+            resposta = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Entre com a matricula do aluno: ");
             disciplina.Matricula = long.Parse(Console.ReadLine());
@@ -37,7 +41,7 @@ namespace Exercicio53
             Console.WriteLine("Entre com a frequencia do aluno: ");
             disciplina.Frequencia = int.Parse(Console.ReadLine());
 
-            disciplina.Dados(disciplina);
+            disciplina.Dados(disciplina, resposta);
 
             notaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;
             maiorNota = notaFinal;
@@ -45,7 +49,7 @@ namespace Exercicio53
 
             s = 1;
 
-            while (s < 3)
+            while (s < resposta)
             {
                 Console.WriteLine("Entre com a matricula do aluno: ");
                 disciplina.Matricula = long.Parse(Console.ReadLine());
@@ -62,7 +66,7 @@ namespace Exercicio53
                 Console.WriteLine("Entre com a frequencia do aluno: ");
                 disciplina.Frequencia = int.Parse(Console.ReadLine());
 
-                disciplina.Dados(disciplina);
+                disciplina.Dados(disciplina, resposta);
 
                 notaFinal = (disciplina.Nota1 + disciplina.Nota2 + disciplina.Nota3) / 3;
 
@@ -70,8 +74,8 @@ namespace Exercicio53
                 {
                     menorNota = notaFinal;
                 }
-                else if(notaFinal > maiorNota)
-                {   
+                else if (notaFinal > maiorNota)
+                {
                     maiorNota = notaFinal;
                 }
 
@@ -79,6 +83,8 @@ namespace Exercicio53
             }
 
             Console.WriteLine($"Maior Nota {maiorNota}, menor nota {menorNota}");
+            Console.WriteLine($"Reprovados {disciplina.Reprovados}");
+            Console.WriteLine($"Media de nota da turma é {disciplina.NotaMediaTurma}");
         }
     }
 }
