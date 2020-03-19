@@ -29,10 +29,103 @@ namespace Sistema_Loja.Controllers
         [HttpPost]
         public ActionResult NovaOrdem(OrdemView ordemView)
         {
+            ordemView = Session["ordemView"] as OrdemView;
+            var customizarId = ordemView.Customizar.CustomizarId;
             var list = db.Customizars.ToList();
-            list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente]" });
-            list = list.OrderBy(x => x.NomeCompleto).ToList();
+
+            if (customizarId == 0)
+            {
+                list = db.Customizars.ToList();
+                list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente!]" });
+                list = list.OrderBy(c => c.NomeCompleto).ToList();
+                ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
+                ViewBag.Error = "Selecione um Cliente";
+
+                return View(ordemView);
+            }
+
+            var cliente = db.Customizars.Find(customizarId);
+            if (cliente == null)
+            {
+                list = db.Customizars.ToList();
+                list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente!]" });
+                list = list.OrderBy(c => c.NomeCompleto).ToList();
+                ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
+                ViewBag.Error = "O cliente não existe";
+
+                return View(ordemView);
+            }
+
+            if (ordemView.Produtos.Count == 0)
+            {
+                list = db.Customizars.ToList();
+                list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente!]" });
+                list = list.OrderBy(c => c.NomeCompleto).ToList();
+                ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
+                ViewBag.Error = "Selecione um Produto";
+
+                return View(ordemView);
+            }
+
+            int ordemId = 0;
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var ordem = new Ordem
+                    {
+                        CustomizarId = customizarId,
+                        OrdemData = DateTime.Now,
+                        OrdemStatus = OrdemStatus.Criada
+
+                    };
+
+
+                    db.Ordem.Add(ordem);
+                    db.SaveChanges();
+
+                    ordemId = db.Ordem.ToList().Select(o => o.OrdemId).Max();
+
+                    foreach (var item in ordemView.Produtos)
+                    {
+                        var ordemDetalhes = new OrdemDetalhe
+                        {
+                            ProdutoId = item.ProdutoId,
+                            Descricao = item.Descricao,
+                            Preco = item.Preco,
+                            Quantidade = item.Quantidade,
+                            OrdemId = ordemId
+
+                        };
+
+                        db.OrdemDetalhe.Add(ordemDetalhes);
+                        db.SaveChanges();
+                    }
+
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    ViewBag.Error = "Error " + ex.Message;
+                    return View(ordemView);
+                }
+            }
+
+
+            ViewBag.Mensagem = string.Format("Ordem: {0}, foi salva com sucesso", ordemId);
+
+            list = db.Customizars.ToList();
+            list.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente!]" });
+            list = list.OrderBy(c => c.NomeCompleto).ToList();
             ViewBag.CustomizarId = new SelectList(list, "CustomizarId", "NomeCompleto");
+
+            ordemView = new OrdemView();
+            ordemView.Customizar = new Customizar();
+            ordemView.Produtos = new List<ProdutoOrdem>();
+            Session["ordemView"] = ordemView;
+
             return View(ordemView);
         }
 
@@ -47,10 +140,10 @@ namespace Sistema_Loja.Controllers
         [HttpPost]
         public ActionResult AddProduto(ProdutoOrdem produtoOrdem)
         {
-            var ordemView = Session["ordemView"] as OrdemView;
+            var ordemView = Session["ordemView"] as OrdemView;       
             var list = db.Produtoes.ToList();
-            var produtoId = int.Parse(Request["ProdutoId"]);
-            if(produtoId == 0)
+            var produtoId = produtoOrdem.ProdutoId;
+            if (produtoId == 0)
             {
                 list.Add(new ProdutoOrdem { ProdutoId = 0, Descricao = "[Selecione um produto]" });
                 list = list.OrderBy(x => x.Descricao).ToList();
@@ -70,19 +163,24 @@ namespace Sistema_Loja.Controllers
             }
 
             produtoOrdem = ordemView.Produtos.Find(p => p.ProdutoId == produtoId);
-
-
-            produtoOrdem = new ProdutoOrdem
+            if(produtoOrdem == null)
             {
-                Descricao = produto.Descricao,
-                Preco = produto.Preco,
-                ProdutoId = produto.ProdutoId,
-                Quantidade = float.Parse(Request["Quantidade"])                
-            };
-            ordemView.Produtos.Add(produtoOrdem);
+                produtoOrdem = new ProdutoOrdem
+                {
+                    Descricao = produto.Descricao,
+                    Preco = produto.Preco,
+                    ProdutoId = produto.ProdutoId,
+                    Quantidade = float.Parse(Request["Quantidade"])
+                };
+                ordemView.Produtos.Add(produtoOrdem);
+            }
+            else
+            {
+                produtoOrdem.Quantidade += float.Parse(Request["Quantidade"]);
+            }            
+            
 
-            var listCliente = db.Customizars.ToList();
-            listCliente.Add(new Customizar { CustomizarId = 0, Nome = "[Selecione um cliente]" });
+            var listCliente = db.Customizars.ToList();            
             listCliente = listCliente.OrderBy(x => x.NomeCompleto).ToList();
             ViewBag.CustomizarId = new SelectList(listCliente, "CustomizarId", "NomeCompleto");
 

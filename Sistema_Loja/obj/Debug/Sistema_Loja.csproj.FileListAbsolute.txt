@@ -218,3 +218,4 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.pdb
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Sistema_Loja\obj\Debug\Sistema_Loja.csproj.CoreCompileInputs.cache

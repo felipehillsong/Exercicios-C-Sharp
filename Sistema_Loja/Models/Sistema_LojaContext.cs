@@ -34,5 +34,9 @@ namespace Sistema_Loja.Models
         public System.Data.Entity.DbSet<Sistema_Loja.Models.Fornecedor> Fornecedor { get; set; }
 
         public System.Data.Entity.DbSet<Sistema_Loja.Models.Customizar> Customizars { get; set; }
+
+        public System.Data.Entity.DbSet<Sistema_Loja.Models.Ordem> Ordem { get; set; }
+
+        public System.Data.Entity.DbSet<Sistema_Loja.Models.OrdemDetalhe> OrdemDetalhe { get; set; }
     }
 }
