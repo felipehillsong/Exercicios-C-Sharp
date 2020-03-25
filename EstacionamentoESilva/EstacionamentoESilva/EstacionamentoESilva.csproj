@@ -128,6 +128,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="Data\EstacionamentoESilvaContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -157,6 +158,12 @@
     <Content Include="Views\Veiculo\Details.cshtml" />
     <Content Include="Views\Veiculo\Edit.cshtml" />
     <Content Include="Views\Veiculo\Index.cshtml" />
+    <Content Include="Views\Servico\Create.cshtml" />
+    <Content Include="Views\Servico\Delete.cshtml" />
+    <Content Include="Views\Servico\Details.cshtml" />
+    <Content Include="Views\Servico\Edit.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\TipoServico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

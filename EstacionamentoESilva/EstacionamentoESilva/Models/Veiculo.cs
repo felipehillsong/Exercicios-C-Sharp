@@ -20,6 +20,9 @@ namespace EstacionamentoESilva.Models
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
         [Display(Name = "Cliente")]
+
+        public string CarroPlaca { get { return string.Format("{0} - {1}", Marca, Placa); } }
+
         public virtual Cliente Cliente { get; set; }
 
         public virtual ICollection<Servico> Servico { get; set; }

@@ -1,0 +1,82 @@
+﻿@model EstacionamentoESilva.Models.Servico
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Servico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinutoEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinutoEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinutoSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinutoSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSaída)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraSaída)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VeiculoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VeiculoId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServicoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
