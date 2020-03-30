@@ -30,6 +30,65 @@ namespace EstacionamentoESilva.Controllers
             return View(veiculo);
         }
 
+        // GET: Servico/Horista
+        public ActionResult Horista(int? id)
+        {  
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
+            ViewBag.HoraSaida = DateTime.Now.AddMinutes(60).ToString("HH:mm");
+
+
+            return View(veiculo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Horista(int? id, Servico servico)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                servico = new Servico
+                {
+                    NomeCliente = veiculo.Cliente.Nome,
+                    Marca = veiculo.Marca,
+                    Placas = veiculo.Placa,
+                    HoraEntrada = veiculo.Servicos.HoraEntrada,
+                    HoraSaida = veiculo.Servicos.HoraSaida,                    
+                };
+
+                db.Servicoes.Add(servico);
+                db.SaveChanges();
+
+                transaction.Commit();
+
+                return RedirectToAction("TodosServicos", servico);
+            }
+        }
+
+        public ActionResult TodosServicos(Servico servico)
+        {
+            var servicoes = db.Servicoes.Include(s => s.Cliente);
+            return View(servicoes.ToList());
+        }
+
 
         // GET: Servico
         public ActionResult Index()

@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<EstacionamentoESilva.Models.Servico>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TodosServicos";
 }
 
-<h2>Index</h2>
+<h2>TodosServicos</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>     
+    <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Placa)
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VeiculoId)
-        </th>       
         <th>
             @Html.DisplayNameFor(model => model.HoraEntrada)
         </th>
@@ -29,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.MesSaida)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VeiculoId)
+        </th>
         <th></th>
     </tr>
 
@@ -37,7 +37,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.Cliente.Nome)
         </td>
-       
         <td>
             @Html.DisplayFor(modelItem => item.HoraEntrada)
         </td>

@@ -10,13 +10,15 @@ namespace EstacionamentoESilva.Models
     {
         public int ServicoId { get; set; }
 
-        public DateTime MinutoEntrada { get; set; }
+        public string NomeCliente { get; set; }
 
-        public DateTime MinutoSaida { get; set; }
+        public string Marca { get; set; }
+
+        public string Placas { get; set; }
 
         public DateTime HoraEntrada { get; set; }
 
-        public DateTime HoraSaída { get; set; }
+        public DateTime HoraSaida { get; set; }
 
         public DateTime MesEntrada { get; set; }
 

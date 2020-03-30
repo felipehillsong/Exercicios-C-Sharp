@@ -164,6 +164,8 @@
     <Content Include="Views\Servico\Edit.cshtml" />
     <Content Include="Views\Servico\Index.cshtml" />
     <Content Include="Views\Servico\TipoServico.cshtml" />
+    <Content Include="Views\Servico\Horista.cshtml" />
+    <Content Include="Views\Servico\TodosServicos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

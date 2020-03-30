@@ -50,6 +50,8 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\Estacionamento
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\roslyn\vbc.rsp
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\roslyn\VBCSCompiler.exe
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.SqlServer.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Helpers.dll
@@ -58,6 +60,8 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\Estacionamento
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Webpages.Deployment.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Webpages.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Webpages.Razor.dll
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.xml
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.SqlServer.xml
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Razor.xml
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Webpages.xml
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\System.Web.Webpages.Deployment.xml
@@ -75,8 +79,4 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\Estacionamento
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.pdb
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.SqlServer.dll
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.xml
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\bin\EntityFramework.SqlServer.xml
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.csprojAssemblyReference.cache

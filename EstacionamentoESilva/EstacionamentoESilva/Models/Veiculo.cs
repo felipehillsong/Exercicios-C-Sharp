@@ -26,5 +26,8 @@ namespace EstacionamentoESilva.Models
         public virtual Cliente Cliente { get; set; }
 
         public virtual ICollection<Servico> Servico { get; set; }
+
+        public Servico Servicos { get; set; }
+
     }
 }
