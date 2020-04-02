@@ -1,16 +1,17 @@
 ﻿@model EstacionamentoESilva.Models.Veiculo
 
 @{
-    ViewBag.Title = "Horista";
+    ViewBag.Title = "TipoServico";
 }
 
-<h3>Horista</h3>
+<h2>TipoServico</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <h4>Veiculo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -35,28 +36,19 @@
                 @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
             </div>
-        </div>       
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ServicoHorista.HoraEntrada, "Hora Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input name="entrada" value="@ViewBag.HoraEntrada" readonly/>
-                @Html.ValidationMessageFor(model => model.ServicoHorista.HoraEntrada, "", new { @class = "text-danger" })
-            </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ServicoHorista.HoraSaida, "Hora Saída", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input name="entrada" value="@ViewBag.HoraSaida" readonly/>
-                @Html.ValidationMessageFor(model => model.ServicoHorista.HoraSaida, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="col-md-offset-5 col-md-10">
+            @Html.ActionLink("Horista", "Horista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Diarista", "Diarista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Mensalista", "Mensalista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
         </div>
     </div>
 }
+
+<p>
+    @Html.ActionLink("Voltar", "Index", "Veiculo")
+</p>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

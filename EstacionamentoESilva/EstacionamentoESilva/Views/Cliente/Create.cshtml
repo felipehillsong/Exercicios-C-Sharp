@@ -1,17 +1,17 @@
 ﻿@model EstacionamentoESilva.Models.Cliente
 
 @{
-    ViewBag.Title = "Cadastrar Cliente";
+    ViewBag.Title = "Create";
 }
 
-
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h2>Cadastrar Cliente</h2>
+        <h4>Cliente</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -71,9 +71,5 @@
 }
 
 <div>
-    @Html.ActionLink("Ver Clientes Cadastrados", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
-
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

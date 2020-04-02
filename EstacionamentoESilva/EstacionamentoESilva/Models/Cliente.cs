@@ -25,9 +25,6 @@ namespace EstacionamentoESilva.Models
 
         public string NomeCompleto { get { return string.Format("{0} {1}", Nome, Sobrenome); } }
 
-        public virtual ICollection<Servico> Servico { get; set; }
-
         public virtual ICollection<Veiculo> Veiculo { get; set; }
-
     }
 }

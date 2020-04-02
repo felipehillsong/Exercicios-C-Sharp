@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<EstacionamentoESilva.Models.Cliente>
 
 @{
-    ViewBag.Title = "Clientes Cadastrados";
+    ViewBag.Title = "Index";
 }
 
-    <h2>Clientes Cadastrados</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Cadastrar Cliente", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ClienteId }) |
-            @Html.ActionLink("Detaihes", "Details", new { id=item.ClienteId }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ClienteId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClienteId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ClienteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ClienteId })
         </td>
     </tr>
 }

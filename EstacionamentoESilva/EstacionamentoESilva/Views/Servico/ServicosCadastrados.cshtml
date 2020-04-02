@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<EstacionamentoESilva.Models.Servico>
 
 @{
-    ViewBag.Title = "TodosServicos";
+    ViewBag.Title = "ServicosCadastrados";
 }
 
-<h2>TodosServicos</h2>
+<h2>ServicosCadastrados</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nome)
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Placas)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HoraEntrada)
@@ -21,13 +27,16 @@
             @Html.DisplayNameFor(model => model.HoraSaida)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DiaEntrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaSaida)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.MesEntrada)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MesSaida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VeiculoId)
         </th>
         <th></th>
     </tr>
@@ -35,7 +44,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            @Html.DisplayFor(modelItem => item.NomeCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Placas)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HoraEntrada)
@@ -44,13 +59,16 @@
             @Html.DisplayFor(modelItem => item.HoraSaida)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DiaEntrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaSaida)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.MesEntrada)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MesSaida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VeiculoId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ServicoId }) |

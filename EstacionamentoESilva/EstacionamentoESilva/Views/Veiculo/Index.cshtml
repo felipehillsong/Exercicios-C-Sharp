@@ -39,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Observacoes)
         </td>
         <td>         
-            @Html.ActionLink("Serviço", "TipoServico", "Servico", new { id = item.VeiculoId }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Serviço", "TipoServico", "TipoServico", new { id = item.VeiculoId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Edit", "Edit", new { id = item.VeiculoId }) |
             @Html.ActionLink("Details", "Details", new { id = item.VeiculoId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.VeiculoId })

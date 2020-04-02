@@ -1,9 +1,10 @@
-﻿using System;
+﻿using EstacionamentoESilva.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EstacionamentoESilva.Models
+namespace EstacionamentoESilva.Acesso
 {
     public class AcessoAsClasses
     {
@@ -11,6 +12,6 @@ namespace EstacionamentoESilva.Models
 
         public Veiculo Veiculo { get; set; }
 
-        public Servico Servico { get; set; }
+        public Servico ServicoHorista { get; set; }
     }
 }

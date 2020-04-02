@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using EstacionamentoESilva.Acesso;
 using EstacionamentoESilva.Data;
 using EstacionamentoESilva.Models;
 
@@ -21,6 +22,8 @@ namespace EstacionamentoESilva.Controllers
             var acesso = new AcessoAsClasses();
             acesso.Cliente = new Cliente();
             acesso.Veiculo = new Veiculo();
+            acesso.ServicoHorista = new Servico();
+
 
             var list = db.Clientes.ToList();
             list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EstacionamentoESilva.Acesso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -25,9 +26,7 @@ namespace EstacionamentoESilva.Models
 
         public virtual Cliente Cliente { get; set; }
 
-        public virtual ICollection<Servico> Servico { get; set; }
-
-        public Servico Servicos { get; set; }
+        public virtual Servico ServicoHorista { get; set; }
 
     }
 }

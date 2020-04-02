@@ -15,24 +15,9 @@ namespace EstacionamentoESilva.Controllers
     {
         private EstacionamentoESilvaContext db = new EstacionamentoESilvaContext();
 
-        public ActionResult TipoServico(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Veiculo veiculo = db.Veiculoes.Find(id);
-            if (veiculo == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(veiculo);
-        }
-
-        // GET: Servico/Horista
+        // GET: ServicoHorista
         public ActionResult Horista(int? id)
-        {  
+        {   
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,10 +34,9 @@ namespace EstacionamentoESilva.Controllers
 
             return View(veiculo);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Horista(int? id, Servico servico)
+        public ActionResult Horista(int? id, Servico servicoHorista)
         {
             if (id == null)
             {
@@ -63,146 +47,133 @@ namespace EstacionamentoESilva.Controllers
             {
                 return HttpNotFound();
             }
-            using (var transaction = db.Database.BeginTransaction())
+
+            servicoHorista = new Servico
             {
-                servico = new Servico
-                {
-                    NomeCliente = veiculo.Cliente.Nome,
-                    Marca = veiculo.Marca,
-                    Placas = veiculo.Placa,
-                    HoraEntrada = veiculo.Servicos.HoraEntrada,
-                    HoraSaida = veiculo.Servicos.HoraSaida,                    
-                };
+                NomeCliente = veiculo.Cliente.Nome,
+                Marca = veiculo.Marca,
+                Placas = veiculo.Placa,
+                HoraEntrada = DateTime.Now,
+                HoraSaida = DateTime.Now.AddHours(1),
+                DiaEntrada = DateTime.Now,
+                DiaSaida = DateTime.Now,
+                MesEntrada = DateTime.Now,
+                MesSaida = DateTime.Now
+                
+            };
 
-                db.Servicoes.Add(servico);
-                db.SaveChanges();
-
-                transaction.Commit();
-
-                return RedirectToAction("TodosServicos", servico);
-            }
-        }
-
-        public ActionResult TodosServicos(Servico servico)
-        {
-            var servicoes = db.Servicoes.Include(s => s.Cliente);
-            return View(servicoes.ToList());
-        }
-
-
-        // GET: Servico
-        public ActionResult Index()
-        {
-            var servicoes = db.Servicoes.Include(s => s.Cliente);
-            return View(servicoes.ToList());
-        }
-
-        // GET: Servico/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Servico servico = db.Servicoes.Find(id);
-            if (servico == null)
-            {
-                return HttpNotFound();
-            }
-            return View(servico);
-        }
-
-        // GET: Servico/Create
-        public ActionResult Create()
-        {
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome");
-            return View();
-        }
-
-        // POST: Servico/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServicoId,MinutoEntrada,MinutoSaida,HoraEntrada,HoraSaída,MesEntrada,MesSaida,ClienteId,VeiculoId")] Servico servico)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Servicoes.Add(servico);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", servico.ClienteId);
-            return View(servico);
-        }
-
-        // GET: Servico/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Servico servico = db.Servicoes.Find(id);
-            if (servico == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", servico.ClienteId);
-            return View(servico);
-        }
-
-        // POST: Servico/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServicoId,MinutoEntrada,MinutoSaida,HoraEntrada,HoraSaída,MesEntrada,MesSaida,ClienteId,VeiculoId")] Servico servico)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(servico).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", servico.ClienteId);
-            return View(servico);
-        }
-
-        // GET: Servico/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Servico servico = db.Servicoes.Find(id);
-            if (servico == null)
-            {
-                return HttpNotFound();
-            }
-            return View(servico);
-        }
-
-        // POST: Servico/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Servico servico = db.Servicoes.Find(id);
-            db.Servicoes.Remove(servico);
+            db.Servico.Add(servicoHorista);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ServicosCadastrados");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult ServicosCadastrados()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(db.Servico.ToList());
         }
+
+        //// GET: ServicoHorista/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Servico servicoHorista = db.Servico.Find(id);
+        //    if (servicoHorista == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(servicoHorista);
+        //}
+
+        //// GET: ServicoHorista/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: ServicoHorista/Create
+        //// Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        //// obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,HoraEntrada,HoraSaida")] Servico servicoHorista)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.ServicoHorista.Add(servicoHorista);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(servicoHorista);
+        //}
+
+        //// GET: ServicoHorista/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Servico servicoHorista = db.ServicoHorista.Find(id);
+        //    if (servicoHorista == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(servicoHorista);
+        //}
+
+        //// POST: ServicoHorista/Edit/5
+        //// Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        //// obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,HoraEntrada,HoraSaida")] Servico servicoHorista)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(servicoHorista).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(servicoHorista);
+        //}
+
+        //// GET: ServicoHorista/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Servico servicoHorista = db.ServicoHorista.Find(id);
+        //    if (servicoHorista == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(servicoHorista);
+        //}
+
+        //// POST: ServicoHorista/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Servico servicoHorista = db.ServicoHorista.Find(id);
+        //    db.ServicoHorista.Remove(servicoHorista);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
