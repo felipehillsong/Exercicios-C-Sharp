@@ -167,6 +167,8 @@
     <Content Include="Views\Servico\Edit.cshtml" />
     <Content Include="Views\Servico\Horista.cshtml" />
     <Content Include="Views\Servico\ServicosCadastrados.cshtml" />
+    <Content Include="Views\Servico\Diarista.cshtml" />
+    <Content Include="Views\Servico\Mensalista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -67,6 +67,116 @@ namespace EstacionamentoESilva.Controllers
             return RedirectToAction("ServicosCadastrados");
         }
 
+        // GET: ServicoDiarista
+        public ActionResult Diarista(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
+            ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
+            ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
+            ViewBag.DiaSaida = DateTime.Now.AddMonths(1).ToString("dd/MM");
+
+
+            return View(veiculo);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Diarista(int? id, Servico servicoHorista)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            servicoHorista = new Servico
+            {
+                NomeCliente = veiculo.Cliente.Nome,
+                Marca = veiculo.Marca,
+                Placas = veiculo.Placa,
+                HoraEntrada = DateTime.Now,
+                HoraSaida = DateTime.Now,
+                DiaEntrada = DateTime.Now,
+                DiaSaida = DateTime.Now.AddDays(1),
+                MesEntrada = DateTime.Now,
+                MesSaida = DateTime.Now
+
+            };
+
+            db.Servico.Add(servicoHorista);
+            db.SaveChanges();
+            return RedirectToAction("ServicosCadastrados");
+        }
+
+        // GET: ServicoMensalista
+        public ActionResult Mensalista(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
+            ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
+            ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
+            ViewBag.DiaSaida = DateTime.Now.ToString("dd/MM");
+            ViewBag.MesEntrada = DateTime.Now.ToString("MM/yyyy");
+            ViewBag.MesSaida = DateTime.Now.AddMonths(1).ToString("MM/yyyy");
+
+
+            return View(veiculo);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Mensalista(int? id, Servico servicoHorista)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            servicoHorista = new Servico
+            {
+                NomeCliente = veiculo.Cliente.Nome,
+                Marca = veiculo.Marca,
+                Placas = veiculo.Placa,
+                HoraEntrada = DateTime.Now,
+                HoraSaida = DateTime.Now,
+                DiaEntrada = DateTime.Now,
+                DiaSaida = DateTime.Now,
+                MesEntrada = DateTime.Now,
+                MesSaida = DateTime.Now.AddMonths(1)
+
+            };
+
+            db.Servico.Add(servicoHorista);
+            db.SaveChanges();
+            return RedirectToAction("ServicosCadastrados");
+        }
+
         public ActionResult ServicosCadastrados()
         {
             return View(db.Servico.ToList());

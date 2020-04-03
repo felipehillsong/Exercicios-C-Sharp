@@ -22,7 +22,7 @@ namespace EstacionamentoESilva.Controllers
             var acesso = new AcessoAsClasses();
             acesso.Cliente = new Cliente();
             acesso.Veiculo = new Veiculo();
-            acesso.ServicoHorista = new Servico();
+            acesso.Servico = new Servico();
 
 
             var list = db.Clientes.ToList();

@@ -1,0 +1,82 @@
+﻿@model EstacionamentoESilva.Models.Veiculo
+
+@{
+    ViewBag.Title = "Diarista";
+}
+
+<h3>Diarista</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cliente.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cliente.NomeCompleto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Cliente.NomeCompleto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Servico.HoraEntrada, "Hora Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="entrada" value="@ViewBag.HoraEntrada" readonly />
+            @Html.ValidationMessageFor(model => model.Servico.HoraEntrada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Servico.HoraSaida, "Hora Saída", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="entrada" value="@ViewBag.HoraSaida" readonly />
+            @Html.ValidationMessageFor(model => model.Servico.HoraSaida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Servico.DiaEntrada, "Dia Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="entrada" value="@ViewBag.DiaEntrada" readonly />
+            @Html.ValidationMessageFor(model => model.Servico.DiaEntrada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Servico.DiaSaida, "Dia Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="entrada" value="@ViewBag.DiaSaida" readonly />
+            @Html.ValidationMessageFor(model => model.Servico.DiaSaida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<p>
+    @Html.ActionLink("Voltar", "Index", "Veiculo")
+</p>

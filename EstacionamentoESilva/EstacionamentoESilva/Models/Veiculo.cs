@@ -11,11 +11,11 @@ namespace EstacionamentoESilva.Models
     {
         [Key]
         public int VeiculoId { get; set; }
-
+        [Display(Name = "Marca")]
         public string Marca { get; set; }
-
+        [Display(Name = "Placa")]
         public string Placa { get; set; }
-
+        [Display(Name = "observações")]
         public string Observacoes { get; set; }
 
         [Display(Name = "Cliente")]
@@ -26,7 +26,7 @@ namespace EstacionamentoESilva.Models
 
         public virtual Cliente Cliente { get; set; }
 
-        public virtual Servico ServicoHorista { get; set; }
+        public virtual Servico Servico { get; set; }
 
     }
 }

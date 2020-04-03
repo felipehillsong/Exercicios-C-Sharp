@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4><B>Clientes Cadastrados</B></h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar Cliente", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ClienteId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ClienteId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClienteId })
+            @Html.ActionLink("Editar", "Edit", new { id = item.ClienteId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ClienteId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Deletar", "Delete", new { id = item.ClienteId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
