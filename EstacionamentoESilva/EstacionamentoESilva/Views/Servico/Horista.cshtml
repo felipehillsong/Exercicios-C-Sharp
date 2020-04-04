@@ -4,7 +4,7 @@
     ViewBag.Title = "Horista";
 }
 
-<h3>Horista</h3>
+    <h4><b>Horista</b></h4>
 
 @using (Html.BeginForm())
 {
@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Servico.HoraEntrada, "Hora Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input name="entrada" value="@ViewBag.HoraEntrada" readonly />
+                <input name="entrada" value="@ViewBag.HoraEntrada" readonly class = "form-control"/>
                 @Html.ValidationMessageFor(model => model.Servico.HoraEntrada, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,19 +48,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Servico.HoraSaida, "Hora Saída", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input name="entrada" value="@ViewBag.HoraSaida" readonly />
+                <input name="entrada" value="@ViewBag.HoraSaida" readonly class = "form-control"/>
                 @Html.ValidationMessageFor(model => model.Servico.HoraSaida, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <p>
-    @Html.ActionLink("Voltar", "Index", "Veiculo")
+    @Html.ActionLink("Voltar", "Index", "Veiculo", null, new { @class = "btn btn-warning" })
 </p>

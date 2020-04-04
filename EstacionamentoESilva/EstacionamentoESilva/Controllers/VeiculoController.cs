@@ -33,6 +33,11 @@ namespace EstacionamentoESilva.Controllers
             return View(veiculoes.ToList());
         }
 
+        public ActionResult EscolherVeiculoServico(int? id)
+        {    
+            return View(db.Veiculoes.ToList());
+        }
+
         // GET: Veiculo/Details/5
         public ActionResult Details(int? id)
         {

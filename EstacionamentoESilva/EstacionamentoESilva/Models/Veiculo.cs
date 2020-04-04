@@ -15,7 +15,7 @@ namespace EstacionamentoESilva.Models
         public string Marca { get; set; }
         [Display(Name = "Placa")]
         public string Placa { get; set; }
-        [Display(Name = "observações")]
+        [Display(Name = "Observações")]
         public string Observacoes { get; set; }
 
         [Display(Name = "Cliente")]

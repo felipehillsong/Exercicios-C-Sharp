@@ -1,17 +1,16 @@
 ﻿@model EstacionamentoESilva.Models.Veiculo
 
 @{
-    ViewBag.Title = "TipoServico";
+    ViewBag.Title = "Cadastrar Serviço";
 }
 
-<h2>TipoServico</h2>
+<h4><b>Cadastrar Serviço</b></h4>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Veiculo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -46,7 +45,7 @@
 }
 
 <p>
-    @Html.ActionLink("Voltar", "Index", "Veiculo")
+    @Html.ActionLink("Voltar", "Index", "Veiculo", null, new { @class = "btn btn-warning" })
 </p>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

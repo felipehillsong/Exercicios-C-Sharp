@@ -4,7 +4,7 @@
     ViewBag.Title = "ServicosCadastrados";
 }
 
-<h2>ServicosCadastrados</h2>
+<h4><b>ServicosCadastrados</b></h4>
 
 <table class="table">
     <tr>
@@ -68,9 +68,9 @@
             @Html.DisplayFor(modelItem => item.MesSaida)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ServicoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ServicoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ServicoId })
+            @Html.ActionLink("Editar", "Edit", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

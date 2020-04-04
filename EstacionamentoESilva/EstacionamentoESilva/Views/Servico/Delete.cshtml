@@ -1,14 +1,13 @@
-﻿@model EstacionamentoESilva.Models.ServicoHorista
+﻿@model EstacionamentoESilva.Models.Servico
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar";
 }
 
-<h2>Delete</h2>
+    <h4><b>Deletar</b></h4>
 
-<h3>Are you sure you want to delete this?</h3>
+    <h3>Tem certeza que gostaria de deletar esse serviço?</h3>
 <div>
-    <h4>ServicoHorista</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -51,14 +50,46 @@
             @Html.DisplayFor(model => model.HoraSaida)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesSaida)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Excluir" class="btn btn-danger" />
+    @Html.ActionLink("Voltar", "ServicosCadastrados", null, new { @class = "btn btn-warning" })
+</div>
     }
 </div>

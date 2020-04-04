@@ -20,6 +20,7 @@ namespace EstacionamentoESilva.Models
         public string Endereco { get; set; }
         [Display(Name = "Telefone")]
         public long Telefone { get; set; }
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

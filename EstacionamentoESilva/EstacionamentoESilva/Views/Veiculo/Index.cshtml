@@ -41,11 +41,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Observacoes)
         </td>
-        <td>         
-            @Html.ActionLink("Serviço", "TipoServico", "TipoServico", new { id = item.VeiculoId }, new { @class = "btn btn-primary" })
+        <td>                    
             @Html.ActionLink("Editar", "Edit", new { id = item.VeiculoId }, new { @class = "btn btn-warning" })
             @Html.ActionLink("Detalhes", "Details", new { id = item.VeiculoId }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Deletar", "Delete", new { id = item.VeiculoId }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.VeiculoId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
