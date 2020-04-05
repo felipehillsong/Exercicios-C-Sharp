@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<EstacionamentoESilva.Models.Servico>
 
 @{
-    ViewBag.Title = "ServicosCadastrados";
+    ViewBag.Title = "Servicos Cadastrados";
 }
 
-<h4><b>ServicosCadastrados</b></h4>
+<h4><b>Servicos Cadastrados</b></h4>
 
 <table class="table">
     <tr>
@@ -18,12 +18,6 @@
             @Html.DisplayNameFor(model => model.Placas)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoraEntrada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoraSaida)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DiaEntrada)
         </th>
         <th>
@@ -35,44 +29,56 @@
         <th>
             @Html.DisplayNameFor(model => model.MesSaida)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraSaida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServicoStatus)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Placas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraSaida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaSaida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MesEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MesSaida)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomeCliente)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Placas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaEntrada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaSaida)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MesEntrada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MesSaida)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoraEntrada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoraSaida)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServicoStatus)
+    </td>
+    <td>
+        @Html.ActionLink("Fechar Serviço", "FecharServico", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
 }
 
 </table>

@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso\AcessoAsClasses.cs" />
+    <Compile Include="Acesso\ServicoStatus.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
@@ -162,13 +163,13 @@
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\TipoServico\TipoServico.cshtml" />
     <Content Include="Views\Servico\Details.cshtml" />
-    <Content Include="Views\Servico\Edit.cshtml" />
     <Content Include="Views\Servico\Horista.cshtml" />
     <Content Include="Views\Servico\ServicosCadastrados.cshtml" />
     <Content Include="Views\Servico\Diarista.cshtml" />
     <Content Include="Views\Servico\Mensalista.cshtml" />
     <Content Include="Views\Veiculo\EscolherVeiculoServico.cshtml" />
     <Content Include="Views\Servico\Delete.cshtml" />
+    <Content Include="Views\Servico\FecharServico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

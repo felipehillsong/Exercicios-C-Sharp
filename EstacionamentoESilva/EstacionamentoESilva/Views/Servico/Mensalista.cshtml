@@ -38,50 +38,26 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Servico.HoraEntrada, "Hora Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.HoraEntrada" readonly class = "form-control"/>
-            @Html.ValidationMessageFor(model => model.Servico.HoraEntrada, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Servico.HoraSaida, "Hora Saída", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.HoraSaida" readonly class = "form-control"/>
-            @Html.ValidationMessageFor(model => model.Servico.HoraSaida, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.Servico.DiaEntrada, "Dia Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.DiaEntrada" readonly class = "form-control"/>
+            <input name="entrada" value="@ViewBag.DiaEntrada" readonly class="form-control" />
             @Html.ValidationMessageFor(model => model.Servico.DiaEntrada, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Servico.DiaSaida, "Dia Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.DiaSaida" readonly class = "form-control"/>
-            @Html.ValidationMessageFor(model => model.Servico.DiaSaida, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Servico.MesEntrada, "Mês Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.MesEntrada" readonly class = "form-control"/>
+            <input name="entrada" value="@ViewBag.MesEntrada" readonly class="form-control" />
             @Html.ValidationMessageFor(model => model.Servico.MesEntrada, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Servico.MesSaida, "Dia Saída", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Servico.HoraEntrada, "Hora Entrada", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input name="entrada" value="@ViewBag.MesSaida" readonly class = "form-control"/>
-            @Html.ValidationMessageFor(model => model.Servico.MesSaida, "", new { @class = "text-danger" })
+            <input name="entrada" value="@ViewBag.HoraEntrada" readonly class="form-control" />
+            @Html.ValidationMessageFor(model => model.Servico.HoraEntrada, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -94,5 +70,5 @@
 }
 
 <p>
-    @Html.ActionLink("Voltar", "Index", "Veiculo", null, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Voltar", "EscolherVeiculoServico", "Veiculo", null, new { @class = "btn btn-warning" })
 </p>

@@ -15,6 +15,12 @@ namespace EstacionamentoESilva.Controllers
     {
         private EstacionamentoESilvaContext db = new EstacionamentoESilvaContext();
 
+        // GET: ServicosCadastrados
+        public ActionResult ServicosCadastrados()
+        {
+            return View(db.Servico.ToList());
+        }
+
         // GET: ServicoHorista
         public ActionResult Horista(int? id)
         {   
@@ -28,15 +34,14 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
             ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
-            ViewBag.HoraSaida = DateTime.Now.AddMinutes(60).ToString("HH:mm");
-
 
             return View(veiculo);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Horista(int? id, Servico servicoHorista)
+        public ActionResult Horista(int? id, Servico servico)
         {
             if (id == null)
             {
@@ -48,21 +53,23 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
-            servicoHorista = new Servico
+            servico = new Servico
             {
                 NomeCliente = veiculo.Cliente.Nome,
                 Marca = veiculo.Marca,
                 Placas = veiculo.Placa,
+                DiaEntrada = DateTime.Now,                
                 HoraEntrada = DateTime.Now,
-                HoraSaida = DateTime.Now.AddHours(1),
-                DiaEntrada = DateTime.Now,
-                DiaSaida = DateTime.Now,
+                HoraSaida = null,
+                DiaSaida = null,
                 MesEntrada = DateTime.Now,
-                MesSaida = DateTime.Now
-                
+                MesSaida = null,
+                ServicoStatus = Acesso.ServicoStatus.Horista
+
+
             };
 
-            db.Servico.Add(servicoHorista);
+            db.Servico.Add(servico);
             db.SaveChanges();
             return RedirectToAction("ServicosCadastrados");
         }
@@ -80,17 +87,14 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
-            ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
             ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
-            ViewBag.DiaSaida = DateTime.Now.AddDays(1).ToString("dd/MM");
-
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
 
             return View(veiculo);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Diarista(int? id, Servico servicoHorista)
+        public ActionResult Diarista(int? id, Servico servico)
         {
             if (id == null)
             {
@@ -102,21 +106,21 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
-            servicoHorista = new Servico
+            servico = new Servico
             {
                 NomeCliente = veiculo.Cliente.Nome,
                 Marca = veiculo.Marca,
                 Placas = veiculo.Placa,
-                HoraEntrada = DateTime.Now,
-                HoraSaida = DateTime.Now,
                 DiaEntrada = DateTime.Now,
-                DiaSaida = DateTime.Now.AddDays(1),
+                HoraEntrada = DateTime.Now,
+                HoraSaida = null,
+                DiaSaida = null,
                 MesEntrada = DateTime.Now,
-                MesSaida = DateTime.Now
-
+                MesSaida = null,
+                ServicoStatus = Acesso.ServicoStatus.Diarista
             };
 
-            db.Servico.Add(servicoHorista);
+            db.Servico.Add(servico);
             db.SaveChanges();
             return RedirectToAction("ServicosCadastrados");
         }
@@ -134,19 +138,15 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
-            ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
             ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
-            ViewBag.DiaSaida = DateTime.Now.ToString("dd/MM");
             ViewBag.MesEntrada = DateTime.Now.ToString("MM/yyyy");
-            ViewBag.MesSaida = DateTime.Now.AddMonths(1).ToString("MM/yyyy");
-
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
 
             return View(veiculo);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Mensalista(int? id, Servico servicoHorista)
+        public ActionResult Mensalista(int? id, Servico servico)
         {
             if (id == null)
             {
@@ -158,31 +158,26 @@ namespace EstacionamentoESilva.Controllers
                 return HttpNotFound();
             }
 
-            servicoHorista = new Servico
+            servico = new Servico
             {
                 NomeCliente = veiculo.Cliente.Nome,
                 Marca = veiculo.Marca,
                 Placas = veiculo.Placa,
-                HoraEntrada = DateTime.Now,
-                HoraSaida = DateTime.Now,
                 DiaEntrada = DateTime.Now,
-                DiaSaida = DateTime.Now,
+                HoraEntrada = DateTime.Now,
+                HoraSaida = null,
+                DiaSaida = null,
                 MesEntrada = DateTime.Now,
-                MesSaida = DateTime.Now.AddMonths(1)
-
+                MesSaida = null,
+                ServicoStatus = Acesso.ServicoStatus.Mensalista
             };
 
-            db.Servico.Add(servicoHorista);
+            db.Servico.Add(servico);
             db.SaveChanges();
             return RedirectToAction("ServicosCadastrados");
-        }
+        }        
 
-        public ActionResult ServicosCadastrados()
-        {
-            return View(db.Servico.ToList());
-        }
-
-        // GET: ServicoHorista/Details/5
+        // GET: Servico/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -197,38 +192,38 @@ namespace EstacionamentoESilva.Controllers
             return View(servico);
         }
 
-        //// GET: ServicoHorista/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Servico servicoHorista = db.ServicoHorista.Find(id);
-        //    if (servicoHorista == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(servicoHorista);
-        //}
+        // GET: Servico/Edit/5
+        public ActionResult FecharServico(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Servico servico = db.Servico.Find(id);
+            if (servico == null)
+            {
+                return HttpNotFound();
+            }
+            return View(servico);
+        }
 
-        //// POST: ServicoHorista/Edit/5
-        //// Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        //// obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,HoraEntrada,HoraSaida")] Servico servicoHorista)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(servicoHorista).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(servicoHorista);
-        //}
+        // POST: ServicoHorista/Edit/5
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida")] Servico servico)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(servico).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ServicosCadastrados");
+            }
+            return View(servico);
+        }
 
-        // GET: ServicoHorista/Delete/5
+        //GET: ServicoDelete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -243,7 +238,7 @@ namespace EstacionamentoESilva.Controllers
             return View(servico);
         }
 
-        // POST: ServicoHorista/Delete/5
+        // POST: Servico/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
