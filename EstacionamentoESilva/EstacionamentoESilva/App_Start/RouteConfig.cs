@@ -16,7 +16,7 @@ namespace EstacionamentoESilva
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Servico", action = "ServicosCadastrados", id = UrlParameter.Optional }
+                defaults: new { controller = "Funcionario", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

@@ -12,6 +12,8 @@ namespace EstacionamentoESilva.Acesso
 
         public Veiculo Veiculo { get; set; }
 
+        public Funcionario Funcionario { get; set; }
+
         public Servico Servico { get; set; }
     }
 }

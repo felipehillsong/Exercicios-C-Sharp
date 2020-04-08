@@ -16,3 +16,12 @@ textarea {
     max-width: 280px;
 }
 
+bodyLogin {
+    text-align: center;
+}
+.form-signin {
+    max-width: 330px;
+    margin: auto;
+    padding: 15px;
+    width: 100%;
+}

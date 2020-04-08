@@ -23,6 +23,8 @@ namespace EstacionamentoESilva.Data
 
         public System.Data.Entity.DbSet<EstacionamentoESilva.Models.Veiculo> Veiculoes { get; set; }
 
-        public System.Data.Entity.DbSet<EstacionamentoESilva.Models.Servico> Servico { get; set; }        
+        public System.Data.Entity.DbSet<EstacionamentoESilva.Models.Servico> Servico { get; set; }
+
+        public System.Data.Entity.DbSet<EstacionamentoESilva.Models.Funcionario> Funcionarios { get; set; }
     }
 }

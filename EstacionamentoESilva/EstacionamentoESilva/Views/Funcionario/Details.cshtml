@@ -1,10 +1,10 @@
-﻿@model EstacionamentoESilva.Models.Cliente
+﻿@model EstacionamentoESilva.Models.Funcionario
 
 @{
-    ViewBag.Title = "Detalhes do Cliente";
+    ViewBag.Title = "Detalhes do Funcionário";
 }
 
-<h4><b>Detalhes</b></h4>
+    <h4><b>Detalhes</b></h4>
 
 <div>
     <hr />
@@ -56,10 +56,18 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Senha)
+        </dd>
+
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ClienteId }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FuncionarioId }, new { @class = "btn btn-success" })
     @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-warning" })
 </p>

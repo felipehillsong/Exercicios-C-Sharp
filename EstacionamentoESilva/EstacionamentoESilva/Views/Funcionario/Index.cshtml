@@ -1,13 +1,13 @@
-﻿@model IEnumerable<EstacionamentoESilva.Models.Cliente>
+﻿@model IEnumerable<EstacionamentoESilva.Models.Funcionario>
 
 @{
-    ViewBag.Title = "Lista de Clientes";
+    ViewBag.Title = "Lista de Funcionários";
 }
 
-<h4><B>Clientes Cadastrados</B></h4>
+    <h4><B>Funcionários Cadastrados</B></h4>
 
 <p>
-    @Html.ActionLink("Cadastrar Cliente", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Cadastrar Funcionário", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -53,10 +53,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.ClienteId }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Detalhes", "Details", new { id = item.ClienteId }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Excluir", "Delete", new { id = item.ClienteId }, new { @class = "btn btn-danger" })
-        </td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.FuncionarioId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Detalhes", "Details", new { id=item.FuncionarioId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Deletar", "Delete", new { id=item.FuncionarioId }, new { @class = "btn btn-danger" })
     </tr>
 }
 
