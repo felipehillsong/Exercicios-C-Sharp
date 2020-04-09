@@ -18,12 +18,22 @@ namespace EstacionamentoESilva.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View(db.Clientes.ToList());
         }
 
         // GET: Cliente/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +49,10 @@ namespace EstacionamentoESilva.Controllers
         // GET: Cliente/Create
         public ActionResult Create()
         {
+            if(Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             return View();
         }
 
@@ -81,6 +95,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClienteId,Nome,Sobrenome,CPF,Endereco,Telefone,Email")] Cliente cliente)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(cliente).State = EntityState.Modified;
@@ -93,6 +112,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Cliente/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,6 +134,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             Cliente cliente = db.Clientes.Find(id);
             db.Clientes.Remove(cliente);
             db.SaveChanges();

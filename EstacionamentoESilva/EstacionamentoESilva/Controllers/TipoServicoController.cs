@@ -16,6 +16,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: TipoServico
         public ActionResult TipoServico(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

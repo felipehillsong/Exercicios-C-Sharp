@@ -15,33 +15,14 @@ namespace EstacionamentoESilva.Controllers
     {
         private EstacionamentoESilvaContext db = new EstacionamentoESilvaContext();
 
-        //GET: Login
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        // POST: Funcionario/Login        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(Funcionario funcionario)
-        {
-            using (EstacionamentoESilvaContext banco = new EstacionamentoESilvaContext())
-            {
-                var usuario = banco.Funcionarios.Where(x => x.Email.Equals(funcionario.Email) && x.Senha.Equals(funcionario.Senha)).FirstOrDefault();
-                if (usuario != null)
-                {
-                    Session["usuarioLogadoID"] = usuario.FuncionarioId.ToString();
-                    Session["nomeUsuarioLogado"] = usuario.Nome.ToString();
-                    return RedirectToAction("ServicosCadastrados", "Servico");
-                }
-            }
-            return View(funcionario);
-        }
-
         // GET: Funcionario
         public ActionResult Index()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View(db.Funcionarios.ToList());
         }
 
@@ -50,6 +31,11 @@ namespace EstacionamentoESilva.Controllers
         {
             if (id == null)
             {
+                if (Session["nomeUsuarioLogado"] == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Funcionario funcionario = db.Funcionarios.Find(id);
@@ -63,6 +49,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Funcionario/Create
         public ActionResult Create()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View();
         }
 
@@ -73,6 +64,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha")] Funcionario funcionario)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
@@ -88,6 +84,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Funcionario/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -107,6 +108,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha")] Funcionario funcionario)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
@@ -121,6 +127,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Funcionario/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -138,6 +149,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             Funcionario funcionario = db.Funcionarios.Find(id);
             db.Funcionarios.Remove(funcionario);
             db.SaveChanges();

@@ -18,12 +18,22 @@ namespace EstacionamentoESilva.Controllers
         // GET: ServicosCadastrados
         public ActionResult ServicosCadastrados()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View(db.Servico.ToList());
         }
 
         // GET: ServicoHorista
         public ActionResult Horista(int? id)
-        {   
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,6 +53,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Horista(int? id, Servico servico)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -77,6 +92,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: ServicoDiarista
         public ActionResult Diarista(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -96,6 +116,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Diarista(int? id, Servico servico)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -128,6 +153,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: ServicoMensalista
         public ActionResult Mensalista(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -148,6 +178,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Mensalista(int? id, Servico servico)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -180,6 +215,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Servico/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -195,6 +235,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Servico/Edit/5
         public ActionResult FecharServico(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -214,6 +259,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida")] Servico servico)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(servico).State = EntityState.Modified;
@@ -226,6 +276,11 @@ namespace EstacionamentoESilva.Controllers
         //GET: ServicoDelete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -243,6 +298,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             Servico servico = db.Servico.Find(id);
             db.Servico.Remove(servico);
             db.SaveChanges();

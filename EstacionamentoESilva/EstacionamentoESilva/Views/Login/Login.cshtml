@@ -20,7 +20,7 @@
         <br /><br /><br />
         <h1>ESTACIONAMENTO E SILVA</h1>
     </div>
-    <form method="POST" class="form-signin">        
+    <form method="POST" class="form-signin">
         @Html.AntiForgeryToken()
         <h2>Entre com seu login:</h2>
         <div class="form-horizontal">
@@ -48,6 +48,12 @@
                 </div>
             </div>
         </div>
-     </form>   
+    </form>
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sistema de Estacionamento 2.0</p>
+        </footer>
+    </div>
 </body>
 </html>

@@ -19,6 +19,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Veiculo
         public ActionResult Index()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var acesso = new AcessoAsClasses();
             acesso.Cliente = new Cliente();
             acesso.Veiculo = new Veiculo();
@@ -34,13 +39,23 @@ namespace EstacionamentoESilva.Controllers
         }
 
         public ActionResult EscolherVeiculoServico(int? id)
-        {    
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View(db.Veiculoes.ToList());
         }
 
         // GET: Veiculo/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,6 +71,11 @@ namespace EstacionamentoESilva.Controllers
         // GET: Veiculo/Create
         public ActionResult Create()
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var list = db.Clientes.ToList();
             list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
             list = list.OrderBy(x => x.NomeCompleto).ToList();
@@ -70,6 +90,21 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "VeiculoId,Marca,Placa,Observacoes,ClienteId")] Veiculo veiculo)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var clienteId = veiculo.ClienteId;
+            if(clienteId == 0)
+            {
+                var list = db.Clientes.ToList();
+                list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
+                list = list.OrderBy(x => x.NomeCompleto).ToList();
+                ViewBag.ClienteId = new SelectList(list, "ClienteId", "NomeCompleto");
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 db.Veiculoes.Add(veiculo);
@@ -77,23 +112,37 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", veiculo.ClienteId);
+            var listCheia = db.Clientes.ToList();
+            listCheia.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
+            listCheia = listCheia.OrderBy(x => x.NomeCompleto).ToList();
+            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "NomeCompleto", veiculo.ClienteId);
             return View(veiculo);
         }
 
         // GET: Veiculo/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            }                 
+       
             Veiculo veiculo = db.Veiculoes.Find(id);
+            
             if (veiculo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", veiculo.ClienteId);
+
+            var list = db.Clientes.ToList();
+            list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
+            list = list.OrderBy(x => x.NomeCompleto).ToList();
+            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "NomeCompleto", veiculo.ClienteId);
             return View(veiculo);
         }
 
@@ -104,19 +153,33 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VeiculoId,Marca,Placa,Observacoes,ClienteId")] Veiculo veiculo)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }            
+
             if (ModelState.IsValid)
             {
                 db.Entry(veiculo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", veiculo.ClienteId);
+
+            var list = db.Clientes.ToList();
+            list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
+            list = list.OrderBy(x => x.NomeCompleto).ToList();
+            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "NomeCompleto", veiculo.ClienteId);
             return View(veiculo);
         }
 
         // GET: Veiculo/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -134,6 +197,11 @@ namespace EstacionamentoESilva.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             Veiculo veiculo = db.Veiculoes.Find(id);
             db.Veiculoes.Remove(veiculo);
             db.SaveChanges();
