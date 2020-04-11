@@ -28,8 +28,11 @@ namespace EstacionamentoESilva.Models
         [Required(ErrorMessage = "Email Obrigatorio!", AllowEmptyStrings = false)] 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Senha Obrigatoria!", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Senha Obrigatorio!", AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+        [Required(ErrorMessage = "Confirmar Senha Obrigatorio!", AllowEmptyStrings = false)]
+        [DataType(DataType.Password)]
+        public string ConfirmarSenha { get; set; }
     }
 }

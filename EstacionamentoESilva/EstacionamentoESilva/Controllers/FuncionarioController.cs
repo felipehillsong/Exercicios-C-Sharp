@@ -23,27 +23,41 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            return View(db.Funcionarios.ToList());
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            {
+                return View(db.Funcionarios.ToList());
+            }
+            else{
+                return RedirectToAction("Login", "Login");
+            }
+           
         }
 
         // GET: Funcionario/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["nomeUsuarioLogado"] == null)
             {
-                if (Session["nomeUsuarioLogado"] == null)
-                {
-                    return RedirectToAction("Login", "Login");
-                }
+                return RedirectToAction("Login", "Login");
+            }
 
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Funcionario funcionario = db.Funcionarios.Find(id);
-            if (funcionario == null)
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Funcionario funcionario = db.Funcionarios.Find(id);
+                if (funcionario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(funcionario);
             }
-            return View(funcionario);
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }            
         }
 
         // GET: Funcionario/Create
@@ -54,7 +68,14 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            return View();
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }            
         }
 
         // POST: Funcionario/Create
@@ -62,23 +83,42 @@ namespace EstacionamentoESilva.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha")] Funcionario funcionario)
+        public ActionResult Create([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha,ConfirmarSenha")] Funcionario funcionario)
         {
             if (Session["nomeUsuarioLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
 
-            if (ModelState.IsValid)
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
-                string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
-                funcionario.Senha = senhaCriptografada;
-                db.Funcionarios.Add(funcionario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
+                    funcionario.Senha = senhaCriptografada;
 
-            return View(funcionario);
+                    string confirmarSenhaCriptografada = CriptograrSenha.CalculaHash(funcionario.ConfirmarSenha);
+                    funcionario.ConfirmarSenha = confirmarSenhaCriptografada;
+
+                    if (senhaCriptografada == confirmarSenhaCriptografada)
+                    {
+                        db.Funcionarios.Add(funcionario);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Senhas não conferem!";
+                    }
+                    
+                }
+
+                return View(funcionario);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         // GET: Funcionario/Edit/5
@@ -88,17 +128,24 @@ namespace EstacionamentoESilva.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
-            if (id == null)
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Funcionario funcionario = db.Funcionarios.Find(id);
+                if (funcionario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(funcionario);
             }
-            Funcionario funcionario = db.Funcionarios.Find(id);
-            if (funcionario == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Login");
             }
-            return View(funcionario);
+           
         }
 
         // POST: Funcionario/Edit/5
@@ -106,22 +153,45 @@ namespace EstacionamentoESilva.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha")] Funcionario funcionario)
+        public ActionResult Edit([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha,ConfirmarSenha")] Funcionario funcionario)
         {
             if (Session["nomeUsuarioLogado"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
 
-            if (ModelState.IsValid)
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
+                if (Session["nomeUsuarioLogado"] == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
                 string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
                 funcionario.Senha = senhaCriptografada;
-                db.Entry(funcionario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string confirmarSenhaCriptografada = CriptograrSenha.CalculaHash(funcionario.ConfirmarSenha);
+                funcionario.ConfirmarSenha = confirmarSenhaCriptografada;
+
+                if(senhaCriptografada == confirmarSenhaCriptografada)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(funcionario).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    ViewBag.Error = "Senhas não conferem!";
+                }
+                return View(funcionario);
             }
-            return View(funcionario);
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         // GET: Funcionario/Delete/5
@@ -132,16 +202,23 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (id == null)
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Funcionario funcionario = db.Funcionarios.Find(id);
+                if (funcionario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(funcionario);
             }
-            Funcionario funcionario = db.Funcionarios.Find(id);
-            if (funcionario == null)
+            else
             {
-                return HttpNotFound();
-            }
-            return View(funcionario);
+                return RedirectToAction("Login", "Login");
+            }            
         }
 
         // POST: Funcionario/Delete/5
@@ -154,10 +231,17 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            Funcionario funcionario = db.Funcionarios.Find(id);
-            db.Funcionarios.Remove(funcionario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            {
+                Funcionario funcionario = db.Funcionarios.Find(id);
+                db.Funcionarios.Remove(funcionario);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         protected override void Dispose(bool disposing)

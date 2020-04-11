@@ -16,13 +16,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    @Session["nomeUsuarioLogado"]
                 </button>
                 @Html.ActionLink("ESTACIONAMENTO E SILVA", "ServicosCadastrados", "Servico", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Cadastrar Cliente", "Create", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Cadastrar Veículos", "Create", "Veiculo", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Serviços", "EscolherVeiculoServico", "Veiculo", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Funcionário", "Create", "Funcionario", new { area = "" }, new { @class = "navbar-brand" })
+                @if (@Session["nomeUsuarioLogado"].Equals("Administrador"))
+                {
+                    @Html.ActionLink("Funcionário", "Create", "Funcionario", new { area = "" }, new { @class = "navbar-brand" })
+                }
                 <a class="navbar-brand">Olá @Session["nomeUsuarioLogado"]</a>
                 @Html.ActionLink("Sair", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
             </div>
