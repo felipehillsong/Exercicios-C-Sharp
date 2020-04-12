@@ -162,29 +162,77 @@ namespace EstacionamentoESilva.Controllers
 
             if (Session["nomeUsuarioLogado"].Equals("Administrador"))
             {
-                if (Session["nomeUsuarioLogado"] == null)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Login", "Login");
+                    db.Entry(funcionario).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
+                return View(funcionario);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
 
-                string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
-                funcionario.Senha = senhaCriptografada;
-
-                string confirmarSenhaCriptografada = CriptograrSenha.CalculaHash(funcionario.ConfirmarSenha);
-                funcionario.ConfirmarSenha = confirmarSenhaCriptografada;
-
-                if(senhaCriptografada == confirmarSenhaCriptografada)
+        // GET: Funcionario/AlterarSenha/5
+        public ActionResult AlterarSenha(int? id)
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            {
+                if (id == null)
                 {
-                    if (ModelState.IsValid)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Funcionario funcionario = db.Funcionarios.Find(id);
+                if (funcionario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(funcionario);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AlterarSenha([Bind(Include = "FuncionarioId,Nome,Sobrenome,CPF,Endereco,Telefone,Email,Senha,ConfirmarSenha")] Funcionario funcionario)
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            {
+                if (ModelState.IsValid)
+                {
+                    string senhaCriptografada = CriptograrSenha.CalculaHash(funcionario.Senha);
+                    funcionario.Senha = senhaCriptografada;
+
+                    string confirmarSenhaCriptografada = CriptograrSenha.CalculaHash(funcionario.ConfirmarSenha);
+                    funcionario.ConfirmarSenha = confirmarSenhaCriptografada;
+
+                    if(funcionario.Senha == funcionario.ConfirmarSenha)
                     {
                         db.Entry(funcionario).State = EntityState.Modified;
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-                }
-                else
-                {
-                    ViewBag.Error = "Senhas não conferem!";
+                    else
+                    {
+                        ViewBag.Error = "Senhas não conferem!";
+                    }
+
                 }
                 return View(funcionario);
             }
