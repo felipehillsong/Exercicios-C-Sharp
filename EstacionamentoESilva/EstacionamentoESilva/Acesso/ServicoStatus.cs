@@ -9,6 +9,8 @@ namespace EstacionamentoESilva.Acesso
     {
         Horista,
         Diarista,
-        Mensalista
+        Mensalista,
+        Aberto,
+        Fechado
     }
 }

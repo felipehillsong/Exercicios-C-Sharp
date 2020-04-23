@@ -36,6 +36,9 @@
             @Html.DisplayNameFor(model => model.HoraSaida)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TipoServico)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ServicoStatus)
         </th>
         <th></th>
@@ -71,9 +74,12 @@
         @Html.DisplayFor(modelItem => item.HoraSaida)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.ServicoStatus)
+        @Html.DisplayFor(modelItem => item.TipoServico)
     </td>
     <td>
+        @Html.DisplayFor(modelItem => item.ServicoStatus)
+    </td>
+    <td>        
         @Html.ActionLink("Fechar Serviço", "FecharServico", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
         @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
         @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })

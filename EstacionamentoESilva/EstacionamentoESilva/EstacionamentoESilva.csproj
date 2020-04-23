@@ -128,6 +128,7 @@
   <ItemGroup>
     <Compile Include="Acesso\AcessoAsClasses.cs" />
     <Compile Include="Acesso\ServicoStatus.cs" />
+    <Compile Include="Acesso\Valores.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />

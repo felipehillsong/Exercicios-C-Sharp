@@ -22,7 +22,6 @@ namespace EstacionamentoESilva.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
             return View(db.Servico.ToList());
         }
 
@@ -79,7 +78,8 @@ namespace EstacionamentoESilva.Controllers
                 DiaSaida = null,
                 MesEntrada = DateTime.Now,
                 MesSaida = null,
-                ServicoStatus = Acesso.ServicoStatus.Horista
+                TipoServico = Acesso.ServicoStatus.Horista,
+                ServicoStatus = Acesso.ServicoStatus.Aberto
 
 
             };
@@ -109,6 +109,7 @@ namespace EstacionamentoESilva.Controllers
 
             ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
             ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
+
 
             return View(veiculo);
         }
@@ -142,7 +143,8 @@ namespace EstacionamentoESilva.Controllers
                 DiaSaida = null,
                 MesEntrada = DateTime.Now,
                 MesSaida = null,
-                ServicoStatus = Acesso.ServicoStatus.Diarista
+                TipoServico = Acesso.ServicoStatus.Diarista,
+                ServicoStatus = Acesso.ServicoStatus.Aberto
             };
 
             db.Servico.Add(servico);
@@ -204,7 +206,8 @@ namespace EstacionamentoESilva.Controllers
                 DiaSaida = null,
                 MesEntrada = DateTime.Now,
                 MesSaida = null,
-                ServicoStatus = Acesso.ServicoStatus.Mensalista
+                TipoServico = Acesso.ServicoStatus.Mensalista,
+                ServicoStatus = Acesso.ServicoStatus.Aberto
             };
 
             db.Servico.Add(servico);
@@ -249,6 +252,72 @@ namespace EstacionamentoESilva.Controllers
             {
                 return HttpNotFound();
             }
+
+            Acesso.Valores valores = new Acesso.Valores();
+
+            switch (servico.TipoServico)
+            {
+                case Acesso.ServicoStatus.Horista:
+                    servico.Valor = valores.Horista();
+                    var anoHojeH = DateTime.Now;
+                    var mesHojeH = DateTime.Now;
+                    var diaHojeH = DateTime.Now;
+                    var horaHojeH = DateTime.Now;
+
+                    var anoAgoraH = anoHojeH.Year;
+                    var diaAgoraH = diaHojeH.Day;                   
+                    var mesAgoraH = mesHojeH.Month;
+                    var horaAgoraH = horaHojeH.Hour;
+
+                    var anoEntradaH = servico.HoraEntrada.Value.Year;
+                    var mesEntradaH = servico.HoraEntrada.Value.Month;
+                    var diaEntradaH = servico.HoraEntrada.Value.Day;
+                    var horaEntradaH = servico.HoraEntrada.Value.Hour;
+                    var horaSaidaH = horaEntradaH + 1;
+
+
+                    if (anoEntradaH == anoAgoraH && mesEntradaH == mesAgoraH)
+                    {
+                        if (diaEntradaH == diaAgoraH)
+                        {
+                            DateTime dataCompletaHoje = DateTime.Now;
+                            DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
+                            TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
+                            var horasQueFicou = subtracaoDeTempo.TotalHours;
+                            decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
+
+                            servico.Valor *= totalHoras;
+                        }
+                        else if (diaAgoraH > diaEntradaH)
+                        {
+                            DateTime dataCompletaHoje = DateTime.Now;
+                            DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
+                            TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;               
+                            var horasQueFicou = subtracaoDeTempo.TotalHours;
+                            decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
+
+                            servico.Valor *= totalHoras;
+                        }
+                        
+                    }else if(mesEntradaH != mesAgoraH || anoEntradaH != anoAgoraH)
+                    {
+                        DateTime dataCompletaHoje = DateTime.Now;
+                        DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
+                        TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
+                        var horasQueFicou = subtracaoDeTempo.TotalHours;
+                        decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
+
+                        servico.Valor *= totalHoras;
+                    }          
+                    break;
+                case Acesso.ServicoStatus.Diarista:
+                    servico.Valor = valores.Diarista();                  
+                    break;
+                case Acesso.ServicoStatus.Mensalista:          
+                    break;
+                default:
+                    break;
+            }
             return View(servico);
         }
 
@@ -257,7 +326,7 @@ namespace EstacionamentoESilva.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida")] Servico servico)
+        public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida,Valor")] Servico servico)
         {
             if (Session["nomeUsuarioLogado"] == null)
             {
@@ -266,9 +335,31 @@ namespace EstacionamentoESilva.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(servico).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("ServicosCadastrados");
+                if (servico.ServicoStatus == Acesso.ServicoStatus.Horista)
+                {   
+                    servico.ServicoStatus = Acesso.ServicoStatus.Fechado;
+                    ViewBag.Status = servico.ServicoStatus;
+                    db.Entry(servico).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("ServicosCadastrados");
+                }
+
+                if (servico.ServicoStatus == Acesso.ServicoStatus.Diarista)
+                {
+                    servico.Valor = 20;
+                    db.Entry(servico).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("ServicosCadastrados");
+                }
+
+                if (servico.ServicoStatus == Acesso.ServicoStatus.Mensalista)
+                {
+                    servico.Valor = 120;
+                    db.Entry(servico).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("ServicosCadastrados");
+                }
+
             }
             return View(servico);
         }

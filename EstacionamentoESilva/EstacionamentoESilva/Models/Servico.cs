@@ -42,8 +42,13 @@ namespace EstacionamentoESilva.Models
         [Column(TypeName = "datetime2")]
         [DisplayFormat(DataFormatString = "{0:MMMMM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? MesSaida { get; set; }
+        [Display(Name = "Tipo Serviço")]
+        public ServicoStatus TipoServico { get; set; }
+        [Display(Name = "Valor")]
+        [DataType(DataType.Currency)]        
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        public decimal Valor { get; set; }
         [Display(Name = "Status")]
         public ServicoStatus ServicoStatus { get; set; }
-
     }
 }
