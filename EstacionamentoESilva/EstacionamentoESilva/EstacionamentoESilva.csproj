@@ -129,6 +129,7 @@
     <Compile Include="Acesso\AcessoAsClasses.cs" />
     <Compile Include="Acesso\ServicoStatus.cs" />
     <Compile Include="Acesso\Valores.cs" />
+    <Compile Include="Acesso\ValoresFixos.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Views\Funcionario\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Funcionario\AlterarSenha.cshtml" />
+    <Content Include="Views\Servico\Fracao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -7,6 +7,7 @@ namespace EstacionamentoESilva.Acesso
 {
     public enum ServicoStatus
     {
+        Fracao,
         Horista,
         Diarista,
         Mensalista,

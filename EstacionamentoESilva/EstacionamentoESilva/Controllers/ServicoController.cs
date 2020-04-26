@@ -25,6 +25,70 @@ namespace EstacionamentoESilva.Controllers
             return View(db.Servico.ToList());
         }
 
+        // GET: ServicoFracao
+        public ActionResult Fracao(int? id)
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.DiaEntrada = DateTime.Now.ToString("dd/MM");
+            ViewBag.HoraEntrada = DateTime.Now.ToString("HH:mm");
+
+            return View(veiculo);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Fracao(int? id, Servico servico)
+        {
+            if (Session["nomeUsuarioLogado"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Veiculo veiculo = db.Veiculoes.Find(id);
+            if (veiculo == null)
+            {
+                return HttpNotFound();
+            }
+
+            servico = new Servico
+            {
+                NomeCliente = veiculo.Cliente.Nome,
+                Marca = veiculo.Marca,
+                Placas = veiculo.Placa,
+                DiaEntrada = DateTime.Now,
+                HoraEntrada = DateTime.Now,
+                HoraSaida = null,
+                DiaSaida = null,
+                MesEntrada = DateTime.Now,
+                MesSaida = null,
+                TipoServico = Acesso.ServicoStatus.Fracao,
+                ServicoStatus = Acesso.ServicoStatus.Aberto
+
+
+            };
+
+            db.Servico.Add(servico);
+            db.SaveChanges();
+            return RedirectToAction("ServicosCadastrados");
+        }
+
         // GET: ServicoHorista
         public ActionResult Horista(int? id)
         {
@@ -257,61 +321,22 @@ namespace EstacionamentoESilva.Controllers
 
             switch (servico.TipoServico)
             {
-                case Acesso.ServicoStatus.Horista:
-                    servico.Valor = valores.Horista();
-                    var anoHojeH = DateTime.Now;
-                    var mesHojeH = DateTime.Now;
-                    var diaHojeH = DateTime.Now;
-                    var horaHojeH = DateTime.Now;
-
-                    var anoAgoraH = anoHojeH.Year;
-                    var diaAgoraH = diaHojeH.Day;                   
-                    var mesAgoraH = mesHojeH.Month;
-                    var horaAgoraH = horaHojeH.Hour;
-
-                    var anoEntradaH = servico.HoraEntrada.Value.Year;
-                    var mesEntradaH = servico.HoraEntrada.Value.Month;
-                    var diaEntradaH = servico.HoraEntrada.Value.Day;
-                    var horaEntradaH = servico.HoraEntrada.Value.Hour;
-                    var horaSaidaH = horaEntradaH + 1;
-
-
-                    if (anoEntradaH == anoAgoraH && mesEntradaH == mesAgoraH)
-                    {
-                        if (diaEntradaH == diaAgoraH)
-                        {
-                            DateTime dataCompletaHoje = DateTime.Now;
-                            DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
-                            TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                            var horasQueFicou = subtracaoDeTempo.TotalHours;
-                            decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
-                            servico.Valor *= totalHoras;
-                        }
-                        else if (diaAgoraH > diaEntradaH)
-                        {
-                            DateTime dataCompletaHoje = DateTime.Now;
-                            DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
-                            TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;               
-                            var horasQueFicou = subtracaoDeTempo.TotalHours;
-                            decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
-                            servico.Valor *= totalHoras;
-                        }
-                        
-                    }else if(mesEntradaH != mesAgoraH || anoEntradaH != anoAgoraH)
-                    {
-                        DateTime dataCompletaHoje = DateTime.Now;
-                        DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
-                        TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                        var horasQueFicou = subtracaoDeTempo.TotalHours;
-                        decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
-                        servico.Valor *= totalHoras;
-                    }          
+                case Acesso.ServicoStatus.Fracao:
+                    servico.Valor = valores.Fracionista(id);
+                    ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
+                    ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
+                    ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
+                    servico.ServicoStatus = Acesso.ServicoStatus.Fracao;
+                    break;
+                case Acesso.ServicoStatus.Horista:                  
+                    servico.Valor = valores.Horista(id);
+                    ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
+                    ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
+                    ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
+                    servico.ServicoStatus = Acesso.ServicoStatus.Horista;
                     break;
                 case Acesso.ServicoStatus.Diarista:
-                    servico.Valor = valores.Diarista();                  
+                    
                     break;
                 case Acesso.ServicoStatus.Mensalista:          
                     break;
@@ -326,7 +351,7 @@ namespace EstacionamentoESilva.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida,Valor")] Servico servico)
+        public ActionResult FecharServico([Bind(Include = "ServicoId,NomeCliente,Marca,Placas,DiaEntrada,DiaSaida,MesEntrada,MesSaida,HoraEntrada,HoraSaida,TipoServico,Valor")] Servico servico)
         {
             if (Session["nomeUsuarioLogado"] == null)
             {
@@ -335,31 +360,13 @@ namespace EstacionamentoESilva.Controllers
 
             if (ModelState.IsValid)
             {
-                if (servico.ServicoStatus == Acesso.ServicoStatus.Horista)
-                {   
-                    servico.ServicoStatus = Acesso.ServicoStatus.Fechado;
-                    ViewBag.Status = servico.ServicoStatus;
-                    db.Entry(servico).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ServicosCadastrados");
-                }
-
-                if (servico.ServicoStatus == Acesso.ServicoStatus.Diarista)
-                {
-                    servico.Valor = 20;
-                    db.Entry(servico).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ServicosCadastrados");
-                }
-
-                if (servico.ServicoStatus == Acesso.ServicoStatus.Mensalista)
-                {
-                    servico.Valor = 120;
-                    db.Entry(servico).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ServicosCadastrados");
-                }
-
+                servico.DiaSaida = DateTime.Now;
+                servico.MesSaida = DateTime.Now;
+                servico.HoraSaida = DateTime.Now;
+                servico.ServicoStatus = Acesso.ServicoStatus.Fechado;               
+                db.Entry(servico).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ServicosCadastrados");
             }
             return View(servico);
         }

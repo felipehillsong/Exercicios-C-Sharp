@@ -37,6 +37,7 @@
             </div>
         </div>
         <div class="col-md-offset-5 col-md-10">
+            @Html.ActionLink("Fração", "Fracao", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Horista", "Horista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Diarista", "Diarista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
             @Html.ActionLink("Mensalista", "Mensalista", "Servico", new { id = Model.VeiculoId }, new { @class = "btn btn-primary" })
