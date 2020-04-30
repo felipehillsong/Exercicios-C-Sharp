@@ -19,17 +19,17 @@ namespace EstacionamentoESilva.Acesso
 
         public decimal PrecoFracao()
         {
-            return this.Fracao = 2.50M;
+            return this.Fracao = 3M;
         }
 
         public decimal PrecoFracionamento()
         {
-            return this.Fracionamento = 10M;
+            return this.Fracionamento = 12M;
         }
 
         public decimal Horista()
         {
-            return this.Hora = 8M;
+            return this.Hora = 10M;
         }
 
         public decimal Diarista()
