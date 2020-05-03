@@ -43,7 +43,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 15, 00);
+                    TimeSpan fracao = new TimeSpan(00, 20, 00);
 
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -52,7 +52,6 @@ namespace EstacionamentoESilva.Acesso
                     else
                     {
                         decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                         return servico.Valor *= totalHoras;
                     }
 
@@ -63,7 +62,8 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 15, 00);
+                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+
                     if (subtracaoDeTempo <= fracao)
                     {
                         return servico.Valor = valoresFixos.PrecoFracao();
@@ -71,7 +71,6 @@ namespace EstacionamentoESilva.Acesso
                     else
                     {
                         decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                         return servico.Valor *= totalHoras;
                     }
                 }
@@ -83,7 +82,8 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                 var horasQueFicou = subtracaoDeTempo.TotalHours;
-                TimeSpan fracao = new TimeSpan(00, 15, 00);
+                TimeSpan fracao = new TimeSpan(00, 20, 00);
+
                 if (subtracaoDeTempo <= fracao)
                 {
                     return servico.Valor = valoresFixos.PrecoFracao();
@@ -91,7 +91,6 @@ namespace EstacionamentoESilva.Acesso
                 else
                 {
                     decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                     return servico.Valor *= totalHoras;
                 }
             }
@@ -124,9 +123,9 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataCompletaHoje = DateTime.Now;
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                    var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 15, 00);
-
+                    var horasQueFicou = subtracaoDeTempo.TotalHours;                   
+                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+                    
                     if (subtracaoDeTempo <= fracao)
                     {
                         return servico.Valor = valoresFixos.PrecoFracao();
@@ -134,7 +133,6 @@ namespace EstacionamentoESilva.Acesso
                     else
                     {
                         decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                         return servico.Valor *= totalHoras;
                     }
 
@@ -145,7 +143,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 15, 00);
+                    TimeSpan fracao = new TimeSpan(00, 20, 00);
 
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -154,7 +152,6 @@ namespace EstacionamentoESilva.Acesso
                     else
                     {
                         decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                         return servico.Valor *= totalHoras;
                     }
                 }
@@ -166,7 +163,8 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                 var horasQueFicou = subtracaoDeTempo.TotalHours;
-                TimeSpan fracao = new TimeSpan(00, 15, 00);
+                TimeSpan fracao = new TimeSpan(00, 20, 00);
+
                 if (subtracaoDeTempo <= fracao)
                 {
                     return servico.Valor = valoresFixos.PrecoFracao();
@@ -174,7 +172,6 @@ namespace EstacionamentoESilva.Acesso
                 else
                 {
                     decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-
                     return servico.Valor *= totalHoras;
                 }
             }
@@ -209,18 +206,12 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.DiaEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var diasQueFicou = subtracaoDeTempo.TotalDays;
-                    var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 15, 00);
+                    var horasQueFicou = subtracaoDeTempo.TotalHours;                    
                     TimeSpan tempoMinimo = new TimeSpan(06, 00, 00);
 
-                    if (subtracaoDeTempo <= fracao)
-                    {
-                        return servico.Valor = valoresFixos.PrecoFracao();
-                    }else if (subtracaoDeTempo <= tempoMinimo)
-                    {
-                        servico.Valor = valoresFixos.Horista();
-                        decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-                        return servico.Valor *= totalHoras;
+                    if (subtracaoDeTempo <= tempoMinimo)
+                    { 
+                        return servico.Valor = Horista(id);
                     }
                     else
                     {
@@ -248,19 +239,12 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataEntradaCompleta = servico.DiaEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                 var diasQueFicou = subtracaoDeTempo.TotalDays;
-                var horasQueFicou = subtracaoDeTempo.TotalHours;
-                TimeSpan fracao = new TimeSpan(00, 15, 00);
+                var horasQueFicou = subtracaoDeTempo.TotalHours;                
                 TimeSpan tempoMinimo = new TimeSpan(06, 00, 00);
-
-                if (subtracaoDeTempo <= fracao)
+              
+                if (subtracaoDeTempo <= tempoMinimo)
                 {
-                    return servico.Valor = valoresFixos.PrecoFracao();
-                }
-                else if (subtracaoDeTempo <= tempoMinimo)
-                {
-                    servico.Valor = valoresFixos.Horista();
-                    decimal totalHoras = decimal.Parse(horasQueFicou.ToString());
-                    return servico.Valor *= totalHoras;
+                    return servico.Valor = valoresFixos.Horista();                 
                 }
                 else
                 {
