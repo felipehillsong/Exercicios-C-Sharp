@@ -43,7 +43,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+                    TimeSpan fracao = new TimeSpan(00, 16, 00);
 
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -62,7 +62,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+                    TimeSpan fracao = new TimeSpan(00, 16, 00);
 
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -82,7 +82,7 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                 var horasQueFicou = subtracaoDeTempo.TotalHours;
-                TimeSpan fracao = new TimeSpan(00, 20, 00);
+                TimeSpan fracao = new TimeSpan(00, 16, 00);
 
                 if (subtracaoDeTempo <= fracao)
                 {
@@ -124,7 +124,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;                   
-                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+                    TimeSpan fracao = new TimeSpan(00, 18, 00);
                     
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -143,7 +143,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                     var horasQueFicou = subtracaoDeTempo.TotalHours;
-                    TimeSpan fracao = new TimeSpan(00, 20, 00);
+                    TimeSpan fracao = new TimeSpan(00, 18, 00);
 
                     if (subtracaoDeTempo <= fracao)
                     {
@@ -163,7 +163,7 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataEntradaCompleta = servico.HoraEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
                 var horasQueFicou = subtracaoDeTempo.TotalHours;
-                TimeSpan fracao = new TimeSpan(00, 20, 00);
+                TimeSpan fracao = new TimeSpan(00, 18, 00);
 
                 if (subtracaoDeTempo <= fracao)
                 {
