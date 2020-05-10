@@ -342,7 +342,12 @@ namespace EstacionamentoESilva.Controllers
                     ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
                     servico.ServicoStatus = Acesso.ServicoStatus.Diarista;
                     break;
-                case Acesso.ServicoStatus.Mensalista:          
+                case Acesso.ServicoStatus.Mensalista:
+                    servico.Valor = valores.Mensalista(id);
+                    ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
+                    ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
+                    ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
+                    servico.ServicoStatus = Acesso.ServicoStatus.Mensalista;
                     break;
                 default:
                     break;

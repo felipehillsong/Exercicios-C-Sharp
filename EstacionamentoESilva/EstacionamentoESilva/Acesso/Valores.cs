@@ -194,8 +194,7 @@ namespace EstacionamentoESilva.Acesso
             var mesAgoraD = mesHojeD.Month;
 
             var anoEntradaD = servico.HoraEntrada.Value.Year;
-            var mesEntradaD = servico.MesEntrada.Value.Month;
-            DateTime diaEntradaD = servico.DiaEntrada.Value;
+            var mesEntradaD = servico.HoraEntrada.Value.Month;          
             DateTime diaDaSaida = servico.DiaEntrada.Value.AddDays(1);
 
             if (anoAgoraD == anoEntradaD && mesAgoraD == mesEntradaD)
@@ -238,8 +237,7 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataCompletaHoje = DateTime.Now;
                 DateTime dataEntradaCompleta = servico.DiaEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                var diasQueFicou = subtracaoDeTempo.TotalDays;
-                var horasQueFicou = subtracaoDeTempo.TotalHours;                
+                var diasQueFicou = subtracaoDeTempo.TotalDays;                       
                 TimeSpan tempoMinimo = new TimeSpan(06, 00, 00);
               
                 if (subtracaoDeTempo <= tempoMinimo)
@@ -251,6 +249,81 @@ namespace EstacionamentoESilva.Acesso
                     servico.Valor = valoresFixos.Diarista();
                     decimal totalDias = decimal.Parse(diasQueFicou.ToString());
                     return servico.Valor *= totalDias;
+                }
+            }
+
+            return servico.Valor;
+        }
+
+        public decimal Mensalista(int? id)
+        {
+            Servico servico = db.Servico.Find(id);
+            servico.Valor = valoresFixos.Mensalista();
+
+            var anoHojeM = DateTime.Now;
+            var mesHojeM = DateTime.Now;
+            var diaHojeM = DateTime.Now;
+            var horaHojeM = DateTime.Now;
+
+            var anoAgoraM = anoHojeM.Year;
+            var diaAgoraM = diaHojeM.Date;
+            var mesAgoraM = mesHojeM.Month;
+            DateTime mesDaSaida = servico.MesEntrada.Value.AddMonths(1);
+
+            var anoEntradaM = servico.HoraEntrada.Value.Year;
+            var mesEntradaM = servico.HoraEntrada.Value.Month;
+            var diaEntradaM = servico.HoraEntrada.Value.Day;
+
+            if (anoAgoraM == anoEntradaM)
+            {
+                if (mesHojeM <= mesDaSaida)
+                {
+                    DateTime dataCompletaHoje = DateTime.Now;
+                    DateTime dataEntradaCompleta = servico.MesEntrada.Value;
+                    TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
+                    var diasQueFicou = subtracaoDeTempo.TotalDays / 30.436875;
+                    TimeSpan tempoMesMinimo = new TimeSpan(20, 00, 00, 00);
+
+                    if (subtracaoDeTempo <= tempoMesMinimo)
+                    {
+                        return servico.Valor = Diarista(id);
+                    }
+                    else
+                    {
+                        servico.Valor = valoresFixos.Mensalista();
+                        decimal totalMeses = decimal.Parse(diasQueFicou.ToString());
+                        return servico.Valor *= totalMeses;
+                    }
+                }
+                else if (mesHojeM > mesDaSaida)
+                {
+                    DateTime dataCompletaHoje = DateTime.Now;
+                    DateTime dataEntradaCompleta = servico.MesEntrada.Value;
+                    TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
+                    var mesesQueFicou = subtracaoDeTempo.TotalDays / 30.436875;
+                    servico.Valor = valoresFixos.Mensalista();
+                    decimal totalMeses = decimal.Parse(mesesQueFicou.ToString());
+                    return servico.Valor *= totalMeses;
+                }
+                
+            }
+            else if (anoAgoraM != anoEntradaM)
+            {
+                DateTime dataCompletaHoje = DateTime.Now;
+                DateTime dataEntradaCompleta = servico.MesEntrada.Value;
+                TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
+                var diasQueFicou = subtracaoDeTempo.TotalDays;              
+                TimeSpan tempoMesMinimo = new TimeSpan(20, 00, 00, 00);
+
+                if (subtracaoDeTempo <= tempoMesMinimo)
+                {
+                    return servico.Valor = Diarista(id);
+                }
+                else
+                {
+                    servico.Valor = valoresFixos.Mensalista();
+                    decimal totalMeses = decimal.Parse(diasQueFicou.ToString());
+                    return servico.Valor *= totalMeses;
                 }
             }
 

@@ -34,12 +34,12 @@ namespace EstacionamentoESilva.Acesso
 
         public decimal Diarista()
         {
-            return this.Hora = 60M;
+            return this.Dia = 60M;
         }
 
         public decimal Mensalista()
         {
-            return this.Hora = 200M;
+            return this.Mes = 200M;
         }
     }
 }
