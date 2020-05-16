@@ -281,7 +281,7 @@ namespace EstacionamentoESilva.Acesso
                     DateTime dataCompletaHoje = DateTime.Now;
                     DateTime dataEntradaCompleta = servico.MesEntrada.Value;
                     TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                    var diasQueFicou = subtracaoDeTempo.TotalDays / 30.436875;
+                    var mesesQueFicou = subtracaoDeTempo.TotalDays / 30.436875;
                     TimeSpan tempoMesMinimo = new TimeSpan(20, 00, 00, 00);
 
                     if (subtracaoDeTempo <= tempoMesMinimo)
@@ -291,7 +291,7 @@ namespace EstacionamentoESilva.Acesso
                     else
                     {
                         servico.Valor = valoresFixos.Mensalista();
-                        decimal totalMeses = decimal.Parse(diasQueFicou.ToString());
+                        decimal totalMeses = decimal.Parse(mesesQueFicou.ToString());
                         return servico.Valor *= totalMeses;
                     }
                 }
@@ -312,7 +312,7 @@ namespace EstacionamentoESilva.Acesso
                 DateTime dataCompletaHoje = DateTime.Now;
                 DateTime dataEntradaCompleta = servico.MesEntrada.Value;
                 TimeSpan subtracaoDeTempo = dataCompletaHoje - dataEntradaCompleta;
-                var diasQueFicou = subtracaoDeTempo.TotalDays;              
+                var mesesQueFicou = subtracaoDeTempo.TotalDays / 30.436875;
                 TimeSpan tempoMesMinimo = new TimeSpan(20, 00, 00, 00);
 
                 if (subtracaoDeTempo <= tempoMesMinimo)
@@ -322,7 +322,7 @@ namespace EstacionamentoESilva.Acesso
                 else
                 {
                     servico.Valor = valoresFixos.Mensalista();
-                    decimal totalMeses = decimal.Parse(diasQueFicou.ToString());
+                    decimal totalMeses = decimal.Parse(mesesQueFicou.ToString());
                     return servico.Valor *= totalMeses;
                 }
             }

@@ -296,6 +296,26 @@ namespace EstacionamentoESilva.Controllers
             {
                 return HttpNotFound();
             }
+
+            Acesso.Valores valores = new Acesso.Valores();
+
+            switch (servico.TipoServico)
+            {
+                case Acesso.ServicoStatus.Fracao:
+                    servico.TipoServico = Acesso.ServicoStatus.Fracao;
+                    break;
+                case Acesso.ServicoStatus.Horista:                         
+                    servico.TipoServico = Acesso.ServicoStatus.Horista;
+                    break;
+                case Acesso.ServicoStatus.Diarista:                       
+                    servico.TipoServico = Acesso.ServicoStatus.Diarista;
+                    break;
+                case Acesso.ServicoStatus.Mensalista:                       
+                    servico.TipoServico = Acesso.ServicoStatus.Mensalista;
+                    break;
+                default:
+                    break;
+            }
             return View(servico);
         }
 
@@ -326,14 +346,14 @@ namespace EstacionamentoESilva.Controllers
                     ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
                     ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
                     ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
-                    servico.ServicoStatus = Acesso.ServicoStatus.Fracao;
+                    servico.TipoServico = Acesso.ServicoStatus.Fracao;
                     break;
                 case Acesso.ServicoStatus.Horista:                  
                     servico.Valor = valores.Horista(id);
                     ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
                     ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
                     ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
-                    servico.ServicoStatus = Acesso.ServicoStatus.Horista;
+                    servico.TipoServico = Acesso.ServicoStatus.Horista;
                     break;
                 case Acesso.ServicoStatus.Diarista:
                     servico.Valor = valores.Diarista(id);
@@ -347,7 +367,7 @@ namespace EstacionamentoESilva.Controllers
                     ViewBag.DiaSaida = DateTime.Now.ToString("dd/MMMM");
                     ViewBag.MesSaida = DateTime.Now.ToString("MMMM/yyyy");
                     ViewBag.HoraSaida = DateTime.Now.ToString("HH:mm");
-                    servico.ServicoStatus = Acesso.ServicoStatus.Mensalista;
+                    servico.TipoServico = Acesso.ServicoStatus.Mensalista;
                     break;
                 default:
                     break;
