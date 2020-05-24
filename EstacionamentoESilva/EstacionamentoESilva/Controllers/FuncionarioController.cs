@@ -23,7 +23,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 return View(db.Funcionarios.ToList());
             }
@@ -41,7 +41,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (id == null)
                 {
@@ -68,7 +68,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 return View();
             }
@@ -90,7 +90,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (ModelState.IsValid)
                 {
@@ -128,7 +128,7 @@ namespace EstacionamentoESilva.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (id == null)
                 {
@@ -160,7 +160,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (ModelState.IsValid)
                 {
@@ -183,7 +183,7 @@ namespace EstacionamentoESilva.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (id == null)
                 {
@@ -212,7 +212,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (ModelState.IsValid)
                 {
@@ -250,7 +250,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 if (id == null)
                 {
@@ -279,7 +279,7 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (Session["nomeUsuarioLogado"].Equals("Administrador"))
+            if (Session["nomeUsuarioLogado"].Equals(Acesso.TipoUsuario.Administrador))
             {
                 Funcionario funcionario = db.Funcionarios.Find(id);
                 db.Funcionarios.Remove(funcionario);

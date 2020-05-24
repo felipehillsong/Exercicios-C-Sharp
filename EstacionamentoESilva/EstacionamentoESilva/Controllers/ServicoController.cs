@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -86,6 +87,21 @@ namespace EstacionamentoESilva.Controllers
 
             db.Servico.Add(servico);
             db.SaveChanges();
+
+            var dataEntrada = DateTimeOffset.Now.ToString("o").Replace(':', '-').Replace('/', '-');
+            string nomeArquivo = @"C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\LogEntrada\" + dataEntrada + ".log.txt";
+            StreamWriter writer = new StreamWriter(nomeArquivo);
+            writer.WriteLine($"ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!");
+            writer.WriteLine($"Nome do Funcionario = {Session["nomeUsuarioLogado"]}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Automóvel = {servico.Marca}");
+            writer.WriteLine($"Placa = {servico.Placas}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Tipo de Serviço = {servico.TipoServico}");
+            writer.WriteLine($"Data da Entrada = {servico.DiaEntrada.Value.Day}/{servico.MesEntrada.Value.Month}/{servico.MesEntrada.Value.Year}");
+            writer.WriteLine($"Hora da Entrada = {servico.HoraEntrada.Value.Hour}:{ servico.HoraEntrada.Value.Minute}");
+            writer.Close();
+
             return RedirectToAction("ServicosCadastrados");
         }
 
@@ -150,6 +166,21 @@ namespace EstacionamentoESilva.Controllers
 
             db.Servico.Add(servico);
             db.SaveChanges();
+
+            var dataEntrada = DateTimeOffset.Now.ToString("o").Replace(':', '-').Replace('/', '-');
+            string nomeArquivo = @"C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\LogEntrada\" + dataEntrada + ".log.txt";
+            StreamWriter writer = new StreamWriter(nomeArquivo);
+            writer.WriteLine($"ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!");
+            writer.WriteLine($"Nome do Funcionario = {Session["nomeUsuarioLogado"]}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Automóvel = {servico.Marca}");
+            writer.WriteLine($"Placa = {servico.Placas}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Tipo de Serviço = {servico.TipoServico}");
+            writer.WriteLine($"Data da Entrada = {servico.DiaEntrada.Value.Day}/{servico.MesEntrada.Value.Month}/{servico.MesEntrada.Value.Year}");
+            writer.WriteLine($"Hora da Entrada = {servico.HoraEntrada.Value.Hour}:{ servico.HoraEntrada.Value.Minute}");
+            writer.Close();
+
             return RedirectToAction("ServicosCadastrados");
         }
 
@@ -213,6 +244,21 @@ namespace EstacionamentoESilva.Controllers
 
             db.Servico.Add(servico);
             db.SaveChanges();
+
+            var dataEntrada = DateTimeOffset.Now.ToString("o").Replace(':', '-').Replace('/', '-');
+            string nomeArquivo = @"C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\LogEntrada\" + dataEntrada + ".log.txt";
+            StreamWriter writer = new StreamWriter(nomeArquivo);
+            writer.WriteLine($"ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!");
+            writer.WriteLine($"Nome do Funcionario = {Session["nomeUsuarioLogado"]}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Automóvel = {servico.Marca}");
+            writer.WriteLine($"Placa = {servico.Placas}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Tipo de Serviço = {servico.TipoServico}");
+            writer.WriteLine($"Data da Entrada = {servico.DiaEntrada.Value.Day}/{servico.MesEntrada.Value.Month}/{servico.MesEntrada.Value.Year}");
+            writer.WriteLine($"Hora da Entrada = {servico.HoraEntrada.Value.Hour}:{ servico.HoraEntrada.Value.Minute}");
+            writer.Close();
+
             return RedirectToAction("ServicosCadastrados");
         }
 
@@ -276,6 +322,20 @@ namespace EstacionamentoESilva.Controllers
 
             db.Servico.Add(servico);
             db.SaveChanges();
+
+            var dataEntrada = DateTimeOffset.Now.ToString("o").Replace(':', '-').Replace('/', '-');
+            string nomeArquivo = @"C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\LogEntrada\" + dataEntrada + ".log.txt";
+            StreamWriter writer = new StreamWriter(nomeArquivo);
+            writer.WriteLine($"ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!");
+            writer.WriteLine($"Nome do Funcionario = {Session["nomeUsuarioLogado"]}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Automóvel = {servico.Marca}");
+            writer.WriteLine($"Placa = {servico.Placas}");
+            writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+            writer.WriteLine($"Tipo de Serviço = {servico.TipoServico}");
+            writer.WriteLine($"Data da Entrada = {servico.DiaEntrada.Value.Day}/{servico.MesEntrada.Value.Month}/{servico.MesEntrada.Value.Year}");
+            writer.WriteLine($"Hora da Entrada = {servico.HoraEntrada.Value.Hour}:{ servico.HoraEntrada.Value.Minute}");
+            writer.Close();
             return RedirectToAction("ServicosCadastrados");
         }        
 
@@ -395,6 +455,25 @@ namespace EstacionamentoESilva.Controllers
                 servico.ServicoStatus = Acesso.ServicoStatus.Fechado;               
                 db.Entry(servico).State = EntityState.Modified;
                 db.SaveChanges();
+
+                var dataSaida = DateTimeOffset.Now.ToString("o").Replace(':', '-').Replace('/', '-');
+                string nomeArquivo = @"C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\LogSaida\" + dataSaida + ".log.txt";
+                StreamWriter writer = new StreamWriter(nomeArquivo);
+                writer.WriteLine($"ESTACIONAMENTO E SILVA, VOLTE SEMPRE!");
+                writer.WriteLine($"Nome do Funcionario = {Session["nomeUsuarioLogado"]}");
+                writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+                writer.WriteLine($"Automóvel = {servico.Marca}");
+                writer.WriteLine($"Placa = {servico.Placas}");
+                writer.WriteLine($"Nome do Cliente = {servico.NomeCliente}");
+                writer.WriteLine($"Tipo de Serviço = {servico.TipoServico}");
+                writer.WriteLine($"Data da Entrada = {servico.DiaEntrada.Value.Day}/{servico.MesEntrada.Value.Month}/{servico.MesEntrada.Value.Year}");
+                writer.WriteLine($"Hora da Entrada = {servico.HoraEntrada.Value.Hour}:{ servico.HoraEntrada.Value.Minute}");
+                writer.WriteLine($"Data da Saída = {servico.DiaSaida.Value.Day}/{servico.MesSaida.Value.Month}/{servico.MesSaida.Value.Year}");
+                writer.WriteLine($"Hora da Saída = {servico.HoraSaida.Value.Hour}:{ servico.HoraSaida.Value.Minute}");
+                writer.WriteLine($"Valor a Pagar = {servico.Valor}");
+
+                writer.Close();
+
                 return RedirectToAction("ServicosCadastrados");
             }
             return View(servico);

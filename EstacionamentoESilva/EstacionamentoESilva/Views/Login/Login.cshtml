@@ -18,16 +18,16 @@
 <body class="bodyLogin text-center">
     <div>
         <br /><br /><br />
-        <h1><b>ESTACIONAMENTO E SILVA</b></h1>
+        <h1><b style="color:cadetblue">ESTACIONAMENTO E SILVA</b></h1>
     </div>
     <form method="POST" class="form-signin">
         @Html.AntiForgeryToken()
-        <h2><b>Entre com seu login:</b></h2>
+        <h2><b style="color:cadetblue">Entre com seu login:</b></h2>
         <div class="form-horizontal">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Email, "Login", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Email, "Login", htmlAttributes: new { @class = "control-label col-md-2", @style = "color:cadetblue;" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Entre com seu email" } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Senha, "Senha", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Senha, "Senha", htmlAttributes: new { @class = "control-label col-md-2", @style = "color:cadetblue;" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", placeholder = "Entre com sua senha", @type = "password" } })
                     @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })

@@ -21,7 +21,7 @@
                 @Html.ActionLink("Cadastrar Cliente", "Create", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Cadastrar Veículos", "Create", "Veiculo", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Serviços", "EscolherVeiculoServico", "Veiculo", new { area = "" }, new { @class = "navbar-brand" })
-                @if (@Session["nomeUsuarioLogado"].Equals("Administrador"))
+                @if (@Session["nomeUsuarioLogado"].Equals(EstacionamentoESilva.Acesso.TipoUsuario.Administrador))
                 {
                     @Html.ActionLink("Funcionário", "Create", "Funcionario", new { area = "" }, new { @class = "navbar-brand" })
                 }

@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="Acesso\AcessoAsClasses.cs" />
     <Compile Include="Acesso\ServicoStatus.cs" />
+    <Compile Include="Acesso\TipoUsuario.cs" />
     <Compile Include="Acesso\Valores.cs" />
     <Compile Include="Acesso\ValoresFixos.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

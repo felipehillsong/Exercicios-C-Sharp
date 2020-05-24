@@ -1,0 +1,10 @@
+Nome do Funcionario = Felipe
+Nome do Cliente = Claudio
+Automóvel = Opala
+Placa = HRT6985
+Nome do Cliente = Claudio
+Tipo de Serviço = Diarista
+Data da Entrada = 23/5/2020
+Hora da Entrada = 21:11
+Data da Saída = 23/5/2020
+Hora da Saída = 21:11

@@ -79,10 +79,22 @@
     <td>
         @Html.DisplayFor(modelItem => item.ServicoStatus)
     </td>
-    <td>        
-        @Html.ActionLink("Fechar Serviço", "FecharServico", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
-        @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
-        @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
+    <td>
+        @if (item.ServicoStatus == EstacionamentoESilva.Acesso.ServicoStatus.Aberto)
+        {
+            @Html.ActionLink("Fechar Serviço", "FecharServico", new { id = item.ServicoId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
+        }
+        else if (@Session["nomeUsuarioLogado"].Equals(EstacionamentoESilva.Acesso.TipoUsuario.Administrador) || item.ServicoStatus == EstacionamentoESilva.Acesso.ServicoStatus.Aberto)
+        {   
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.ServicoId }, new { @class = "btn btn-danger" })
+        }
+        else if (item.ServicoStatus == EstacionamentoESilva.Acesso.ServicoStatus.Fechado)
+        {
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ServicoId }, new { @class = "btn btn-success" })
+        }
     </td>
 </tr>
 }

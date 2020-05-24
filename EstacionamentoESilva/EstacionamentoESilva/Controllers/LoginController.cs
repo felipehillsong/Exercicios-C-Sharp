@@ -1,4 +1,5 @@
-﻿using EstacionamentoESilva.Data;
+﻿using EstacionamentoESilva.Acesso;
+using EstacionamentoESilva.Data;
 using EstacionamentoESilva.Models;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace EstacionamentoESilva.Controllers
 
                 if (funcionario.Email == email && funcionario.Senha == senha)
                 {
-                    Session["nomeUsuarioLogado"] = "Administrador";
+                    Session["nomeUsuarioLogado"] = TipoUsuario.Administrador;
                     return RedirectToAction("ServicosCadastrados", "Servico");
 
                 }

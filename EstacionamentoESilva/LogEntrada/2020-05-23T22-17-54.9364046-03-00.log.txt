@@ -1,0 +1,9 @@
+ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!
+Nome do Funcionario = Felipe
+Nome do Cliente = Claudio
+Automóvel = Opala
+Placa = HRT6985
+Nome do Cliente = Claudio
+Tipo de Serviço = Horista
+Data da Entrada = 23/5/2020
+Hora da Entrada = 22:17

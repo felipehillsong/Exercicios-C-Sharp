@@ -1,0 +1,9 @@
+ESTACIONAMENTO E SILVA, SEJA MUITO BEM VINDO!
+Nome do Funcionario = Felipe
+Nome do Cliente = Felipe
+Automóvel = Punto
+Placa = ABC1234
+Nome do Cliente = Felipe
+Tipo de Serviço = Fracao
+Data da Entrada = 23/5/2020
+Hora da Entrada = 22:17
