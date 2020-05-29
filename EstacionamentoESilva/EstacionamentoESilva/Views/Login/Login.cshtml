@@ -29,7 +29,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, "Login", htmlAttributes: new { @class = "control-label col-md-2", @style = "color:cadetblue;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Entre com seu email" } })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Entre com seu email", maxlength = 50 } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
