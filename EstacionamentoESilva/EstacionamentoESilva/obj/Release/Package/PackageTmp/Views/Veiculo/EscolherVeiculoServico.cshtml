@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EstacionamentoESilva.Models.Veiculo>
+
+@{
+    ViewBag.Title = "Veiculos Cadastrados";
+}
+
+<h4><b>Veiculos Cadastrados</b></h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </th>
+        <th>
+            @Html.DisplayName("Veículo")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.NomeCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacoes)
+            </td>
+            <td>
+                @Html.ActionLink("Serviço", "TipoServico", "TipoServico", new { id = item.VeiculoId }, new { @class = "btn btn-primary" })                
+            </td>
+        </tr>
+    }
+
+</table>

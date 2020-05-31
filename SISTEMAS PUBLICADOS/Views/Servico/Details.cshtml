@@ -1,0 +1,119 @@
+﻿@model EstacionamentoESilva.Models.Servico
+
+@{
+    ViewBag.Title = "Detalhes do Serviço";
+}
+
+<h4><b>Detalhes do Serviço</b></h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Placas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Placas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MesSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MesSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoServico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoServico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicoStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicoStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Model.ServicoStatus == EstacionamentoESilva.Acesso.ServicoStatus.Fechado)
+    {
+        @Html.ActionLink("Voltar", "ServicosCadastrados", null, new { @class = "btn btn-warning" })
+    }
+    else if (Model.ServicoStatus == EstacionamentoESilva.Acesso.ServicoStatus.Aberto)
+    {
+    <span>@Html.ActionLink("Fechar Serviço", "FecharServico", new { id = Model.ServicoId }, new { @class = "btn btn-success" })</span>
+    <span>@Html.ActionLink("Voltar", "ServicosCadastrados", null, new { @class = "btn btn-warning" })</span> 
+    }
+</p>
