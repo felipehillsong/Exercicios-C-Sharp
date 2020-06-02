@@ -6,7 +6,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Felipe\Documents\Exercicios-C-Sharp\SISTEMAS PUBLICADOS</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Felipe\Documents\Exercicios-C-Sharp\SISTEMAS PUBLICADOS\Estacionamento</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/EntityFramework.dll">
@@ -16,10 +16,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>11/16/2019 03:00:40</publishTime>
     </File>
     <File Include="bin/EstacionamentoESilva.dll">
-      <publishTime>05/31/2020 19:55:05</publishTime>
+      <publishTime>06/01/2020 22:14:09</publishTime>
     </File>
     <File Include="bin/EstacionamentoESilva.pdb">
-      <publishTime>05/31/2020 19:55:05</publishTime>
+      <publishTime>06/01/2020 22:14:09</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
@@ -385,7 +385,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>03/20/2020 16:40:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/31/2020 19:55:05</publishTime>
+      <publishTime>06/01/2020 21:51:49</publishTime>
     </File>
   </ItemGroup>
 </Project>
