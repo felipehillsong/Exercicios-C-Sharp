@@ -16,10 +16,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>11/16/2019 03:00:40</publishTime>
     </File>
     <File Include="bin/EstacionamentoESilva.dll">
-      <publishTime>06/01/2020 22:14:09</publishTime>
+      <publishTime>06/02/2020 23:14:55</publishTime>
     </File>
     <File Include="bin/EstacionamentoESilva.pdb">
-      <publishTime>06/01/2020 22:14:09</publishTime>
+      <publishTime>06/02/2020 23:14:55</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
