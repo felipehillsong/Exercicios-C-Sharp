@@ -79,3 +79,4 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\Estacionamento
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.csproj.CopyComplete
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.dll
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.pdb
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\EstacionamentoESilva\EstacionamentoESilva\obj\Debug\EstacionamentoESilva.csprojAssemblyReference.cache
