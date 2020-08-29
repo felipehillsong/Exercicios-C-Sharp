@@ -20,7 +20,7 @@ namespace Banco_City_Bank
         public void Depositar(double deposito)
         {
             double saldoinicial = this.SaldoInicio();
-            this.SaldoFinal = saldoinicial + deposito; 
+            this.SaldoFinal = saldoinicial + deposito;
             Console.WriteLine("\nO Deposito junto com o saldo inicial é de: " + this.SaldoFinal);            
         }
 
