@@ -73,8 +73,7 @@ namespace TestesJson.Controllers
         }
 
         // POST: api/Pessoa
-        [HttpPost]
-        //tirar esse comentario
+        [HttpPost]        
         public async Task<ActionResult<Pessoa>> PostPessoa(Pessoa pessoa)
         {
             _context.Pessoas.Add(pessoa);
