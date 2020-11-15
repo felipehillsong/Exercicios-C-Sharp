@@ -24,21 +24,11 @@ namespace EstacionamentoESilva.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            var acesso = new AcessoAsClasses();
-            acesso.Cliente = new Cliente();
-            acesso.Veiculo = new Veiculo();
-            acesso.Servico = new Servico();
-
-
-            var list = db.Clientes.ToList();
-            list.Add(new Cliente { ClienteId = 0, Nome = "[Selecione um cliente]" });
-            list = list.OrderBy(x => x.NomeCompleto).ToList();
-            ViewBag.ClienteId = new SelectList(list, "ClienteId", "NomeCompleto");
             var veiculoes = db.Veiculoes.Include(v => v.Cliente);
             return View(veiculoes.ToList());
         }
 
-        public ActionResult EscolherVeiculoServico(int? id)
+        public ActionResult EscolherVeiculoServico()
         {
             if (Session["nomeUsuarioLogado"] == null)
             {
