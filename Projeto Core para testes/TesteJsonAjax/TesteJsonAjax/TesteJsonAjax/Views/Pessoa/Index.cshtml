@@ -1,0 +1,125 @@
+﻿@model IEnumerable<TesteJsonAjax.Models.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="container">
+    <div class="panel-body">
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <h6>Nome</h6>
+                    <input type="text" id="nomeEntrada" name="nomeEntrada" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <h6>Sobrenome</h6>
+                    <input type="text" id="sobrenomeEntrada" name="sobrenomeEntrada" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <h6>Idade</h6>
+                    <input type="number" id="idadeEntrada" name="idadeEntrada" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <h6>Telefone</h6>
+                    <input type="number" id="telefoneEntrada" name="telefoneEntrada" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <h6>Log</h6>
+                    <input type="text" id="respostaDados" name="respostaDados" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" id="load-btn" value="Enviar" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $('#load-btn').on("click", function () {
+            var data = {
+                Nome: $("#nomeEntrada").val(),
+                Sobrenome: $("#sobrenomeEntrada").val(),
+                Idade: $("#idadeEntrada").val(),
+                Telefone: $("#telefoneEntrada").val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("postPessoa")',
+                data: JSON.stringify(data),
+                accept: "application/json",
+                contentType: "application/json",
+                cache: false,
+                success: function (data) {
+                    $("#respostaDados").val("Dados foram salvos");
+                },
+
+                error: function (data) {
+                    $("#respostaDados").val("Dados não salvos");
+                }
+            });
+
+            return false;
+
+        });
+
+    </script>
+}
