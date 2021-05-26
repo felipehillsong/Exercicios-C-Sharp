@@ -1,6 +1,33 @@
-<div *ngFor="let evento of eventos">
-  Tema: {{evento.tema}} 
-  <br>
-  Local: {{evento.local}}
-  <hr>
+<form class="form-inline">
+  <div class="form-group col-md-3">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar">    
+      &nbsp;&nbsp;  
+        <button class="btn btn-outline-success">Buscar</button>      
+    </div>
   </div>
+</form>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>    
+    </tr>
+  </tbody>
+</table>
