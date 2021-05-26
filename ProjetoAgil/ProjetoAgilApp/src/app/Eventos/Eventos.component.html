@@ -8,8 +8,11 @@
   </div>
 </form>
 <table class="table table-striped">
-  <thead class="thead-dark">
+  <thead class="table-light">
     <tr>
+      <th>
+        <button (click)="alternarImage()" class="btn btn-outline-primary">Mostrar Imagem</button>
+      </th>
       <th>#</th>
       <th>Tema</th>
       <th>Local</th>
@@ -19,15 +22,31 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>    
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventos">
+      <td>
+        <img *ngIf="mostrarImage"
+         src="https://localhost:44395/img/{{evento.imageUrl}}"
+        [style.width.px]="imageLargura"
+        [style.margin.px]="imageMargem">
+      </td>
+      <td>{{evento.eventoId}}</td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.data}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>{{evento.lote}}</td>
+      <td>
+        <button class="btn btn-success"></button>
+        <button class="btn btn-danger"></button>
+      </td>    
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="7" class="text-center">
+        <h4>Nenhum evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>

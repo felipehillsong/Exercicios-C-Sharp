@@ -37,6 +37,8 @@ namespace ProAgil.WebAPI.Migrations
                     b.HasKey("EventoId");
 
                     b.ToTable("Eventos");
+
+                    b.Property<string>("ImageUrl");
                 });
 #pragma warning restore 612, 618
         }
