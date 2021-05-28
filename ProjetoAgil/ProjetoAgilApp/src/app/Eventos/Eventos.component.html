@@ -2,9 +2,7 @@
   <div class="form-group col-md-3">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar"
-      [(ngModel)]="filtroLista">    
-      &nbsp;&nbsp;  
-        <button class="btn btn-outline-success">Buscar</button>      
+      [(ngModel)]="filtroLista">           
     </div>
   </div>
 </div>
@@ -25,7 +23,7 @@
     </tr>
   </thead>
   <tbody *ngIf="eventos && eventos.length">
-    <tr *ngFor="let evento of eventos">
+    <tr *ngFor="let evento of eventosFiltrados">
       <td>
         <img *ngIf="mostrarImage"
          src="https://localhost:44395/img/{{evento.imageUrl}}"
@@ -35,9 +33,9 @@
       <td>{{evento.eventoId}}</td>
       <td>{{evento.tema}}</td>
       <td>{{evento.local}}</td>
-      <td>{{evento.data}}</td>
+      <td>{{evento.dataEvento}}</td>
       <td>{{evento.qtdPessoas}}</td>
-      <td>{{evento.lote}}</td>
+      <td>{{evento.lote |uppercase}}</td>
       <td>
         <button class="btn btn-success"></button>
         <button class="btn btn-danger"></button>
