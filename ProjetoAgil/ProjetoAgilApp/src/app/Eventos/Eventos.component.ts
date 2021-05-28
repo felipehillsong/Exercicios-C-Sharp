@@ -15,6 +15,7 @@ export class EventosComponent implements OnInit {
   imageLargura = 50;
   imageMargem = 2;
   mostrarImage = false;
+  filtroLista = "";
 
   ngOnInit() {
     this.getEventos();

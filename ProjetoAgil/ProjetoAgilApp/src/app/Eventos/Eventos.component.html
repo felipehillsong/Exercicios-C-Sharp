@@ -1,12 +1,14 @@
-<form class="form-inline">
+<div class="form-inline">
   <div class="form-group col-md-3">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Buscar">    
+      <input type="text" class="form-control" placeholder="Buscar"
+      [(ngModel)]="filtroLista">    
       &nbsp;&nbsp;  
         <button class="btn btn-outline-success">Buscar</button>      
     </div>
   </div>
-</form>
+</div>
+<h3>Filtro: {{filtroLista}}</h3>
 <table class="table table-striped">
   <thead class="table-light">
     <tr>
