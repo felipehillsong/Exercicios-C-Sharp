@@ -12,7 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProAgil.Domain\ProAgil.Domain.csproj" />
+    <ProjectReference Include="..\..\ProAgil.Repository\ProAgil.Repository.csproj" />
   </ItemGroup>
 
 </Project>
