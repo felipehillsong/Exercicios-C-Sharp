@@ -58,7 +58,8 @@ namespace ProAgil.Repository.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<decimal>("Preco");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("Quantidade");
 

@@ -10,7 +10,7 @@ using ProAgil.Repository.Data;
 namespace ProAgil.Repository.Migrations
 {
     [DbContext(typeof(ProAgilContext))]
-    [Migration("20210531235059_initial")]
+    [Migration("20210605043917_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,8 @@ namespace ProAgil.Repository.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<decimal>("Preco");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("Quantidade");
 
