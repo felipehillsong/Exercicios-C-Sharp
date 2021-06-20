@@ -35,4 +35,4 @@ C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\T
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste_Orientado_Objetos.application
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste_Orientado_Objetos.exe
 C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste_Orientado_Objetos.pdb
-C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste Orientado Objetos.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Exercicios-C-Sharp\Teste_Orientado_Objetos\obj\Debug\Teste Orientado Objetos.csproj.AssemblyReference.cache

@@ -11,7 +11,10 @@
   <thead class="table-light">
     <tr>
       <th>
-        <button (click)="alternarImage()" class="btn btn-outline-primary">Mostrar Imagem</button>
+        <button class="btn btn-outline-primary" (click)="alternarImage()" >
+          <i class="{{mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+          {{mostrarImagem ? 'Ocultar' : 'Mostrar'}}
+        </button>
       </th>
       <th>#</th>
       <th>Tema</th>
@@ -25,17 +28,24 @@
   <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventosFiltrados">
       <td>
-        <img *ngIf="mostrarImage"
-         src="https://localhost:44395/img/{{evento.imageUrl}}"
+        <img *ngIf="mostrarImagem"
+         src="https://localhost:44395/img/{{evento.imageURL}}"
         [style.width.px]="imageLargura"
         [style.margin.px]="imageMargem">
       </td>
-      <td>{{evento.eventoId}}</td>
+      <td>{{evento.id}}</td>
       <td>{{evento.tema}}</td>
       <td>{{evento.local}}</td>
       <td>{{evento.dataEvento}}</td>
       <td>{{evento.qtdPessoas}}</td>
-      <td>{{evento.lote |uppercase}}</td>
+      <td>
+        <div *ngIf="!evento.lotes.length">
+          Não Informado!
+        </div>
+       <div *ngIf="evento.lotes.length">
+        {{evento.lotes[0].nome | uppercase}}
+        </div>
+    </td>
       <td>
         <button class="btn btn-success"></button>
         <button class="btn btn-danger"></button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../_models/Evento';
 import { EventoService } from '../_services/evento.service';
 
 @Component({
@@ -43,19 +44,20 @@ export class EventosComponent implements OnInit {
   
 
   nome = 'Felipe';
-  eventos: any = [];
-  eventosFiltrados: any = [];
+  eventos: Evento[];
+  eventosFiltrados: Evento[];
   imageLargura = 50;
   imageMargem = 2;
-  mostrarImage = true;  
+  mostrarImagem = true;  
 
   ngOnInit() {
     this.getEventos();
   }
 
   getEventos(){
-    this.eventos = this.evenoService.getEvento().subscribe(Response => {
-      this.eventosFiltrados = this.eventos = Response;            
+      this.evenoService.getAllEvento().subscribe((_eventos: Evento[]) => {
+      this.eventos =_eventos;
+      this.eventosFiltrados = this.eventos;
     },
     error => {
       console.log(error);
@@ -63,10 +65,10 @@ export class EventosComponent implements OnInit {
   }
 
   alternarImage(){
-    this.mostrarImage = !this.mostrarImage;
+    this.mostrarImagem = !this.mostrarImagem;
   }
 
-  filtrarEventos(filtrarPor: string): any{
+  filtrarEventos(filtrarPor: string): Evento[]{
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.eventos.filter(evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
