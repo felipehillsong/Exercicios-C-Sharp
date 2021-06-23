@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   constructor() { }
+  nome = 'Felipe';  
 
   ngOnInit() {
   }

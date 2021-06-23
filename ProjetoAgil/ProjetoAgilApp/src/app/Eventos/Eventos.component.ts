@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Evento } from '../_models/Evento';
 import { EventoService } from '../_services/evento.service';
 
@@ -8,9 +9,19 @@ import { EventoService } from '../_services/evento.service';
   styleUrls: ['./Eventos.component.css']
 })
 export class EventosComponent implements OnInit {
+  
+  constructor(
+      private evenoService: EventoService
+    , private modalService: BsModalService) { }
 
-  constructor(private evenoService: EventoService) { }
-
+  nome = 'Felipe';
+  eventos: Evento[];
+  eventosFiltrados: Evento[];
+  imageLargura = 50;
+  imageMargem = 2;
+  mostrarImagem = true;
+  modalRef: BsModalRef;
+  
   _filtroLista: string;  
   get filtroLista(): string{
     return this._filtroLista;
@@ -32,26 +43,15 @@ export class EventosComponent implements OnInit {
     else{
       this.eventosFiltrados = this.eventos;
     }  
-  }
-
-  _filtroLocal: string;    
-  get filtroLocal() : string {
-    return this._filtroLocal;
-  }
-  set filtroLocal(value : string) {
-    this._filtroLocal = value;
-  }
-  
-
-  nome = 'Felipe';
-  eventos: Evento[];
-  eventosFiltrados: Evento[];
-  imageLargura = 50;
-  imageMargem = 2;
-  mostrarImagem = true;  
+  } 
 
   ngOnInit() {
-    this.getEventos();
+    this.getEventos();    
+  }
+
+  openModal(template: TemplateRef<any>){
+    this.modalRef = this.modalService.show(template);
+
   }
 
   getEventos(){
