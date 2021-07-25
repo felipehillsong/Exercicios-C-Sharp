@@ -10,8 +10,13 @@
 <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
+        <th>
+          <button class="btn btn-outline-light btn-sm" (click)="alternarImage()" >
+            <i class="{{mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+            {{mostrarImagem ? 'Ocultar' : 'Exibir'}}
+          </button>
+        </th>
         <th>#</th>
-        <th>Imagem</th>
         <th>Tema</th>
         <th>Local</th>
         <th>Data</th>
@@ -20,10 +25,17 @@
         <th>Opções</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="eventos && eventos.length">
       <tr *ngFor="let evento of eventos">
+        <td>
+          <img [collapse]="!mostrarImagem"
+          [isAnimated]="true"
+          src="/assets/{{evento.imagemURL}}"
+          [style.width.px]="larguraImagem"
+          [style.magin.px]="margemImagem"
+          >
+        </td>
         <td>{{evento.id}}</td>
-        <td>{{evento.imagemURL}}</td>
         <td>{{evento.tema}}</td>
         <td>{{evento.local}}</td>
         <td>{{evento.data}}</td>
@@ -32,4 +44,11 @@
         <td></td>
       </tr>
     </tbody>
+    <tfoot *ngIf="!eventos.length">
+      <tr>
+        <td class="text-center" colspan="8">
+          <h4>Nenhum evento encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
 </table>

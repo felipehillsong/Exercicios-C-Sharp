@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any;
+  public eventos: any = [];
+  larguraImagem = 100;
+  margemImagem = 2;
+  mostrarImagem = true;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -20,6 +23,10 @@ export class EventosComponent implements OnInit {
       response => this.eventos = response,
       error => console.log(error)
     );
+  }
+
+  alternarImage(){
+    this.mostrarImagem = !this.mostrarImagem;
   }
 
 }
