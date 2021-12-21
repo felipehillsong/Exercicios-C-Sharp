@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProEventos.API.Data;
-using ProEventos.API.Models;
+using ProEventos.Domain.Models;
+using ProEventos.Peristence.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,8 @@ namespace ProEventos.API.Controllers
     [Route("api/[controller]")]
     public class EventosController : Controller
     {
-        private readonly DataContext _context;
-        public EventosController(DataContext context)
+        private readonly ProEventosContext _context;
+        public EventosController(ProEventosContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace ProEventos.API.Controllers
         [HttpGet]
         public IEnumerable<Evento> Get()
         {
-            return _context.Eventos.ToList();
+            return _context.Eventos;
         }
 
         [HttpGet("{id}")]
