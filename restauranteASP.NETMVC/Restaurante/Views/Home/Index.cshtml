@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Pedidos Mesa";
+}
+
+@model Restaurante.Models.Pedido
+
+<div class="row">
+    <div class="formularioCadastro">
+        @using (Html.BeginForm("Pedidos", "Restaurante", FormMethod.Post)) {
+
+
+
+            <h3 class="central">Pedido</h3>
+            @Html.TextBoxFor(m => m.Nome, new { placeholder = "Entre com o nome do cliente", @Class = "form-control", @required = "required" })<br>
+            @Html.TextBoxFor(m => m.Mesa, new { placeholder = "Numero da mesa", type="number", name="mesa", @Class = "form-control", @required = "required" }) <br/>
+            
+
+            <select class="form-control form-control-lg" id="servicoPrato">
+                <option value="nada" class="nada">Selecione o Serviço</option>
+                <option value="Pratos">Pratos</option>
+            </select>
+
+            <div class="row servicos" id="selecionandoServicoPrato">
+                <div class="col-sm-12">
+                    @Html.TextBoxFor(m => m.Pratos, new { @Class = "form-control resultadoPrato" })
+                    @Html.TextBoxFor(m => m.QtdPratos, new { name = "quantidadeprato", placeholder = "Quantidade", type = "number", @Class = "form-control quantidadePrato" })<br />
+
+                </div>
+            </div>
+
+            <select class="form-control form-control-lg" id="servicoBebida">
+                <option value="nada" class="nada">Selecione o Serviço</option>
+                <option value="Bebidas">Bebidas</option>
+            </select>
+
+            <div class="row servicos" id="selecionandoServicoBebida">
+                <div class="col-sm-12">
+                    @Html.TextBoxFor(m => m.Bebidas, new { @Class = "form-control resultadoBebida" })
+                    @Html.TextBoxFor(m => m.QtdBebidas, new { name = "quantidadebebida", placeholder = "Quantidade", type = "number", @Class = "form-control quantidadeBebida" })<br />
+                   
+                </div>
+            </div>
+
+            <select class="form-control form-control-lg" id="servicoSobremesa">
+                <option value="nada" class="nada">Selecione o Serviço</option>
+                <option value="Sobremesas">Sobremesas</option>
+            </select>
+
+            <div class="row servicos" id="selecionandoServicoSobremesa">
+                <div class="col-sm-12">
+                    @Html.TextBoxFor(m => m.Sobremesas, new { @Class = "form-control resultadoSobremesa" })<br>
+                    @Html.TextBoxFor(m => m.QtdSobremesas, new { name = "quantidadesobremesa", placeholder = "Quantidade", type = "number", @Class = "form-control quantidadeSobremesa" })<br />
+                </div>
+            </div>
+
+
+            <div class="col-sm-12">
+                <div id="button-cadastro">
+                    <button class="btn" type="submit" name="btn_cadastro-servico">Salvar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
