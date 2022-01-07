@@ -1,8 +1,0 @@
-C:\Users\user\Desktop\Banco\Banco\bin\Release\Banco.exe
-C:\Users\user\Desktop\Banco\Banco\bin\Release\Banco.pdb
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.Form1.resources
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.Properties.Resources.resources
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.csproj.GenerateResource.cache
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.exe
-C:\Users\user\Desktop\Banco\Banco\obj\Release\Banco.pdb
