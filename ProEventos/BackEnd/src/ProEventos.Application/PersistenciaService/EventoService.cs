@@ -36,7 +36,7 @@ namespace ProEventos.Application.PersistenciaService
             }
         }
 
-        public async Task<Evento> UpdateEvento(int eventoId, Evento model)
+        public async Task<Evento> UpdateEvento(Evento model, int eventoId)
         {
             try
             {

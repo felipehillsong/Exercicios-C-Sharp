@@ -10,7 +10,7 @@ namespace ProEventos.Application.ContratosService
     public interface IEventoService
     {
         Task<Evento> AddEventos(Evento model);
-        Task<Evento> UpdateEvento(int eventoId, Evento model);
+        Task<Evento> UpdateEvento(Evento model, int eventoId);
         Task<bool> DeleteEvento(int eventoId);
         Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false);
         Task<Evento> GetEventoByIdAsync(int EventoId, bool includePalestrantes = false);

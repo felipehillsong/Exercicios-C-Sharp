@@ -8,7 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProEventos.Application.ContratosService;
+using ProEventos.Application.PersistenciaService;
 using ProEventos.Peristence.Data;
+using ProEventos.Persistence.Contratos;
+using ProEventos.Persistence.Persistencias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +36,9 @@ namespace ProEventos.API
                 context => context.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
             services.AddControllers();
+            services.AddScoped<IEventoService, EventoService>(); 
+            services.AddScoped<IGeralPersist, GeralPersist>(); 
+            services.AddScoped<IEventoPersist, EventoPersist>();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
