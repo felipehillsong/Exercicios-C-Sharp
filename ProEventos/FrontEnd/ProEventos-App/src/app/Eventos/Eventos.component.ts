@@ -14,14 +14,14 @@ export class EventosComponent implements OnInit {
   public larguraImagem = 100;
   public margemImagem = 2;
   public mostrarImagem = true;
-  private _filtroLista: string = '';
+  private _filtroListado = '';
 
   public get filtroLista():string{
-    return this._filtroLista;
+    return this._filtroListado;
   }
 
   public set filtroLista(value:string){
-    this._filtroLista = value;
+    this._filtroListado = value;
     this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
@@ -30,7 +30,7 @@ export class EventosComponent implements OnInit {
     return this.eventos.filter(
       (evento:any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
       evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    )
+    );
   }
 
   constructor(private eventoServices: EventoService) { }
