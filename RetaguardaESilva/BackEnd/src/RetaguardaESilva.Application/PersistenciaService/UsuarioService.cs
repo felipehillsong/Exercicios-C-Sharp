@@ -132,7 +132,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     _geralPersist.Add<Permissao>(permissoesUsuario);
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
-                                        var usuarioRetorno = await _usuarioPersist.GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
+                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
                                         return _mapper.Map<UsuarioDTO>(usuarioRetorno);
                                     }
                                 }
@@ -141,13 +141,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     _geralPersist.Update<Permissao>(permissoesUsuario);
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
-                                        var usuarioRetorno = await _usuarioPersist.GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
+                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
+                                        //var usuarioPermissoesRetorno = await _usuarioPersist.GetPermissaoByIdAsync(model.EmpresaId, usuarioId, model.Permissoes[0].Id);
                                         return _mapper.Map<UsuarioDTO>(usuarioRetorno);
                                     }
                                 }
                                 else if (mensagemRetorno == MensagemDeSucesso.UsuarioMesmoDado)
                                 {
-                                    var usuarioRetorno = await _usuarioPersist.GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
+                                    var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
                                     return _mapper.Map<UsuarioDTO>(usuarioRetorno);
                                 }
                             }

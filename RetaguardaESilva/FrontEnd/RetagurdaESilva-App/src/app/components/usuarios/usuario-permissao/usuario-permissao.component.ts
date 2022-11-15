@@ -19,6 +19,7 @@ export class UsuarioPermissaoComponent implements OnInit {
   titulo =  Titulos.permissaoUsuario;
   form!: FormGroup;
   usuario = {} as Usuario;
+  usuarioRetornoEdit = {} as Usuario;
   permissoes = {} as Permissao;
   usuarioId!: number;
   nome!: string;
@@ -62,8 +63,16 @@ export class UsuarioPermissaoComponent implements OnInit {
     if(this.form.valid){
       this.permissoes = {...this.form.value};
       this.preencherChecks(this.permissoes);
-      this.usuarioService.editUsuario(this.usuario).subscribe(() => {
+      this.usuarioService.editUsuario(this.usuario).subscribe(
+        (_usuario: Usuario) => {
+          this.usuarioRetornoEdit = _usuario;
+          if(this.usuarioRetornoEdit.id == this.authService.idDoUsuarioLogado()){
+          sessionStorage.clear();
+          sessionStorage.setItem('loginRetorno', JSON.stringify(this.usuarioRetornoEdit));
+          console.log(this.usuarioRetornoEdit);
+          this._changeDetectorRef.markForCheck();
         this.router.navigate(['usuarios/lista']);
+          }
       },
       (error: any) => {
         console.error(error);
@@ -111,7 +120,7 @@ public validation(): void {
     transportadorExcluir: [null],
     usuarioCadastro: [null],
     usuarioEditar: [null],
-    usuarioDetalhe: [null],
+    usuarioPermissoes: [null],
     usuarioExcluir: [null],
     vendaCadastro: [null],
     vendaEditar: [null],

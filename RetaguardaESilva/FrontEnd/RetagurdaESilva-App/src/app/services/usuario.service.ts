@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Funcionario } from '../models/funcionario';
-import { Permissao } from '../models/permissao';
 import { Usuario } from '../models/usuario';
 import { AuthService } from './auth.service';
 

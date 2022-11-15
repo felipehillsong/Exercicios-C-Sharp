@@ -18,6 +18,7 @@ namespace RetaguardaESilva.Application.DTO
         public int FuncionarioId { get; set; }
         public int EmpresaId { get; set; }
         public string NomeEmpresa { get; set; }
+        public List<PermissaoDTO> Permissoes { get; set; }
     }
 
     public class UsuarioComPermissoesDTO

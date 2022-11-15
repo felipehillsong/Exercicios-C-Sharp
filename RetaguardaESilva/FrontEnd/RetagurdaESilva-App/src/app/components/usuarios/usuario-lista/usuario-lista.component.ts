@@ -51,6 +51,7 @@ export class UsuarioListaComponent implements OnInit {
   ngOnInit() {
     this.authService.verificaAdministrador();
     this.nav.show();
+    this.authService.visualizarCliente();
     this.titu.show();
     this.titu.hideTitulo();
     this.getUsuarios();

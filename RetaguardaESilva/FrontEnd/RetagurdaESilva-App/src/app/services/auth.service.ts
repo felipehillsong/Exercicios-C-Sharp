@@ -34,9 +34,15 @@ public verificaAdministrador(){
     this.nav.hideEmpresa();
   }
 }
+
 public empresaId():number{
   let usuario = JSON.parse(sessionStorage.getItem('loginRetorno') || '{}');
   return usuario.empresaId;
+}
+
+public idDoUsuarioLogado():number{
+  let usuario = JSON.parse(sessionStorage.getItem('loginRetorno') || '{}');
+  return usuario.id;
 }
 
 public nomeEmpresa():string{
@@ -58,6 +64,15 @@ public permissoesDoUsuario():Permissao[]{
   let permissoesUsuario = JSON.parse(sessionStorage.getItem('loginRetorno') || '{}');
   this.usuario = permissoesUsuario;
   return this.usuario.permissoes;
+}
+
+public visualizarCliente(){
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarCliente;
+  if(vizualizar){
+    this.nav.vizualizarCliente();
+  }else{
+    this.nav.naoVizualizarCliente();
+  }
 }
 
 }

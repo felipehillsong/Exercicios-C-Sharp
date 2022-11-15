@@ -31,6 +31,7 @@ namespace RetaguardaESilva.Application.Helpers
             CreateMap<UsuarioViewModel, UsuarioDTO>().ReverseMap();
             CreateMap<UsuarioViewModel, UsuarioComPermissoesDTO>().ReverseMap();
             CreateMap<UsuarioUpdateDTO, PermissaoDTO>().ReverseMap();
+            CreateMap<UsuarioComPermissoesDTO, UsuarioDTO>().ReverseMap();
         }
     }
 }
