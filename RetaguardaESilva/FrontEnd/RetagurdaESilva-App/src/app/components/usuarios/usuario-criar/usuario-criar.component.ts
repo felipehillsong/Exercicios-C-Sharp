@@ -31,10 +31,7 @@ export class UsuarioCriarComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, public titu: TituloService, private usuarioService: UsuarioService, public nav: NavService, private authService: AuthService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.authService.verificaAdministrador();
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getFuncionarioUsaurioById();
     this.validation();
   }
@@ -108,6 +105,14 @@ export class UsuarioCriarComponent implements OnInit {
 
   public cssValidator(campoForm: FormControl | AbstractControl): any {
     return { 'is-invalid': campoForm.errors && campoForm.touched };
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

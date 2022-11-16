@@ -49,11 +49,7 @@ export class UsuarioListaComponent implements OnInit {
   constructor(private router: Router, public titu: TituloService, private usuarioService: UsuarioService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.authService.verificaAdministrador();
-    this.nav.show();
-    this.authService.visualizarCliente();
-    this.titu.show();
-    this.titu.hideTitulo();
+    this.permissoesDeTela();
     this.getUsuarios();
   }
 
@@ -107,6 +103,14 @@ export class UsuarioListaComponent implements OnInit {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }

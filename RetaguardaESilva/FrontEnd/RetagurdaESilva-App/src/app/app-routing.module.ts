@@ -33,12 +33,13 @@ import { UsuarioListaComponent } from './components/usuarios/usuario-lista/usuar
 import { UsuarioPermissaoComponent } from './components/usuarios/usuario-permissao/usuario-permissao.component';
 import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usuario-selecionar-funcionario/usuario-selecionar-funcionario.component';
 import { UsuarioComponent } from './components/usuarios/usuario.component';
+import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
 import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
-  { path: 'clientes', canActivate:[AuthGuardsService],
+  { path: 'clientes', canActivate:[AuthGuardsService, AuthGuardsClienteService],
   component: ClienteComponent,
   children:[
     {path: 'lista', title: 'Clientes', component: ClienteListaComponent },

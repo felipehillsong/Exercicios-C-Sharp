@@ -33,9 +33,7 @@ export class EmpresaCriarComponent implements OnInit {
   constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private empresaService: EmpresaService, private toastr: ToastrService, private spinner: NgxSpinnerService, private datePipe: DatePipe, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.empresa.dataCadastroEmpresa = new Date().toISOString().split('T')[0];
     this.validation();
   }
@@ -132,6 +130,14 @@ export class EmpresaCriarComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

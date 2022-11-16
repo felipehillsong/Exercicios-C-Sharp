@@ -36,9 +36,7 @@ export class ClienteEditarComponent implements OnInit {
   constructor(private fb: FormBuilder, public titu: TituloService, private _changeDetectorRef: ChangeDetectorRef, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private clienteService: ClienteService, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getClienteById();
     this.validation();
   }
@@ -191,6 +189,14 @@ export class ClienteEditarComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 

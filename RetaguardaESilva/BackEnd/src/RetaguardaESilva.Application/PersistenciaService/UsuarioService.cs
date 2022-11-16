@@ -23,21 +23,21 @@ namespace RetaguardaESilva.Application.PersistenciaService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
-        private readonly IUsuarioPersist _usuarioPersist;        
+        private readonly IUsuarioPersist _usuarioPersist;
         private readonly IMapper _mapper;
 
         public UsuarioService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IUsuarioPersist usuarioPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
-            _usuarioPersist = usuarioPersist;            
+            _usuarioPersist = usuarioPersist;
             _mapper = mapper;
         }
         public async Task<UsuarioDTO> AddUsuario(UsuarioCreateDTO model)
         {
             string mensagem = "";
             model.Email = _validacoesPersist.AcertarNome(model.Email);
-            model.Senha = _validacoesPersist.AcertarNome(model.Senha);            
+            model.Senha = _validacoesPersist.AcertarNome(model.Senha);
             
             if (_validacoesPersist.ExisteUsuario(model.EmpresaId, (int)Ids.IdCreate, model.Email, false, out mensagem))
             {
@@ -142,7 +142,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
                                         var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                        //var usuarioPermissoesRetorno = await _usuarioPersist.GetPermissaoByIdAsync(model.EmpresaId, usuarioId, model.Permissoes[0].Id);
                                         return _mapper.Map<UsuarioDTO>(usuarioRetorno);
                                     }
                                 }
@@ -423,7 +422,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         var PermissaoDTOMapper = new PermissaoDTO()
                         {
                             Id = usuarioPermissao.Id,
-                            VisualizarCliente = usuarioPermissao.VisualizarCliente,                          
+                            VisualizarCliente = usuarioPermissao.VisualizarCliente,
                             ClienteCadastro = usuarioPermissao.ClienteCadastro,
                             ClienteEditar = usuarioPermissao.ClienteEditar,
                             ClienteDetalhe = usuarioPermissao.ClienteDetalhe,

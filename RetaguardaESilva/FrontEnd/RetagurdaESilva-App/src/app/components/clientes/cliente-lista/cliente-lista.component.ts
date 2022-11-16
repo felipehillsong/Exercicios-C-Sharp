@@ -50,10 +50,7 @@ export class ClienteListaComponent implements OnInit {
   constructor(private router: Router, private clienteService: ClienteService, public titu: TituloService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.authService.verificaAdministrador();
-    this.nav.show();
-    this.titu.show();
-    this.titu.hideTitulo();
+    this.permissoesDeTela();
     this.getClientes();
   }
 
@@ -102,6 +99,14 @@ export class ClienteListaComponent implements OnInit {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }

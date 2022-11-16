@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { Permissoes } from 'src/app/enums/permissoes';
 import { AuthService } from '../auth.service';
 
 @Injectable({
@@ -8,13 +8,13 @@ import { AuthService } from '../auth.service';
 })
 export class AuthGuardsEmpresaService implements CanActivate {
 
-constructor(private router: Router, private authService: AuthService) { }
+constructor(private authService: AuthService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(this.authService.empresaId() == 1){
+    if(this.authService.empresaId() == Permissoes.Administrador){
       return true;
     }else{
       return false;
     }
   }
-  }
+}
 

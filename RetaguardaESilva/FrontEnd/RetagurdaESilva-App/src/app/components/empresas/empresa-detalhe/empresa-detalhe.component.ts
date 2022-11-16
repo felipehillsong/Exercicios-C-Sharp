@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Titulos } from 'src/app/enums/titulos';
 import { Empresa } from 'src/app/models/empresa';
+import { AuthService } from 'src/app/services/auth.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { NavService } from 'src/app/services/nav.service';
 import { TituloService } from 'src/app/services/titulo.service';
@@ -21,12 +22,10 @@ export class EmpresaDetalheComponent implements OnInit {
   cep!:string;
   ativo!:string;
 
-  constructor(private router: Router, private route: ActivatedRoute, public titu: TituloService, private empresaService: EmpresaService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService, public titu: TituloService, private empresaService: EmpresaService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getEmpresaById();
   }
 
@@ -91,6 +90,14 @@ export class EmpresaDetalheComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

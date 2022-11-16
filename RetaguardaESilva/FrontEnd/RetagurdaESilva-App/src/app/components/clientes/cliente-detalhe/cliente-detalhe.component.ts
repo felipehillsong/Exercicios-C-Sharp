@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cliente } from 'src/app/models/cliente';
+import { AuthService } from 'src/app/services/auth.service';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { NavService } from 'src/app/services/nav.service';
 import { TituloService } from 'src/app/services/titulo.service';
@@ -19,12 +20,10 @@ export class ClienteDetalheComponent implements OnInit {
   activatedRouter: any;
   ativo!:string;
 
-  constructor(public nav: NavService, public titu: TituloService, private _changeDetectorRef: ChangeDetectorRef, private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public nav: NavService, public titu: TituloService, private authService: AuthService, private _changeDetectorRef: ChangeDetectorRef, private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getClienteById();
   }
 
@@ -82,6 +81,14 @@ export class ClienteDetalheComponent implements OnInit {
 
   public Voltar(){
     this.router.navigate(['clientes/lista']);
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

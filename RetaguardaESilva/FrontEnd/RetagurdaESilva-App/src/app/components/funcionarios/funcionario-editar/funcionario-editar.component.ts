@@ -39,9 +39,7 @@ export class FuncionarioEditarComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, public titu: TituloService, private funcionarioService: FuncionarioService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getFuncionarioById();
     this.validation();
   }
@@ -195,6 +193,14 @@ somenteNumeros(e: any):boolean {
     if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
   }
   return true;
+}
+
+permissoesDeTela(){
+  this.authService.verificaAdministrador();
+  this.authService.visualizarCliente();
+  this.nav.hide();
+  this.titu.hide();
+  this.titu.showTitulo();
 }
 
 }

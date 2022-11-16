@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Empresa } from 'src/app/models/empresa';
+import { AuthService } from 'src/app/services/auth.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
 import { NavService } from 'src/app/services/nav.service';
 import { TituloService } from 'src/app/services/titulo.service';
@@ -30,12 +31,10 @@ export class EmpresaEditarComponent implements OnInit {
   valueError!:string;
   ativo!:string;
 
-  constructor(private router: Router, public titu: TituloService, private route: ActivatedRoute, private fb: FormBuilder, private empresaService: EmpresaService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private router: Router, public titu: TituloService, private authService: AuthService, private route: ActivatedRoute, private fb: FormBuilder, private empresaService: EmpresaService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getEmpresaById();
     this.validation();
   }
@@ -179,6 +178,14 @@ export class EmpresaEditarComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

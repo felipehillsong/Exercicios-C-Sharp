@@ -66,12 +66,14 @@ public permissoesDoUsuario():Permissao[]{
   return this.usuario.permissoes;
 }
 
-public visualizarCliente(){
+public visualizarCliente():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarCliente;
   if(vizualizar){
     this.nav.vizualizarCliente();
+    return vizualizar;
   }else{
     this.nav.naoVizualizarCliente();
+    return vizualizar;
   }
 }
 

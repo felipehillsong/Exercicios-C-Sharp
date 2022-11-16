@@ -18,15 +18,17 @@ namespace RetaguardaESilva.Application.PersistenciaService
 {
     public class LoginService : ILoginService
     {
-        private readonly IGeralPersist _geralPersist;        
+        private readonly IGeralPersist _geralPersist;
         private readonly IUsuarioPersist _usuarioPersist;
+        private readonly IUsuarioService _usuarioService;
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IMapper _mapper;
 
-        public LoginService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IUsuarioPersist usuarioPersist, IFuncionarioPersist funcionarioPersist, IMapper mapper)
+        public LoginService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IUsuarioService usuarioService, IUsuarioPersist usuarioPersist, IFuncionarioPersist funcionarioPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _usuarioPersist = usuarioPersist;
+            _usuarioService = usuarioService;
             _validacoesPersist = validacoesPersist;
             _mapper = mapper;
         }
@@ -43,12 +45,28 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     var permissoes = _usuarioPersist.GetPermissaoUsuarioByIdAsync(usuario.EmpresaId, usuario.Id);
-                    var permissaoDTO = _mapper.Map<PermissaoDTO>(permissoes.Result);
-                    var usuarioRetorno = _mapper.Map<UsuarioLoginDTO>(usuario);
-                    var usuarioPermissao = new List<PermissaoDTO>();
-                    usuarioPermissao.Add(permissaoDTO);
-                    usuarioRetorno.Permissoes = usuarioPermissao;
-                    return usuarioRetorno;
+                    if (permissoes.Result == null)
+                    {
+                        var usuarioSemPermissoes = _usuarioService.GetPermissaoByIdAsync(usuario.EmpresaId, usuario.Id);                        
+                        var usuarioSemPermissaoRetorno = _mapper.Map<UsuarioLoginDTO>(usuario);
+                        var usuarioNovoPermissao = new List<PermissaoDTO>();
+                        foreach (var item in usuarioSemPermissoes.Result)
+                        {
+                            usuarioNovoPermissao.Add(item);
+                        }                        
+                        usuarioSemPermissaoRetorno.Permissoes = usuarioNovoPermissao;
+                        return usuarioSemPermissaoRetorno;
+                    }
+                    else
+                    {
+                        var permissaoDTO = _mapper.Map<PermissaoDTO>(permissoes.Result);
+                        var usuarioRetorno = _mapper.Map<UsuarioLoginDTO>(usuario);
+                        var usuarioPermissao = new List<PermissaoDTO>();
+                        usuarioPermissao.Add(permissaoDTO);
+                        usuarioRetorno.Permissoes = usuarioPermissao;
+                        return usuarioRetorno;
+                    }
+                    
                 }
             }
             catch (Exception ex)

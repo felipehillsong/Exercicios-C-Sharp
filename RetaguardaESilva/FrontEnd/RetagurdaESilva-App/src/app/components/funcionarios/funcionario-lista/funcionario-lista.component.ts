@@ -7,8 +7,6 @@ import { Botoes } from 'src/app/enums/botoes';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
 import { Funcionario } from 'src/app/models/funcionario';
-import { Login } from 'src/app/models/login';
-import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/services/auth.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { NavService } from 'src/app/services/nav.service';
@@ -49,10 +47,7 @@ export class FuncionarioListaComponent implements OnInit {
   constructor(private router: Router, public titu: TituloService, private funcionarioService: FuncionarioService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.authService.verificaAdministrador();
-    this.nav.show();
-    this.titu.show();
-    this.titu.hideTitulo();
+    this.permissoesDeTela();
     this.getFuncionarios();
   }
 
@@ -102,6 +97,14 @@ export class FuncionarioListaComponent implements OnInit {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }

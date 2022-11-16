@@ -49,10 +49,7 @@ export class EmpresaListaComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService, public titu: TituloService, public nav: NavService, private empresaService: EmpresaService, private modalService: BsModalService, private spinner: NgxSpinnerService, private _changeDetectorRef: ChangeDetectorRef, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.authService.verificaAdministrador();
-    this.nav.show();
-    this.titu.show();
-    this.titu.hideTitulo();
+    this.permissoesDeTela();
     this.getEmpresas();
   }
 
@@ -102,6 +99,14 @@ export class EmpresaListaComponent implements OnInit {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }

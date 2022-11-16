@@ -35,9 +35,7 @@ export class FornecedorEditarComponent implements OnInit {
   constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private fornecedorService: FornecedorService, private toastr: ToastrService, private spinner: NgxSpinnerService, private datePipe: DatePipe, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getFornecedorById();
     this.validation();
   }
@@ -184,6 +182,14 @@ export class FornecedorEditarComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

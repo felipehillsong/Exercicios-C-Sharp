@@ -12,9 +12,14 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, public nav: NavService) { }
 
   ngOnInit() {
-    this.nav.show();
+    this.permissoesDeTela();
     this.nomeDaEmpresa = this.authService.nomeEmpresa();
+  }
+
+  permissoesDeTela(){
     this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
   }
 
 }

@@ -27,13 +27,13 @@ constructor(private router: Router, private authService: AuthService, public nav
     this.router.navigate(['login']);
   }
 
-  canActivateEmpresa(): boolean {
+  /*canActivateEmpresa(): boolean {
     if(this.authService.empresaId() == 1){
       return true;
     }else{
       return false;
     }
-  }
-  
+  }*/
+
   }
 

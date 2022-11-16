@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Funcionario } from 'src/app/models/funcionario';
+import { AuthService } from 'src/app/services/auth.service';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { NavService } from 'src/app/services/nav.service';
 import { TituloService } from 'src/app/services/titulo.service';
@@ -28,12 +29,10 @@ export class FuncionarioDetalheComponent implements OnInit {
   funcionarioId!: number;
   ativo!:string;
 
-  constructor(private router: Router, public titu: TituloService, private funcionarioService: FuncionarioService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private route: ActivatedRoute) { }
+  constructor(private router: Router, public titu: TituloService, private authService: AuthService, private funcionarioService: FuncionarioService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getFuncionarioById();
   }
 
@@ -98,6 +97,14 @@ export class FuncionarioDetalheComponent implements OnInit {
       if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
     }
     return true;
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

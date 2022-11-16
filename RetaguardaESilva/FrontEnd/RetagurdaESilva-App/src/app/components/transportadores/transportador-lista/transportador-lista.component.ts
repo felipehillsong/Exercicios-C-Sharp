@@ -50,10 +50,7 @@ export class TransportadorListaComponent implements OnInit {
   constructor(private router: Router, public titu: TituloService, private transportadorService: TransportadorService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.authService.verificaAdministrador();
-    this.nav.show();
-    this.titu.show();
-    this.titu.hideTitulo();
+    this.permissoesDeTela();
     this.getTransportadores();
   }
 
@@ -103,6 +100,14 @@ export class TransportadorListaComponent implements OnInit {
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.nav.show();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }
