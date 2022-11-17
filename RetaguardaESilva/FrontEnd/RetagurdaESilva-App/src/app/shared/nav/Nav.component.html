@@ -13,7 +13,7 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" href="#">Estoque</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleFornecedor">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="fornecedores/lista">Fornecedores</a>
         </li>
         <li class="nav-item" routerLinkActive="active">

@@ -134,6 +134,7 @@ somenteNumeros(e: any):boolean {
 permissoesDeTela(){
   this.authService.verificaAdministrador();
   this.authService.visualizarCliente();
+  this.authService.visualizarFornecedor();
   this.nav.hide();
   this.titu.hide();
   this.titu.showTitulo();

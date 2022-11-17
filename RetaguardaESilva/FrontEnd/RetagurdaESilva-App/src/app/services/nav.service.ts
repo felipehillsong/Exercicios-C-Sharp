@@ -9,16 +9,21 @@ export class NavService {
   visible: boolean;
   visibleEmpresa: boolean;
   visibleCliente: boolean;
-  constructor() {this.visible = false; this.visibleEmpresa = false; this.visibleCliente = false;}
+  visibleFornecedor: boolean;
+  constructor() {this.visible = false; this.visibleEmpresa = false; this.visibleCliente = false; this.visibleFornecedor = false;}
   hide() { return this.visible = false; }
 
   show() { return this.visible = true; }
 
   toggle() { return this.visible = !this.visible; }
 
-  vizualizarCliente() { return this.visibleCliente = true; }
+  visualizarCliente() { return this.visibleCliente = true; }
 
-  naoVizualizarCliente() { return this.visibleCliente = false; }
+  naoVisualizarCliente() { return this.visibleCliente = false; }
+
+  visualizarFornecedor() { return this.visibleFornecedor = true; }
+
+  naoVisualizarFornecedor() { return this.visibleFornecedor = false; }
 
   hideEmpresa() { this.visibleEmpresa = false; }
 

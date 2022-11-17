@@ -15,7 +15,7 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<bool> DeleteUsuario(int empresaId, int usuarioId);
         Task<IEnumerable<UsuariosRetornoDTO>> GetAllUsuariosAsync(int empresaId);
         Task<IEnumerable<FuncionarioDTO>> GetAllFuncionariosUsuariosAsync(int empresaId);
-        Task<UsuarioComPermissoesDTO> GetUsuarioByIdAsync(int empresaId, int usuarioId);
+        Task<UsuarioDTO> GetUsuarioByIdAsync(int empresaId, int usuarioId);
         Task<FuncionarioDTO> GetFuncionarioUsuarioByIdAsync(int empresaId, int funcionarioId);
         Task<UsuarioDTO> GetUsuarioByIdAlteraLoginAsync(int funcionarioId);
         Permissao UpdatePermissao(List<PermissaoDTO> model, out string mensagem);

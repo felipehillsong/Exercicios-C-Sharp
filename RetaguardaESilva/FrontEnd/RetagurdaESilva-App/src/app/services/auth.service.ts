@@ -69,10 +69,21 @@ public permissoesDoUsuario():Permissao[]{
 public visualizarCliente():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarCliente;
   if(vizualizar){
-    this.nav.vizualizarCliente();
+    this.nav.visualizarCliente();
     return vizualizar;
   }else{
-    this.nav.naoVizualizarCliente();
+    this.nav.naoVisualizarCliente();
+    return vizualizar;
+  }
+}
+
+public visualizarFornecedor():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarFornecedor;
+  if(vizualizar){
+    this.nav.visualizarFornecedor();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarFornecedor();
     return vizualizar;
   }
 }

@@ -187,6 +187,7 @@ export class FornecedorEditarComponent implements OnInit {
   permissoesDeTela(){
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
+    this.authService.visualizarFornecedor();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

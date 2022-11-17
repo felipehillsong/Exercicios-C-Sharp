@@ -53,7 +53,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         foreach (var item in usuarioSemPermissoes.Result)
                         {
                             usuarioNovoPermissao.Add(item);
-                        }                        
+                        }
                         usuarioSemPermissaoRetorno.Permissoes = usuarioNovoPermissao;
                         return usuarioSemPermissaoRetorno;
                     }

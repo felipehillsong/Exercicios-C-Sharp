@@ -81,7 +81,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 {
                     string mensagem = "";
                     model.Email = _validacoesPersist.AcertarNome(model.Email);
-                    model.Senha = _validacoesPersist.AcertarNome(model.Senha);                    
+                    model.Senha = _validacoesPersist.AcertarNome(model.Senha);
 
                     if (_validacoesPersist.ExisteUsuario(model.EmpresaId, usuarioId, model.Email, true, out mensagem))
                     {
@@ -133,7 +133,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
                                         var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                        return _mapper.Map<UsuarioDTO>(usuarioRetorno);
+                                        return usuarioRetorno;
                                     }
                                 }
                                 else if (mensagemRetorno == MensagemDeSucesso.UsuarioDadosDiferente)
@@ -142,13 +142,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
                                         var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                        return _mapper.Map<UsuarioDTO>(usuarioRetorno);
+                                        return usuarioRetorno;
                                     }
                                 }
                                 else if (mensagemRetorno == MensagemDeSucesso.UsuarioMesmoDado)
                                 {
                                     var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                    return _mapper.Map<UsuarioDTO>(usuarioRetorno);
+                                    return usuarioRetorno;
                                 }
                             }
                         }
@@ -236,7 +236,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<UsuarioComPermissoesDTO> GetUsuarioByIdAsync(int empresaId, int usuarioId)
+        public async Task<UsuarioDTO> GetUsuarioByIdAsync(int empresaId, int usuarioId)
         {
             try
             {
@@ -248,7 +248,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     var retornoUsuario = _validacoesPersist.RetornarUsuarioId(usuario.Id);
-                    var resultadoUsuario = _mapper.Map<UsuarioComPermissoesDTO>(retornoUsuario);
+                    var resultadoUsuario = _mapper.Map<UsuarioDTO>(retornoUsuario);
                     var usuarioPermissao = GetPermissaoByIdAsync(empresaId, usuarioId);
                     resultadoUsuario.Permissoes = usuarioPermissao.Result;
                     return resultadoUsuario;

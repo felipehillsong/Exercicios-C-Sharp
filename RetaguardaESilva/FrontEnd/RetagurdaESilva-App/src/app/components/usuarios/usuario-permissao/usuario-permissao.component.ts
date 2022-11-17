@@ -29,10 +29,7 @@ export class UsuarioPermissaoComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, public titu: TituloService, private spinner: NgxSpinnerService, public nav: NavService, private authService: AuthService, private route: ActivatedRoute, private usuarioService: UsuarioService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.authService.verificaAdministrador();
-    this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.permissoesDeTela();
     this.getUsuarioById();
     this.validation();
   }
@@ -143,6 +140,15 @@ public validation(): void {
 
   public Voltar(){
     this.router.navigate(['usuarios/lista']);
+  }
+
+  permissoesDeTela(){
+    this.authService.verificaAdministrador();
+    this.authService.visualizarCliente();
+    this.authService.visualizarFornecedor();
+    this.nav.hide();
+    this.titu.hide();
+    this.titu.showTitulo();
   }
 
 }

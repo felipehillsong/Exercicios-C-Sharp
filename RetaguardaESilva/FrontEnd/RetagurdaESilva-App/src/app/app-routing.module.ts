@@ -35,6 +35,7 @@ import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usu
 import { UsuarioComponent } from './components/usuarios/usuario.component';
 import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
 import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.service';
+import { AuthGuardsFornecedorService } from './services/guards/AuthGuardsFornecedor.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
 
 const routes: Routes = [
@@ -55,7 +56,7 @@ const routes: Routes = [
     {path: 'editar/:id', title: 'Editar', component: EmpresaEditarComponent },
     {path: 'detalhe/:id', title: 'Detalhe', component: EmpresaDetalheComponent}
   ]},
-  { path: 'fornecedores', canActivate:[AuthGuardsService],
+  { path: 'fornecedores', canActivate:[AuthGuardsService, AuthGuardsFornecedorService],
   component: FornecedorComponent,
   children:[
     {path: 'lista', title: 'Fornecedores', component: FornecedorListaComponent },

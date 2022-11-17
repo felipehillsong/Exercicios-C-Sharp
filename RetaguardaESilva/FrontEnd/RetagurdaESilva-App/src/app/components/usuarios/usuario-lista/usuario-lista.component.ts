@@ -108,6 +108,7 @@ export class UsuarioListaComponent implements OnInit {
   permissoesDeTela(){
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
+    this.authService.visualizarFornecedor();
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
