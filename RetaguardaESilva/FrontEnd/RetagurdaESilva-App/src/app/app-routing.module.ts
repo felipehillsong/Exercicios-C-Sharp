@@ -36,6 +36,7 @@ import { UsuarioComponent } from './components/usuarios/usuario.component';
 import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
 import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.service';
 import { AuthGuardsFornecedorService } from './services/guards/AuthGuardsFornecedor.service';
+import { AuthGuardsFuncionarioService } from './services/guards/AuthGuardsFuncionario.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
 
 const routes: Routes = [
@@ -64,7 +65,7 @@ const routes: Routes = [
     {path: 'editar/:id', title: 'Editar', component: FornecedorEditarComponent },
     {path: 'detalhe/:id', title: 'Detalhe', component: FornecedorDetalheComponent}
   ]},
-  { path: 'funcionarios', canActivate:[AuthGuardsService],
+  { path: 'funcionarios', canActivate:[AuthGuardsService, AuthGuardsFuncionarioService],
   component: FuncionarioComponent,
   children:[
     {path: 'lista', title: 'Funcionarios', component: FuncionarioListaComponent },

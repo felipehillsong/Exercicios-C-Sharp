@@ -29,6 +29,7 @@ export class UsuarioPermissaoComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, public titu: TituloService, private spinner: NgxSpinnerService, public nav: NavService, private authService: AuthService, private route: ActivatedRoute, private usuarioService: UsuarioService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this._changeDetectorRef.markForCheck();
     this.permissoesDeTela();
     this.getUsuarioById();
     this.validation();
@@ -66,10 +67,9 @@ export class UsuarioPermissaoComponent implements OnInit {
           if(this.usuarioRetornoEdit.id == this.authService.idDoUsuarioLogado()){
           sessionStorage.clear();
           sessionStorage.setItem('loginRetorno', JSON.stringify(this.usuarioRetornoEdit));
-          console.log(this.usuarioRetornoEdit);
+          this.router.navigate(['usuarios/lista']);
           this._changeDetectorRef.markForCheck();
-        this.router.navigate(['usuarios/lista']);
-          }
+        }
       },
       (error: any) => {
         console.error(error);
@@ -146,6 +146,7 @@ public validation(): void {
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
+    this.authService.visualizarFuncionario();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

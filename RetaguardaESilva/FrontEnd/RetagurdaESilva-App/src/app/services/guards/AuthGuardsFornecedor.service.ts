@@ -9,8 +9,8 @@ export class AuthGuardsFornecedorService implements CanActivate {
 
 constructor(private authService: AuthService) { }
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-  var vizualizarFornecedor = this.authService.permissoesDoUsuario()[0].visualizarFornecedor;
-  return vizualizarFornecedor;
+  var visualizarFornecedor = this.authService.permissoesDoUsuario()[0].visualizarFornecedor;
+  return visualizarFornecedor;
 }
 
 }

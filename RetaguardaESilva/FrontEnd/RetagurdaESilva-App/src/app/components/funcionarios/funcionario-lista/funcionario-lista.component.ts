@@ -103,6 +103,7 @@ export class FuncionarioListaComponent implements OnInit {
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
+    this.authService.visualizarFuncionario();
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();

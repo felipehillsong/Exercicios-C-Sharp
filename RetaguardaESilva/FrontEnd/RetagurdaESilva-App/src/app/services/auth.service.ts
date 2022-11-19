@@ -88,4 +88,15 @@ public visualizarFornecedor():boolean{
   }
 }
 
+public visualizarFuncionario():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarFuncionario;
+  if(vizualizar){
+    this.nav.visualizarFuncionario();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarFuncionario();
+    return vizualizar;
+  }
+}
+
 }

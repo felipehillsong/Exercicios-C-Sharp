@@ -136,6 +136,7 @@ export class FornecedorCriarComponent implements OnInit {
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
+    this.authService.visualizarFuncionario();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();
