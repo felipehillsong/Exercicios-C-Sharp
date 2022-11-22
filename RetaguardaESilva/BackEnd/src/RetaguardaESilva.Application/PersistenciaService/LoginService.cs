@@ -40,14 +40,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var usuario = _validacoesPersist.Login(email, senha, out string mensagem);
                 if (usuario == null)
                 {
-                    throw new Exception(MensagemDeErro.UsuarioNaoEncontrado);
+                    throw new Exception(mensagem);
                 }
                 else
                 {
                     var permissoes = _usuarioPersist.GetPermissaoUsuarioByIdAsync(usuario.EmpresaId, usuario.Id);
                     if (permissoes.Result == null)
                     {
-                        var usuarioSemPermissoes = _usuarioService.GetPermissaoByIdAsync(usuario.EmpresaId, usuario.Id);                        
+                        var usuarioSemPermissoes = _usuarioService.GetPermissaoByIdAsync(usuario.EmpresaId, usuario.Id);
                         var usuarioSemPermissaoRetorno = _mapper.Map<UsuarioLoginDTO>(usuario);
                         var usuarioNovoPermissao = new List<PermissaoDTO>();
                         foreach (var item in usuarioSemPermissoes.Result)

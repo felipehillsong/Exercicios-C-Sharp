@@ -22,14 +22,20 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" href="#">Produtos</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleTransportador">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="transportadores/lista">Transportadores</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleEmpresa">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="empresas/lista">Empresas</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleUsuario">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="usuarios/lista">Usuarios</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleEmpresa">
-          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="empresas/lista">Empresa</a>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleVenda">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="vendas/lista">Vendas</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleRelatorio">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="relatorios/lista">Relatorios</a>
         </li>
       </ul>
     </div>

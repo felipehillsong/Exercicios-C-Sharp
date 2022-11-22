@@ -11,7 +11,13 @@ export class NavService {
   visibleCliente: boolean;
   visibleFornecedor: boolean;
   visibleFuncionario: boolean;
-  constructor() {this.visible = false; this.visibleEmpresa = false; this.visibleCliente = false; this.visibleFornecedor = false; this.visibleFuncionario = false;}
+  visibleTransportador: boolean;
+  visibleUsuario: boolean;
+  visibleVenda: boolean;
+  visibleRelatorio: boolean;
+  constructor() {this.visible = false; this.visibleEmpresa = false; this.visibleCliente = false; this.visibleFornecedor = false;
+  this.visibleFuncionario = false; this.visibleTransportador = false; this.visibleUsuario = false; this.visibleVenda = false;
+  this.visibleRelatorio = false;}
   hide() { return this.visible = false; }
 
   show() { return this.visible = true; }
@@ -29,6 +35,22 @@ export class NavService {
   visualizarFuncionario() { return this.visibleFuncionario = true; }
 
   naoVisualizarFuncionario() { return this.visibleFuncionario = false; }
+
+  visualizarTransportador() { return this.visibleTransportador = true; }
+
+  naoVisualizarTransportador() { return this.visibleTransportador = false; }
+
+  visualizarUsuario() { return this.visibleUsuario = true; }
+
+  naoVisualizarUsuario() { return this.visibleUsuario = false; }
+
+  visualizarVenda() { return this.visibleVenda = true; }
+
+  naoVisualizarVenda() { return this.visibleVenda = false; }
+
+  visualizarRelatorio() { return this.visibleRelatorio = true; }
+
+  naoVisualizarRelatorio() { return this.visibleRelatorio = false; }
 
   hideEmpresa() { this.visibleEmpresa = false; }
 

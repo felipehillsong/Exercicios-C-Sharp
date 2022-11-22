@@ -99,4 +99,48 @@ public visualizarFuncionario():boolean{
   }
 }
 
+public visualizarTransportador():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarTransportador;
+  if(vizualizar){
+    this.nav.visualizarTransportador();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarTransportador();
+    return vizualizar;
+  }
+}
+
+public visualizarUsuario():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarUsuario;
+  if(vizualizar){
+    this.nav.visualizarUsuario();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarUsuario();
+    return vizualizar;
+  }
+}
+
+public visualizarVenda():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarVenda;
+  if(vizualizar){
+    this.nav.visualizarVenda();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarVenda();
+    return vizualizar;
+  }
+}
+
+public visualizarRelatorio():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarRelatorio;
+  if(vizualizar){
+    this.nav.visualizarRelatorio();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarRelatorio();
+    return vizualizar;
+  }
+}
+
 }

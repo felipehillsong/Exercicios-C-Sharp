@@ -887,52 +887,46 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
         public UsuarioViewModel Login(string email, string senha, out string mensagem)
         {
-            var usuario = (from users in _context.Usuario
-                           join func in _context.Funcionario on users.FuncionarioId equals func.Id
-                           join empre in _context.Empresa on users.EmpresaId equals empre.Id
-                           select new
-                           {
-                               Nome = func.Nome,
-                               NomeEmpresa = empre.Nome,
-                               Email = users.Email,
-                               DataCadastroUsuario = users.DataCadastroUsuario,
-                               Ativo = users.Ativo,
-                               EmpresaId = users.EmpresaId,
-                               Senha = users.Senha,
-                               FuncionarioId = users.FuncionarioId,
-                               UsuarioId = users.Id
-                           }).Where(x => x.Email == email && x.Senha == senha).FirstOrDefault();
-
-            var usuarioRetorno = new UsuarioViewModel()
-            {
-                Id = usuario.UsuarioId,
-                NomeEmpresa = usuario.NomeEmpresa,
-                Nome = usuario.Nome,
-                Email = usuario.Email,
-                Senha = usuario.Senha,
-                DataCadastroUsuario = usuario.DataCadastroUsuario,
-                Ativo = usuario.Ativo,
-                FuncionarioId = usuario.FuncionarioId,
-                EmpresaId = usuario.EmpresaId           
-            };
-
-            if (usuarioRetorno != null)
-            {
-                if (usuarioRetorno.Email == email && usuarioRetorno.Senha == senha)
-                {
-                    mensagem = MensagemDeSucesso.SucessoSenha;
-                    return usuarioRetorno;
-                }
-                else
-                {
-                    mensagem = MensagemDeErro.LoginErro;
-                    return null;
-                }
-            }
-            else
+            var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Email == email && u.Senha == senha);
+            if (usuario == null)
             {
                 mensagem = MensagemDeErro.LoginErro;
                 return null;
+            }
+            else
+            {
+                var usuarioDados = (from users in _context.Usuario
+                                    join func in _context.Funcionario on users.FuncionarioId equals func.Id
+                                    join empre in _context.Empresa on users.EmpresaId equals empre.Id
+                                    select new
+                                    {
+                                        Nome = func.Nome,
+                                        NomeEmpresa = empre.Nome,
+                                        Email = users.Email,
+                                        DataCadastroUsuario = users.DataCadastroUsuario,
+                                        Ativo = users.Ativo,
+                                        EmpresaId = users.EmpresaId,
+                                        Senha = users.Senha,
+                                        FuncionarioId = users.FuncionarioId,
+                                        UsuarioId = users.Id
+                                    }).Where(x => x.Email == email && x.Senha == senha).FirstOrDefault();
+
+
+                var usuarioRetorno = new UsuarioViewModel()
+                {
+                    Id = usuarioDados.UsuarioId,
+                    NomeEmpresa = usuarioDados.NomeEmpresa,
+                    Nome = usuarioDados.Nome,
+                    Email = usuarioDados.Email,
+                    Senha = usuarioDados.Senha,
+                    DataCadastroUsuario = usuarioDados.DataCadastroUsuario,
+                    Ativo = usuarioDados.Ativo,
+                    FuncionarioId = usuarioDados.FuncionarioId,
+                    EmpresaId = usuarioDados.EmpresaId
+                };
+
+                mensagem = MensagemDeSucesso.SucessoSenha;
+                return usuarioRetorno;
             }
         }
 

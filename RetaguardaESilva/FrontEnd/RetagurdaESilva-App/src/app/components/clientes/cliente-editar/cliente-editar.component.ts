@@ -196,6 +196,10 @@ export class ClienteEditarComponent implements OnInit {
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
+    this.authService.visualizarTransportador();
+    this.authService.visualizarRelatorio();
+    this.authService.visualizarUsuario();
+    this.authService.visualizarVenda();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

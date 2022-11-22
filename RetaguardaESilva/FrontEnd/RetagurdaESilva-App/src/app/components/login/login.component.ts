@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       (error: any) => {
         console.error(error);
         this.spinner.hide();
-        this.toastr.error('Error ao fazer login', 'Erro');
+        this.toastr.error(error.error);
       },
       () => this.spinner.hide()
     );

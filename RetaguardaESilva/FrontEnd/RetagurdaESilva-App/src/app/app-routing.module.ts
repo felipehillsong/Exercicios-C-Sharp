@@ -38,6 +38,8 @@ import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.se
 import { AuthGuardsFornecedorService } from './services/guards/AuthGuardsFornecedor.service';
 import { AuthGuardsFuncionarioService } from './services/guards/AuthGuardsFuncionario.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
+import { AuthGuardsTransportadorService } from './services/guards/AuthGuardsTransportador.service';
+import { AuthGuardsUsuarioService } from './services/guards/AuthGuardsUsuario.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -76,7 +78,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate:[AuthGuardsService] },
   { path: 'transportadores',
-  component: TransportadorComponent, canActivate:[AuthGuardsService],
+  component: TransportadorComponent, canActivate:[AuthGuardsService, AuthGuardsTransportadorService],
   children:[
     {path: 'lista', title: 'Transportadores', component: TransportadorListaComponent },
     {path: 'criar', title: 'Cadastro', component: TransportadorCriarComponent },
@@ -84,7 +86,7 @@ const routes: Routes = [
     {path: 'detalhe/:id', title: 'Detalhe', component: TransportadorDetalheComponent}
   ]},
   { path: 'usuarios',
-  component: UsuarioComponent, canActivate:[AuthGuardsService],
+  component: UsuarioComponent, canActivate:[AuthGuardsService, AuthGuardsUsuarioService],
   children:[
     {path: 'lista', title: 'Usuarios', component: UsuarioListaComponent },
     {path: 'criar/:id', title: 'Cadastro', component: UsuarioCriarComponent },

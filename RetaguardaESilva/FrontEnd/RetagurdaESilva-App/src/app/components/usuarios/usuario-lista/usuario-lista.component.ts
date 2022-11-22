@@ -110,6 +110,10 @@ export class UsuarioListaComponent implements OnInit {
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
+    this.authService.visualizarTransportador();
+    this.authService.visualizarRelatorio();
+    this.authService.visualizarUsuario();
+    this.authService.visualizarVenda();
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
