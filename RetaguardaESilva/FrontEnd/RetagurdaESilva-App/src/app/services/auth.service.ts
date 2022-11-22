@@ -29,9 +29,12 @@ public alterarLogin(usuarioAlteracao: any): Observable<Usuario> {
 
 public verificaAdministrador(){
   if(this.empresaId() == Permissoes.Administrador){
+    var vizualizar = this.permissoesDoUsuario()[0].visualizarEmpresa;
+  if(vizualizar){
     this.nav.showEmpresa();
   }else{
     this.nav.hideEmpresa();
+  }
   }
 }
 
@@ -140,6 +143,15 @@ public visualizarRelatorio():boolean{
   }else{
     this.nav.naoVisualizarRelatorio();
     return vizualizar;
+  }
+}
+
+public verificaPermissaoEmpresas():boolean{
+  var validaAdministrador = this.empresaId();
+  if(validaAdministrador == Permissoes.Administrador){
+    return true;
+  }else{
+    return false;
   }
 }
 
