@@ -188,4 +188,154 @@ public validation(): void {
     this.visualizarPermissaoEmpresa = this.authService.verificaPermissaoEmpresas();
   }
 
+  public todosClientes(){
+    if(this.permissoes.visualizarCliente == true){
+      this.permissoes.clienteCadastro = false;
+      this.permissoes.clienteEditar = false;
+      this.permissoes.clienteDetalhe = false;
+      this.permissoes.clienteExcluir = false;
+    }
+  }
+
+  public liberarTodosClientes(){
+    if(this.permissoes.clienteCadastro == false || this.permissoes.clienteEditar == false || this.permissoes.clienteDetalhe == false || this.permissoes.clienteExcluir == false){
+      this.permissoes.visualizarCliente = true;
+    }
+  }
+
+  public todosEstoques(){
+    if(this.permissoes.visualizarEstoque == true){
+      this.permissoes.estoqueCadastro = false;
+      this.permissoes.estoqueEditar = false;
+      this.permissoes.estoqueDetalhe = false;
+      this.permissoes.estoqueExcluir = false;
+    }
+  }
+
+  public liberarTodosEstoques(){
+    if(this.permissoes.estoqueCadastro == false || this.permissoes.estoqueEditar == false || this.permissoes.estoqueDetalhe == false || this.permissoes.estoqueExcluir == false){
+      this.permissoes.visualizarEstoque = true;
+    }
+  }
+
+  public todosFornecedores(){
+    if(this.permissoes.visualizarFornecedor == true){
+      this.permissoes.fornecedorCadastro = false;
+      this.permissoes.fornecedorEditar = false;
+      this.permissoes.fornecedorDetalhe = false;
+      this.permissoes.fornecedorExcluir = false;
+    }
+  }
+
+  public liberarTodosFornecedores(){
+    if(this.permissoes.fornecedorCadastro == false || this.permissoes.fornecedorEditar == false || this.permissoes.fornecedorDetalhe == false || this.permissoes.fornecedorExcluir == false){
+      this.permissoes.visualizarFornecedor = true;
+    }
+  }
+
+  public todosFuncionarios(){
+    if(this.permissoes.visualizarFuncionario == true){
+      this.permissoes.funcionarioCadastro = false;
+      this.permissoes.funcionarioEditar = false;
+      this.permissoes.funcionarioDetalhe = false;
+      this.permissoes.funcionarioExcluir = false;
+    }
+  }
+
+  public liberarTodosFuncionarios(){
+    if(this.permissoes.funcionarioCadastro == false || this.permissoes.funcionarioEditar == false || this.permissoes.funcionarioDetalhe == false || this.permissoes.funcionarioExcluir == false){
+      this.permissoes.visualizarFuncionario = true;
+    }
+  }
+
+  public todosProdutos(){
+    if(this.permissoes.visualizarProduto == true){
+      this.permissoes.produtoCadastro = false;
+      this.permissoes.produtoEditar = false;
+      this.permissoes.produtoDetalhe = false;
+      this.permissoes.produtoExcluir = false;
+    }
+  }
+
+  public liberarTodosProdutos(){
+    if(this.permissoes.produtoCadastro == false || this.permissoes.produtoEditar == false || this.permissoes.produtoDetalhe == false || this.permissoes.produtoExcluir == false){
+      this.permissoes.visualizarProduto = true;
+    }
+  }
+
+  public todosTransportadores(){
+    if(this.permissoes.visualizarTransportador == true){
+      this.permissoes.transportadorCadastro = false;
+      this.permissoes.transportadorEditar = false;
+      this.permissoes.transportadorDetalhe = false;
+      this.permissoes.transportadorExcluir = false;
+    }
+  }
+
+  public liberarTodosTransportadores(){
+    if(this.permissoes.transportadorCadastro == false || this.permissoes.transportadorEditar == false || this.permissoes.transportadorDetalhe == false || this.permissoes.transportadorExcluir == false){
+      this.permissoes.visualizarTransportador = true;
+    }
+  }
+
+  public todasEmpresas(){
+    if(this.permissoes.visualizarEmpresa == true){
+      this.permissoes.empresaCadastro = false;
+      this.permissoes.empresaEditar = false;
+      this.permissoes.empresaDetalhe = false;
+      this.permissoes.empresaExcluir = false;
+    }
+  }
+
+  public liberarTodasEmpresas(){
+    if(this.permissoes.empresaCadastro == false || this.permissoes.empresaEditar == false || this.permissoes.empresaDetalhe == false || this.permissoes.empresaExcluir == false){
+      this.permissoes.visualizarEmpresa = true;
+    }
+  }
+
+  public todosUsuarios(){
+    if(this.permissoes.visualizarUsuario == true){
+      this.permissoes.usuarioCadastro = false;
+      this.permissoes.usuarioEditar = false;
+      this.permissoes.usuarioPermissoes = false;
+      this.permissoes.usuarioExcluir = false;
+    }
+  }
+
+  public liberarTodosUsuarios(){
+    if(this.permissoes.usuarioCadastro == false || this.permissoes.usuarioEditar == false || this.permissoes.usuarioPermissoes == false || this.permissoes.usuarioExcluir == false){
+      this.permissoes.visualizarUsuario = true;
+    }
+  }
+
+  public todasVendas(){
+    if(this.permissoes.visualizarVenda == true){
+      this.permissoes.vendaCadastro = false;
+      this.permissoes.vendaEditar = false;
+      this.permissoes.vendaDetalhe = false;
+      this.permissoes.vendaExcluir = false;
+    }
+  }
+
+  public liberarTodasVendas(){
+    if(this.permissoes.vendaCadastro == false || this.permissoes.vendaEditar == false || this.permissoes.vendaDetalhe == false || this.permissoes.vendaExcluir == false){
+      this.permissoes.visualizarVenda = true;
+    }
+  }
+
+  public todosRelatorios(){
+    if(this.permissoes.visualizarRelatorio == true){
+      this.permissoes.relatorioCadastro = false;
+      this.permissoes.relatorioEditar = false;
+      this.permissoes.relatorioDetalhe = false;
+      this.permissoes.relatorioExcluir = false;
+    }
+  }
+
+  public liberarTodosRelatorios(){
+    if(this.permissoes.relatorioCadastro == false || this.permissoes.relatorioEditar == false || this.permissoes.relatorioDetalhe == false || this.permissoes.relatorioExcluir == false){
+      this.permissoes.visualizarRelatorio = true;
+    }
+  }
+
 }
