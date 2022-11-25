@@ -5,7 +5,7 @@
       <h2 class="mb-0">&nbsp;&nbsp;{{titulo}}</h2>
     </div>
   </div>
-  <div class="p-3" id="novo">
+  <div class="p-3" id="novo" *ngIf="visualizarCadastros">
     <a class="d-flex btn btn-outline-light" routerLink="{{novo}}">
       <i class="fa fa-plus-circle my-1" id="novoFont"></i>
       <b class="ml-1 d-none d-sm-block">Novo</b>

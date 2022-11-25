@@ -25,11 +25,11 @@
     <td>{{cliente.email}}</td>
     <td>{{cliente.dataCadastroCliente | date: "dd/MM/yyyy"}}</td>
     <td>
-      <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" (click)="editar(cliente.id)">
+      <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(cliente.id)">
         <i class="fa fa-edit"></i></button>&nbsp;
-        <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" (click)="detalhe(cliente.id)">
+        <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" *ngIf="visualizarDetalhe" (click)="detalhe(cliente.id)">
           <i class="fa-solid fa-file"></i></button>&nbsp;
-      <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, cliente.nome, cliente.id)">
+      <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" *ngIf="visualizarExcluir" (click)="openModal($event, template, cliente.nome, cliente.id)">
         <i class="fa fa-trash"></i></button>
     </td>
   </tr>

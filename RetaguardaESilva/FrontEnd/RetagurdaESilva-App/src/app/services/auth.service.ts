@@ -80,6 +80,26 @@ public visualizarCliente():boolean{
   }
 }
 
+public visualizarClienteCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].clienteCadastro;
+  return vizualizar;
+}
+
+public visualizarClienteEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].clienteEditar;
+  return vizualizar;
+}
+
+public visualizarClienteDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].clienteDetalhe;
+  return vizualizar;
+}
+
+public visualizarClienteExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].clienteExcluir;
+  return vizualizar;
+}
+
 public visualizarFornecedor():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarFornecedor;
   if(vizualizar){
@@ -89,6 +109,11 @@ public visualizarFornecedor():boolean{
     this.nav.naoVisualizarFornecedor();
     return vizualizar;
   }
+}
+
+public visualizarFornecedorCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].fornecedorCadastro;
+  return vizualizar;
 }
 
 public visualizarFuncionario():boolean{
@@ -102,6 +127,11 @@ public visualizarFuncionario():boolean{
   }
 }
 
+public visualizarFuncionarioCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].funcionarioCadastro;
+  return vizualizar;
+}
+
 public visualizarTransportador():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarTransportador;
   if(vizualizar){
@@ -111,6 +141,11 @@ public visualizarTransportador():boolean{
     this.nav.naoVisualizarTransportador();
     return vizualizar;
   }
+}
+
+public visualizarTransportadorCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].transportadorCadastro;
+  return vizualizar;
 }
 
 public visualizarUsuario():boolean{
@@ -124,6 +159,11 @@ public visualizarUsuario():boolean{
   }
 }
 
+public visualizarUsuarioCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].usuarioCadastro;
+  return vizualizar;
+}
+
 public visualizarVenda():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarVenda;
   if(vizualizar){
@@ -133,6 +173,11 @@ public visualizarVenda():boolean{
     this.nav.naoVisualizarVenda();
     return vizualizar;
   }
+}
+
+public visualizarVendaCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].vendaCadastro;
+  return vizualizar;
 }
 
 public visualizarRelatorio():boolean{
@@ -146,6 +191,11 @@ public visualizarRelatorio():boolean{
   }
 }
 
+public visualizarRelatorioCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].relatorioCadastro;
+  return vizualizar;
+}
+
 public verificaPermissaoEmpresas():boolean{
   var validaAdministrador = this.empresaId();
   if(validaAdministrador == Permissoes.Administrador){
@@ -153,6 +203,11 @@ public verificaPermissaoEmpresas():boolean{
   }else{
     return false;
   }
+}
+
+public visualizarEmpresaCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].empresaCadastro;
+  return vizualizar;
 }
 
 }

@@ -29,6 +29,9 @@ export class ClienteListaComponent implements OnInit {
   clientesFiltrados: Cliente[] = [];
   clienteNome!: string;
   clienteId!: number;
+  visualizarEditar!:boolean;
+  visualizarDetalhe!:boolean;
+  visualizarExcluir!:boolean;
   private _clienteListado = '';
 
   public get clienteLista():string{
@@ -50,6 +53,7 @@ export class ClienteListaComponent implements OnInit {
   constructor(private router: Router, private clienteService: ClienteService, public titu: TituloService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    console.log(this.authService.visualizarClienteCadastro());
     this.permissoesDeTela();
     this.getClientes();
   }
@@ -110,6 +114,9 @@ export class ClienteListaComponent implements OnInit {
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
     this.authService.visualizarVenda();
+    this.visualizarEditar = this.authService.visualizarClienteEditar();
+    this.visualizarDetalhe = this.authService.visualizarClienteDetalhe();
+    this.visualizarExcluir = this.authService.visualizarClienteExcluir();
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();

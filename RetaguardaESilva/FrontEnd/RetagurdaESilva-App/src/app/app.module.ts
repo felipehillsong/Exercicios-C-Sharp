@@ -51,6 +51,11 @@ import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usu
 import { TituloComponent } from './shared/nav/titulo/titulo.component';
 import { NavComponent } from './shared/nav/Nav.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AuthGuardsClienteCadastroService } from './services/guards/AuthGuardsClienteCadastro.service';
+import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
+import { AuthGuardsService } from './services/guards/AuthGuardsService';
+import { AuthGuardsClienteEditarService } from './services/guards/AuthGuardsClienteEditar.service';
+import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsClienteDetalhe.service';
 
 @NgModule({
   declarations: [
@@ -118,6 +123,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     })
   ],
   providers: [
+    AuthGuardsService,
+    AuthGuardsClienteService,
+    AuthGuardsClienteCadastroService,
+    AuthGuardsClienteEditarService,
+    AuthGuardsClienteDetalheService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
