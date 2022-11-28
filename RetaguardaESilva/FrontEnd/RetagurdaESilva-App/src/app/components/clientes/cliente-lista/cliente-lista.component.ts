@@ -26,13 +26,13 @@ export class ClienteListaComponent implements OnInit {
   message?: string;
   public loginUsuario!: Login;
   public clientes: Cliente[] = [];
+  private _clienteListado = '';
   clientesFiltrados: Cliente[] = [];
   clienteNome!: string;
   clienteId!: number;
   visualizarEditar!:boolean;
   visualizarDetalhe!:boolean;
   visualizarExcluir!:boolean;
-  private _clienteListado = '';
 
   public get clienteLista():string{
     return this._clienteListado;
@@ -49,11 +49,9 @@ export class ClienteListaComponent implements OnInit {
       (cliente:any) => cliente.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1);
   }
 
-
   constructor(private router: Router, private clienteService: ClienteService, public titu: TituloService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    console.log(this.authService.visualizarClienteCadastro());
     this.permissoesDeTela();
     this.getClientes();
   }
@@ -114,12 +112,15 @@ export class ClienteListaComponent implements OnInit {
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
     this.authService.visualizarVenda();
-    this.visualizarEditar = this.authService.visualizarClienteEditar();
-    this.visualizarDetalhe = this.authService.visualizarClienteDetalhe();
-    this.visualizarExcluir = this.authService.visualizarClienteExcluir();
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarDetalhe = validar[1];
+    this.visualizarExcluir = validar[2];
   }
 
 }

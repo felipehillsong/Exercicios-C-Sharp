@@ -116,6 +116,21 @@ public visualizarFornecedorCadastro():boolean{
   return vizualizar;
 }
 
+public visualizarFornecedorEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].fornecedorEditar;
+  return vizualizar;
+}
+
+public visualizarFornecedorDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].fornecedorDetalhe;
+  return vizualizar;
+}
+
+public visualizarFornecedorExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].fornecedorExcluir;
+  return vizualizar;
+}
+
 public visualizarFuncionario():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarFuncionario;
   if(vizualizar){
@@ -129,6 +144,21 @@ public visualizarFuncionario():boolean{
 
 public visualizarFuncionarioCadastro():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].funcionarioCadastro;
+  return vizualizar;
+}
+
+public visualizarFuncionarioEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].funcionarioEditar;
+  return vizualizar;
+}
+
+public visualizarFuncionarioDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].funcionarioDetalhe;
+  return vizualizar;
+}
+
+public visualizarFuncionarioExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].funcionarioExcluir;
   return vizualizar;
 }
 
@@ -148,6 +178,21 @@ public visualizarTransportadorCadastro():boolean{
   return vizualizar;
 }
 
+public visualizarTransportadorEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].transportadorEditar;
+  return vizualizar;
+}
+
+public visualizarTransportadorDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].transportadorDetalhe;
+  return vizualizar;
+}
+
+public visualizarTransportadorExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].transportadorExcluir;
+  return vizualizar;
+}
+
 public visualizarUsuario():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarUsuario;
   if(vizualizar){
@@ -161,6 +206,21 @@ public visualizarUsuario():boolean{
 
 public visualizarUsuarioCadastro():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].usuarioCadastro;
+  return vizualizar;
+}
+
+public visualizarUsuarioEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].usuarioEditar;
+  return vizualizar;
+}
+
+public visualizarUsuarioPermissoes():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].usuarioPermissoes;
+  return vizualizar;
+}
+
+public visualizarUsuarioExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].usuarioExcluir;
   return vizualizar;
 }
 
@@ -180,6 +240,21 @@ public visualizarVendaCadastro():boolean{
   return vizualizar;
 }
 
+public visualizarVendaEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].vendaEditar;
+  return vizualizar;
+}
+
+public visualizarVendaDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].vendaDetalhe;
+  return vizualizar;
+}
+
+public visualizarVendaExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].vendaExcluir;
+  return vizualizar;
+}
+
 public visualizarRelatorio():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarRelatorio;
   if(vizualizar){
@@ -196,6 +271,21 @@ public visualizarRelatorioCadastro():boolean{
   return vizualizar;
 }
 
+public visualizarRelatorioEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].relatorioEditar;
+  return vizualizar;
+}
+
+public visualizarRelatorioDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].relatorioDetalhe;
+  return vizualizar;
+}
+
+public visualizarRelatorioExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].relatorioExcluir;
+  return vizualizar;
+}
+
 public verificaPermissaoEmpresas():boolean{
   var validaAdministrador = this.empresaId();
   if(validaAdministrador == Permissoes.Administrador){
@@ -207,6 +297,21 @@ public verificaPermissaoEmpresas():boolean{
 
 public visualizarEmpresaCadastro():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].empresaCadastro;
+  return vizualizar;
+}
+
+public visualizarEmpresaEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].empresaEditar;
+  return vizualizar;
+}
+
+public visualizarEmpresaDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].empresaDetalhe;
+  return vizualizar;
+}
+
+public visualizarEmpresaExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].empresaExcluir;
   return vizualizar;
 }
 

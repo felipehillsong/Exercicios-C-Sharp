@@ -1,5 +1,5 @@
 <div class="form-inline">
-<app-titulo [titulo]=titulo [iconClass]=iconClass [novo]=novo></app-titulo>
+<app-titulo (validarCrud)="validaCrud($event)" [titulo]=titulo [iconClass]=iconClass [novo]=novo></app-titulo>
 <br>
 <div class="card rounded shadow-sm p-3">
 <div class="input-group mb-2" id="inputPesquisa">

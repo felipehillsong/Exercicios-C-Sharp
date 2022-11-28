@@ -38,6 +38,9 @@ import { AuthGuardsClienteCadastroService } from './services/guards/AuthGuardsCl
 import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsClienteDetalhe.service';
 import { AuthGuardsClienteEditarService } from './services/guards/AuthGuardsClienteEditar.service';
 import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.service';
+import { AuthGuardsEmpresaCadastroService } from './services/guards/AuthGuardsEmpresaCadastro.service';
+import { AuthGuardsEmpresaDetalheService } from './services/guards/AuthGuardsEmpresaDetalhe.service';
+import { AuthGuardsEmpresaEditarService } from './services/guards/AuthGuardsEmpresaEditar.service';
 import { AuthGuardsFornecedorService } from './services/guards/AuthGuardsFornecedor.service';
 import { AuthGuardsFuncionarioService } from './services/guards/AuthGuardsFuncionario.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
@@ -58,9 +61,9 @@ const routes: Routes = [
   component: EmpresaComponent,
   children:[
     {path: 'lista', title: 'Empresas', component: EmpresaListaComponent },
-    {path: 'criar', title: 'Cadastro', component: EmpresaCriarComponent },
-    {path: 'editar/:id', title: 'Editar', component: EmpresaEditarComponent },
-    {path: 'detalhe/:id', title: 'Detalhe', component: EmpresaDetalheComponent}
+    {path: 'criar', title: 'Cadastro', component: EmpresaCriarComponent, canActivate: [AuthGuardsEmpresaCadastroService] },
+    {path: 'editar/:id', title: 'Editar', component: EmpresaEditarComponent, canActivate: [AuthGuardsEmpresaEditarService] },
+    {path: 'detalhe/:id', title: 'Detalhe', component: EmpresaDetalheComponent, canActivate: [AuthGuardsEmpresaDetalheService] }
   ]},
   { path: 'fornecedores', canActivate:[AuthGuardsService, AuthGuardsFornecedorService],
   component: FornecedorComponent,

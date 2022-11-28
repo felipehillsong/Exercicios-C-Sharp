@@ -26,10 +26,13 @@ export class EmpresaListaComponent implements OnInit {
   message?: string;
   public loginUsuario!: Login;
   public empresas: Empresa[] = [];
+  private _empresaListada = '';
   empresasFiltrados: Empresa[] = [];
   empresaNome!: string;
   empresaId!: number;
-  private _empresaListada = '';
+  visualizarEditar!:boolean;
+  visualizarDetalhe!:boolean;
+  visualizarExcluir!:boolean;
 
   public get empresaLista():string{
     return this._empresaListada;
@@ -113,6 +116,13 @@ export class EmpresaListaComponent implements OnInit {
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarDetalhe = validar[1];
+    this.visualizarExcluir = validar[2];
+    console.log(validar[0]);
   }
 
 }

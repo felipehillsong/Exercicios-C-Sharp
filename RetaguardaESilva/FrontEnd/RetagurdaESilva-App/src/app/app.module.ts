@@ -56,6 +56,9 @@ import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.se
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
 import { AuthGuardsClienteEditarService } from './services/guards/AuthGuardsClienteEditar.service';
 import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsClienteDetalhe.service';
+import { AuthGuardsEmpresaDetalheService } from './services/guards/AuthGuardsEmpresaDetalhe.service';
+import { AuthGuardsEmpresaEditarService } from './services/guards/AuthGuardsEmpresaEditar.service';
+import { AuthGuardsEmpresaCadastroService } from './services/guards/AuthGuardsEmpresaCadastro.service';
 
 @NgModule({
   declarations: [
@@ -128,6 +131,9 @@ import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsCli
     AuthGuardsClienteCadastroService,
     AuthGuardsClienteEditarService,
     AuthGuardsClienteDetalheService,
+    AuthGuardsEmpresaCadastroService,
+    AuthGuardsEmpresaEditarService,
+    AuthGuardsEmpresaDetalheService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
