@@ -7,10 +7,10 @@ import { Botoes } from 'src/app/enums/botoes';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
 import { Funcionario } from 'src/app/models/funcionario';
-import { AuthService } from 'src/app/services/auth.service';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-funcionario-lista',
@@ -25,9 +25,13 @@ export class FuncionarioListaComponent implements OnInit {
   message?: string;
   public funcionarios: Funcionario[] = [];
   funcionariosFiltrados: Funcionario[] = [];
+  private _funcionarioListado = '';
   funcionarioNome!: string;
   funcionarioId!: number;
-  private _funcionarioListado = '';
+  visualizarEditar!:boolean;
+  visualizarDetalhe!:boolean;
+  visualizarExcluir!:boolean;
+
 
   public get funcionarioLista():string{
     return this._funcionarioListado;
@@ -111,6 +115,12 @@ export class FuncionarioListaComponent implements OnInit {
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarDetalhe = validar[1];
+    this.visualizarExcluir = validar[2];
   }
 
 }

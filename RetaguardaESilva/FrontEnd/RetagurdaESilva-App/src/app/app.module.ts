@@ -51,14 +51,22 @@ import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usu
 import { TituloComponent } from './shared/nav/titulo/titulo.component';
 import { NavComponent } from './shared/nav/Nav.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { AuthGuardsClienteCadastroService } from './services/guards/AuthGuardsClienteCadastro.service';
-import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
+import { AuthGuardsClienteCadastroService } from './services/guards/Cliente/AuthGuardsClienteCadastro.service';
+import { AuthGuardsClienteService } from './services/guards/Cliente/AuthGuardsCliente.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
-import { AuthGuardsClienteEditarService } from './services/guards/AuthGuardsClienteEditar.service';
-import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsClienteDetalhe.service';
-import { AuthGuardsEmpresaDetalheService } from './services/guards/AuthGuardsEmpresaDetalhe.service';
-import { AuthGuardsEmpresaEditarService } from './services/guards/AuthGuardsEmpresaEditar.service';
-import { AuthGuardsEmpresaCadastroService } from './services/guards/AuthGuardsEmpresaCadastro.service';
+import { AuthGuardsClienteEditarService } from './services/guards/Cliente/AuthGuardsClienteEditar.service';
+import { AuthGuardsClienteDetalheService } from './services/guards/Cliente/AuthGuardsClienteDetalhe.service';
+import { AuthGuardsEmpresaDetalheService } from './services/guards/Empresa/AuthGuardsEmpresaDetalhe.service';
+import { AuthGuardsEmpresaEditarService } from './services/guards/Empresa/AuthGuardsEmpresaEditar.service';
+import { AuthGuardsEmpresaCadastroService } from './services/guards/Empresa/AuthGuardsEmpresaCadastro.service';
+import { AuthGuardsFornecedorService } from './services/guards/Fornecedor/AuthGuardsFornecedor.service';
+import { AuthGuardsFornecedorCadastroService } from './services/guards/Fornecedor/AuthGuardsFornecedorCadastro.service';
+import { AuthGuardsFornecedorDetalheService } from './services/guards/Fornecedor/AuthGuardsFornecedorDetalhe.service';
+import { AuthGuardsFornecedorEditarService } from './services/guards/Fornecedor/AuthGuardsFornecedorEditar.service';
+import { AuthGuardsFuncionarioService } from './services/guards/funcionario/AuthGuardsFuncionario.service';
+import { AuthGuardsFuncionarioCadastroService } from './services/guards/funcionario/AuthGuardsFuncionarioCadastro.service';
+import { AuthGuardsFuncionarioDetalheService } from './services/guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
+import { AuthGuardsFuncionarioEditarService } from './services/guards/funcionario/AuthGuardsFuncionarioEditar.service';
 
 @NgModule({
   declarations: [
@@ -134,6 +142,14 @@ import { AuthGuardsEmpresaCadastroService } from './services/guards/AuthGuardsEm
     AuthGuardsEmpresaCadastroService,
     AuthGuardsEmpresaEditarService,
     AuthGuardsEmpresaDetalheService,
+    AuthGuardsFornecedorService,
+    AuthGuardsFornecedorCadastroService,
+    AuthGuardsFornecedorDetalheService,
+    AuthGuardsFornecedorEditarService,
+    AuthGuardsFuncionarioService,
+    AuthGuardsFuncionarioCadastroService,
+    AuthGuardsFuncionarioEditarService,
+    AuthGuardsFuncionarioDetalheService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -9,10 +9,10 @@ import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Usuario } from 'src/app/models/usuario';
-import { AuthService } from 'src/app/services/auth.service';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-funcionario-editar',

@@ -33,19 +33,25 @@ import { UsuarioListaComponent } from './components/usuarios/usuario-lista/usuar
 import { UsuarioPermissaoComponent } from './components/usuarios/usuario-permissao/usuario-permissao.component';
 import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usuario-selecionar-funcionario/usuario-selecionar-funcionario.component';
 import { UsuarioComponent } from './components/usuarios/usuario.component';
-import { AuthGuardsClienteService } from './services/guards/AuthGuardsCliente.service';
-import { AuthGuardsClienteCadastroService } from './services/guards/AuthGuardsClienteCadastro.service';
-import { AuthGuardsClienteDetalheService } from './services/guards/AuthGuardsClienteDetalhe.service';
-import { AuthGuardsClienteEditarService } from './services/guards/AuthGuardsClienteEditar.service';
-import { AuthGuardsEmpresaService } from './services/guards/AuthGuardsEmpresa.service';
-import { AuthGuardsEmpresaCadastroService } from './services/guards/AuthGuardsEmpresaCadastro.service';
-import { AuthGuardsEmpresaDetalheService } from './services/guards/AuthGuardsEmpresaDetalhe.service';
-import { AuthGuardsEmpresaEditarService } from './services/guards/AuthGuardsEmpresaEditar.service';
-import { AuthGuardsFornecedorService } from './services/guards/AuthGuardsFornecedor.service';
-import { AuthGuardsFuncionarioService } from './services/guards/AuthGuardsFuncionario.service';
+import { AuthGuardsEmpresaEditarService } from './services/guards/Empresa/AuthGuardsEmpresaEditar.service';
+import { AuthGuardsFuncionarioService } from './services/guards/funcionario/AuthGuardsFuncionario.service';
 import { AuthGuardsService } from './services/guards/AuthGuardsService';
 import { AuthGuardsTransportadorService } from './services/guards/AuthGuardsTransportador.service';
 import { AuthGuardsUsuarioService } from './services/guards/AuthGuardsUsuario.service';
+import { AuthGuardsClienteService } from './services/guards/Cliente/AuthGuardsCliente.service';
+import { AuthGuardsClienteCadastroService } from './services/guards/Cliente/AuthGuardsClienteCadastro.service';
+import { AuthGuardsClienteDetalheService } from './services/guards/Cliente/AuthGuardsClienteDetalhe.service';
+import { AuthGuardsClienteEditarService } from './services/guards/Cliente/AuthGuardsClienteEditar.service';
+import { AuthGuardsEmpresaService } from './services/guards/Empresa/AuthGuardsEmpresa.service';
+import { AuthGuardsEmpresaCadastroService } from './services/guards/Empresa/AuthGuardsEmpresaCadastro.service';
+import { AuthGuardsEmpresaDetalheService } from './services/guards/Empresa/AuthGuardsEmpresaDetalhe.service';
+import { AuthGuardsFornecedorService } from './services/guards/Fornecedor/AuthGuardsFornecedor.service';
+import { AuthGuardsFornecedorCadastroService } from './services/guards/Fornecedor/AuthGuardsFornecedorCadastro.service';
+import { AuthGuardsFornecedorDetalheService } from './services/guards/Fornecedor/AuthGuardsFornecedorDetalhe.service';
+import { AuthGuardsFornecedorEditarService } from './services/guards/Fornecedor/AuthGuardsFornecedorEditar.service';
+import { AuthGuardsFuncionarioCadastroService } from './services/guards/funcionario/AuthGuardsFuncionarioCadastro.service';
+import { AuthGuardsFuncionarioDetalheService } from './services/guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
+import { AuthGuardsFuncionarioEditarService } from './services/guards/funcionario/AuthGuardsFuncionarioEditar.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -69,17 +75,17 @@ const routes: Routes = [
   component: FornecedorComponent,
   children:[
     {path: 'lista', title: 'Fornecedores', component: FornecedorListaComponent },
-    {path: 'criar', title: 'Cadastro', component: FornecedorCriarComponent },
-    {path: 'editar/:id', title: 'Editar', component: FornecedorEditarComponent },
-    {path: 'detalhe/:id', title: 'Detalhe', component: FornecedorDetalheComponent}
+    {path: 'criar', title: 'Cadastro', component: FornecedorCriarComponent, canActivate: [AuthGuardsFornecedorCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: FornecedorEditarComponent, canActivate: [AuthGuardsFornecedorEditarService] },
+    {path: 'detalhe/:id', title: 'Detalhe', component: FornecedorDetalheComponent, canActivate: [AuthGuardsFornecedorDetalheService] }
   ]},
   { path: 'funcionarios', canActivate:[AuthGuardsService, AuthGuardsFuncionarioService],
   component: FuncionarioComponent,
   children:[
     {path: 'lista', title: 'Funcionarios', component: FuncionarioListaComponent },
-    {path: 'criar', title: 'Cadastro', component: FuncionarioCriarComponent },
-    {path: 'editar/:id', title: 'Editar', component: FuncionarioEditarComponent },
-    {path: 'detalhe/:id', title: 'Detalhe', component: FuncionarioDetalheComponent}
+    {path: 'criar', title: 'Cadastro', component: FuncionarioCriarComponent, canActivate: [AuthGuardsFuncionarioCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: FuncionarioEditarComponent, canActivate: [AuthGuardsFuncionarioEditarService] },
+    {path: 'detalhe/:id', title: 'Detalhe', component: FuncionarioDetalheComponent, canActivate: [AuthGuardsFuncionarioDetalheService] }
   ]},
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate:[AuthGuardsService] },

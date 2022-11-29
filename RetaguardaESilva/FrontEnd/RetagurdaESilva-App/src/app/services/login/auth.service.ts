@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Permissoes } from '../enums/permissoes';
-import { Permissao } from '../models/permissao';
-import { Usuario } from '../models/usuario';
-import { NavService } from './nav.service';
+import { Permissoes } from '../../enums/permissoes';
+import { Permissao } from '../../models/permissao';
+import { Usuario } from '../../models/usuario';
+import { NavService } from './../nav/nav.service';
 
 @Injectable({
   providedIn: 'root'

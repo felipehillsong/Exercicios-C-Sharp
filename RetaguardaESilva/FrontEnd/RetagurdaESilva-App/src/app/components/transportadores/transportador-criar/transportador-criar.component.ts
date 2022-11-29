@@ -7,10 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Transportador } from 'src/app/models/transportador';
-import { AuthService } from 'src/app/services/auth.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
-import { TransportadorService } from 'src/app/services/transportador.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
+import { TransportadorService } from 'src/app/services/transportador/transportador.service';
 
 @Component({
   selector: 'app-transportador-criar',

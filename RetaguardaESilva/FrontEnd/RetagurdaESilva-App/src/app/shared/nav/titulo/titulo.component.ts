@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Permissoes } from 'src/app/enums/permissoes';
-import { AuthService } from 'src/app/services/auth.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-titulo',

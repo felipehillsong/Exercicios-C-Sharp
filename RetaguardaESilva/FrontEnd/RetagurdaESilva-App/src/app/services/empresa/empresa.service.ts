@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
-import { Empresa } from '../models/empresa';
+import { Empresa } from '../../models/empresa';
 import { environment } from 'src/environments/environment';
-import { Cep } from '../models/cep';
+import { Cep } from '../../models/cep';
 
 @Injectable({
   providedIn: 'root'

@@ -8,10 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Empresa } from 'src/app/models/empresa';
-import { AuthService } from 'src/app/services/auth.service';
-import { EmpresaService } from 'src/app/services/empresa.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { EmpresaService } from 'src/app/services/empresa/empresa.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-empresa-editar',

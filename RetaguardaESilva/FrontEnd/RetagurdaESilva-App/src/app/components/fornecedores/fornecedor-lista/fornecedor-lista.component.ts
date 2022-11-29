@@ -8,10 +8,10 @@ import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
 import { Fornecedor } from 'src/app/models/fornecedor';
 import { Login } from 'src/app/models/login';
-import { AuthService } from 'src/app/services/auth.service';
-import { FornecedorService } from 'src/app/services/fornecedor.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { FornecedorService } from 'src/app/services/fornecedor/fornecedor.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-fornecedor-lista',
@@ -27,9 +27,13 @@ export class FornecedorListaComponent implements OnInit {
   public loginUsuario!: Login;
   public fornecedores: Fornecedor[] = [];
   fornecedoresFiltrados: Fornecedor[] = [];
+  private _fornecedorListado = '';
   fornecedorNome!: string;
   fornecedorId!: number;
-  private _fornecedorListado = '';
+  visualizarEditar!:boolean;
+  visualizarDetalhe!:boolean;
+  visualizarExcluir!:boolean;
+
 
   public get fornecedorLista():string{
     return this._fornecedorListado;
@@ -114,6 +118,12 @@ export class FornecedorListaComponent implements OnInit {
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarDetalhe = validar[1];
+    this.visualizarExcluir = validar[2];
   }
 
 }

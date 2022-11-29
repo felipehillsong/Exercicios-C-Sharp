@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Senhas } from 'src/app/enums/senhas';
 import { Login } from 'src/app/models/login';
 import { Usuario } from 'src/app/models/usuario';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/login/auth.service';
 import { AuthGuardsService } from 'src/app/services/guards/AuthGuardsService';
-import { NavService } from 'src/app/services/nav.service';
+import { NavService } from 'src/app/services/nav/nav.service';
 
 @Component({
   selector: 'app-Nav',

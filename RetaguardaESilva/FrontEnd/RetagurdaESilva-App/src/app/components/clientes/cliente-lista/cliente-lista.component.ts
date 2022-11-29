@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClienteService } from 'src/app/services/cliente.service';
+import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cliente } from 'src/app/models/cliente';
 import { Login } from 'src/app/models/login';
-import { NavService } from 'src/app/services/nav.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { AuthService } from 'src/app/services/login/auth.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Botoes } from 'src/app/enums/botoes';
-import { TituloService } from 'src/app/services/titulo.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-cliente',

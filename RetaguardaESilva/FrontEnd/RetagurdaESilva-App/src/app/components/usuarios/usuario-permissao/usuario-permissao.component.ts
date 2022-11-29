@@ -6,10 +6,10 @@ import { Permissoes } from 'src/app/enums/permissoes';
 import { Titulos } from 'src/app/enums/titulos';
 import { Permissao } from 'src/app/models/permissao';
 import { Usuario } from 'src/app/models/usuario';
-import { AuthService } from 'src/app/services/auth.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-usuario-permissao',

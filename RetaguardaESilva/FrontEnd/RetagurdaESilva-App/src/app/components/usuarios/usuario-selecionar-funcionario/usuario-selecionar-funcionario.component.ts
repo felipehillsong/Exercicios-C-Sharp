@@ -6,10 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Login } from 'src/app/models/login';
-import { AuthService } from 'src/app/services/auth.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-usuario-selecionar-funcionario',

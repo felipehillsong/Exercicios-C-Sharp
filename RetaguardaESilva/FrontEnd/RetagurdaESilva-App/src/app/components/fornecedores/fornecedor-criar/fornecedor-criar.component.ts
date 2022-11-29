@@ -7,10 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cep } from 'src/app/models/cep';
 import { Fornecedor } from 'src/app/models/fornecedor';
-import { AuthService } from 'src/app/services/auth.service';
-import { FornecedorService } from 'src/app/services/fornecedor.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { FornecedorService } from 'src/app/services/fornecedor/fornecedor.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-fornecedor-criar',

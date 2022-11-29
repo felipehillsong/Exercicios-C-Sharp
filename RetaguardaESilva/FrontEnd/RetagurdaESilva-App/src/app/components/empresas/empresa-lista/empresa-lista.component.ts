@@ -8,10 +8,10 @@ import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
 import { Empresa } from 'src/app/models/empresa';
 import { Login } from 'src/app/models/login';
-import { AuthService } from 'src/app/services/auth.service';
-import { EmpresaService } from 'src/app/services/empresa.service';
-import { NavService } from 'src/app/services/nav.service';
-import { TituloService } from 'src/app/services/titulo.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import { EmpresaService } from 'src/app/services/empresa/empresa.service';
+import { NavService } from 'src/app/services/nav/nav.service';
+import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-empresa-lista',

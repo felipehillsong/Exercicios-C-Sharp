@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Funcionario } from '../models/funcionario';
-import { Usuario } from '../models/usuario';
-import { AuthService } from './auth.service';
+import { Funcionario } from '../../models/funcionario';
+import { Usuario } from '../../models/usuario';
+import { AuthService } from './../login/auth.service';
 
 @Injectable({
   providedIn: 'root'
