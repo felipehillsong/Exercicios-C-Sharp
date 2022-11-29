@@ -33,25 +33,26 @@ import { UsuarioListaComponent } from './components/usuarios/usuario-lista/usuar
 import { UsuarioPermissaoComponent } from './components/usuarios/usuario-permissao/usuario-permissao.component';
 import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usuario-selecionar-funcionario/usuario-selecionar-funcionario.component';
 import { UsuarioComponent } from './components/usuarios/usuario.component';
-import { AuthGuardsEmpresaEditarService } from './services/guards/Empresa/AuthGuardsEmpresaEditar.service';
-import { AuthGuardsFuncionarioService } from './services/guards/funcionario/AuthGuardsFuncionario.service';
-import { AuthGuardsService } from './services/guards/AuthGuardsService';
-import { AuthGuardsTransportadorService } from './services/guards/AuthGuardsTransportador.service';
-import { AuthGuardsUsuarioService } from './services/guards/AuthGuardsUsuario.service';
-import { AuthGuardsClienteService } from './services/guards/Cliente/AuthGuardsCliente.service';
-import { AuthGuardsClienteCadastroService } from './services/guards/Cliente/AuthGuardsClienteCadastro.service';
-import { AuthGuardsClienteDetalheService } from './services/guards/Cliente/AuthGuardsClienteDetalhe.service';
-import { AuthGuardsClienteEditarService } from './services/guards/Cliente/AuthGuardsClienteEditar.service';
-import { AuthGuardsEmpresaService } from './services/guards/Empresa/AuthGuardsEmpresa.service';
-import { AuthGuardsEmpresaCadastroService } from './services/guards/Empresa/AuthGuardsEmpresaCadastro.service';
-import { AuthGuardsEmpresaDetalheService } from './services/guards/Empresa/AuthGuardsEmpresaDetalhe.service';
-import { AuthGuardsFornecedorService } from './services/guards/Fornecedor/AuthGuardsFornecedor.service';
-import { AuthGuardsFornecedorCadastroService } from './services/guards/Fornecedor/AuthGuardsFornecedorCadastro.service';
-import { AuthGuardsFornecedorDetalheService } from './services/guards/Fornecedor/AuthGuardsFornecedorDetalhe.service';
-import { AuthGuardsFornecedorEditarService } from './services/guards/Fornecedor/AuthGuardsFornecedorEditar.service';
-import { AuthGuardsFuncionarioCadastroService } from './services/guards/funcionario/AuthGuardsFuncionarioCadastro.service';
-import { AuthGuardsFuncionarioDetalheService } from './services/guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
-import { AuthGuardsFuncionarioEditarService } from './services/guards/funcionario/AuthGuardsFuncionarioEditar.service';
+import { AuthGuardsEmpresaEditarService } from './guards/Empresa/AuthGuardsEmpresaEditar.service';
+import { AuthGuardsClienteService } from './guards/Cliente/AuthGuardsCliente.service';
+import { AuthGuardsClienteCadastroService } from './guards/Cliente/AuthGuardsClienteCadastro.service';
+import { AuthGuardsClienteDetalheService } from './guards/Cliente/AuthGuardsClienteDetalhe.service';
+import { AuthGuardsClienteEditarService } from './guards/Cliente/AuthGuardsClienteEditar.service';
+import { AuthGuardsEmpresaService } from './guards/Empresa/AuthGuardsEmpresa.service';
+import { AuthGuardsEmpresaCadastroService } from './guards/Empresa/AuthGuardsEmpresaCadastro.service';
+import { AuthGuardsEmpresaDetalheService } from './guards/Empresa/AuthGuardsEmpresaDetalhe.service';
+import { AuthGuardsFornecedorService } from './guards/Fornecedor/AuthGuardsFornecedor.service';
+import { AuthGuardsFornecedorCadastroService } from './guards/Fornecedor/AuthGuardsFornecedorCadastro.service';
+import { AuthGuardsFornecedorDetalheService } from './guards/Fornecedor/AuthGuardsFornecedorDetalhe.service';
+import { AuthGuardsFornecedorEditarService } from './guards/Fornecedor/AuthGuardsFornecedorEditar.service';
+import { AuthGuardsFuncionarioCadastroService } from './guards/funcionario/AuthGuardsFuncionarioCadastro.service';
+import { AuthGuardsFuncionarioDetalheService } from './guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
+import { AuthGuardsFuncionarioEditarService } from './guards/funcionario/AuthGuardsFuncionarioEditar.service';
+import { AuthGuardsService } from './guards/AuthGuardsService';
+import { AuthGuardsTransportadorService } from './guards/AuthGuardsTransportador.service';
+import { AuthGuardsUsuarioService } from './guards/AuthGuardsUsuario.service';
+import { AuthGuardsFuncionarioService } from './guards/funcionario/AuthGuardsFuncionario.service';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },

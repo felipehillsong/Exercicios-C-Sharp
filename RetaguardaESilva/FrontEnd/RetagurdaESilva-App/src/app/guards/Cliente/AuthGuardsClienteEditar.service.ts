@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from '../../login/auth.service';
+import { AuthService } from '../../services/login/auth.service';
 
 @Injectable()
-export class AuthGuardsClienteDetalheService implements CanActivate {
+export class AuthGuardsClienteEditarService implements CanActivate {
 
   constructor(private authService: AuthService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    var visualizarCliente = this.authService.permissoesDoUsuario()[0].clienteDetalhe;
+    var visualizarCliente = this.authService.permissoesDoUsuario()[0].clienteEditar;
     return visualizarCliente;
   }
 

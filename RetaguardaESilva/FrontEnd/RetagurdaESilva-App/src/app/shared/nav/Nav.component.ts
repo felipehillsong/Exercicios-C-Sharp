@@ -6,10 +6,11 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Senhas } from 'src/app/enums/senhas';
+import { AuthGuardsService } from 'src/app/guards/AuthGuardsService';
 import { Login } from 'src/app/models/login';
 import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/services/login/auth.service';
-import { AuthGuardsService } from 'src/app/services/guards/AuthGuardsService';
+
 import { NavService } from 'src/app/services/nav/nav.service';
 
 @Component({
