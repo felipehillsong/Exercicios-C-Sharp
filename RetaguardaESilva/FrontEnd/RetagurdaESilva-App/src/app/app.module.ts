@@ -67,6 +67,10 @@ import { AuthGuardsFuncionarioService } from './guards/funcionario/AuthGuardsFun
 import { AuthGuardsFuncionarioCadastroService } from './guards/funcionario/AuthGuardsFuncionarioCadastro.service';
 import { AuthGuardsFuncionarioDetalheService } from './guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
 import { AuthGuardsFuncionarioEditarService } from './guards/funcionario/AuthGuardsFuncionarioEditar.service';
+import { AuthGuardsTransportadorService } from './guards/transportador/AuthGuardsTransportador.service';
+import { AuthGuardsTransportadorCadastroService } from './guards/transportador/AuthGuardsTransportadorCadastro.service';
+import { AuthGuardsTransportadorDetalheService } from './guards/transportador/AuthGuardsTransportadorDetalhe.service';
+import { AuthGuardsTransportadorEditarService } from './guards/transportador/AuthGuardsTransportadorEditar.service';
 
 
 @NgModule({
@@ -150,7 +154,11 @@ import { AuthGuardsFuncionarioEditarService } from './guards/funcionario/AuthGua
     AuthGuardsFuncionarioService,
     AuthGuardsFuncionarioCadastroService,
     AuthGuardsFuncionarioEditarService,
-    AuthGuardsFuncionarioDetalheService
+    AuthGuardsFuncionarioDetalheService,
+    AuthGuardsTransportadorService,
+    AuthGuardsTransportadorCadastroService,
+    AuthGuardsTransportadorDetalheService,
+    AuthGuardsTransportadorEditarService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

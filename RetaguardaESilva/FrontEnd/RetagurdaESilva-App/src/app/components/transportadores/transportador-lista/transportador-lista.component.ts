@@ -27,9 +27,12 @@ export class TransportadorListaComponent implements OnInit {
   public loginUsuario!: Login;
   public transportadores: Transportador[] = [];
   transportadoresFiltrados: Transportador[] = [];
+  private _transportadorListado = '';
   transportadorNome!: string;
   transportadorId!: number;
-  private _transportadorListado = '';
+  visualizarEditar!:boolean;
+  visualizarDetalhe!:boolean;
+  visualizarExcluir!:boolean;
 
   public get transportadorLista():string{
     return this._transportadorListado;
@@ -114,6 +117,12 @@ export class TransportadorListaComponent implements OnInit {
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarDetalhe = validar[1];
+    this.visualizarExcluir = validar[2];
   }
 
 }

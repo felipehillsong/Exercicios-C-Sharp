@@ -49,9 +49,12 @@ import { AuthGuardsFuncionarioCadastroService } from './guards/funcionario/AuthG
 import { AuthGuardsFuncionarioDetalheService } from './guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
 import { AuthGuardsFuncionarioEditarService } from './guards/funcionario/AuthGuardsFuncionarioEditar.service';
 import { AuthGuardsService } from './guards/AuthGuardsService';
-import { AuthGuardsTransportadorService } from './guards/AuthGuardsTransportador.service';
+import { AuthGuardsTransportadorService } from './guards/transportador/AuthGuardsTransportador.service';
 import { AuthGuardsUsuarioService } from './guards/AuthGuardsUsuario.service';
 import { AuthGuardsFuncionarioService } from './guards/funcionario/AuthGuardsFuncionario.service';
+import { AuthGuardsTransportadorCadastroService } from './guards/transportador/AuthGuardsTransportadorCadastro.service';
+import { AuthGuardsTransportadorDetalheService } from './guards/transportador/AuthGuardsTransportadorDetalhe.service';
+import { AuthGuardsTransportadorEditarService } from './guards/transportador/AuthGuardsTransportadorEditar.service';
 
 
 const routes: Routes = [
@@ -94,9 +97,9 @@ const routes: Routes = [
   component: TransportadorComponent, canActivate:[AuthGuardsService, AuthGuardsTransportadorService],
   children:[
     {path: 'lista', title: 'Transportadores', component: TransportadorListaComponent },
-    {path: 'criar', title: 'Cadastro', component: TransportadorCriarComponent },
-    {path: 'editar/:id', title: 'Editar', component: TransportadorEditarComponent },
-    {path: 'detalhe/:id', title: 'Detalhe', component: TransportadorDetalheComponent}
+    {path: 'criar', title: 'Cadastro', component: TransportadorCriarComponent, canActivate: [AuthGuardsTransportadorCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: TransportadorEditarComponent, canActivate: [AuthGuardsTransportadorEditarService]},
+    {path: 'detalhe/:id', title: 'Detalhe', component: TransportadorDetalheComponent, canActivate: [AuthGuardsTransportadorDetalheService]}
   ]},
   { path: 'usuarios',
   component: UsuarioComponent, canActivate:[AuthGuardsService, AuthGuardsUsuarioService],
