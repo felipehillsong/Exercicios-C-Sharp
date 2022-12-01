@@ -48,14 +48,16 @@ import { AuthGuardsFornecedorEditarService } from './guards/Fornecedor/AuthGuard
 import { AuthGuardsFuncionarioCadastroService } from './guards/funcionario/AuthGuardsFuncionarioCadastro.service';
 import { AuthGuardsFuncionarioDetalheService } from './guards/funcionario/AuthGuardsFuncionarioDetalhe.service';
 import { AuthGuardsFuncionarioEditarService } from './guards/funcionario/AuthGuardsFuncionarioEditar.service';
-import { AuthGuardsService } from './guards/AuthGuardsService';
+import { AuthGuardsService } from './guards/login/AuthGuardsService';
 import { AuthGuardsTransportadorService } from './guards/transportador/AuthGuardsTransportador.service';
-import { AuthGuardsUsuarioService } from './guards/AuthGuardsUsuario.service';
+import { AuthGuardsUsuarioService } from './guards/usuario/AuthGuardsUsuario.service';
 import { AuthGuardsFuncionarioService } from './guards/funcionario/AuthGuardsFuncionario.service';
 import { AuthGuardsTransportadorCadastroService } from './guards/transportador/AuthGuardsTransportadorCadastro.service';
 import { AuthGuardsTransportadorDetalheService } from './guards/transportador/AuthGuardsTransportadorDetalhe.service';
 import { AuthGuardsTransportadorEditarService } from './guards/transportador/AuthGuardsTransportadorEditar.service';
-
+import { AuthGuardsUsuarioCadastroService } from './guards/usuario/AuthGuardsUsuarioCadastro.service';
+import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuarioEditar.service';
+import { AuthGuardsUsuarioPermissaoService } from './guards/usuario/AuthGuardsUsuarioPermissao.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -105,10 +107,10 @@ const routes: Routes = [
   component: UsuarioComponent, canActivate:[AuthGuardsService, AuthGuardsUsuarioService],
   children:[
     {path: 'lista', title: 'Usuarios', component: UsuarioListaComponent },
-    {path: 'criar/:id', title: 'Cadastro', component: UsuarioCriarComponent },
-    {path: 'editar/:id', title: 'Editar', component: UsuarioEditarComponent },
-    {path: 'permissao/:id', title: 'Permissões', component: UsuarioPermissaoComponent},
-    {path: 'selecionar-funcionario', title: 'Seleção de Funcionario', component: UsuarioSelecionarFuncionarioComponent},
+    {path: 'criar/:id', title: 'Cadastro', component: UsuarioCriarComponent, canActivate: [AuthGuardsUsuarioCadastroService] },
+    {path: 'editar/:id', title: 'Editar', component: UsuarioEditarComponent, canActivate: [AuthGuardsUsuarioEditarService]},
+    {path: 'permissao/:id', title: 'Permissões', component: UsuarioPermissaoComponent, canActivate: [AuthGuardsUsuarioPermissaoService]},
+    {path: 'selecionar-funcionario', title: 'Seleção de Funcionario', component: UsuarioSelecionarFuncionarioComponent, canActivate: [AuthGuardsUsuarioCadastroService] }
   ]}
 ];
 

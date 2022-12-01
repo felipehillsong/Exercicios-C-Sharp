@@ -58,7 +58,7 @@ import { AuthGuardsClienteDetalheService } from './guards/Cliente/AuthGuardsClie
 import { AuthGuardsEmpresaDetalheService } from './guards/Empresa/AuthGuardsEmpresaDetalhe.service';
 import { AuthGuardsEmpresaEditarService } from './guards/Empresa/AuthGuardsEmpresaEditar.service';
 import { AuthGuardsEmpresaCadastroService } from './guards/Empresa/AuthGuardsEmpresaCadastro.service';
-import { AuthGuardsService } from './guards/AuthGuardsService';
+import { AuthGuardsService } from './guards/login/AuthGuardsService';
 import { AuthGuardsFornecedorService } from './guards/Fornecedor/AuthGuardsFornecedor.service';
 import { AuthGuardsFornecedorCadastroService } from './guards/Fornecedor/AuthGuardsFornecedorCadastro.service';
 import { AuthGuardsFornecedorDetalheService } from './guards/Fornecedor/AuthGuardsFornecedorDetalhe.service';
@@ -71,6 +71,10 @@ import { AuthGuardsTransportadorService } from './guards/transportador/AuthGuard
 import { AuthGuardsTransportadorCadastroService } from './guards/transportador/AuthGuardsTransportadorCadastro.service';
 import { AuthGuardsTransportadorDetalheService } from './guards/transportador/AuthGuardsTransportadorDetalhe.service';
 import { AuthGuardsTransportadorEditarService } from './guards/transportador/AuthGuardsTransportadorEditar.service';
+import { AuthGuardsUsuarioPermissaoService } from './guards/usuario/AuthGuardsUsuarioPermissao.service';
+import { AuthGuardsUsuarioService } from './guards/usuario/AuthGuardsUsuario.service';
+import { AuthGuardsUsuarioCadastroService } from './guards/usuario/AuthGuardsUsuarioCadastro.service';
+import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuarioEditar.service';
 
 
 @NgModule({
@@ -158,7 +162,11 @@ import { AuthGuardsTransportadorEditarService } from './guards/transportador/Aut
     AuthGuardsTransportadorService,
     AuthGuardsTransportadorCadastroService,
     AuthGuardsTransportadorDetalheService,
-    AuthGuardsTransportadorEditarService
+    AuthGuardsTransportadorEditarService,
+    AuthGuardsUsuarioService,
+    AuthGuardsUsuarioCadastroService,
+    AuthGuardsUsuarioEditarService,
+    AuthGuardsUsuarioPermissaoService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
