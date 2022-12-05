@@ -46,6 +46,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string UsuarioJaCadastrado = "Você esta tentando cadastrar ou atualizar um usuario para outro usuario já cadastrado, reveja o CPF";
         public const string UsuarioNaoEncontradoUpdate = "Usuario não encontrado para ser atualizado, verificar Id da empresa e Id do usuario";
         public const string UsuarioNaoEncontradoDelete = "Usuario não encontrado para delete, verifique o Id da empresa e o Id do usuario";
+        public const string UsuarioErroDelete = "Erro ao deletar usuario";
         public const string UsuarioNaoEncontrado = "Nenhum usuario encontrado";
         public const string UsuariosNaoEncontradoEmpresa = "Não existem usuarios cadastrados nessa empresa";
         public const string EmpresaSemId = "Algum erro ocorreu, possivelmente empresa esta sem Id";

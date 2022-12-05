@@ -175,7 +175,21 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     _geralPersist.Delete<Usuario>(usuario);
-                    return await _geralPersist.SaveChangesAsync();
+                    if(await _geralPersist.SaveChangesAsync())
+                    {
+                        var permissao = await _usuarioPersist.GetPermissaoUsuarioByIdAsync(empresaId, usuarioId);
+                        if(permissao != null)
+                        {
+                            _geralPersist.Delete<Permissao>(permissao);
+                            return await _geralPersist.SaveChangesAsync();
+                        }
+
+                        return true;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.UsuarioErroDelete);
+                    }
                 }
             }
             catch (Exception ex)
