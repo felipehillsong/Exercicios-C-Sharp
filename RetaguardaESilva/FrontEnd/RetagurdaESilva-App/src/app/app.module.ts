@@ -75,6 +75,13 @@ import { AuthGuardsUsuarioPermissaoService } from './guards/usuario/AuthGuardsUs
 import { AuthGuardsUsuarioService } from './guards/usuario/AuthGuardsUsuario.service';
 import { AuthGuardsUsuarioCadastroService } from './guards/usuario/AuthGuardsUsuarioCadastro.service';
 import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuarioEditar.service';
+import { ProdutoCriarComponent } from './components/produtos/produto-criar/produto-criar.component';
+import { ProdutoDetalheComponent } from './components/produtos/produto-detalhe/produto-detalhe.component';
+import { ProdutoEditarComponent } from './components/produtos/produto-editar/produto-editar.component';
+import { AuthGuardsProdutoService } from './guards/produto/AuthGuardsProduto.service';
+import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsProdutoCadastro.service';
+import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
+import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
 
 
 @NgModule({
@@ -103,6 +110,9 @@ import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuar
     FuncionarioListaComponent,
     LoginComponent,
     ProdutoComponent,
+    ProdutoCriarComponent,
+    ProdutoEditarComponent,
+    ProdutoDetalheComponent,
     TituloComponent,
     TransportadorComponent,
     TransportadorListaComponent,
@@ -159,6 +169,10 @@ import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuar
     AuthGuardsFuncionarioCadastroService,
     AuthGuardsFuncionarioEditarService,
     AuthGuardsFuncionarioDetalheService,
+    AuthGuardsProdutoService,
+    AuthGuardsProdutoCadastroService,
+    AuthGuardsProdutoDetalheService,
+    AuthGuardsProdutoEditarService,
     AuthGuardsTransportadorService,
     AuthGuardsTransportadorCadastroService,
     AuthGuardsTransportadorDetalheService,

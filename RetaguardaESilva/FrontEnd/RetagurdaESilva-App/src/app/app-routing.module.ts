@@ -58,6 +58,15 @@ import { AuthGuardsTransportadorEditarService } from './guards/transportador/Aut
 import { AuthGuardsUsuarioCadastroService } from './guards/usuario/AuthGuardsUsuarioCadastro.service';
 import { AuthGuardsUsuarioEditarService } from './guards/usuario/AuthGuardsUsuarioEditar.service';
 import { AuthGuardsUsuarioPermissaoService } from './guards/usuario/AuthGuardsUsuarioPermissao.service';
+import { ProdutoComponent } from './components/produtos/produto.component';
+import { ProdutoCriarComponent } from './components/produtos/produto-criar/produto-criar.component';
+import { ProdutoDetalheComponent } from './components/produtos/produto-detalhe/produto-detalhe.component';
+import { ProdutoEditarComponent } from './components/produtos/produto-editar/produto-editar.component';
+import { ProdutoListaComponent } from './components/produtos/produto-lista/produto-lista.component';
+import { AuthGuardsProdutoService } from './guards/produto/AuthGuardsProduto.service';
+import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsProdutoCadastro.service';
+import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
+import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -95,6 +104,14 @@ const routes: Routes = [
   ]},
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate:[AuthGuardsService] },
+  { path: 'produtos',
+  component: ProdutoComponent, canActivate:[AuthGuardsService, AuthGuardsProdutoService],
+  children:[
+    {path: 'lista', title: 'Produtos', component: ProdutoListaComponent },
+    {path: 'criar', title: 'Cadastro', component: ProdutoCriarComponent, canActivate: [AuthGuardsProdutoCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: ProdutoEditarComponent, canActivate: [AuthGuardsProdutoEditarService]},
+    {path: 'detalhe/:id', title: 'Detalhe', component: ProdutoDetalheComponent, canActivate: [AuthGuardsProdutoDetalheService]}
+  ]},
   { path: 'transportadores',
   component: TransportadorComponent, canActivate:[AuthGuardsService, AuthGuardsTransportadorService],
   children:[
