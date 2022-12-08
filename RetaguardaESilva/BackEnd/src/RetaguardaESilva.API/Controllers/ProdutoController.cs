@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
+using RetaguardaESilva.Application.PersistenciaService;
 using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Domain.Models;
 using RetaguardaESilva.Persistence.Data;
 
 namespace RetaguardaESilva.Controllers
 {
-    [Route("api/[controller]/[action]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoService _produtoService;
@@ -110,7 +111,7 @@ namespace RetaguardaESilva.Controllers
             {
                 if (await _produtoService.DeleteProduto(empresaId, id))
                 {
-                    return Ok(MensagemDeSucesso.ProdutoDeletado);
+                    return Ok(new { message = MensagemDeSucesso.ProdutoDeletado });
                 }
                 else
                 {

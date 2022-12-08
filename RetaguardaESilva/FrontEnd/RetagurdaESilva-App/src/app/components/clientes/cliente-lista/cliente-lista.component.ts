@@ -14,7 +14,7 @@ import { Botoes } from 'src/app/enums/botoes';
 import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
-  selector: 'app-cliente',
+  selector: 'app-cliente-lista',
   templateUrl: './cliente-lista.component.html',
   styleUrls: ['./cliente-lista.component.scss'],
 })

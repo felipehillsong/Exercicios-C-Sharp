@@ -72,7 +72,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             if (await _geralPersist.SaveChangesAsync())
                             {
                                 var retornoProduto = await _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
-                                return _mapper.Map<ProdutoDTO>(retornoProduto);                                
+                                return _mapper.Map<ProdutoDTO>(retornoProduto);
                             }
                             throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProdutoEstoque);
                         }
@@ -102,7 +102,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         FornecedorId = model.FornecedorId
                     };
                     var produtoDTO = _mapper.Map<Produto>(produtoDTOMapper);
-                    _geralPersist.Add<Produto>(produtoDTO);                    
+                    _geralPersist.Add<Produto>(produtoDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
                         var produtoRetorno = _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
@@ -114,7 +114,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             FornecedorId = produtoRetorno.Result.FornecedorId
                         };
                         var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
-                        _geralPersist.Add<Estoque>(estoqueDTO);                          
+                        _geralPersist.Add<Estoque>(estoqueDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
                             var retornoProduto = await _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
@@ -138,7 +138,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
         public async Task<ProdutoDTO> UpdateProduto(int empresaId, int produtoId, ProdutoUpdateDTO model)
         {
             try
-            {                
+            {
                 var produtoBanco = await _produtoPersist.GetProdutoByIdAsync(empresaId, produtoId);
                 if (produtoBanco == null)
                 {
@@ -172,7 +172,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             var estoqueParaDelete = _estoquePersist.GetEstoqueByProdutoIdAsync(produto.EmpresaId, produto.Id);
                             _geralPersist.Update(produtoAtualizaQuantidade);
                             if (await _geralPersist.SaveChangesAsync())
-                            {                                
+                            {
                                 var estoqueProduto = _estoquePersist.GetEstoqueByProdutoIdAsync(produtoAtualizaQuantidade.EmpresaId, produtoAtualizaQuantidade.Id);
                                 var estoqueDTOMapper = new EstoqueDTO()
                                 {
@@ -204,12 +204,12 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                             EmpresaId = retornoProduto.Result.EmpresaId,
                                             FornecedorId = retornoProduto.Result.FornecedorId
                                         };
-                                        return _mapper.Map<ProdutoDTO>(retornoProdutoMapper);                                        
+                                        return _mapper.Map<ProdutoDTO>(retornoProdutoMapper);
                                     }
                                     else
                                     {
-                                        throw new Exception(MensagemDeErro.ErroAoDeletarEstoqueProduto);                                        
-                                    }                                    
+                                        throw new Exception(MensagemDeErro.ErroAoDeletarEstoqueProduto);
+                                    }
                                 }
                                 throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProduto);
                             }
@@ -219,7 +219,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             }
                         }
                         else
-                        {                           
+                        {
                             _geralPersist.Update(produto);
                             if (await _geralPersist.SaveChangesAsync())
                             {
@@ -242,7 +242,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProdutoEstoque);
                             }
                             throw new Exception(MensagemDeErro.ErroAoAtualizar);
-                        }                       
+                        }
                         throw new Exception(MensagemDeErro.ErroAoAtualizar);
                     }
                 }
@@ -297,7 +297,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 throw new Exception(ex.Message);
             }
-        }        
+        }
 
         public async Task<ProdutoDTO> GetProdutoByIdAsync(int empresaId, int produtoId)
         {
@@ -318,6 +318,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 throw new Exception(ex.Message);
             }
-        }        
+        }
     }
 }

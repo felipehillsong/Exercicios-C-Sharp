@@ -82,6 +82,7 @@ import { AuthGuardsProdutoService } from './guards/produto/AuthGuardsProduto.ser
 import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsProdutoCadastro.service';
 import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
 import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
+import { ProdutoListaComponent } from './components/produtos/produto-lista/produto-lista.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdu
     ProdutoCriarComponent,
     ProdutoEditarComponent,
     ProdutoDetalheComponent,
+    ProdutoListaComponent,
     TituloComponent,
     TransportadorComponent,
     TransportadorListaComponent,

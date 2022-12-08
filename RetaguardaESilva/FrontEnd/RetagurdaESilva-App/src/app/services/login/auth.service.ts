@@ -162,6 +162,37 @@ public visualizarFuncionarioExcluir():boolean{
   return vizualizar;
 }
 
+public visualizarProduto():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarProduto;
+  if(vizualizar){
+    this.nav.visualizarProduto();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarProduto();
+    return vizualizar;
+  }
+}
+
+public visualizarProdutoCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].produtoCadastro;
+  return vizualizar;
+}
+
+public visualizarProdutoEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].produtoEditar;
+  return vizualizar;
+}
+
+public visualizarProdutoDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].produtoDetalhe;
+  return vizualizar;
+}
+
+public visualizarProdutoExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].produtoExcluir;
+  return vizualizar;
+}
+
 public visualizarTransportador():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarTransportador;
   if(vizualizar){
