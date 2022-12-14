@@ -156,8 +156,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Preco = model.Preco,
                         Codigo = model.Codigo,
                         DataCadastroProduto = model.DataCadastroProduto,
-                        FornecedorId = produtoBanco.FornecedorId,
-                        EmpresaId = produtoBanco.EmpresaId
+                        FornecedorId = model.FornecedorId,
+                        EmpresaId = model.EmpresaId
                     };
                     var produto = _mapper.Map<Produto>(produtoMapper);
                     if (!_validacoesPersist.ExisteProdutoUpdate(produtoBanco, produto, out Produto produtoAtualizaQuantidade, out string mensagem))
@@ -236,7 +236,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 _geralPersist.Update<Estoque>(estoqueDTO);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
-                                    var retornoProduto = await _produtoPersist.GetProdutoByIdAsync(estoqueDTO.EmpresaId, estoqueDTO.Id);
+                                    var retornoProduto = await _produtoPersist.GetProdutoByIdAsync(produto.EmpresaId, produto.Id);
                                     return _mapper.Map<ProdutoDTO>(retornoProduto);
                                 }
                                 throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProdutoEstoque);
