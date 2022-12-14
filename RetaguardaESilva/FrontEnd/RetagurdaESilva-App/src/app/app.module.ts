@@ -83,8 +83,6 @@ import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsPro
 import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
 import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
 import { ProdutoListaComponent } from './components/produtos/produto-lista/produto-lista.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,6 +144,7 @@ import { ProdutoListaComponent } from './components/produtos/produto-lista/produ
     ReactiveFormsModule,
     ModalModule.forRoot(),
     NgxMaskModule.forRoot(),
+    NgxMaskModule.forChild(),
     TooltipModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 4000,
@@ -182,7 +181,7 @@ import { ProdutoListaComponent } from './components/produtos/produto-lista/produ
     AuthGuardsUsuarioService,
     AuthGuardsUsuarioCadastroService,
     AuthGuardsUsuarioEditarService,
-    AuthGuardsUsuarioPermissaoService
+    AuthGuardsUsuarioPermissaoService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

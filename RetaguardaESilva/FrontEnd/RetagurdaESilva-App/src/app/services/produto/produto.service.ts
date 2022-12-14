@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
+import { Fornecedor } from 'src/app/models/fornecedor';
 import { Produto } from 'src/app/models/produto';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../login/auth.service';
@@ -11,7 +12,7 @@ import { AuthService } from '../login/auth.service';
 export class ProdutoService {
   baseURL = environment.apiURL + 'api/Produto?';
   baseURLGetUpdateDelete = environment.apiURL + 'api/Produto';
-  baseCepURL = environment.apiURL + 'api/Cep?';
+  baseURLFornecedor = environment.apiURL + 'api/Fornecedor?';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -35,8 +36,8 @@ export class ProdutoService {
     return this.http.delete<string>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
   }
 
-  public getCep(cep: string){
-    return this.http.get(`${this.baseCepURL}cep=${cep}`).pipe(take(1));
-  }
+  public getFornecedores(empresaId: number) : Observable<Fornecedor[]>{
+    return this.http.get<Fornecedor[]>(`${this.baseURLFornecedor}empresaId=${empresaId}`).pipe(take(1));
+    }
 
 }

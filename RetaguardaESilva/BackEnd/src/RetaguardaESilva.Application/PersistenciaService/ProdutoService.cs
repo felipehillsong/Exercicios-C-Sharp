@@ -44,7 +44,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Id = produto.Id,
                         Nome = produto.Nome,
                         Quantidade = quantidade,
-                        Ativo = produto.Ativo,
+                        Ativo = Convert.ToBoolean(Situacao.Ativo),
                         Preco = produto.Preco,
                         Codigo = produto.Codigo,
                         DataCadastroProduto = produto.DataCadastroProduto,
@@ -79,7 +79,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         else
                         {
                             throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProdutoEstoque);
-                        }                        
+                        }
                     }
                     throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProduto);
                 }
@@ -94,7 +94,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Id = (int)Ids.IdCreate,
                         Nome = model.Nome,
                         Quantidade = model.Quantidade,
-                        Ativo = model.Ativo,
+                        Ativo = Convert.ToBoolean(Situacao.Ativo),
                         Preco = model.Preco,
                         Codigo = model.Codigo,
                         DataCadastroProduto = model.DataCadastroProduto,
@@ -107,7 +107,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     {
                         var produtoRetorno = _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
                         var estoqueDTOMapper = new EstoqueDTO()
-                        {                            
+                        {
                             ProdutoId = produtoRetorno.Result.Id,
                             Quantidade = produtoRetorno.Result.Quantidade,
                             EmpresaId = produtoRetorno.Result.EmpresaId,
