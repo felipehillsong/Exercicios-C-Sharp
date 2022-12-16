@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -15,7 +16,9 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
 @Component({
   selector: 'app-produto-editar',
   templateUrl: './produto-editar.component.html',
-  styleUrls: ['./produto-editar.component.scss']
+  styleUrls: ['./produto-editar.component.scss'],
+  providers: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProdutoEditarComponent implements OnInit {
   titulo =  Titulos.editarProduto;
@@ -60,6 +63,7 @@ export class ProdutoEditarComponent implements OnInit {
         for (let i = 0; i < this.fornecedores.length; i++) {
           if(this.produto.fornecedorId == this.fornecedores[i].id){
             this.fornecedorNome = this.fornecedores[i].nome;
+            this._changeDetectorRef.markForCheck();
           }
         }
       },

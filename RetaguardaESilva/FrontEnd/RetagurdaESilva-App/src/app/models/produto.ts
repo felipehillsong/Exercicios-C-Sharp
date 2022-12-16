@@ -4,6 +4,8 @@ export interface Produto {
     quantidade:number;
     ativo:boolean;
     preco:number;
+    //Para a tela de detalhes
+    precoFormatado:string;
     codigo:number;
     dataCadastroProduto:string;
     empresaId:number;

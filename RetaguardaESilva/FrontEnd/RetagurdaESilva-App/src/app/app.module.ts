@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -83,6 +83,10 @@ import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsPro
 import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
 import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
 import { ProdutoListaComponent } from './components/produtos/produto-lista/produto-lista.component';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -182,6 +186,8 @@ import { ProdutoListaComponent } from './components/produtos/produto-lista/produ
     AuthGuardsUsuarioCadastroService,
     AuthGuardsUsuarioEditarService,
     AuthGuardsUsuarioPermissaoService,
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

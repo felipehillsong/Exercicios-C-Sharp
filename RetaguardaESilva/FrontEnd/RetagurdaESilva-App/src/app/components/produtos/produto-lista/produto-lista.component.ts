@@ -26,6 +26,7 @@ export class ProdutoListaComponent implements OnInit {
   message?: string;
   public loginUsuario!: Login;
   public produtos: Produto[] = [];
+  produto = {} as Produto;
   private _produtoListado = '';
   produtosFiltrados: Produto[] = [];
   produtoNome!: string;
