@@ -34,6 +34,7 @@ export class ProdutoListaComponent implements OnInit {
   visualizarEditar!:boolean;
   visualizarDetalhe!:boolean;
   visualizarExcluir!:boolean;
+  precoTotal!:number;
 
   public get produtoLista():string{
     return this._produtoListado;

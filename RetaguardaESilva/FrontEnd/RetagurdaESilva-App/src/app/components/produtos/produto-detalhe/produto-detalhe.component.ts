@@ -58,11 +58,9 @@ export class ProdutoDetalheComponent implements OnInit {
     this.produtoService.getFornecedores(this.authService.empresaId()).subscribe(
       (_fornecedores: Fornecedor[]) => {
         this.fornecedores = _fornecedores;
-        for (let i = 0; i < this.fornecedores.length; i++) {
-          if(this.produto.fornecedorId == this.fornecedores[i].id){
-            this.fornecedorNome = this.fornecedores[i].nome;
-          }
-        }
+        var fornecedor = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
+        this.fornecedorNome = fornecedor[0].nome;
+        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );

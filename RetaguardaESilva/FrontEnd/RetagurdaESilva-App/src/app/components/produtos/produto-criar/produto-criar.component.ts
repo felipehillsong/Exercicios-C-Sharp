@@ -49,8 +49,7 @@ export class ProdutoCriarComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
       this.produto = {...this.form.value};
-      this.fornecedorId = this.preencherFornecedorId(this.form.value);
-      this.produto.fornecedorId = this.fornecedorId;
+      this.produto.fornecedorId = this.preencherFornecedorId(this.form.value);
       this.produto.empresaId = this.authService.empresaId();
       this.produtoService.addProduto(this.produto).subscribe(() => {
         this.router.navigate(['produtos/lista']);
@@ -84,13 +83,8 @@ export class ProdutoCriarComponent implements OnInit {
   }
 
   public preencherFornecedorId(forms:any):number{
-    let id = 0;
-    for (let i = 0; i < this.fornecedores.length; i++) {
-      if(forms.fornecedor == this.fornecedores[i].nome){
-        id = this.fornecedores[i].id;
-      }
-    }
-    return id;
+    var fornecedor = this.fornecedores.filter(f => f.nome == forms.fornecedor);
+    return fornecedor[0].id;
   }
 
   get f(): any {

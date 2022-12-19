@@ -258,13 +258,18 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, produtoId);
-                if (produto == null)
+                var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(empresaId, produtoId);
+                if (produto == null || estoqueProduto == null)
                 {
                     throw new Exception(MensagemDeErro.ProdutoNaoEncontradoDelete);
                 }
                 else
                 {
                     _geralPersist.Delete<Produto>(produto);
+                    if (await _geralPersist.SaveChangesAsync())
+                    {
+                        _geralPersist.Delete<Estoque>(estoqueProduto);
+                    }
                     return await _geralPersist.SaveChangesAsync();
                 }
             }

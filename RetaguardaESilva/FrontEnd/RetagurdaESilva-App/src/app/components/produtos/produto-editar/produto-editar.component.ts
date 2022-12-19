@@ -60,12 +60,9 @@ export class ProdutoEditarComponent implements OnInit {
     this.produtoService.getFornecedores(this.authService.empresaId()).subscribe(
       (_fornecedores: Fornecedor[]) => {
         this.fornecedores = _fornecedores;
-        for (let i = 0; i < this.fornecedores.length; i++) {
-          if(this.produto.fornecedorId == this.fornecedores[i].id){
-            this.fornecedorNome = this.fornecedores[i].nome;
-            this._changeDetectorRef.markForCheck();
-          }
-        }
+        var fornecedor = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
+        this.fornecedorNome = fornecedor[0].nome;
+        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
@@ -95,13 +92,8 @@ export class ProdutoEditarComponent implements OnInit {
 }
 
 public preencherFornecedorId(forms:any):number{
-  let id = 0;
-  for (let i = 0; i < this.fornecedores.length; i++) {
-    if(forms.fornecedor == this.fornecedores[i].nome){
-      id = this.fornecedores[i].id;
-    }
-  }
-  return id;
+  var fornecedor = this.fornecedores.filter(f => f.nome == forms.fornecedor);
+  return fornecedor[0].id;
 }
 
 public preencherSelect(){

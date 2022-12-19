@@ -14,7 +14,7 @@
       <th>Codigo</th>
       <th>Nome</th>
       <th>Quantidade</th>
-      <th>Preço</th>
+      <th>Preço de Compra</th>
       <th>Data de Cadastro</th>
       <th>Opções</th>
     </tr>
@@ -47,7 +47,7 @@
   </div>
   <ng-template #template>
     <div class="modal-body text-center">
-      <p>Tem certeza que deseja deletar o(a) produto {{this.produtoNome}}?</p>
+      <p>Tem certeza que deseja deletar o produto {{this.produtoNome}}?</p>
       <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
       <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
     </div>

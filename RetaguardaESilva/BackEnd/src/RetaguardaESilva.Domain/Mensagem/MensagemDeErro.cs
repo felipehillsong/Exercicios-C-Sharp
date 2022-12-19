@@ -64,7 +64,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string EmpresaProdutoInexistente = "Você esta tentando cadastrar um produto em uma empresa inexistente!";
         public const string ProdutoJaCadastrado = "Você esta tentando atualizar um produto para um produto existente!";
         public const string ProdutoErroAtualizar = "Ocorreu algum erro ao atualizar o produto, verifique o nome, Id da empresa e Id do produto!";
-        public const string ProdutoNaoEncontradoDelete = "Produto não encontrado para delete, verifique o Id da empresa e o Id do produto";
+        public const string ProdutoNaoEncontradoDelete = "Produto não encontrado para delete, verifique o Id da empresa, Id do produto ou se o produto tem estoque";
         public const string ProdutoNaoEncontrado = "Nenhum produto encontrado";
         public const string ProdutoNaoEncontradoEmpresa = "Não existem produtos cadastrados nessa empresa";
         public const string ProdutoErroAoConsultar = "Erro ao consultar produto";
