@@ -10,8 +10,8 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleCliente">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="clientes/lista">Clientes</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" style="font-weight: bold;" href="#">Estoque</a>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleEstoque">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="estoques/lista">Estoque</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleFornecedor">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="fornecedores/lista">Fornecedores</a>
@@ -19,8 +19,8 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleFuncionario">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="funcionarios/lista">Funcionarios</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" style="font-weight: bold;" href="produtos/lista">Produtos</a>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleProduto">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="produtos/lista">Produtos</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleTransportador">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="transportadores/lista">Transportadores</a>

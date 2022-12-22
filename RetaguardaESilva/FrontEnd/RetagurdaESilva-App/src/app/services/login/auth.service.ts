@@ -100,6 +100,37 @@ public visualizarClienteExcluir():boolean{
   return vizualizar;
 }
 
+public visualizarEstoque():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarEstoque;
+  if(vizualizar){
+    this.nav.visualizarEstoque();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarEstoque();
+    return vizualizar;
+  }
+}
+
+public visualizarEstoqueCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].estoqueCadastro;
+  return vizualizar;
+}
+
+public visualizarEstoqueEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].estoqueEditar;
+  return vizualizar;
+}
+
+public visualizarEstoqueDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].estoqueDetalhe;
+  return vizualizar;
+}
+
+public visualizarEstoqueExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].estoqueExcluir;
+  return vizualizar;
+}
+
 public visualizarFornecedor():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].visualizarFornecedor;
   if(vizualizar){

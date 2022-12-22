@@ -189,6 +189,8 @@ export class FornecedorEditarComponent implements OnInit {
     this.authService.visualizarCliente();
     this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
+    this.authService.visualizarProduto();
+    this.authService.visualizarEstoque();
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();

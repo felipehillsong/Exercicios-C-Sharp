@@ -176,6 +176,8 @@ public validation(): void {
   permissoesDeTela(){
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
+    this.authService.visualizarProduto();
+    this.authService.visualizarEstoque();
     this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
     this.authService.visualizarTransportador();
