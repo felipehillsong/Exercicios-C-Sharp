@@ -20,7 +20,6 @@ namespace RetaguardaESilva.Domain.Models
         public bool EmpresaDetalhe { get; set; }
         public bool EmpresaExcluir { get; set; }
         public bool VisualizarEstoque { get; set; }
-        public bool EstoqueCadastro { get; set; }
         public bool EstoqueEditar { get; set; }
         public bool EstoqueDetalhe { get; set; }
         public bool EstoqueExcluir { get; set; }

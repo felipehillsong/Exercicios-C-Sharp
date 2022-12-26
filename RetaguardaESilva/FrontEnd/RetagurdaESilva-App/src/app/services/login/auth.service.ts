@@ -111,11 +111,6 @@ public visualizarEstoque():boolean{
   }
 }
 
-public visualizarEstoqueCadastro():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].estoqueCadastro;
-  return vizualizar;
-}
-
 public visualizarEstoqueEditar():boolean{
   var vizualizar = this.permissoesDoUsuario()[0].estoqueEditar;
   return vizualizar;

@@ -36,7 +36,6 @@ export class TituloComponent implements OnInit {
         this.validarCrud.emit([this.authService.visualizarFuncionarioEditar(), this.authService.visualizarFuncionarioDetalhe(), this.authService.visualizarFuncionarioExcluir()]);
         break;
         case Permissoes.CadastroEstoque:
-        this.visualizarCadastros = this.authService.visualizarEstoqueCadastro();
         this.validarCrud.emit([this.authService.visualizarEstoqueEditar(), this.authService.visualizarEstoqueDetalhe(), this.authService.visualizarEstoqueExcluir()]);
         break;
       case Permissoes.CadastroTransportador:

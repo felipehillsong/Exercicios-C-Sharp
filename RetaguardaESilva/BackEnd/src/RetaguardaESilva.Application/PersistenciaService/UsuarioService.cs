@@ -385,7 +385,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             EmpresaDetalhe = false,
                             EmpresaExcluir = false,
                             VisualizarEstoque = false,
-                            EstoqueCadastro = false,
                             EstoqueEditar = false,
                             EstoqueDetalhe = false,
                             EstoqueExcluir = false,
@@ -447,7 +446,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             EmpresaDetalhe = usuarioPermissao.EmpresaDetalhe,
                             EmpresaExcluir = usuarioPermissao.EmpresaExcluir,
                             VisualizarEstoque = usuarioPermissao.VisualizarEstoque,
-                            EstoqueCadastro = usuarioPermissao.EstoqueCadastro,
                             EstoqueEditar = usuarioPermissao.EstoqueEditar,
                             EstoqueDetalhe = usuarioPermissao.EstoqueDetalhe,
                             EstoqueExcluir = usuarioPermissao.EstoqueExcluir,
@@ -515,7 +513,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
             &&permissaoBD.EmpresaDetalhe == permissaoDTO.EmpresaDetalhe
             &&permissaoBD.EmpresaExcluir == permissaoDTO.EmpresaExcluir
             &&permissaoBD.VisualizarEstoque == permissaoDTO.VisualizarEstoque
-            &&permissaoBD.EstoqueCadastro == permissaoDTO.EstoqueCadastro
             &&permissaoBD.EstoqueEditar == permissaoDTO.EstoqueEditar
             &&permissaoBD.EstoqueDetalhe == permissaoDTO.EstoqueDetalhe
             &&permissaoBD.EstoqueExcluir == permissaoDTO.EstoqueExcluir
@@ -581,7 +578,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 EmpresaDetalhe = permissaoDTO.EmpresaDetalhe,
                 EmpresaExcluir = permissaoDTO.EmpresaExcluir,
                 VisualizarEstoque = permissaoDTO.VisualizarEstoque,
-                EstoqueCadastro = permissaoDTO.EstoqueCadastro,
                 EstoqueEditar = permissaoDTO.EstoqueEditar,
                 EstoqueDetalhe = permissaoDTO.EstoqueDetalhe,
                 EstoqueExcluir = permissaoDTO.EstoqueExcluir,

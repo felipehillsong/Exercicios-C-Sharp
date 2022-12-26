@@ -75,7 +75,8 @@ export class ProdutoCriarComponent implements OnInit {
         ],
       ],
       quantidade: [null, Validators.required],
-      preco: [null, Validators.required],
+      precoCompra: [null, Validators.required],
+      precoVenda: [null, Validators.required],
       codigo: [null, Validators.required],
       dataCadastroProduto: [null, Validators.required],
       fornecedor: [null, Validators.required]

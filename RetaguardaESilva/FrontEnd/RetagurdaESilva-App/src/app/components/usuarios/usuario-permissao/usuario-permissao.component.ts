@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Permissoes } from 'src/app/enums/permissoes';
 import { Titulos } from 'src/app/enums/titulos';
 import { Permissao } from 'src/app/models/permissao';
 import { Usuario } from 'src/app/models/usuario';
@@ -122,7 +121,6 @@ public validation(): void {
     empresaEditar: [null],
     empresaDetalhe: [null],
     empresaExcluir: [null],
-    estoqueCadastro: [null],
     estoqueEditar: [null],
     estoqueDetalhe: [null],
     estoqueExcluir: [null],
@@ -207,7 +205,6 @@ public validation(): void {
 
   public todosEstoques(){
     if(this.permissoes.visualizarEstoque == true){
-      this.permissoes.estoqueCadastro = false;
       this.permissoes.estoqueEditar = false;
       this.permissoes.estoqueDetalhe = false;
       this.permissoes.estoqueExcluir = false;
@@ -215,7 +212,7 @@ public validation(): void {
   }
 
   public liberarTodosEstoques(){
-    if(this.permissoes.estoqueCadastro == false || this.permissoes.estoqueEditar == false || this.permissoes.estoqueDetalhe == false || this.permissoes.estoqueExcluir == false){
+    if(this.permissoes.estoqueEditar == false || this.permissoes.estoqueDetalhe == false || this.permissoes.estoqueExcluir == false){
       this.permissoes.visualizarEstoque = true;
     }
   }

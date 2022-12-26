@@ -12,8 +12,9 @@ namespace RetaguardaESilva.Domain.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public int Quantidade { get; set; }
-        public bool Ativo { get; set; }        
-        public decimal Preco { get; set; }
+        public bool Ativo { get; set; }
+        public decimal PrecoCompra { get; set; }
+        public decimal PrecoVenda { get; set; }
         public double Codigo { get; set; }
         public DateTime? DataCadastroProduto { get; set; }  
         public int EmpresaId { get; set; }

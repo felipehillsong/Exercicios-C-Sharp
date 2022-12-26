@@ -3,9 +3,10 @@ export interface Produto {
     nome:string;
     quantidade:number;
     ativo:boolean;
-    preco:number;
-    //Para a tela de detalhes
-    precoFormatado:string;
+    precoCompra:number;
+    precoVenda:number;
+    precoCompraFormatado:string;
+    precoVendaFormatado:string;
     codigo:number;
     dataCadastroProduto:string;
     empresaId:number;

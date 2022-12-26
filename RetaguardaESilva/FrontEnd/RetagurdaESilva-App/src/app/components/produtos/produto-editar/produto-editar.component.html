@@ -7,8 +7,8 @@
     <div class="card rounded shadow-sm">
       <form [formGroup]="form">
         <div class="p-3">
-          <div class="form-row">
-            <div class="form-group col-md-12">
+          <div class="row">
+            <div class="form-group col-md-10">
               <label class="required" style="font-weight: bold;">Nome</label>
               <input type="text" class="form-control" [ngClass]="cssValidator(f.nome)" formControlName="nome" placeholder="Nome" [(ngModel)]="produto.nome">
               <div *ngIf="f.nome.errors?.required && f.nome.touched" class="invalid-feedback">
@@ -21,6 +21,16 @@
                 Nome deve ter no máximo 50 caracteres.
               </div>
             </div>
+            <div class="form-group col-md-2">
+              <mat-form-field appearance="standard">
+              <mat-label>Selecione o fornecedor</mat-label>
+                <mat-select formControlName="fornecedor" [(value)]="fornecedorNome">
+                  <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
+                    {{fornecedor.nome}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
           <div class="row">
             <div class="form-group col-sm-2">
@@ -31,10 +41,17 @@
               </div>
             </div>
             <div class="form-group col-sm-2">
-              <label class="required" style="font-weight: bold;">Preço</label>
-              <input type="text" class="form-control" mask="separator.2" [ngClass]="cssValidator(f.preco)" formControlName="preco" placeholder="Preço" [(ngModel)]="produto.preco">
-              <div *ngIf="f.preco.errors?.required && f.preco.touched" class="invalid-feedback">
-                Preço é obrigatório.
+              <label class="required" style="font-weight: bold;">Preço de Compra</label>
+              <input type="text" class="form-control" mask="separator.2" [ngClass]="cssValidator(f.precoCompra)" formControlName="precoCompra" placeholder="Preço de compra" [(ngModel)]="produto.precoCompra">
+              <div *ngIf="f.precoCompra.errors?.required && f.precoCompra.touched" class="invalid-feedback">
+                Preço de compra é obrigatório.
+              </div>
+            </div>
+            <div class="form-group col-sm-2">
+              <label class="required" style="font-weight: bold;">Preço de Venda</label>
+              <input type="text" class="form-control" mask="separator.2" [ngClass]="cssValidator(f.precoVenda)" formControlName="precoVenda" placeholder="Preço de venda" [(ngModel)]="produto.precoVenda">
+              <div *ngIf="f.precoVenda.errors?.required && f.precoVenda.touched" class="invalid-feedback">
+                Preço de venda é obrigatório.
               </div>
             </div>
             <div class="form-group col-sm-2">
@@ -57,16 +74,6 @@
                     <mat-option value="Ativo">Ativo</mat-option>
                     <mat-option value="Inativo">Inativo</mat-option>
                   </mat-select>
-              </div>
-              <div class="form-group col-sm-2">
-                <mat-form-field appearance="standard">
-                <mat-label>Selecione o fornecedor</mat-label>
-                  <mat-select formControlName="fornecedor" [(value)]="fornecedorNome">
-                    <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
-                      {{fornecedor.nome}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
               </div>
           </div>
         </div>

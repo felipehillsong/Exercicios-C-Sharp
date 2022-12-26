@@ -45,8 +45,10 @@ export class ProdutoDetalheComponent implements OnInit {
         this.preencherSelect();
         var dataBD = moment(this.produto.dataCadastroProduto).format('YYYY-MM-DD');
         this.produto.dataCadastroProduto = dataBD;
-        var preco = this.produto.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-        this.produto.precoFormatado = preco;
+        var precoCompra = this.produto.precoCompra.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+        this.produto.precoCompraFormatado = precoCompra;
+        var precoVenda = this.produto.precoVenda.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+        this.produto.precoVendaFormatado = precoVenda;
         this.getFornecedores();
         this._changeDetectorRef.markForCheck();
       },

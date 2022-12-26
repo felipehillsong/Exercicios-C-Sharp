@@ -15,6 +15,7 @@
       <th>Nome</th>
       <th>Quantidade</th>
       <th>Preço de Compra</th>
+      <th>Preço de Venda</th>
       <th>Data de Cadastro</th>
       <th>Opções</th>
     </tr>
@@ -24,7 +25,8 @@
       <td>{{produto.codigo}}</td>
       <td>{{produto.nome}}</td>
       <td>{{produto.quantidade}}</td>
-      <td>{{produto.preco | currency: 'BRL' }}</td>
+      <td>{{produto.precoCompra | currency: 'BRL' }}</td>
+      <td>{{produto.precoVenda | currency: 'BRL' }}</td>
       <td>{{produto.dataCadastroProduto | date: "dd/MM/yyyy"}}</td>
       <td>
         <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(produto.id)">

@@ -724,11 +724,11 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
         }
 
-        public Produto ExisteProduto(int empresaId, string nomeProduto, decimal preco, double codigo, out string mensagem)
+        public Produto ExisteProduto(int empresaId, string nomeProduto, decimal precoCompra, decimal precoVenda, double codigo, out string mensagem)
         {
             if (ExisteEmpresaCadastrada(empresaId))
             {
-                var produto = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.Nome == nomeProduto && p.Preco == preco && p.Codigo == codigo).OrderBy(p => p.Id).FirstOrDefault();
+                var produto = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.Nome == nomeProduto && p.PrecoCompra == precoCompra && p.PrecoVenda == precoVenda && p.Codigo == codigo).OrderBy(p => p.Id).FirstOrDefault();
                 if (produto == null)
                 {
                     mensagem = MensagemDeSucesso.CadastrarOk;
@@ -763,8 +763,8 @@ namespace RetaguardaESilva.Persistence.Persistencias
             {
                 if (produtoView.Id != null && produtoView.Id != 0)
                 {
-                    var produtoRetornoUpdate = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == produtoView.EmpresaId && p.Nome == produtoView.Nome && p.Preco == produtoView.Preco && p.Codigo == produtoView.Codigo && p.FornecedorId == produtoView.FornecedorId && p.Id != produtoView.Id);
-                    if (produtoView.Id == produtoBanco.Id && produtoView.Nome == produtoBanco.Nome && produtoView.Quantidade == produtoBanco.Quantidade && produtoView.Preco == produtoBanco.Preco && produtoView.Codigo == produtoBanco.Codigo && produtoView.EmpresaId == produtoBanco.EmpresaId && produtoView.FornecedorId == produtoBanco.FornecedorId)
+                    var produtoRetornoUpdate = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == produtoView.EmpresaId && p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.Codigo == produtoView.Codigo && p.FornecedorId == produtoView.FornecedorId && p.Id != produtoView.Id);
+                    if (produtoView.Id == produtoBanco.Id && produtoView.Nome == produtoBanco.Nome && produtoView.Quantidade == produtoBanco.Quantidade && produtoView.PrecoCompra == produtoBanco.PrecoCompra && produtoView.Codigo == produtoBanco.Codigo && produtoView.EmpresaId == produtoBanco.EmpresaId && produtoView.FornecedorId == produtoBanco.FornecedorId)
                     {
                         mensagem = MensagemDeSucesso.AtualizarOK;
                         produtoAtualizaQuantidade = null;
@@ -780,7 +780,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         }
                         else
                         {
-                            var produtoReturnResposta = produtoRetornoUpdate.FirstOrDefault(p => p.Nome == produtoView.Nome && p.Preco == produtoView.Preco && p.Codigo == produtoView.Codigo && p.EmpresaId == produtoView.EmpresaId && p.FornecedorId == produtoView.FornecedorId);
+                            var produtoReturnResposta = produtoRetornoUpdate.FirstOrDefault(p => p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.Codigo == produtoView.Codigo && p.EmpresaId == produtoView.EmpresaId && p.FornecedorId == produtoView.FornecedorId);
                             if (produtoReturnResposta != null)
                             {
                                 mensagem = MensagemDeSucesso.AtualizarQuantidadeProduto;
@@ -790,7 +790,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                     Nome = produtoReturnResposta.Nome,
                                     Quantidade = produtoReturnResposta.Quantidade,
                                     Ativo = produtoReturnResposta.Ativo,
-                                    Preco = produtoReturnResposta.Preco,
+                                    PrecoCompra = produtoReturnResposta.PrecoCompra,
                                     Codigo = produtoReturnResposta.Codigo,
                                     DataCadastroProduto = produtoReturnResposta.DataCadastroProduto,
                                     EmpresaId = produtoReturnResposta.EmpresaId,

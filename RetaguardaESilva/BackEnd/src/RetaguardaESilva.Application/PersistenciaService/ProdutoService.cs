@@ -35,7 +35,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 model.Nome = _validacoesPersist.AcertarNome(model.Nome);
-                var produto = _validacoesPersist.ExisteProduto(model.EmpresaId, model.Nome, model.Preco, model.Codigo, out string mensagem);
+                var produto = _validacoesPersist.ExisteProduto(model.EmpresaId, model.Nome, model.PrecoCompra, model.PrecoVenda, model.Codigo, out string mensagem);
                 if (produto != null)
                 {
                     var quantidade = model.Quantidade + produto.Quantidade;
@@ -45,7 +45,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Nome = produto.Nome,
                         Quantidade = quantidade,
                         Ativo = Convert.ToBoolean(Situacao.Ativo),
-                        Preco = produto.Preco,
+                        PrecoCompra = produto.PrecoCompra,
+                        PrecoVenda = produto.PrecoVenda,
                         Codigo = produto.Codigo,
                         DataCadastroProduto = produto.DataCadastroProduto,
                         EmpresaId = produto.EmpresaId,
@@ -54,14 +55,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var produtoDTO = _mapper.Map<Produto>(produtoDTOMapper);
                     _geralPersist.Update(produtoDTO);
                     if (await _geralPersist.SaveChangesAsync())
-                    {                        
-                        var produtoRetorno = _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
-                        var estoqueProduto = _estoquePersist.GetEstoqueByProdutoIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
+                    {
+                        var produtoRetorno = await _produtoPersist.GetProdutoByIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
+                        var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(produtoDTO.EmpresaId, produtoDTO.Id);
                         if (estoqueProduto != null)
                         {
                             var estoqueDTOMapper = new EstoqueDTO()
                             {
-                                Id = estoqueProduto.Result.Id,
+                                Id = estoqueProduto.Id,
                                 ProdutoId = produtoDTO.Id,
                                 Quantidade = produtoDTO.Quantidade,
                                 EmpresaId = produtoDTO.EmpresaId,
@@ -95,7 +96,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Nome = model.Nome,
                         Quantidade = model.Quantidade,
                         Ativo = Convert.ToBoolean(Situacao.Ativo),
-                        Preco = model.Preco,
+                        PrecoCompra = model.PrecoCompra,
+                        PrecoVenda = model.PrecoVenda,
                         Codigo = model.Codigo,
                         DataCadastroProduto = model.DataCadastroProduto,
                         EmpresaId = model.EmpresaId,
@@ -153,7 +155,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Nome = model.Nome,
                         Quantidade = model.Quantidade,
                         Ativo = model.Ativo,
-                        Preco = model.Preco,
+                        PrecoCompra = model.PrecoCompra,
+                        PrecoVenda = model.PrecoVenda,
                         Codigo = model.Codigo,
                         DataCadastroProduto = model.DataCadastroProduto,
                         FornecedorId = model.FornecedorId,
@@ -169,14 +172,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         if (mensagem == MensagemDeSucesso.AtualizarQuantidadeProduto && produtoAtualizaQuantidade != null)
                         {
                             produtoAtualizaQuantidade.Quantidade += produtoBanco.Quantidade;
-                            var estoqueParaDelete = _estoquePersist.GetEstoqueByProdutoIdAsync(produto.EmpresaId, produto.Id);
+                            var estoqueParaDelete = await _estoquePersist.GetEstoqueByProdutoIdAsync(produto.EmpresaId, produto.Id);
                             _geralPersist.Update(produtoAtualizaQuantidade);
                             if (await _geralPersist.SaveChangesAsync())
                             {
-                                var estoqueProduto = _estoquePersist.GetEstoqueByProdutoIdAsync(produtoAtualizaQuantidade.EmpresaId, produtoAtualizaQuantidade.Id);
+                                var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(produtoAtualizaQuantidade.EmpresaId, produtoAtualizaQuantidade.Id);
                                 var estoqueDTOMapper = new EstoqueDTO()
                                 {
-                                    Id = produtoAtualizaQuantidade.Id,
+                                    Id = estoqueProduto.Id,
                                     ProdutoId = produtoAtualizaQuantidade.Id,
                                     Quantidade = produtoAtualizaQuantidade.Quantidade,
                                     EmpresaId = produtoAtualizaQuantidade.EmpresaId,
@@ -184,34 +187,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 };
 
                                 var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
-                                _geralPersist.Update<Estoque>(estoqueDTO);                                
+                                _geralPersist.Update<Estoque>(estoqueDTO);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
                                     await DeleteProduto(produto.EmpresaId, produto.Id);
-                                    var estoqueDeletado = _estoquePersist.GetEstoqueByIdAsync(produto.EmpresaId, produto.Id);
-                                    if (estoqueDeletado.Result == null)
-                                    {                                        
-                                        var retornoProduto = _produtoPersist.GetProdutoByIdAsync(produtoAtualizaQuantidade.EmpresaId, produtoAtualizaQuantidade.Id);
-                                        var retornoProdutoMapper = new Produto()
-                                        {
-                                            Id = retornoProduto.Result.Id,
-                                            Nome = retornoProduto.Result.Nome,
-                                            Quantidade = retornoProduto.Result.Quantidade,
-                                            Ativo = retornoProduto.Result.Ativo,
-                                            Preco = retornoProduto.Result.Preco,
-                                            Codigo = retornoProduto.Result.Codigo,
-                                            DataCadastroProduto = retornoProduto.Result.DataCadastroProduto,
-                                            EmpresaId = retornoProduto.Result.EmpresaId,
-                                            FornecedorId = retornoProduto.Result.FornecedorId
-                                        };
-                                        return _mapper.Map<ProdutoDTO>(retornoProdutoMapper);
-                                    }
-                                    else
-                                    {
-                                        throw new Exception(MensagemDeErro.ErroAoDeletarEstoqueProduto);
-                                    }
+                                    var produtoAtualizado = await _produtoPersist.GetProdutoByIdAsync(produtoAtualizaQuantidade.EmpresaId, produtoAtualizaQuantidade.Id);
+                                    var produtoRetorno = _mapper.Map<ProdutoDTO>(produtoAtualizaQuantidade);
+                                    return produtoRetorno;
                                 }
-                                throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProduto);
                             }
                             else
                             {
@@ -223,10 +206,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             _geralPersist.Update(produto);
                             if (await _geralPersist.SaveChangesAsync())
                             {
-                                var estoqueProduto = _estoquePersist.GetEstoqueByProdutoIdAsync(produto.EmpresaId, produto.Id);
+                                var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(produto.EmpresaId, produto.Id);
                                 var estoqueDTOMapper = new EstoqueDTO()
                                 {
-                                    Id = estoqueProduto.Result.Id,
+                                    Id = estoqueProduto.Id,
                                     ProdutoId = produto.Id,
                                     Quantidade = produto.Quantidade,
                                     EmpresaId = produto.EmpresaId,
@@ -236,8 +219,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 _geralPersist.Update<Estoque>(estoqueDTO);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
-                                    var retornoProduto = await _produtoPersist.GetProdutoByIdAsync(produto.EmpresaId, produto.Id);
-                                    return _mapper.Map<ProdutoDTO>(retornoProduto);
+                                    var produtoRetorno = await _produtoPersist.GetProdutoByIdAsync(produto.EmpresaId, produto.Id);
+                                    return _mapper.Map<ProdutoDTO>(produtoRetorno);
                                 }
                                 throw new Exception(MensagemDeErro.ErroAoAtualizarQuantidadeProdutoEstoque);
                             }

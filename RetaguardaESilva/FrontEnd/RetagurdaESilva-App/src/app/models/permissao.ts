@@ -8,7 +8,6 @@ export interface Permissao {
   empresaEditar: boolean;
   empresaDetalhe: boolean;
   empresaExcluir: boolean;
-  estoqueCadastro: boolean;
   estoqueEditar: boolean;
   estoqueDetalhe: boolean;
   estoqueExcluir: boolean;
