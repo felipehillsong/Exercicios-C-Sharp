@@ -24,8 +24,8 @@
             <div class="form-group col-md-2">
               <mat-form-field appearance="standard">
               <mat-label>Selecione o fornecedor</mat-label>
-                <mat-select formControlName="fornecedor" [(value)]="fornecedorNome">
-                  <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
+                <mat-select formControlName="fornecedorId" [(value)]="produto.fornecedorId">
+                  <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.id">
                     {{fornecedor.nome}}
                   </mat-option>
                 </mat-select>

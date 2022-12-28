@@ -26,7 +26,6 @@ export class ProdutoEditarComponent implements OnInit {
   produto = {} as Produto;
   public fornecedores: Fornecedor[] = [];
   fornecedorId!:number;
-  fornecedorNome!:string;
   produtoId!:number;
   dataHoje!:string;
   keyError!:string;
@@ -60,8 +59,6 @@ export class ProdutoEditarComponent implements OnInit {
     this.produtoService.getFornecedores(this.authService.empresaId()).subscribe(
       (_fornecedores: Fornecedor[]) => {
         this.fornecedores = _fornecedores;
-        var fornecedor = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
-        this.fornecedorNome = fornecedor[0].nome;
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
@@ -72,10 +69,8 @@ export class ProdutoEditarComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
       this.produto = {...this.form.value};
-      this.fornecedorId = this.preencherFornecedorId(this.form.value);
       this.preencherAtivo(this.form.value);
       this.produto.id = this.produtoId;
-      this.produto.fornecedorId = this.fornecedorId;
       this.produto.empresaId = this.authService.empresaId();
       this.produtoService.editProduto(this.produto).subscribe(() => {
         this.router.navigate(['produtos/lista']);
@@ -89,11 +84,6 @@ export class ProdutoEditarComponent implements OnInit {
       () => this.spinner.hide()
     );
   }
-}
-
-public preencherFornecedorId(forms:any):number{
-  var fornecedor = this.fornecedores.filter(f => f.nome == forms.fornecedor);
-  return fornecedor[0].id;
 }
 
 public preencherSelect(){
@@ -141,7 +131,7 @@ public preencherAtivo(forms:any){
       precoVenda: [null, Validators.required],
       codigo: [null, Validators.required],
       dataCadastroProduto: [null, Validators.required],
-      fornecedor: [null, Validators.required],
+      fornecedorId: [null, Validators.required],
       ativo: [null, Validators.required]
     });
   }

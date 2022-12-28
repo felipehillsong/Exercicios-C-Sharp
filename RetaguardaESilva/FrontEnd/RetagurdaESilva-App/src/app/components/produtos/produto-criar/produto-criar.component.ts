@@ -49,7 +49,7 @@ export class ProdutoCriarComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
       this.produto = {...this.form.value};
-      this.produto.fornecedorId = this.preencherFornecedorId(this.form.value);
+      this.produto.fornecedorId = this.form.value.fornecedor.id;
       this.produto.empresaId = this.authService.empresaId();
       this.produtoService.addProduto(this.produto).subscribe(() => {
         this.router.navigate(['produtos/lista']);

@@ -763,8 +763,8 @@ namespace RetaguardaESilva.Persistence.Persistencias
             {
                 if (produtoView.Id != null && produtoView.Id != 0)
                 {
-                    var produtoRetornoUpdate = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == produtoView.EmpresaId && p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.Codigo == produtoView.Codigo && p.FornecedorId == produtoView.FornecedorId && p.Id != produtoView.Id);
-                    if (produtoView.Id == produtoBanco.Id && produtoView.Nome == produtoBanco.Nome && produtoView.Quantidade == produtoBanco.Quantidade && produtoView.PrecoCompra == produtoBanco.PrecoCompra && produtoView.Codigo == produtoBanco.Codigo && produtoView.EmpresaId == produtoBanco.EmpresaId && produtoView.FornecedorId == produtoBanco.FornecedorId)
+                    var produtoRetornoUpdate = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == produtoView.EmpresaId && p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.PrecoVenda == produtoView.PrecoVenda && p.Codigo == produtoView.Codigo && p.FornecedorId == produtoView.FornecedorId && p.Id != produtoView.Id);
+                    if (produtoView.Id == produtoBanco.Id && produtoView.Nome == produtoBanco.Nome && produtoView.Quantidade == produtoBanco.Quantidade && produtoView.PrecoCompra == produtoBanco.PrecoCompra && produtoBanco.PrecoVenda == produtoView.PrecoVenda && produtoView.Codigo == produtoBanco.Codigo && produtoView.EmpresaId == produtoBanco.EmpresaId && produtoView.FornecedorId == produtoBanco.FornecedorId)
                     {
                         mensagem = MensagemDeSucesso.AtualizarOK;
                         produtoAtualizaQuantidade = null;
@@ -780,7 +780,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         }
                         else
                         {
-                            var produtoReturnResposta = produtoRetornoUpdate.FirstOrDefault(p => p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.Codigo == produtoView.Codigo && p.EmpresaId == produtoView.EmpresaId && p.FornecedorId == produtoView.FornecedorId);
+                            var produtoReturnResposta = produtoRetornoUpdate.FirstOrDefault(p => p.Nome == produtoView.Nome && p.PrecoCompra == produtoView.PrecoCompra && p.PrecoVenda == produtoView.PrecoVenda && p.Codigo == produtoView.Codigo && p.EmpresaId == produtoView.EmpresaId && p.FornecedorId == produtoView.FornecedorId);
                             if (produtoReturnResposta != null)
                             {
                                 mensagem = MensagemDeSucesso.AtualizarQuantidadeProduto;
@@ -791,6 +791,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                     Quantidade = produtoReturnResposta.Quantidade,
                                     Ativo = produtoReturnResposta.Ativo,
                                     PrecoCompra = produtoReturnResposta.PrecoCompra,
+                                    PrecoVenda = produtoReturnResposta.PrecoVenda,
                                     Codigo = produtoReturnResposta.Codigo,
                                     DataCadastroProduto = produtoReturnResposta.DataCadastroProduto,
                                     EmpresaId = produtoReturnResposta.EmpresaId,
