@@ -67,6 +67,13 @@ import { AuthGuardsProdutoService } from './guards/produto/AuthGuardsProduto.ser
 import { AuthGuardsProdutoCadastroService } from './guards/produto/AuthGuardsProdutoCadastro.service';
 import { AuthGuardsProdutoDetalheService } from './guards/produto/AuthGuardsProdutoDetalhe.service';
 import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdutoEditar.service';
+import { EstoqueDetalheComponent } from './components/estoques/estoque-detalhe/estoque-detalhe.component';
+import { EstoqueEditarComponent } from './components/estoques/estoque-editar/estoque-editar.component';
+import { EstoqueListaComponent } from './components/estoques/estoque-lista/estoque-lista.component';
+import { AuthGuardsEstoqueService } from './guards/estoque/AuthGuardsEstoque.service';
+import { AuthGuardsEstoqueDetalheService } from './guards/estoque/AuthGuardsEstoqueDetalhe.service';
+import { AuthGuardsEstoqueEditarService } from './guards/estoque/AuthGuardsEstoqueEditar.service';
+import { EstoqueComponent } from './components/estoques/estoque.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -85,6 +92,13 @@ const routes: Routes = [
     {path: 'criar', title: 'Cadastro', component: EmpresaCriarComponent, canActivate: [AuthGuardsEmpresaCadastroService] },
     {path: 'editar/:id', title: 'Editar', component: EmpresaEditarComponent, canActivate: [AuthGuardsEmpresaEditarService] },
     {path: 'detalhe/:id', title: 'Detalhe', component: EmpresaDetalheComponent, canActivate: [AuthGuardsEmpresaDetalheService] }
+  ]},
+  { path: 'estoques', canActivate:[AuthGuardsService, AuthGuardsEstoqueService],
+  component: EstoqueComponent,
+  children:[
+    {path: 'lista', title: 'Estoques', component: EstoqueListaComponent },
+    {path: 'editar/:id', title: 'Editar', component: EstoqueEditarComponent, canActivate: [AuthGuardsEstoqueEditarService] },
+    {path: 'detalhe/:id', title: 'Detalhe', component: EstoqueDetalheComponent, canActivate: [AuthGuardsEstoqueDetalheService] }
   ]},
   { path: 'fornecedores', canActivate:[AuthGuardsService, AuthGuardsFornecedorService],
   component: FornecedorComponent,

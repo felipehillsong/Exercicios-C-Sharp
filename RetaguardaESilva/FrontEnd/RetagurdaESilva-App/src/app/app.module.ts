@@ -24,6 +24,9 @@ import { EmpresaCriarComponent } from './components/empresas/empresa-criar/empre
 import { EmpresaDetalheComponent } from './components/empresas/empresa-detalhe/empresa-detalhe.component';
 import { EmpresaEditarComponent } from './components/empresas/empresa-editar/empresa-editar.component';
 import { EstoqueComponent } from './components/estoques/estoque.component';
+import { EstoqueDetalheComponent } from './components/estoques/estoque-detalhe/estoque-detalhe.component';
+import { EstoqueEditarComponent } from './components/estoques/estoque-editar/estoque-editar.component';
+import { EstoqueListaComponent } from './components/estoques/estoque-lista/estoque-lista.component';
 import { FornecedorComponent } from './components/fornecedores/fornecedor.component';
 import { FornecedorCriarComponent } from './components/fornecedores/fornecedor-criar/fornecedor-criar.component';
 import { FornecedorDetalheComponent } from './components/fornecedores/fornecedor-detalhe/fornecedor-detalhe.component';
@@ -85,6 +88,9 @@ import { AuthGuardsProdutoEditarService } from './guards/produto/AuthGuardsProdu
 import { ProdutoListaComponent } from './components/produtos/produto-lista/produto-lista.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { AuthGuardsEstoqueService } from './guards/estoque/AuthGuardsEstoque.service';
+import { AuthGuardsEstoqueDetalheService } from './guards/estoque/AuthGuardsEstoqueDetalhe.service';
+import { AuthGuardsEstoqueEditarService } from './guards/estoque/AuthGuardsEstoqueEditar.service';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -101,6 +107,9 @@ registerLocaleData(ptBr);
     EmpresaEditarComponent,
     EmpresaDetalheComponent,
     EstoqueComponent,
+    EstoqueEditarComponent,
+    EstoqueDetalheComponent,
+    EstoqueListaComponent,
     FornecedorComponent,
     FornecedorListaComponent,
     FornecedorCriarComponent,
@@ -166,6 +175,9 @@ registerLocaleData(ptBr);
     AuthGuardsEmpresaCadastroService,
     AuthGuardsEmpresaEditarService,
     AuthGuardsEmpresaDetalheService,
+    AuthGuardsEstoqueService,
+    AuthGuardsEstoqueEditarService,
+    AuthGuardsEstoqueDetalheService,
     AuthGuardsFornecedorService,
     AuthGuardsFornecedorCadastroService,
     AuthGuardsFornecedorDetalheService,

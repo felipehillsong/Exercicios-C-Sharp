@@ -1,4 +1,5 @@
 ﻿using RetaguardaESilva.Application.ContratosServices;
+using RetaguardaESilva.Application.DTO;
 using RetaguardaESilva.Domain.Models;
 using RetaguardaESilva.Persistence.Contratos;
 using System;
@@ -19,24 +20,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _geralPersist = geralPersist;
             _estoquePersist = estoquePersist;
         }
-        public async Task<Estoque> AddEstoque(int empresaId, Estoque model)
-        {
-            try
-            {
-                _geralPersist.Add<Estoque>(model);
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    return await _estoquePersist.GetEstoqueByIdAsync(empresaId, model.Id);
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
 
-        public async Task<Estoque> UpdateEstoque(int empresaId, int estoqueId, Estoque model)
+        public async Task<Estoque> UpdateEstoque(int empresaId, int estoqueId, EstoqueDTO model)
         {
             try
             {
