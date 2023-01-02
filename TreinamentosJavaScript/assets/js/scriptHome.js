@@ -1,5 +1,9 @@
- var nome = prompt("Digite seu nome: ");
- var sobrenome = prompt("Digite seu sobrenome");
+function Evento(event) {
+    var x = event.target.nodeName;
+    alert(x);    
+  }
 
-var nome = $('#nome').val();
-alert(nome);
+  function Evento2(event) {
+    var x = event.target.nodeName;
+    alert(x);    
+  }
