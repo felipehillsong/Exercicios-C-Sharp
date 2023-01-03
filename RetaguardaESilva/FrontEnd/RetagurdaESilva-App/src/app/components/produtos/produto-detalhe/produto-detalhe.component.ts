@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { IdFornecedorZerado } from 'src/app/enums/IdFornecedorZerado.enum';
 import { Titulos } from 'src/app/enums/titulos';
 import { Fornecedor } from 'src/app/models/fornecedor';
 import { Produto } from 'src/app/models/produto';
@@ -29,6 +30,9 @@ export class ProdutoDetalheComponent implements OnInit {
   keyError!:string;
   valueError!:string;
   ativo!:string;
+  temFornecedor:boolean = true;
+  temFornecedorDeletado:boolean = true;
+  semFornecedor!:String;
 
   constructor(private router: Router, private route: ActivatedRoute,  public titu: TituloService, private fb: FormBuilder, private produtoService: ProdutoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -60,8 +64,15 @@ export class ProdutoDetalheComponent implements OnInit {
     this.produtoService.getFornecedores(this.authService.empresaId()).subscribe(
       (_fornecedores: Fornecedor[]) => {
         this.fornecedores = _fornecedores;
-        var fornecedor = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
-        this.fornecedorNome = fornecedor[0].nome;
+        var fornecedorRetorno = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
+        if(fornecedorRetorno.length == IdFornecedorZerado.IdFornecedor){
+          this.temFornecedor = false;
+          this.temFornecedorDeletado = true;
+          this.semFornecedor = IdFornecedorZerado.SemFornecedor;
+        }else{
+          this.fornecedorNome = fornecedorRetorno[0].nome;
+          this.temFornecedorDeletado = false;
+        }
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)

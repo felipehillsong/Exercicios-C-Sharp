@@ -32,9 +32,9 @@ namespace RetaguardaESilva.Persistence.Persistencias
             return await _context.Estoque.AsNoTracking().Where(e => e.FornecedorId == fornecedorId && e.EmpresaId == empresaId).OrderBy(f => f.Id).ToListAsync();
         }
 
-        public async Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int produtoId)
+        public async Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int fornecedorId)
         {
-            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.Id == produtoId).OrderBy(p => p.Id).ToListAsync();            
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.FornecedorId == fornecedorId).OrderBy(p => p.Id).ToListAsync();            
         }         
       
     }

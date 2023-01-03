@@ -147,16 +147,40 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    var fornecedorProduto = await GetFornecedoresProdutosByIdAsync(fornecedor.EmpresaId, fornecedor.Id);
+                    if (fornecedorProduto != null)
+                    {
+                        foreach (var item in fornecedorProduto.ToList())
+                        {
+                            var zerarIdFornecedorProduto = new Produto()
+                            {
+                                Id = item.Id,
+                                Nome = item.Nome,
+                                Quantidade = item.Quantidade,
+                                Ativo = item.Ativo,
+                                PrecoVenda = item.PrecoVenda,
+                                PrecoCompra = item.PrecoCompra,
+                                Codigo = item.Codigo,
+                                DataCadastroProduto = item.DataCadastroProduto,
+                                EmpresaId = item.EmpresaId,
+                                FornecedorId = (int)ZerarIdFornecedor.FornecedorId
+                            };
+
+                            _geralPersist.Update<Produto>(zerarIdFornecedorProduto);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                    }
+
                     var fornecedorEstoque = _fornecedorPersist.GetFornecedorByEstoqueAsync(fornecedor.EmpresaId, fornecedor.Id);
                     if (fornecedorEstoque != null)
-                    {                        
+                    {
                         foreach (var item in fornecedorEstoque.Result.ToList())
-                        {                            
+                        {
                             var zerouFornecedorEstoque = new Estoque()
-                            {                                
+                            {
                                 Id = item.Id,
                                 EmpresaId = item.EmpresaId,
-                                FornecedorId = (int)ZerarFornecedorEstoque.FornecedorId,
+                                FornecedorId = (int)ZerarIdFornecedor.FornecedorId,
                                 ProdutoId = item.ProdutoId,
                                 Quantidade = item.Quantidade
                             };
@@ -164,8 +188,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             _geralPersist.Update<Estoque>(zerouFornecedorEstoque);
                             await _geralPersist.SaveChangesAsync();
                         }
-                    }                   
-                    
+                    }
+
                     _geralPersist.Delete<Fornecedor>(fornecedor);
                     return await _geralPersist.SaveChangesAsync();
                 }
@@ -222,18 +246,18 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int produtoId)
+        public async Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int fornecedorId)
         {
             try
             {
-                var fornecedores = await _fornecedorPersist.GetFornecedoresProdutosByIdAsync(empresaId, produtoId);
-                if (fornecedores == null)
+                var produtosFornecedor = await _fornecedorPersist.GetFornecedoresProdutosByIdAsync(empresaId, fornecedorId);
+                if (produtosFornecedor == null)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
                 }
                 else
                 {
-                    return fornecedores;
+                    return produtosFornecedor;
                 }
             }
             catch (Exception ex)

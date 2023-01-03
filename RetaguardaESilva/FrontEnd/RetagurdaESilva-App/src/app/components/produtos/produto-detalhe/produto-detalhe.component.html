@@ -11,13 +11,17 @@
               <label style="font-weight: bold;">Nome</label>
               <input type="text" class="form-control" readonly [(ngModel)]="produto.nome">
             </div>
-            <div class="form-group col-md-2">
+            <div *ngIf="temFornecedor" class="form-group col-md-2">
               <label style="font-weight: bold;">Fornecedor</label>
               <mat-select class="form-control" readonly disabled [(value)]="fornecedorNome">
                 <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.nome">
                   {{fornecedor.nome}}
                 </mat-option>
               </mat-select>
+            </div>
+            <div *ngIf="temFornecedorDeletado" class="form-group col-md-2">
+              <label style="font-weight: bold;">Fornecedor</label>
+              <input type="text" class="form-control" readonly value="{{semFornecedor}}">
             </div>
           </div>
           <div class="row">

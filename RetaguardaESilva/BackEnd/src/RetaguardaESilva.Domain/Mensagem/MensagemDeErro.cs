@@ -30,6 +30,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string FornecedorNaoEcontradoUpdate = "Fornecedor não encontrado para ser atualizado, verificar Id da empresa e Id do fornecedor";
         public const string FornecedorNaoEncontradoDelete = "Fornecedor não encontrado para delete";
         public const string FornecedorNaoEncontrado = "Nenhum fornecedor encontrado";
+        public const string FornecedorProdutoNaoEncontrado = "Nenhum produto para esse fornecedor foi encontrado";
         public const string FornecedorNaoEncontradoEmpresa = "Não existem fornecedores cadastrados nessa empresa";
         public const string TransportadorJaCadastrado = "Você esta tentando cadastrar ou atualizar para um transportador já cadastrado, reveja o CPF, CNPJ, Inscrição Municipal e Inscrição Estadual";
         public const string TransportadorNaoEcontradoUpdate = "Transportador não encontrado para ser atualizado, verificar Id da empresa e Id do fornecedor";

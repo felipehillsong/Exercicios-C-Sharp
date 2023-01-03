@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RetaguardaESilva.Domain.Enumeradores
 {
-    public enum ZerarFornecedorEstoque
+    public enum ZerarIdFornecedor
     {
         FornecedorId = 0
     }
