@@ -39,6 +39,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 if (produto != null)
                 {
                     model.Quantidade = model.Quantidade + produto.Quantidade;
+                    model.Id = produto.Id;
                     var produtoCreateDTO = _mapper.Map<Produto>(model);
                     _geralPersist.Update(produtoCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
