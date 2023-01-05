@@ -29,45 +29,24 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _clientePersist = clientePersist;
             _mapper = mapper;
         }
-        public async Task<ClienteDTO> AddCliente(ClienteCreateDTO model)
+        public async Task<ClienteCreateDTO> AddCliente(ClienteCreateDTO model)
         {
             try
             {
-                if (_validacoesPersist.ExisteCliente(model.EmpresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, (int)Ids.IdCreate, false, out string mensagem))
+                if (_validacoesPersist.ExisteCliente(model.EmpresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, false, out string mensagem))
                 {
                     throw new Exception(mensagem);
                 }
                 else
-                {   
-                    var clienteDTOMapper = new ClienteDTO()
-                    {
-                        Id = (int)Ids.IdCreate,
-                        Nome = model.Nome,
-                        Endereco = model.Endereco,
-                        Bairro = model.Bairro,
-                        Numero = model.Numero,
-                        Municipio = model.Municipio,
-                        UF = model.UF,
-                        Pais = model.Pais,
-                        CEP = model.CEP,
-                        Complemento = model.Complemento,
-                        Telefone = model.Telefone,
-                        Email = model.Email,
-                        CPFCNPJ = model.CPFCNPJ,
-                        InscricaoMunicipal = model.InscricaoMunicipal,
-                        InscricaoEstadual = model.InscricaoEstadual,
-                        DataCadastroCliente = model.DataCadastroCliente,
-                        Ativo = Convert.ToBoolean(Situacao.Ativo),
-                        EmpresaId = model.EmpresaId
-                    };
-
-                    var clienteDTO = _mapper.Map<Cliente>(clienteDTOMapper);
-                    clienteDTO.Nome = _validacoesPersist.AcertarNome(clienteDTO.Nome);
-                    _geralPersist.Add<Cliente>(clienteDTO);
+                {
+                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    var clienteCreateDTO = _mapper.Map<Cliente>(model);
+                    clienteCreateDTO.Nome = _validacoesPersist.AcertarNome(clienteCreateDTO.Nome);
+                    _geralPersist.Add<Cliente>(clienteCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
-                        var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteDTO.EmpresaId, clienteDTO.Id);
-                        return _mapper.Map<ClienteDTO>(retornoCliente);
+                        var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteCreateDTO.EmpresaId, clienteCreateDTO.Id);
+                        return _mapper.Map<ClienteCreateDTO>(retornoCliente);
                     }
                     throw new Exception(mensagem);
                 }                
@@ -78,52 +57,30 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<ClienteDTO> UpdateCliente(int empresaId, int clienteId, ClienteUpdateDTO model)
+        public async Task<ClienteUpdateDTO> UpdateCliente(ClienteUpdateDTO model)
         {           
             try
             { 
-                var cliente = await _clientePersist.GetClienteByIdAsync(empresaId, clienteId);
+                var cliente = await _clientePersist.GetClienteByIdAsync(model.EmpresaId, model.Id);
                 if (cliente == null)
                 {
                     throw new Exception(MensagemDeErro.ClienteNaoEncontradoUpdate);
                 }
                 else
                 {
-                    if (_validacoesPersist.ExisteCliente(empresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, clienteId, true, out string mensagem))
+                    if (_validacoesPersist.ExisteCliente(model.EmpresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, true, out string mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
                     {   
-                        var clienteDTOMapper = new ClienteDTO()
-                        {
-                            Id = clienteId,
-                            Nome = model.Nome,
-                            Endereco = model.Endereco,
-                            Bairro = model.Bairro,
-                            Numero = model.Numero,
-                            Municipio = model.Municipio,
-                            UF = model.UF,
-                            Pais = model.Pais,
-                            CEP = model.CEP,
-                            Complemento = model.Complemento,
-                            Telefone = model.Telefone,
-                            Email = model.Email,
-                            CPFCNPJ = model.CPFCNPJ,
-                            InscricaoMunicipal = model.InscricaoMunicipal == "" ? "" : model.InscricaoMunicipal,
-                            InscricaoEstadual = model.InscricaoEstadual == "" ? "" : model.InscricaoEstadual,
-                            DataCadastroCliente = model.DataCadastroCliente,
-                            Ativo = model.Ativo,
-                            EmpresaId = empresaId
-                        };
-
-                        var clienteDTO = _mapper.Map<Cliente>(clienteDTOMapper);
-                        clienteDTO.Nome = _validacoesPersist.AcertarNome(clienteDTO.Nome);
-                        _geralPersist.Update(clienteDTO);
+                        var clienteUpdateDTO = _mapper.Map<Cliente>(model);
+                        clienteUpdateDTO.Nome = _validacoesPersist.AcertarNome(clienteUpdateDTO.Nome);
+                        _geralPersist.Update(clienteUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteDTO.EmpresaId, clienteDTO.Id);
-                            return _mapper.Map<ClienteDTO>(retornoCliente);
+                            var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteUpdateDTO.EmpresaId, clienteUpdateDTO.Id);
+                            return _mapper.Map<ClienteUpdateDTO>(retornoCliente);
                         }
                         throw new Exception(MensagemDeErro.ErroAoAtualizar);
                     }   

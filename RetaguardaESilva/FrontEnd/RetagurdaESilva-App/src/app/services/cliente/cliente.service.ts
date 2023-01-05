@@ -21,7 +21,7 @@ public addCliente(cliente: Cliente): Observable<Cliente> {
 }
 
 public editCliente(cliente: Cliente): Observable<Cliente> {
-  return this.http.put<Cliente>(`${this.baseURLGetUpdateDelete}/${cliente.id}?empresaId=${cliente.empresaId}`, cliente).pipe(take(1));
+  return this.http.put<Cliente>(`${this.baseURLGetUpdateDelete}/`, cliente).pipe(take(1));
 }
 
 public getClientes(empresaId: number) : Observable<Cliente[]>{

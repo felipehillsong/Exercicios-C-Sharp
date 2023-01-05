@@ -29,45 +29,25 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _empresaPersist = empresaPersist;
             _mapper = mapper;
         }
-        public async Task<EmpresaDTO> AddEmpresa(EmpresaCreateDTO model)
+        public async Task<EmpresaCreateDTO> AddEmpresa(EmpresaCreateDTO model)
         {
             try
             {
-                var empresa = _validacoesPersist.ExisteEmpresa((int)Ids.IdCreate, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, false, out string mensagem);
+                var empresa = _validacoesPersist.ExisteEmpresa(model.EmpresaId, model.Id, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, false, out string mensagem);
                 if (empresa == true)
                 {
                     throw new Exception(mensagem);
                 }
                 else
-                {       
-                    var empresaDTOMapper = new EmpresaDTO()
-                    {
-                        Id = (int)Ids.IdCreate,
-                        Nome = model.Nome,
-                        Endereco = model.Endereco,
-                        Bairro = model.Bairro,
-                        Numero = model.Numero,
-                        Municipio = model.Municipio,
-                        UF = model.UF,
-                        Pais = model.Pais,
-                        CEP = model.CEP,
-                        Complemento = model.Complemento,
-                        Telefone = model.Telefone,
-                        Email = model.Email,
-                        CNPJ = model.CNPJ,
-                        InscricaoMunicipal = model.InscricaoMunicipal,
-                        InscricaoEstadual = model.InscricaoEstadual,
-                        DataCadastroEmpresa = model.DataCadastroEmpresa,
-                        Ativo = Convert.ToBoolean(Situacao.Ativo)
-                    };
-
-                    var empresaDTO = _mapper.Map<Empresa>(empresaDTOMapper);
-                    empresaDTO.Nome = _validacoesPersist.AcertarNome(empresaDTO.Nome);
-                    _geralPersist.Add<Empresa>(empresaDTO);
+                {
+                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    var empresaCreateDTO = _mapper.Map<Empresa>(model);
+                    empresaCreateDTO.Nome = _validacoesPersist.AcertarNome(empresaCreateDTO.Nome);
+                    _geralPersist.Add<Empresa>(empresaCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
-                        var retornoEmpresa = await _empresaPersist.GetEmpresaByIdAsync(empresaDTO.Id);
-                        return _mapper.Map<EmpresaDTO>(retornoEmpresa);
+                        var retornoEmpresa = await _empresaPersist.GetEmpresaByIdAsync(empresaCreateDTO.Id);
+                        return _mapper.Map<EmpresaCreateDTO>(retornoEmpresa);
                     }                    
                     throw new Exception(MensagemDeErro.ErroSalvarEmpresa);
                 }                
@@ -78,52 +58,31 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<EmpresaDTO> UpdateEmpresa(int id, EmpresaUpdateDTO model)
+        public async Task<EmpresaUpdateDTO> UpdateEmpresa(EmpresaUpdateDTO model)
         {
             try
-            {                
-                var empresa = await _empresaPersist.GetEmpresaByIdAsync(id);
+            {
+                var empresa = await _empresaPersist.GetEmpresaByIdAsync(model.Id);
                 if (empresa == null)
                 {
                     return null;
                 }
                 else
                 {
-                    if (_validacoesPersist.ExisteEmpresa(id, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, true, out string mensagem))
+                    if (_validacoesPersist.ExisteEmpresa(model.EmpresaId, model.Id, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, true, out string mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
                     {
-                        var empresaDTOMapper = new EmpresaDTO()
-                        {
-                            Id = id,
-                            Nome = model.Nome,
-                            Endereco = model.Endereco,
-                            Bairro = model.Bairro,
-                            Numero = model.Numero,
-                            Municipio = model.Municipio,
-                            UF = model.UF,
-                            Pais = model.Pais,
-                            CEP = model.CEP,
-                            Complemento = model.Complemento,
-                            Telefone = model.Telefone,
-                            Email = model.Email,
-                            CNPJ = model.CNPJ,
-                            InscricaoMunicipal = model.InscricaoMunicipal,
-                            InscricaoEstadual = model.InscricaoEstadual,
-                            DataCadastroEmpresa = model.DataCadastroEmpresa,
-                            Ativo = model.Ativo
-                        };
-
-                        var empresaDTO = _mapper.Map<Empresa>(empresaDTOMapper);
-                        empresaDTO.Nome = _validacoesPersist.AcertarNome(empresaDTO.Nome);                                               
-                        _geralPersist.Update(empresaDTO);
+                        var empresaUpdateDTO = _mapper.Map<Empresa>(model);
+                        empresaUpdateDTO.Nome = _validacoesPersist.AcertarNome(empresaUpdateDTO.Nome);                                               
+                        _geralPersist.Update(empresaUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            var retornoEmpresa = await _empresaPersist.GetEmpresaByIdAsync(empresaDTO.Id);
-                            return _mapper.Map<EmpresaDTO>(retornoEmpresa);
-                        }                        
+                            var retornoEmpresa = await _empresaPersist.GetEmpresaByIdAsync(empresaUpdateDTO.Id);
+                            return _mapper.Map<EmpresaUpdateDTO>(retornoEmpresa);
+                        }
                         throw new Exception(MensagemDeErro.ErroAtualizarEmpresa);
                     }   
                 }

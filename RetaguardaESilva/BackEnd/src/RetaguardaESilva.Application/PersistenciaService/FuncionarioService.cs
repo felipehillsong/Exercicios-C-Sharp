@@ -29,7 +29,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _funcionarioPersist = funcionarioPersist;
             _mapper = mapper;
         }
-        public async Task<FuncionarioDTO> AddFuncionario(FuncionarioCreateDTO model)
+        public async Task<FuncionarioCreateDTO> AddFuncionario(FuncionarioCreateDTO model)
         {   
             if (_validacoesPersist.ExisteFuncionario(model.EmpresaId, model.CPF, model.Id, false, out string mensagem))
             {
@@ -37,82 +37,43 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
             else
             {
-                var funcionarioDTOMapper = new FuncionarioDTO()
-                {
-                    Id = (int)Ids.IdCreate,
-                    Nome = model.Nome,
-                    Endereco = model.Endereco,
-                    Bairro = model.Bairro,
-                    Numero = model.Numero,
-                    Municipio = model.Municipio,
-                    UF = model.UF,
-                    Pais = model.Pais,
-                    CEP = model.CEP,
-                    Complemento = model.Complemento,
-                    Telefone = model.Telefone,
-                    Email = model.Email,
-                    CPF = model.CPF,
-                    DataCadastroFuncionario = model.DataCadastroFuncionario,
-                    Ativo = Convert.ToBoolean(Situacao.Ativo),
-                    EmpresaId = model.EmpresaId
-                };
-
-                var funcionarioDTO = _mapper.Map<Funcionario>(funcionarioDTOMapper);
-                funcionarioDTO.Nome = _validacoesPersist.AcertarNome(funcionarioDTO.Nome);
-                _geralPersist.Add<Funcionario>(funcionarioDTO);
+                model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                var funcionarioCreateDTO = _mapper.Map<Funcionario>(model);
+                funcionarioCreateDTO.Nome = _validacoesPersist.AcertarNome(funcionarioCreateDTO.Nome);
+                _geralPersist.Add<Funcionario>(funcionarioCreateDTO);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var retornoFuncionario = await _funcionarioPersist.GetFuncionarioByIdAsync(funcionarioDTO.EmpresaId, funcionarioDTO.Id);
-                    return _mapper.Map<FuncionarioDTO>(retornoFuncionario);
+                    var retornoFuncionario = await _funcionarioPersist.GetFuncionarioByIdAsync(funcionarioCreateDTO.EmpresaId, funcionarioCreateDTO.Id);
+                    return _mapper.Map<FuncionarioCreateDTO>(retornoFuncionario);
                 }
                 throw new Exception(mensagem);
             }
         }
 
-        public async Task<FuncionarioDTO> UpdateFuncionario(int empresaId, int funcionarioId, FuncionarioUpdateDTO model)
+        public async Task<FuncionarioUpdateDTO> UpdateFuncionario(FuncionarioUpdateDTO model)
         {
             try
-            {                
-                var funcionario = await _funcionarioPersist.GetFuncionarioByIdAsync(empresaId, funcionarioId);
+            {
+                var funcionario = await _funcionarioPersist.GetFuncionarioByIdAsync(model.EmpresaId, model.Id);
                 if (funcionario == null)
                 {
                     throw new Exception(MensagemDeErro.FuncionarioNaoEncontradoUpdate);
                 }
                 else
                 {
-                    if (_validacoesPersist.ExisteFuncionario(empresaId, model.CPF, funcionarioId, true, out string mensagem))
+                    if (_validacoesPersist.ExisteFuncionario(model.EmpresaId, model.CPF, model.Id, true, out string mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
                     {
-                        var funcionarioDTOMapper = new FuncionarioDTO()
-                        {
-                            Id = funcionarioId,
-                            Nome = model.Nome,
-                            Endereco = model.Endereco,
-                            Bairro = model.Bairro,
-                            Numero = model.Numero,
-                            Municipio = model.Municipio,
-                            UF = model.UF,
-                            Pais = model.Pais,
-                            CEP = model.CEP,
-                            Complemento = model.Complemento,
-                            Telefone = model.Telefone,
-                            Email = model.Email,
-                            CPF = model.CPF,
-                            DataCadastroFuncionario = model.DataCadastroFuncionario,
-                            Ativo = model.Ativo,
-                            EmpresaId = empresaId
-                        };
-
-                        var funcionarioDTO = _mapper.Map<Funcionario>(funcionarioDTOMapper);
-                        funcionarioDTO.Nome = _validacoesPersist.AcertarNome(funcionarioDTO.Nome);
-                        _geralPersist.Update<Funcionario>(funcionarioDTO);
+                        var funcionarioCreateDTO = _mapper.Map<Funcionario>(model);
+                        funcionarioCreateDTO.Nome = _validacoesPersist.AcertarNome(funcionarioCreateDTO.Nome);
+                        _geralPersist.Update<Funcionario>(funcionarioCreateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            var retornoFuncionario = await _funcionarioPersist.GetFuncionarioByIdAsync(funcionarioDTO.EmpresaId, funcionarioDTO.Id);
-                            return _mapper.Map<FuncionarioDTO>(retornoFuncionario);
+                            var retornoFuncionario = await _funcionarioPersist.GetFuncionarioByIdAsync(funcionarioCreateDTO.EmpresaId, funcionarioCreateDTO.Id);
+                            return _mapper.Map<FuncionarioUpdateDTO>(retornoFuncionario);
                         }
                         throw new Exception(MensagemDeErro.ErroAoAtualizar);
                     }

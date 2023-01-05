@@ -19,55 +19,34 @@ namespace RetaguardaESilva.Application.PersistenciaService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
-        private readonly IFornecedorPersist _fornecedorPersist;        
+        private readonly IFornecedorPersist _fornecedorPersist;
         private readonly IMapper _mapper;
 
         public FornecedorService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IFornecedorPersist fornecedorPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
-            _fornecedorPersist = fornecedorPersist;            
+            _fornecedorPersist = fornecedorPersist;
             _mapper = mapper;
         }
-        public async Task<FornecedorDTO> AddFornecedor(FornecedorCreateDTO model)
+        public async Task<FornecedorCreateDTO> AddFornecedor(FornecedorCreateDTO model)
         {
             try
             {   
-                if (_validacoesPersist.ExisteFornecedor(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, (int)Ids.IdCreate, false, out string mensagem))
+                if (_validacoesPersist.ExisteFornecedor(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, false, out string mensagem))
                 {
                     throw new Exception(mensagem);
                 }
                 else
                 {
-                    var fornecedorDTOMapper = new FornecedorDTO()
-                    {
-                        Id = (int)Ids.IdCreate,
-                        Nome = model.Nome,
-                        Endereco = model.Endereco,
-                        Bairro = model.Bairro,
-                        Numero = model.Numero,
-                        Municipio = model.Municipio,
-                        UF = model.UF,
-                        Pais = model.Pais,
-                        CEP = model.CEP,
-                        Complemento = model.Complemento,
-                        Telefone = model.Telefone,
-                        Email = model.Email,
-                        CNPJ = model.CNPJ,
-                        InscricaoMunicipal = model.InscricaoMunicipal,
-                        InscricaoEstadual = model.InscricaoEstadual,
-                        DataCadastroFornecedor = model.DataCadastroFornecedor,
-                        Ativo = Convert.ToBoolean(Situacao.Ativo),
-                        EmpresaId = model.EmpresaId
-                    };
-
-                    var fornecedorDTO = _mapper.Map<Fornecedor>(fornecedorDTOMapper);
-                    fornecedorDTO.Nome = _validacoesPersist.AcertarNome(fornecedorDTO.Nome);
-                    _geralPersist.Add<Fornecedor>(fornecedorDTO);
+                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    var fornecedorCreateDTO = _mapper.Map<Fornecedor>(model);
+                    fornecedorCreateDTO.Nome = _validacoesPersist.AcertarNome(fornecedorCreateDTO.Nome);
+                    _geralPersist.Add<Fornecedor>(fornecedorCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
-                        var retornoFornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(fornecedorDTO.EmpresaId, fornecedorDTO.Id);
-                        return _mapper.Map<FornecedorDTO>(retornoFornecedor);
+                        var retornoFornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(fornecedorCreateDTO.EmpresaId, fornecedorCreateDTO.Id);
+                        return _mapper.Map<FornecedorCreateDTO>(retornoFornecedor);
                     }
                     throw new Exception(MensagemDeErro.ErroAoAtualizar);
                 }
@@ -78,55 +57,33 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<FornecedorDTO> UpdateFornecedor(int empresaId, int fornecedorId, FornecedorUpdateDTO model)
+        public async Task<FornecedorUpdateDTO> UpdateFornecedor(FornecedorUpdateDTO model)
         {
             try
-            {                
-                var fornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(empresaId, fornecedorId);
+            {
+                var fornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(model.EmpresaId, model.Id);
                 if (fornecedor == null)
                 {
                     throw new Exception(MensagemDeErro.FornecedorNaoEcontradoUpdate);
                 }
                 else
-                {                    
-                    if (_validacoesPersist.ExisteFornecedor(empresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, fornecedorId, true, out string mensagem))
+                {
+                    if (_validacoesPersist.ExisteFornecedor(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, true, out string mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
-                    {         
-                        var fornecedorDTOMapper = new FornecedorDTO()
-                        {
-                            Id = fornecedorId,
-                            Nome = model.Nome,
-                            Endereco = model.Endereco,
-                            Bairro = model.Bairro,
-                            Numero = model.Numero,
-                            Municipio = model.Municipio,
-                            UF = model.UF,
-                            Pais = model.Pais,
-                            CEP = model.CEP,
-                            Complemento = model.Complemento,
-                            Telefone = model.Telefone,
-                            Email = model.Email,
-                            CNPJ = model.CNPJ,
-                            InscricaoMunicipal = model.InscricaoMunicipal,
-                            InscricaoEstadual = model.InscricaoEstadual,
-                            DataCadastroFornecedor = model.DataCadastroFornecedor,
-                            Ativo = model.Ativo,
-                            EmpresaId = empresaId
-                        };
-
-                        var fornecedorDTO = _mapper.Map<Fornecedor>(fornecedorDTOMapper);
-                        fornecedorDTO.Nome = _validacoesPersist.AcertarNome(fornecedorDTO.Nome);
-                        _geralPersist.Update<Fornecedor>(fornecedorDTO);
+                    {
+                        var fornecedorUpdateDTO = _mapper.Map<Fornecedor>(model);
+                        fornecedorUpdateDTO.Nome = _validacoesPersist.AcertarNome(fornecedorUpdateDTO.Nome);
+                        _geralPersist.Update<Fornecedor>(fornecedorUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            var retornoFornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(fornecedorDTO.EmpresaId, fornecedorDTO.Id);
-                            return _mapper.Map<FornecedorDTO>(retornoFornecedor);
+                            var retornoFornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(fornecedorUpdateDTO.EmpresaId, fornecedorUpdateDTO.Id);
+                            return _mapper.Map<FornecedorUpdateDTO>(retornoFornecedor);
                         }
                         throw new Exception(mensagem);
-                    }                   
+                    }
                     
                 }
             }

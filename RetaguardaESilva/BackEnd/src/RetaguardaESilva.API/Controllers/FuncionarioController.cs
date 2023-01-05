@@ -85,12 +85,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Funcionario/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFuncionario(int empresaId, int id, FuncionarioUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutFuncionario(FuncionarioUpdateDTO model)
         {
             try
             {
-                var funcionario = await _FuncionarioService.UpdateFuncionario(empresaId, id, model);
+                var funcionario = await _FuncionarioService.UpdateFuncionario(model);
                 if (funcionario == null)
                 {
                     return BadRequest();

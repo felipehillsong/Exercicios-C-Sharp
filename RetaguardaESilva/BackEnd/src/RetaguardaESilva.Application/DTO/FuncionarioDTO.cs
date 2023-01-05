@@ -26,42 +26,13 @@ namespace RetaguardaESilva.Application.DTO
         public int EmpresaId { get; set; }
     }
 
-    public class FuncionarioCreateDTO
+    public class FuncionarioCreateDTO : FuncionarioDTO
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Bairro { get; set; }
-        public string Numero { get; set; }
-        public string Municipio { get; set; }
-        public string UF { get; set; }
-        public string Pais { get; set; }
-        public string CEP { get; set; }
-        public string? Complemento { get; set; }
-        public string Telefone { get; set; }
-        public string Email { get; set; }
-        public string CPF { get; set; }
-        public DateTime? DataCadastroFuncionario { get; set; }
-        public bool Ativo { get; set; }
-        public int EmpresaId { get; set; }
+
     }
 
-    public class FuncionarioUpdateDTO
+    public class FuncionarioUpdateDTO : FuncionarioDTO
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Bairro { get; set; }
-        public string Numero { get; set; }
-        public string Municipio { get; set; }
-        public string UF { get; set; }
-        public string Pais { get; set; }
-        public string CEP { get; set; }
-        public string? Complemento { get; set; }
-        public string Telefone { get; set; }
-        public string Email { get; set; }
-        public string CPF { get; set; }
-        public DateTime? DataCadastroFuncionario { get; set; }
-        public bool Ativo { get; set; }        
+
     }
 }

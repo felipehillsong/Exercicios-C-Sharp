@@ -21,7 +21,7 @@ return this.http.post<Funcionario>(this.baseURL, funcionario).pipe(take(1));
 }
 
 public editFuncionarios(funcionario: Funcionario): Observable<Funcionario> {
-return this.http.put<Funcionario>(`${this.baseURLGetUpdateDelete}/${funcionario.id}?empresaId=${funcionario.empresaId}`, funcionario).pipe(take(1));
+return this.http.put<Funcionario>(`${this.baseURLGetUpdateDelete}/`, funcionario).pipe(take(1));
 }
 
 public getFuncionarios(empresaId: number) : Observable<Funcionario[]>{

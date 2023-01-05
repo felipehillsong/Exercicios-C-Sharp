@@ -16,4 +16,5 @@ export interface Empresa {
   inscricaoEstadual: string;
   dataCadastroEmpresa: string;
   ativo: boolean;
+  empresaId:number;
 }

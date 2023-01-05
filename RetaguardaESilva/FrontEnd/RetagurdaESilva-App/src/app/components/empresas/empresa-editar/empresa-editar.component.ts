@@ -25,6 +25,7 @@ export class EmpresaEditarComponent implements OnInit {
   form!: FormGroup;
   empresa = {} as Empresa;
   empresaId!: number;
+  id!:number;
   cep!:string;
   cepBD = {} as Cep;
   keyError!:string;
@@ -40,8 +41,8 @@ export class EmpresaEditarComponent implements OnInit {
   }
 
   public getEmpresaById(): void{
-    this.empresaId = this.route.snapshot.params['id'];
-    this.empresaService.getEmpresasById(this.empresaId).subscribe(
+    this.id = this.route.snapshot.params['id'];
+    this.empresaService.getEmpresasById(this.id).subscribe(
       (_empresa: Empresa) => {
         this.empresa = _empresa;
         this.preencherSelect();
@@ -88,7 +89,8 @@ export class EmpresaEditarComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
       this.empresa = {...this.form.value};
-      this.empresa.id = this.empresaId;
+      this.empresa.id = this.id;
+      this.empresa.empresaId = this.authService.empresaId();
       this.preencherAtivo(this.form.value);
       this.empresaService.editEmpresa(this.empresa).subscribe(() => {
         this.router.navigate(['empresas/lista']);

@@ -12,63 +12,32 @@ namespace RetaguardaESilva.Application.DTO
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        public string Senha { get; set; }       
-        public DateTime? DataCadastroUsuario { get; set; }
-        public bool Ativo { get; set; }
-        public int FuncionarioId { get; set; }
-        public int EmpresaId { get; set; }
-        public string NomeEmpresa { get; set; }
-        public List<PermissaoDTO> Permissoes { get; set; }
-    }
-
-    public class UsuarioCreateDTO
-    {
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }       
-        public DateTime? DataCadastroUsuario { get; set; }
-        public bool Ativo { get; set; }
-        public int FuncionarioId { get; set; }
-        public int EmpresaId { get; set; }
-    }
-
-    public class UsuarioUpdateDTO
-    {        
-        public string Nome { get; set; }
-        public string Email { get; set; }
         public string Senha { get; set; }
         public DateTime? DataCadastroUsuario { get; set; }
         public bool Ativo { get; set; }
         public int FuncionarioId { get; set; }
         public int EmpresaId { get; set; }
         public string NomeEmpresa { get; set; }
-        public List<PermissaoDTO> Permissoes { get; set; }
+        public List<PermissaoDTO>? Permissoes { get; set; }
     }
 
-    public class UsuariosRetornoDTO
+    public class UsuarioCreateDTO : UsuarioDTO
     {
-        public int Id { get; set; }
-        public string NomeEmpresa { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public DateTime? DataCadastroUsuario { get; set; }
-        public bool Ativo { get; set; }
-        public int FuncionarioId { get; set; }
-        public int EmpresaId { get; set; }
+
     }
 
-    public class UsuarioLoginDTO
+    public class UsuarioUpdateDTO : UsuarioDTO
     {
-        public int Id { get; set; }
-        public string NomeEmpresa { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public DateTime? DataCadastroUsuario { get; set; }
-        public bool Ativo { get; set; }
-        public int FuncionarioId { get; set; }
-        public int EmpresaId { get; set; }
-        public List<PermissaoDTO> Permissoes { get; set; }
+
+    }
+
+    public class UsuariosRetornoDTO : UsuarioDTO
+    {
+
+    }
+
+    public class UsuarioLoginDTO : UsuarioDTO
+    {
+
     }
 }

@@ -104,12 +104,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Produto/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduto(int empresaId, int id, ProdutoUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutProduto(ProdutoUpdateDTO model)
         {
             try
             {
-                var produto = await _produtoService.UpdateProduto(empresaId, id, model);
+                var produto = await _produtoService.UpdateProduto(model);
                 if (produto == null)
                 {
                     return BadRequest();

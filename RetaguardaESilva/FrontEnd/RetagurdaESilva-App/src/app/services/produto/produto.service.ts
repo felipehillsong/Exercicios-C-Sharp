@@ -22,7 +22,7 @@ export class ProdutoService {
   }
 
   public editProduto(produto: Produto): Observable<Produto> {
-    return this.http.put<Produto>(`${this.baseURLGetUpdateDelete}/${produto.id}?empresaId=${produto.empresaId}`, produto).pipe(take(1));
+    return this.http.put<Produto>(`${this.baseURLGetUpdateDelete}/`, produto).pipe(take(1));
   }
 
   public getProdutos(empresaId: number) : Observable<Produto[]>{

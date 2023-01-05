@@ -536,59 +536,67 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
         }
 
-        public bool ExisteEmpresa(int empresaId, string cnpj, string inscricaoMunicipal, string inscricaoEstadual, bool isUpdate, out string mensagem)
+        public bool ExisteEmpresa(int empresaId, int id, string cnpj, string inscricaoMunicipal, string inscricaoEstadual, bool isUpdate, out string mensagem)
         {
-            var empresaCpfCnpjRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.CNPJ == cnpj && e.Id != empresaId);
-            var empresaImRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.InscricaoMunicipal == inscricaoMunicipal && e.Id != empresaId);
-            var empresaIeRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.InscricaoEstadual == inscricaoEstadual && e.Id != empresaId);
-            var empresaCpfCnpjImIe = _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId);
-
-            if (isUpdate)
+            if (VerificaAdministrador(empresaId, out mensagem))
             {
-                if (empresaId != null || empresaId != 0)
+                var empresaCpfCnpjRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.CNPJ == cnpj && e.Id != id);
+                var empresaImRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.InscricaoMunicipal == inscricaoMunicipal && e.Id != id);
+                var empresaIeRetorno = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.InscricaoEstadual == inscricaoEstadual && e.Id != id);
+                var empresaCpfCnpjImIe = _context.Empresa.AsNoTracking().Where(e => e.Id == id);
+
+                if (isUpdate)
                 {
-                    if (empresaCpfCnpjRetorno != null)
+                    if (id != null || id != 0)
                     {
-                        mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                        return true;
-                    }
-                    else if (empresaImRetorno != null && empresaIeRetorno != null)
-                    {
-                        if (empresaImRetorno.InscricaoMunicipal == String.Empty && empresaIeRetorno.InscricaoEstadual == String.Empty)
-                        {
-                            mensagem = MensagemDeSucesso.AtualizarOK;
-                            return false;
-                        }
-                        else
+                        if (empresaCpfCnpjRetorno != null)
                         {
                             mensagem = MensagemDeErro.EmpresaJaCadastrada;
                             return true;
                         }
-                    }
-                    else if (empresaImRetorno == null && empresaIeRetorno == null)
-                    {
-                        mensagem = MensagemDeSucesso.AtualizarOK;
-                        return false;
-                    }
-                    else if (empresaImRetorno != null)
-                    {
-                        if (empresaImRetorno.InscricaoMunicipal == String.Empty)
+                        else if (empresaImRetorno != null && empresaIeRetorno != null)
+                        {
+                            if (empresaImRetorno.InscricaoMunicipal == String.Empty && empresaIeRetorno.InscricaoEstadual == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
+                        }
+                        else if (empresaImRetorno == null && empresaIeRetorno == null)
                         {
                             mensagem = MensagemDeSucesso.AtualizarOK;
                             return false;
                         }
-                        else
+                        else if (empresaImRetorno != null)
                         {
-                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                            return true;
+                            if (empresaImRetorno.InscricaoMunicipal == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
                         }
-                    }
-                    else if (empresaIeRetorno != null)
-                    {
-                        if (empresaIeRetorno.InscricaoEstadual == String.Empty)
+                        else if (empresaIeRetorno != null)
                         {
-                            mensagem = MensagemDeSucesso.AtualizarOK;
-                            return false;
+                            if (empresaIeRetorno.InscricaoEstadual == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
                         }
                         else
                         {
@@ -598,81 +606,82 @@ namespace RetaguardaESilva.Persistence.Persistencias
                     }
                     else
                     {
-                        mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                        mensagem = MensagemDeErro.EmpresaSemId;
                         return true;
                     }
                 }
                 else
                 {
-                    mensagem = MensagemDeErro.EmpresaSemId;
-                    return true;
+                    if (empresaCpfCnpjImIe == null)
+                    {
+                        mensagem = MensagemDeSucesso.CadastrarOk;
+                        return false;
+                    }
+                    else
+                    {
+                        if (empresaCpfCnpjRetorno != null)
+                        {
+                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                            return true;
+                        }
+                        else if (empresaImRetorno != null && empresaIeRetorno != null)
+                        {
+                            if (empresaImRetorno.InscricaoMunicipal == String.Empty && empresaIeRetorno.InscricaoEstadual == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
+                        }
+                        else if (empresaImRetorno == null && empresaIeRetorno == null)
+                        {
+                            mensagem = MensagemDeSucesso.AtualizarOK;
+                            return false;
+                        }
+                        else if (empresaImRetorno != null)
+                        {
+                            if (empresaImRetorno.InscricaoMunicipal == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
+                        }
+                        else if (empresaIeRetorno != null)
+                        {
+                            if (empresaIeRetorno.InscricaoEstadual == String.Empty)
+                            {
+                                mensagem = MensagemDeSucesso.AtualizarOK;
+                                return false;
+                            }
+                            else
+                            {
+                                mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
+                            return true;
+                        }
+                    }
                 }
             }
             else
             {
-                if (empresaCpfCnpjImIe == null)
-                {
-                    mensagem = MensagemDeSucesso.CadastrarOk;
-                    return false;
-                }
-                else
-                {   
-                    if (empresaCpfCnpjRetorno != null)
-                    {
-                        mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                        return true;
-                    }
-                    else if (empresaImRetorno != null && empresaIeRetorno != null)
-                    {
-                        if (empresaImRetorno.InscricaoMunicipal == String.Empty && empresaIeRetorno.InscricaoEstadual == String.Empty)
-                        {
-                            mensagem = MensagemDeSucesso.AtualizarOK;
-                            return false;
-                        }
-                        else
-                        {
-                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                            return true;
-                        }
-                    }
-                    else if (empresaImRetorno == null && empresaIeRetorno == null)
-                    {
-                        mensagem = MensagemDeSucesso.AtualizarOK;
-                        return false;
-                    }
-                    else if (empresaImRetorno != null)
-                    {
-                        if (empresaImRetorno.InscricaoMunicipal == String.Empty)
-                        {
-                            mensagem = MensagemDeSucesso.AtualizarOK;
-                            return false;
-                        }
-                        else
-                        {
-                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                            return true;
-                        }
-                    }
-                    else if (empresaIeRetorno != null)
-                    {
-                        if (empresaIeRetorno.InscricaoEstadual == String.Empty)
-                        {
-                            mensagem = MensagemDeSucesso.AtualizarOK;
-                            return false;
-                        }
-                        else
-                        {
-                            mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        mensagem = MensagemDeErro.EmpresaJaCadastrada;
-                        return true;
-                    }
-                }
+                mensagem = MensagemDeErro.CadastrarEmpresa;
+                return true;
             }
+            
         }
 
         public bool ExisteUsuario(int empresaId, int usuarioId, string email, bool isUpdate, out string mensagem)
@@ -852,7 +861,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             return false;
         }
 
-        public bool VisualizarEmpresa(int empresaId, out string mensagem)
+        public bool VerificaAdministrador(int empresaId, out string mensagem)
         {
             if (empresaId.Equals(((int)TipoEmpresa.Administrador)))
             {

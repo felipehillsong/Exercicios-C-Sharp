@@ -42,7 +42,7 @@ export class EmpresaCriarComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
       this.empresa = {...this.form.value};
-      this.empresa.id = this.authService.empresaId();
+      this.empresa.empresaId = this.authService.empresaId();
       this.empresaService.addEmpresa(this.empresa).subscribe(() => {
         this.router.navigate(['empresas/lista']);
       },

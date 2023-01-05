@@ -10,8 +10,8 @@ namespace RetaguardaESilva.Application.ContratosServices
 {
     public interface IProdutoService
     {
-        Task<ProdutoDTO> AddProduto(ProdutoCreateDTO model);
-        Task<ProdutoDTO> UpdateProduto(int empresaId, int produtoId, ProdutoUpdateDTO model);
+        Task<ProdutoCreateDTO> AddProduto(ProdutoCreateDTO model);
+        Task<ProdutoUpdateDTO> UpdateProduto(ProdutoUpdateDTO model);
         Task<bool> DeleteProduto(int empresaId, int produtoId);
         Task<IEnumerable<ProdutoDTO>> GetAllProdutosAsync(int empresaId);
         Task<IEnumerable<FornecedorDTO>> GetAllFornecedoresAsync(int empresaId);

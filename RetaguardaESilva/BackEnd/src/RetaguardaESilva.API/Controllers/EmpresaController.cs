@@ -86,12 +86,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Empresa/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpresa(int id, EmpresaUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutEmpresa(EmpresaUpdateDTO model)
         {
             try
             {
-                var empresa = await _empresaService.UpdateEmpresa(id, model);
+                var empresa = await _empresaService.UpdateEmpresa(model);
                 if (empresa == null)
                 {
                     return BadRequest();

@@ -83,12 +83,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Cliente/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int empresaId, int id, ClienteUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutCliente(ClienteUpdateDTO model)
         {
             try
             {
-                var cliente = await _clienteService.UpdateCliente(empresaId, id, model);
+                var cliente = await _clienteService.UpdateCliente(model);
                 if (cliente == null)
                 {
                     return BadRequest();

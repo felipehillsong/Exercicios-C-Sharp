@@ -20,7 +20,7 @@ return this.http.post<Fornecedor>(this.baseURL, fornecedor).pipe(take(1));
 }
 
 public editFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
-return this.http.put<Fornecedor>(`${this.baseURLGetUpdateDelete}/${fornecedor.id}?empresaId=${fornecedor.empresaId}`, fornecedor).pipe(take(1));
+return this.http.put<Fornecedor>(`${this.baseURLGetUpdateDelete}/`, fornecedor).pipe(take(1));
 }
 
 public getFornecedores(empresaId: number) : Observable<Fornecedor[]>{

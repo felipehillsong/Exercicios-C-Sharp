@@ -10,8 +10,8 @@ namespace RetaguardaESilva.Application.ContratosServices
 {
     public interface IFuncionarioService
     {
-        Task<FuncionarioDTO> AddFuncionario(FuncionarioCreateDTO model);
-        Task<FuncionarioDTO> UpdateFuncionario(int empresaId, int funcionarioId, FuncionarioUpdateDTO model);
+        Task<FuncionarioCreateDTO> AddFuncionario(FuncionarioCreateDTO model);
+        Task<FuncionarioUpdateDTO> UpdateFuncionario(FuncionarioUpdateDTO model);
         Task<bool> DeleteFuncionario(int empresaId, int funcionarioId);
         Task<IEnumerable<FuncionarioDTO>> GetAllFuncionariosAsync(int empresaId);
         Task<FuncionarioDTO> GetFuncionarioByIdAsync(int empresaId, int funcionarioId);

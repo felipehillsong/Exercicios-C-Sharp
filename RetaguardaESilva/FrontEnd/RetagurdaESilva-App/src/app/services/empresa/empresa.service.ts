@@ -20,7 +20,7 @@ export class EmpresaService {
 
   }
   public editEmpresa(empresa: Empresa): Observable<Empresa> {
-    return this.http.put<Empresa>(`${this.baseURLGetUpdateDelete}/${empresa.id}`, empresa).pipe(take(1));
+    return this.http.put<Empresa>(`${this.baseURLGetUpdateDelete}/`, empresa).pipe(take(1));
   }
   public getEmpresas() : Observable<Empresa[]>{
     return this.http.get<Empresa[]>(this.baseURL).pipe(take(1));
