@@ -44,6 +44,25 @@ namespace RetaguardaESilva.Controllers
             }
         }
 
+        // GET: api/Fornecedor
+        [HttpGet("api/Fornecedores")]
+        public async Task<ActionResult> GetFornecedoresAtivos(int empresaId)
+        {
+            try
+            {
+                var fornecedores = await _produtoService.GetAllFornecedoresAsync(empresaId);
+                if (fornecedores == null)
+                {
+                    return NotFound();
+                }
+                return Ok(fornecedores);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
         // GET: api/Produto/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetProduto(int empresaId, int id)
@@ -122,6 +141,7 @@ namespace RetaguardaESilva.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
             }
-        }      
+        }
+        
     }
 }

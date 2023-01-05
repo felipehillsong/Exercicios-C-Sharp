@@ -22,7 +22,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
         public async Task<IEnumerable<Produto>> GetAllProdutosAsync(int empresaId)
         {
             return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId).OrderBy(p => p.EmpresaId).ToListAsync();            
-        }            
+        }
+
+        public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresAsync(int empresaId)
+        {
+            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.Ativo.Equals(true)).OrderBy(p => p.EmpresaId).ToListAsync();
+        }
 
         public async Task<Produto> GetProdutoByIdAsync(int empresaId, int produtoId)
         {

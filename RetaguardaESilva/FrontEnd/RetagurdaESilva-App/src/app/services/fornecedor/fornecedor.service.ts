@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cep } from '../../models/cep';
 import { Fornecedor } from '../../models/fornecedor';
 import { AuthService } from './../login/auth.service';
 

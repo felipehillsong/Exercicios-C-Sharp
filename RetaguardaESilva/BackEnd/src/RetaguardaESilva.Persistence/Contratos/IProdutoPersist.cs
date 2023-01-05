@@ -10,6 +10,7 @@ namespace RetaguardaESilva.Persistence.Contratos
     public interface IProdutoPersist
     {
         Task<IEnumerable<Produto>> GetAllProdutosAsync(int empresaId);
+        Task<IEnumerable<Fornecedor>> GetAllFornecedoresAsync(int empresaId);
         Task<Produto> GetProdutoByIdAsync(int empresaId, int produtoId);
         Task<Produto> GetProdutoByNomeAsync(int empresaId, string produtoNome);
     }

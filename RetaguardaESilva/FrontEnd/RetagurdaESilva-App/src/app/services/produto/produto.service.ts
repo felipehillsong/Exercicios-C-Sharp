@@ -12,7 +12,8 @@ import { AuthService } from '../login/auth.service';
 export class ProdutoService {
   baseURL = environment.apiURL + 'api/Produto?';
   baseURLGetUpdateDelete = environment.apiURL + 'api/Produto';
-  baseURLFornecedor = environment.apiURL + 'api/Fornecedor?';
+  baseURLFornecedor = environment.apiURL + 'api/Produto/api/Fornecedores?';
+  baseURLGetUpdateDeleteFornecedor = environment.apiURL + 'api/Fornecedor';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -38,6 +39,10 @@ export class ProdutoService {
 
   public getFornecedores(empresaId: number) : Observable<Fornecedor[]>{
     return this.http.get<Fornecedor[]>(`${this.baseURLFornecedor}empresaId=${empresaId}`).pipe(take(1));
-    }
+  }
+
+  public getFornecedorById(id : number) : Observable<Fornecedor>{
+    return this.http.get<Fornecedor>(`${this.baseURLGetUpdateDeleteFornecedor}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+  }
 
 }

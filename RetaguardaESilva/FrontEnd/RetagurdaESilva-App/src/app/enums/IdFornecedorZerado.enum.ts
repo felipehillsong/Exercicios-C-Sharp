@@ -1,4 +1,4 @@
 export enum IdFornecedorZerado {
-  IdFornecedor = 0,
+  FornecedorDeletado = 0,
   SemFornecedor = 'Fornecedor Inexistente!'
 }

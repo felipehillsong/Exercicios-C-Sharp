@@ -31,8 +31,8 @@ export class ProdutoDetalheComponent implements OnInit {
   valueError!:string;
   ativo!:string;
   temFornecedor:boolean = true;
-  temFornecedorDeletado:boolean = true;
-  semFornecedor!:String;
+  semFornecedor:boolean = true;
+  nomeFornecedor!:String;
 
   constructor(private router: Router, private route: ActivatedRoute,  public titu: TituloService, private fb: FormBuilder, private produtoService: ProdutoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -60,24 +60,25 @@ export class ProdutoDetalheComponent implements OnInit {
     );
   }
 
+
   public getFornecedores(): void{
-    this.produtoService.getFornecedores(this.authService.empresaId()).subscribe(
-      (_fornecedores: Fornecedor[]) => {
-        this.fornecedores = _fornecedores;
-        var fornecedorRetorno = this.fornecedores.filter(f => f.id == this.produto.fornecedorId);
-        if(fornecedorRetorno.length == IdFornecedorZerado.IdFornecedor){
+        if(this.produto.fornecedorId != IdFornecedorZerado.FornecedorDeletado){
+          this.produtoService.getFornecedorById(this.produto.fornecedorId).subscribe(
+            (_fornecedor: Fornecedor) => {
+              this.nomeFornecedor = _fornecedor.nome;
+              this._changeDetectorRef.markForCheck();
+            },
+            error => console.log(error)
+            );
+        }else if(this.produto.fornecedorId == IdFornecedorZerado.FornecedorDeletado){
           this.temFornecedor = false;
-          this.temFornecedorDeletado = true;
-          this.semFornecedor = IdFornecedorZerado.SemFornecedor;
-        }else{
-          this.fornecedorNome = fornecedorRetorno[0].nome;
-          this.temFornecedorDeletado = false;
+          this.semFornecedor = true;
+          this.nomeFornecedor = IdFornecedorZerado.SemFornecedor;
+          this._changeDetectorRef.markForCheck();
         }
         this._changeDetectorRef.markForCheck();
-      },
-      error => console.log(error)
-    );
   }
+
 
   public preencherSelect(){
     if(this.produto.ativo == true){

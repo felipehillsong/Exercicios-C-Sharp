@@ -14,6 +14,7 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<ProdutoDTO> UpdateProduto(int empresaId, int produtoId, ProdutoUpdateDTO model);
         Task<bool> DeleteProduto(int empresaId, int produtoId);
         Task<IEnumerable<ProdutoDTO>> GetAllProdutosAsync(int empresaId);
+        Task<IEnumerable<FornecedorDTO>> GetAllFornecedoresAsync(int empresaId);
         Task<ProdutoDTO> GetProdutoByIdAsync(int empresaId, int produtoId);    
     }
 }
