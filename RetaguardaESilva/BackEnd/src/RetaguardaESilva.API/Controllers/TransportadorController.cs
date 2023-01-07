@@ -85,12 +85,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Transportador/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransportador(int empresaId, int id, TransportadorUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutTransportador(TransportadorUpdateDTO model)
         {
             try
             {
-                var transportador = await _transportadorService.UpdateTransportador(empresaId, id, model);
+                var transportador = await _transportadorService.UpdateTransportador(model);
                 if (transportador == null)
                 {
                     return BadRequest();

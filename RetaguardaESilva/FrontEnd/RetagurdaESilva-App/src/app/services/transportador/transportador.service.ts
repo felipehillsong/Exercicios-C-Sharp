@@ -21,7 +21,7 @@ export class TransportadorService {
   }
 
   public editTransportador(transportador: Transportador): Observable<Transportador> {
-  return this.http.put<Transportador>(`${this.baseURLGetUpdateDelete}/${transportador.id}?empresaId=${transportador.empresaId}`, transportador).pipe(take(1));
+  return this.http.put<Transportador>(`${this.baseURLGetUpdateDelete}/`, transportador).pipe(take(1));
   }
 
   public getTransportadores(empresaId: number) : Observable<Transportador[]>{

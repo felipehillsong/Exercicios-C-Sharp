@@ -29,46 +29,25 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _transportadorPersist = transportadorPersist;
             _mapper = mapper;
         }
-        public async Task<TransportadorDTO> AddTransportador(TransportadorCreateDTO model)
+        public async Task<TransportadorCreateDTO> AddTransportador(TransportadorCreateDTO model)
         {
             try
-            {                
-                var transportador = _validacoesPersist.ExisteTransportador(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, (int)Ids.IdCreate, false, out string mensagem);
+            {
+                var transportador = _validacoesPersist.ExisteTransportador(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, false, out string mensagem);
                 if (transportador == true)
                 {
                     throw new Exception(mensagem);
                 }
                 else
-                {   
-                    var transportadorDTOMapper = new TransportadorDTO()
-                    {
-                        Id = (int)Ids.IdCreate,
-                        Nome = model.Nome,
-                        Endereco = model.Endereco,
-                        Bairro = model.Bairro,
-                        Numero = model.Numero,
-                        Municipio = model.Municipio,
-                        UF = model.UF,
-                        Pais = model.Pais,
-                        CEP = model.CEP,
-                        Complemento = model.Complemento,
-                        Telefone = model.Telefone,
-                        Email = model.Email,
-                        CNPJ = model.CNPJ,
-                        InscricaoMunicipal = model.InscricaoMunicipal,
-                        InscricaoEstadual = model.InscricaoEstadual,
-                        DataCadastroTransportador = model.DataCadastroTransportador,
-                        Ativo = Convert.ToBoolean(Situacao.Ativo),
-                        EmpresaId = model.EmpresaId
-                    };
-
-                    var TransportadorDTO = _mapper.Map<Transportador>(transportadorDTOMapper);
-                    TransportadorDTO.Nome = _validacoesPersist.AcertarNome(TransportadorDTO.Nome);
-                    _geralPersist.Add<Transportador>(TransportadorDTO);
+                {
+                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    var transportadorCreateDTO = _mapper.Map<Transportador>(model);
+                    transportadorCreateDTO.Nome = _validacoesPersist.AcertarNome(transportadorCreateDTO.Nome);
+                    _geralPersist.Add<Transportador>(transportadorCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
-                        var retornoTransportador = await _transportadorPersist.GetTransportadorByIdAsync(TransportadorDTO.EmpresaId, TransportadorDTO.Id);
-                        return _mapper.Map<TransportadorDTO>(retornoTransportador);
+                        var retornoTransportador = await _transportadorPersist.GetTransportadorByIdAsync(transportadorCreateDTO.EmpresaId, transportadorCreateDTO.Id);
+                        return _mapper.Map<TransportadorCreateDTO>(retornoTransportador);
                     }
                     throw new Exception(mensagem);
                 }
@@ -79,56 +58,30 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<TransportadorDTO> UpdateTransportador(int empresaId, int transportadorId, TransportadorUpdateDTO model)
+        public async Task<TransportadorUpdateDTO> UpdateTransportador(TransportadorUpdateDTO model)
         {
             try
             {                
-                var transportador = await _transportadorPersist.GetTransportadorByIdAsync(empresaId, transportadorId);
+                var transportador = await _transportadorPersist.GetTransportadorByIdAsync(model.EmpresaId, model.Id);
                 if (transportador == null)
                 {
                     throw new Exception(MensagemDeErro.TransportadorNaoEcontradoUpdate);
                 }
                 else
                 {
-                    if (_validacoesPersist.ExisteTransportador(empresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, transportadorId, true, out string mensagem))
+                    if (_validacoesPersist.ExisteTransportador(model.EmpresaId, model.CNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, true, out string mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
                     {
-                        var correios = new CorreiosCEP();
-                        var endereco = correios.ConsultaCEP(model.CEP);
-                        var enderecoDeserialize = endereco == null ? null : JsonConvert.DeserializeObject<CorreiosCEP>(endereco);
-
-                        var transportadorDTOMapper = new TransportadorDTO()
-                        {
-                            Id = transportadorId,
-                            Nome = model.Nome,
-                            Endereco = enderecoDeserialize == null ? model.Endereco : enderecoDeserialize.Endereco,
-                            Bairro = enderecoDeserialize == null ? model.Bairro : enderecoDeserialize.Bairro,
-                            Numero = model.Numero,
-                            Municipio = enderecoDeserialize == null ? model.Municipio : enderecoDeserialize.Municipio,
-                            UF = enderecoDeserialize == null ? model.UF : enderecoDeserialize.UF,
-                            Pais = model.Pais,
-                            CEP = enderecoDeserialize == null ? model.CEP : enderecoDeserialize.CEP,
-                            Complemento = model.Complemento,
-                            Telefone = model.Telefone,
-                            Email = model.Email,
-                            CNPJ = model.CNPJ,
-                            InscricaoMunicipal = model.InscricaoMunicipal,
-                            InscricaoEstadual = model.InscricaoEstadual,
-                            DataCadastroTransportador = model.DataCadastroTransportador,
-                            Ativo = model.Ativo,
-                            EmpresaId = empresaId
-                        };
-
-                        var TransportadorDTO = _mapper.Map<Transportador>(transportadorDTOMapper);
-                        TransportadorDTO.Nome = _validacoesPersist.AcertarNome(TransportadorDTO.Nome);
-                        _geralPersist.Update<Transportador>(TransportadorDTO);
+                        var transportadorUpdateDTO = _mapper.Map<Transportador>(model);
+                        transportadorUpdateDTO.Nome = _validacoesPersist.AcertarNome(transportadorUpdateDTO.Nome);
+                        _geralPersist.Update<Transportador>(transportadorUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            var retornoTransportador = await _transportadorPersist.GetTransportadorByIdAsync(TransportadorDTO.EmpresaId, TransportadorDTO.Id);
-                            return _mapper.Map<TransportadorDTO>(retornoTransportador);
+                            var retornoTransportador = await _transportadorPersist.GetTransportadorByIdAsync(transportadorUpdateDTO.EmpresaId, transportadorUpdateDTO.Id);
+                            return _mapper.Map<TransportadorUpdateDTO>(retornoTransportador);
                         }
                         throw new Exception(mensagem);
                     }

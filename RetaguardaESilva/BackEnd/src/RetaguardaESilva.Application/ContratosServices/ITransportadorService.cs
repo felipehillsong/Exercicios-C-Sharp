@@ -10,8 +10,8 @@ namespace RetaguardaESilva.Application.ContratosServices
 {
     public interface ITransportadorService
     {
-        Task<TransportadorDTO> AddTransportador(TransportadorCreateDTO model);
-        Task<TransportadorDTO> UpdateTransportador(int empresaId, int transportadorId, TransportadorUpdateDTO model);
+        Task<TransportadorCreateDTO> AddTransportador(TransportadorCreateDTO model);
+        Task<TransportadorUpdateDTO> UpdateTransportador(TransportadorUpdateDTO model);
         Task<bool> DeleteTransportador(int empresaId, int transportadorId);
         Task<IEnumerable<TransportadorDTO>> GetAllTransportadoresAsync(int empresaId);
         Task<TransportadorDTO> GetTransportadorByIdAsync(int empresaId, int transportadorId);

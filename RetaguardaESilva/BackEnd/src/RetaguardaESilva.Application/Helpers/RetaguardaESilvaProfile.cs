@@ -34,6 +34,8 @@ namespace RetaguardaESilva.Application.Helpers
             CreateMap<Produto, ProdutoCreateDTO>().ReverseMap();
             CreateMap<Produto, ProdutoUpdateDTO>().ReverseMap();
             CreateMap<Transportador, TransportadorDTO>().ReverseMap();
+            CreateMap<Transportador, TransportadorCreateDTO>().ReverseMap();
+            CreateMap<Transportador, TransportadorUpdateDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<UsuarioViewModel, UsuariosRetornoDTO>().ReverseMap();
             CreateMap<UsuarioViewModel, UsuarioLoginDTO>().ReverseMap();
