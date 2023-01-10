@@ -1,5 +1,5 @@
 <div class="form-inline">
-  <app-titulo [titulo]=titulo [iconClass]=iconClass [novo]=novo></app-titulo>
+  <app-titulo (validarCrud)="validaCrud($event)" [titulo]=titulo [iconClass]=iconClass [novo]=novo></app-titulo>
   <br>
   <div class="card rounded shadow-sm p-3">
   <div class="input-group mb-2" id="inputPesquisa">
@@ -23,11 +23,11 @@
           <td>{{usuario.email}}</td>
           <td>{{usuario.dataCadastroUsuario | date: "dd/MM/yyyy"}}</td>
           <td>
-            <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" (click)="editar(usuario.id)">
+            <button *ngIf="visualizarEditar" type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" (click)="editar(usuario.id)">
               <i class="fa fa-edit"></i></button>&nbsp;
-            <button type="button" tooltip="Permissões" class="btn btn-success btn-sm mr-2" (click)="permissoes(usuario.id)">
+            <button *ngIf="visualizarPermissao" type="button" tooltip="Permissões" class="btn btn-success btn-sm mr-2" (click)="permissoes(usuario.id)">
               <i class="fa-solid fa-lock"></i></button>&nbsp;
-            <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, usuario.nome, usuario.id)">
+            <button *ngIf="visualizarExcluir" type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, usuario.nome, usuario.id)">
               <i class="fa fa-trash"></i></button>
           </td>
         </tr>

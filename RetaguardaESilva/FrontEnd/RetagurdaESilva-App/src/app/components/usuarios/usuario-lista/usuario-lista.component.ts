@@ -30,6 +30,9 @@ export class UsuarioListaComponent implements OnInit {
   usuarioNome!: string;
   usuarioId!: number;
   private _usuarioListado = '';
+  visualizarEditar!:boolean;
+  visualizarPermissao!:boolean;
+  visualizarExcluir!:boolean;
 
   public get usuarioLista():string{
     return this._usuarioListado;
@@ -119,6 +122,12 @@ export class UsuarioListaComponent implements OnInit {
     this.nav.show();
     this.titu.show();
     this.titu.hideTitulo();
+  }
+
+  public validaCrud(validar:boolean[]){
+    this.visualizarEditar = validar[0];
+    this.visualizarPermissao = validar[1];
+    this.visualizarExcluir = validar[2];
   }
 
 }

@@ -159,12 +159,12 @@ namespace RetaguardaESilva.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, UsuarioUpdateDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutUsuario(UsuarioUpdateDTO model)
         {
             try
             {
-                var usuario = await _usuarioService.UpdateUsuario(id, model);
+                var usuario = await _usuarioService.UpdateUsuario(model);
                 if (usuario == null)
                 {
                     return BadRequest();

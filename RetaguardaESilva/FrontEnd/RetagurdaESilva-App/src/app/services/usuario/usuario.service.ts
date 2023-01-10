@@ -23,7 +23,7 @@ export class UsuarioService {
   }
 
   public editUsuario(usuario: Usuario): Observable<Usuario> {
-  return this.http.put<Usuario>(`${this.baseURLGetUpdateDelete}/${usuario.id}`, usuario).pipe(take(1));
+  return this.http.put<Usuario>(`${this.baseURLGetUpdateDelete}/`, usuario).pipe(take(1));
   }
 
   public getUsuarios(empresaId: number) : Observable<Usuario[]>{

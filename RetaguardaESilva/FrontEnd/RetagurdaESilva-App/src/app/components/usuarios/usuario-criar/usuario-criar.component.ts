@@ -21,6 +21,7 @@ export class UsuarioCriarComponent implements OnInit {
   titulo =  Titulos.cadastroUsuario;
   form!: FormGroup;
   funcionarioUsuario = {} as Funcionario;
+  funcionarioNome!:string;
   usuario = {} as Usuario;
   dataHoje!:string;
   keyError!:string;
@@ -43,6 +44,7 @@ export class UsuarioCriarComponent implements OnInit {
         this.funcionarioUsuario = _funcionarioUsuario;
         var dataBD = moment(this.funcionarioUsuario.dataCadastroFuncionario).format('YYYY-MM-DD');
         this.funcionarioUsuario.dataCadastroFuncionario = dataBD;
+        this.funcionarioNome = this.funcionarioUsuario.nome;
         this._changeDetectorRef.markForCheck();
         console.log(this.funcionarioUsuario);
       },
@@ -59,7 +61,6 @@ export class UsuarioCriarComponent implements OnInit {
     if(this.verificarSenhas(this.form.value.senha, this.form.value.repetirSenha)){
       if(this.form.valid){
         this.usuario.funcionarioId = this.funcionarioUsuarioId;
-        this.usuario.nome = this.funcionarioUsuario.nome;
         this.usuario.email = this.form.value.email;
         this.usuario.senha = this.form.value.senha;
         this.usuario.dataCadastroUsuario = new Date().toISOString().split('T')[0];
@@ -84,7 +85,6 @@ export class UsuarioCriarComponent implements OnInit {
 
   public validation(): void {
     this.form = this.fb.group({
-      nome: [null],
       email: [null],
       senha: [null, Validators.required],
       repetirSenha: [null, Validators.required]

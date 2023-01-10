@@ -67,7 +67,7 @@ export class UsuarioEditarComponent implements OnInit {
         this.usuario.senha = this.senhaBD;
         this.usuarioService.editUsuario(this.usuario).subscribe(() => {
           this.toastr.success("Dados alterados com sucesso");
-          if(this.usuario.funcionarioId == this.funcionarioId && this.usuario.id == this.usuarioId){
+          if(this.usuario.funcionarioId == this.funcionarioId && this.authService.idDoUsuarioLogado() == this.usuarioId){
             sessionStorage.clear();
             sessionStorage.setItem('loginRetorno', JSON.stringify(this.usuario));
           this.router.navigate(['usuarios/lista']);
@@ -92,7 +92,7 @@ export class UsuarioEditarComponent implements OnInit {
         this.usuario.senha = this.senhaBD;
         this.usuarioService.editUsuario(this.usuario).subscribe(() => {
           this.toastr.success("Dados alterados com sucesso");
-          if(this.usuario.funcionarioId == this.funcionarioId && this.usuario.id == this.usuarioId){
+          if(this.usuario.funcionarioId == this.funcionarioId && this.authService.idDoUsuarioLogado() == this.usuarioId){
             sessionStorage.clear();
             sessionStorage.setItem('loginRetorno', JSON.stringify(this.usuario));
           this.router.navigate(['usuarios/lista']);
@@ -116,7 +116,7 @@ export class UsuarioEditarComponent implements OnInit {
         this.usuario.empresaId = this.authService.empresaId();
         this.usuarioService.editUsuario(this.usuario).subscribe(() => {
           this.toastr.success("Dados alterados com sucesso");
-          if(this.usuario.funcionarioId == this.funcionarioId && this.usuario.id == this.usuarioId){
+          if(this.usuario.funcionarioId == this.funcionarioId && this.authService.idDoUsuarioLogado() == this.usuarioId){
             sessionStorage.clear();
             sessionStorage.setItem('loginRetorno', JSON.stringify(this.usuario));
           this.router.navigate(['usuarios/lista']);

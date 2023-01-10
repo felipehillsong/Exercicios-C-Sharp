@@ -33,45 +33,35 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _usuarioPersist = usuarioPersist;
             _mapper = mapper;
         }
-        public async Task<UsuarioDTO> AddUsuario(UsuarioCreateDTO model)
+        public async Task<UsuarioCreateDTO> AddUsuario(UsuarioCreateDTO model)
         {
             string mensagem = "";
             model.Email = _validacoesPersist.AcertarNome(model.Email);
             model.Senha = _validacoesPersist.AcertarNome(model.Senha);
             
-            if (_validacoesPersist.ExisteUsuario(model.EmpresaId, (int)Ids.IdCreate, model.Email, false, out mensagem))
+            if (_validacoesPersist.ExisteUsuario(model.EmpresaId, model.Id, model.Email, false, out mensagem))
             {
                 throw new Exception(mensagem);
             }
             else
             {
-                var usuarioDTOMapper = new UsuarioDTO()
-                {
-                    Id = (int)Ids.IdCreate,
-                    Email = model.Email,
-                    Senha = model.Senha,
-                    DataCadastroUsuario = model.DataCadastroUsuario,
-                    Ativo = Convert.ToBoolean(Situacao.Ativo),
-                    FuncionarioId = model.FuncionarioId,
-                    EmpresaId = model.EmpresaId
-                };
-
-                var usuarioDTO = _mapper.Map<Usuario>(usuarioDTOMapper);
-                _geralPersist.Add<Usuario>(usuarioDTO);
+                model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                var usuarioCreateDTO = _mapper.Map<Usuario>(model);
+                _geralPersist.Add<Usuario>(usuarioCreateDTO);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var retornoUsuario = await _usuarioPersist.GetUsuarioByIdAsync(usuarioDTO.EmpresaId, usuarioDTO.Id);
-                    return _mapper.Map<UsuarioDTO>(retornoUsuario);
+                    var retornoUsuario = await _usuarioPersist.GetUsuarioByIdAsync(usuarioCreateDTO.EmpresaId, usuarioCreateDTO.Id);
+                    return _mapper.Map<UsuarioCreateDTO>(retornoUsuario);
                 }
                 throw new Exception(mensagem);
             }
         }
 
-        public async Task<UsuarioDTO> UpdateUsuario(int usuarioId, UsuarioUpdateDTO model)
+        public async Task<UsuarioUpdateDTO> UpdateUsuario(UsuarioUpdateDTO model)
         {
             try
             {
-                var usuario = await _usuarioPersist.GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
+                var usuario = await _usuarioPersist.GetUsuarioByIdAsync(model.EmpresaId, model.Id);
                 var funcionario = await _usuarioPersist.GetFuncionarioUsuarioByIdAsync(model.EmpresaId, model.FuncionarioId);
                 if (usuario == null || funcionario == null)
                 {
@@ -83,24 +73,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     model.Email = _validacoesPersist.AcertarNome(model.Email);
                     model.Senha = _validacoesPersist.AcertarNome(model.Senha);
 
-                    if (_validacoesPersist.ExisteUsuario(model.EmpresaId, usuarioId, model.Email, true, out mensagem))
+                    if (_validacoesPersist.ExisteUsuario(model.EmpresaId, model.Id, model.Email, true, out mensagem))
                     {
                         throw new Exception(mensagem);
                     }
                     else
                     {
-                        var usuarioDTOMapper = new UsuarioDTO()
-                        {
-                            Id = usuarioId,
-                            Email = model.Email,
-                            Senha = model.Senha,
-                            DataCadastroUsuario = model.DataCadastroUsuario,
-                            Ativo = model.Ativo,
-                            FuncionarioId = model.FuncionarioId,
-                            EmpresaId = model.EmpresaId
-                        };
-                        var usuarioDTO = _mapper.Map<Usuario>(usuarioDTOMapper);
-                        _geralPersist.Update<Usuario>(usuarioDTO);
+                        var usuarioUpdateDTO = _mapper.Map<Usuario>(model);
+                        _geralPersist.Update<Usuario>(usuarioUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
                             var funcionarioUpdate = new Funcionario()
@@ -132,8 +112,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     _geralPersist.Add<Permissao>(permissoesUsuario);
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
-                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                        return usuarioRetorno;
+                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, model.Id);
+                                        var usuarioUpdate = _mapper.Map<UsuarioUpdateDTO>(usuarioRetorno);
+                                        return usuarioUpdate;
                                     }
                                 }
                                 else if (mensagemRetorno == MensagemDeSucesso.UsuarioDadosDiferente)
@@ -141,14 +122,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     _geralPersist.Update<Permissao>(permissoesUsuario);
                                     if (await _geralPersist.SaveChangesAsync())
                                     {
-                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                        return usuarioRetorno;
+                                        var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, model.Id);
+                                        var usuarioUpdate = _mapper.Map<UsuarioUpdateDTO>(usuarioRetorno);
+                                        return usuarioUpdate;
                                     }
                                 }
                                 else if (mensagemRetorno == MensagemDeSucesso.UsuarioMesmoDado)
                                 {
-                                    var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, usuarioId);
-                                    return usuarioRetorno;
+                                    var usuarioRetorno = await GetUsuarioByIdAsync(model.EmpresaId, model.Id);
+                                    var usuarioUpdate = _mapper.Map<UsuarioUpdateDTO>(usuarioRetorno);
+                                    return usuarioUpdate;
                                 }
                             }
                         }

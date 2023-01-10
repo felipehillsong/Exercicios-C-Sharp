@@ -21,9 +21,15 @@ namespace RetaguardaESilva.Application.DTO
         public List<PermissaoDTO>? Permissoes { get; set; }
     }
 
-    public class UsuarioCreateDTO : UsuarioDTO
+    public class UsuarioCreateDTO
     {
-
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public DateTime? DataCadastroUsuario { get; set; }
+        public bool Ativo { get; set; }
+        public int FuncionarioId { get; set; }
+        public int EmpresaId { get; set; }
     }
 
     public class UsuarioUpdateDTO : UsuarioDTO
