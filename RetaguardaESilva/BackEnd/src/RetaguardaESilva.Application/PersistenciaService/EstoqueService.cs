@@ -1,7 +1,11 @@
-﻿using RetaguardaESilva.Application.ContratosServices;
+﻿using AutoMapper;
+using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
+using RetaguardaESilva.Domain.Enumeradores;
 using RetaguardaESilva.Domain.Models;
+using RetaguardaESilva.Domain.ViewModels;
 using RetaguardaESilva.Persistence.Contratos;
+using RetaguardaESilva.Persistence.Persistencias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +18,15 @@ namespace RetaguardaESilva.Application.PersistenciaService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IEstoquePersist _estoquePersist;
+        private readonly IValidacoesPersist _validacoesPersist;
+        private readonly IMapper _mapper;
 
-        public EstoqueService(IGeralPersist geralPersist, IEstoquePersist estoquePersist)
+        public EstoqueService(IGeralPersist geralPersist, IEstoquePersist estoquePersist, IValidacoesPersist validacoesPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _estoquePersist = estoquePersist;
+            _validacoesPersist = validacoesPersist;
+            _mapper = mapper;
         }
 
         public async Task<Estoque> UpdateEstoque(int empresaId, int estoqueId, EstoqueDTO model)
@@ -68,7 +76,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<Estoque>> GetAllEstoquesAsync(int empresaId)
+        public async Task<IEnumerable<EstoqueViewModelDTO>> GetAllEstoquesAsync(int empresaId)
         {
             try
             {
@@ -79,7 +87,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    return estoques;
+                    List<EstoqueViewModelDTO> EstoqueProdutoRetorno = new List<EstoqueViewModelDTO>();
+                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);                    
+                    foreach (var produtoEstoque in estoqueProduto)
+                    {
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.IdProduto, produtoEstoque.EmpresaNome, produtoEstoque.IdFornecedor, produtoEstoque.FornecedorNome, produtoEstoque.IdProduto, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade));
+                    }
+                    return EstoqueProdutoRetorno;
                 }
             }
             catch (Exception ex)

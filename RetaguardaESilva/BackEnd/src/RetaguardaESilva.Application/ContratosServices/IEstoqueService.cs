@@ -12,7 +12,7 @@ namespace RetaguardaESilva.Application.ContratosServices
     {        
         Task<Estoque> UpdateEstoque(int empresaId, int estoqueId, EstoqueDTO model);
         Task<bool> DeleteEstoque(int empresaId, int estoqueId);
-        Task<IEnumerable<Estoque>> GetAllEstoquesAsync(int empresaId);
+        Task<IEnumerable<EstoqueViewModelDTO>> GetAllEstoquesAsync(int empresaId);
         Task<Estoque> GetEstoqueByIdAsync(int empresaId, int estoqueId);
     }
 }
