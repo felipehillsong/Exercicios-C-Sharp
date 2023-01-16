@@ -14,6 +14,7 @@ using ProEventos.Persistence.Persistencias;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
 using RetaguardaESilva.Domain.ViewModels;
+using Microsoft.OpenApi.Extensions;
 
 namespace RetaguardaESilva.Persistence.Persistencias
 {
@@ -1075,7 +1076,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                                         EmpresaId = emp.Id,
                                                         EmpresaNome = emp.Nome,
                                                         FornecedorId = (int)ZerarIdFornecedor.FornecedorId,
-                                                        FornecedorNome = "Produto sem fornecedor",
+                                                        FornecedorNome = MensagemDeErro.ProdutoSemFornecedor,
                                                         ProdutoId = prod.Id,
                                                         ProdutoNome = prod.Nome,
                                                         Quantidade = esto.Quantidade
