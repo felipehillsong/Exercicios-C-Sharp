@@ -88,10 +88,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     List<EstoqueViewModelDTO> EstoqueProdutoRetorno = new List<EstoqueViewModelDTO>();
-                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);                    
+                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);
                     foreach (var produtoEstoque in estoqueProduto)
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.IdProduto, produtoEstoque.EmpresaNome, produtoEstoque.IdFornecedor, produtoEstoque.FornecedorNome, produtoEstoque.IdProduto, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade));
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade));
                     }
                     return EstoqueProdutoRetorno;
                 }

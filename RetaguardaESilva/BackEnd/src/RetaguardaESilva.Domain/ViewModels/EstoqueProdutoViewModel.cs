@@ -8,21 +8,23 @@ namespace RetaguardaESilva.Domain.ViewModels
 {
     public class EstoqueProdutoViewModel
     {
-        public int IdEmpresa { get; set; }
+        public int Id { get; set; }
+        public int EmpresaId { get; set; }
         public string EmpresaNome { get; set; }
-        public int IdFornecedor { get; set; }
+        public int FornecedorId { get; set; }
         public string FornecedorNome { get;set; }
-        public int IdProduto { get; set; }
+        public int ProdutoId { get; set; }
         public string ProdutoNome { get; set; }
         public int Quantidade { get; set;}
 
-        public EstoqueProdutoViewModel(int idEmpresa, string empresaNome, int idFornecedor, string fornecedorNome, int idProduto, string produtoNome, int quantidade)
+        public EstoqueProdutoViewModel(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade)
         {
-            this.IdEmpresa = idEmpresa;
+            this.Id = estoqueId;
+            this.EmpresaId = empresaId;
             this.EmpresaNome = empresaNome;
-            this.IdFornecedor = idFornecedor;
+            this.FornecedorId = fornecedorId;
             this.FornecedorNome = fornecedorNome;
-            this.IdProduto = idProduto;
+            this.ProdutoId = produtoId;
             this.ProdutoNome = produtoNome;
             this.Quantidade = quantidade;
         }

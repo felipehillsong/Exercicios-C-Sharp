@@ -1,3 +1,51 @@
-<p>
-  estoque-lista works!
-</p>
+<div class="form-inline">
+  <app-titulo (validarCrud)="validaCrud($event)" [titulo]=titulo [iconClass]=iconClass></app-titulo>
+  <br>
+  <div class="card rounded shadow-sm p-3">
+  <div class="input-group mb-2" id="inputPesquisa">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Filtro: </div>
+    </div>
+    <input type="text" class="form-control" placeholder="Pesquisar Produtos" [(ngModel)]="estoqueLista">
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+      <th>Nome do Produto</th>
+      <th>Quantidade</th>
+      <th>Nome do Fornecedor</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="estoques && estoques.length">
+    <tr *ngFor="let estoque of estoquesFiltrados">
+      <td>{{estoque.produtoNome}}</td>
+      <td>{{estoque.quantidade}}</td>
+      <td>{{estoque.fornecedorNome}}</td>
+      <td>
+        <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(estoque.id)">
+          <i class="fa fa-edit"></i></button>&nbsp;
+          <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" *ngIf="visualizarDetalhe" (click)="detalhe(estoque.id)">
+            <i class="fa-solid fa-file"></i></button>&nbsp;
+        <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" *ngIf="visualizarExcluir" (click)="openModal($event, template, estoque.produtoNome, estoque.id)">
+          <i class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!estoques.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum Estoque encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+  </table>
+  </div>
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Tem certeza que deseja deletar o produto {{this.produtoNome}}?</p>
+      <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+      <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+    </div>
+  </ng-template>
+
