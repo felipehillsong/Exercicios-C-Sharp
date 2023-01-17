@@ -1063,7 +1063,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var produtos = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId).ToList();
             var fornecedor = _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId).ToList();
             var empresa = _context.Empresa.AsNoTracking().Where(em => em.Id == empresaId).ToList();
-            var produtosSemFornecedores = estoques.Where(e => e.FornecedorId == 0);
+            var produtosSemFornecedores = estoques.Where(e => e.FornecedorId == (int)ZerarIdFornecedor.FornecedorId);
             if (produtosSemFornecedores != null)
             {
                 var produtosEstoquesSemFornecedor = from prod in produtos
