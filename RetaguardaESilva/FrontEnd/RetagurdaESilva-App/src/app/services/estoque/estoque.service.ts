@@ -14,8 +14,8 @@ export class EstoqueService {
 
 constructor(private http: HttpClient, private authService: AuthService) { }
 
-public editEstoque(estoque: Estoque): Observable<Estoque> {
-  return this.http.put<Estoque>(`${this.baseURLGetUpdateDelete}/`, estoque).pipe(take(1));
+public editEstoque(estoque:Estoque): Observable<Estoque> {
+  return this.http.put<Estoque>(this.baseURLGetUpdateDelete, estoque).pipe(take(1));
 }
 
 public getEstoques(empresaId: number) : Observable<Estoque[]>{

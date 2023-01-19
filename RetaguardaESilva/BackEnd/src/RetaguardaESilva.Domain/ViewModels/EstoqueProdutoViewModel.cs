@@ -28,5 +28,18 @@ namespace RetaguardaESilva.Domain.ViewModels
             this.ProdutoNome = produtoNome;
             this.Quantidade = quantidade;
         }
+        public EstoqueProdutoViewModel()
+        {
+        }
+    }
+
+    public class EstoqueProdutoViewModelUpdate : EstoqueProdutoViewModel
+    {      
+        public EstoqueProdutoViewModelUpdate(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        {
+        }
+        public EstoqueProdutoViewModelUpdate()
+        {
+        }
     }
 }

@@ -76,7 +76,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     else
                     {
                         var empresaUpdateDTO = _mapper.Map<Empresa>(model);
-                        empresaUpdateDTO.Nome = _validacoesPersist.AcertarNome(empresaUpdateDTO.Nome);                                               
+                        empresaUpdateDTO.Nome = _validacoesPersist.AcertarNome(empresaUpdateDTO.Nome);
                         _geralPersist.Update(empresaUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {

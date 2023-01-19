@@ -38,4 +38,11 @@ namespace RetaguardaESilva.Application.DTO
             this.Quantidade = quantidade;
         }
     }
+
+    public class EstoqueViewModelUpdateDTO : EstoqueViewModelDTO
+    {
+        public EstoqueViewModelUpdateDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        {
+        }
+    }
 }

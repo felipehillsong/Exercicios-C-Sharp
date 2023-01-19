@@ -63,12 +63,12 @@ namespace RetaguardaESilva.Controllers
 
         // PUT: api/Estoque/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEstoque(int empresaId, int id, EstoqueDTO model)
+        [HttpPut]
+        public async Task<IActionResult> PutEstoque(EstoqueDTO model)
         {
             try
             {
-                var estoque = await _estoqueService.UpdateEstoque(empresaId, id, model);
+                var estoque = await _estoqueService.UpdateEstoque(model.EmpresaId, model.Id, model.Quantidade);
                 if (estoque == null)
                 {
                     return BadRequest();

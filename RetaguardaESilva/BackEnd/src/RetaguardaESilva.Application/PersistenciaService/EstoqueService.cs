@@ -2,6 +2,7 @@
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
 using RetaguardaESilva.Domain.Enumeradores;
+using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Domain.Models;
 using RetaguardaESilva.Domain.ViewModels;
 using RetaguardaESilva.Persistence.Contratos;
@@ -18,34 +19,43 @@ namespace RetaguardaESilva.Application.PersistenciaService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IEstoquePersist _estoquePersist;
+        private readonly IProdutoPersist _produtoPersist;
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IMapper _mapper;
 
-        public EstoqueService(IGeralPersist geralPersist, IEstoquePersist estoquePersist, IValidacoesPersist validacoesPersist, IMapper mapper)
+        public EstoqueService(IGeralPersist geralPersist, IEstoquePersist estoquePersist, IProdutoPersist produtoPersist, IValidacoesPersist validacoesPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _estoquePersist = estoquePersist;
+            _produtoPersist = produtoPersist;
             _validacoesPersist = validacoesPersist;
             _mapper = mapper;
         }
 
-        public async Task<Estoque> UpdateEstoque(int empresaId, int estoqueId, EstoqueDTO model)
+        public async Task<EstoqueViewModelUpdateDTO> UpdateEstoque(int empresaId, int estoqueId, int quantidade)
         {
             try
             {
                 var estoque = await _estoquePersist.GetEstoqueByIdAsync(empresaId, estoqueId);
-                if (estoque == null)
+                var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, estoque.ProdutoId);
+                if (estoque == null || produto == null)
                 {
                     return null;
                 }
                 else
                 {
-                    _geralPersist.Update(model);
+                    estoque.Quantidade = quantidade;
+                    _geralPersist.Update(estoque);
                     if (await _geralPersist.SaveChangesAsync())
                     {
-                        model.Id = estoque.Id;
-                        return await _estoquePersist.GetEstoqueByIdAsync(model.Id, empresaId);
+                        produto.Quantidade = quantidade;
+                        _geralPersist.Update(produto);
+                        await _geralPersist.SaveChangesAsync();
+                        var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueId(empresaId, estoqueId);
+                        var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade);
+                        return estoqueProdutoRetorno;
                     }
+
                     return null;
                 }
             }
@@ -102,7 +112,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }        
 
-        public async Task<Estoque> GetEstoqueByIdAsync(int empresaId, int estoqueId)
+        public async Task<EstoqueViewModelUpdateDTO> GetEstoqueByIdAsync(int empresaId, int estoqueId)
         {
             try
             {
@@ -112,8 +122,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     return null;
                 }
                 else
-                {
-                    return estoque;
+                { 
+                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueId(empresaId, estoqueId);
+                    var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade);
+                    return estoqueProdutoRetorno;
                 }
             }
             catch (Exception ex)
