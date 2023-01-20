@@ -70,14 +70,20 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 var estoque = await _estoquePersist.GetEstoqueByIdAsync(empresaId, estoqueId);
-                if (estoque == null)
+                var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, estoque.ProdutoId);
+                if (estoque == null || produto == null)
                 {
                     throw new Exception("Estoque não encontrado para delete");
                 }
                 else
                 {
                     _geralPersist.Delete<Estoque>(estoque);
-                    return await _geralPersist.SaveChangesAsync();
+                    if(await _geralPersist.SaveChangesAsync())
+                    {
+                        _geralPersist.Delete<Produto>(produto);
+                        return await _geralPersist.SaveChangesAsync();
+                    }
+                    return false;
                 }
             }
             catch (Exception ex)

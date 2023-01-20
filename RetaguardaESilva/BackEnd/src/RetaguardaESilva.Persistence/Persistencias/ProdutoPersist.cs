@@ -33,10 +33,5 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             return await _context.Produto.AsNoTracking().Where(p => p.Id == produtoId && p.EmpresaId == empresaId).OrderBy(p => p.Id).FirstOrDefaultAsync();
         }
-
-        public async Task<Produto> GetProdutoByNomeAsync(int empresaId, string produtoNome)
-        {
-            return await _context.Produto.AsNoTracking().Where(p => p.Nome == produtoNome && p.EmpresaId == empresaId).OrderBy(p => p.Id).FirstOrDefaultAsync();
-        }
     }
 }
