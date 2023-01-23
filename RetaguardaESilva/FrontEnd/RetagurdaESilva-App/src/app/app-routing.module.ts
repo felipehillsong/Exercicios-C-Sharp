@@ -74,6 +74,15 @@ import { AuthGuardsEstoqueService } from './guards/estoque/AuthGuardsEstoque.ser
 import { AuthGuardsEstoqueDetalheService } from './guards/estoque/AuthGuardsEstoqueDetalhe.service';
 import { AuthGuardsEstoqueEditarService } from './guards/estoque/AuthGuardsEstoqueEditar.service';
 import { EstoqueComponent } from './components/estoques/estoque.component';
+import { EnderecoProdutoComponent } from './components/enderecosProdutos/enderecoProdutoComponent';
+import { EnderecoProdutoCriarComponent } from './components/enderecosProdutos/enderecoProduto-criar/enderecoProduto-criar.component';
+import { EnderecoProdutoDetalheComponent } from './components/enderecosProdutos/enderecoProduto-detalhe/enderecoProduto-detalhe.component';
+import { EnderecoProdutoEditarComponent } from './components/enderecosProdutos/enderecoProduto-editar/enderecoProduto-editar.component';
+import { EnderecoProdutoListaComponent } from './components/enderecosProdutos/enderecoProduto-lista/enderecoProduto-lista.component';
+import { AuthGuardsEnderecoProdutoService } from './guards/enderecoProduto/AuthGuardsEnderecoProduto.service';
+import { AuthGuardsEnderecoProdutoCadastroService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoCadastro.service';
+import { AuthGuardsEnderecoProdutoDetalheService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoDetalhe.service';
+import { AuthGuardsEnderecoProdutoEditarService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoEditar.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -99,6 +108,14 @@ const routes: Routes = [
     {path: 'lista', title: 'Estoques', component: EstoqueListaComponent },
     {path: 'editar/:id', title: 'Editar', component: EstoqueEditarComponent, canActivate: [AuthGuardsEstoqueEditarService] },
     {path: 'detalhe/:id', title: 'Detalhe', component: EstoqueDetalheComponent, canActivate: [AuthGuardsEstoqueDetalheService] }
+  ]},
+  { path: 'enderecosProdutos', canActivate:[AuthGuardsService, AuthGuardsEnderecoProdutoService],
+  component: EnderecoProdutoComponent,
+  children:[
+    {path: 'lista', title: 'enderecosProdutos', component: EnderecoProdutoListaComponent },
+    {path: 'criar/:id', title: 'Cadastro', component: EnderecoProdutoCriarComponent, canActivate: [AuthGuardsEnderecoProdutoCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: EnderecoProdutoEditarComponent, canActivate: [AuthGuardsEnderecoProdutoEditarService] },
+    {path: 'detalhe/:id', title: 'Detalhe', component: EnderecoProdutoDetalheComponent, canActivate: [AuthGuardsEnderecoProdutoDetalheService] }
   ]},
   { path: 'fornecedores', canActivate:[AuthGuardsService, AuthGuardsFornecedorService],
   component: FornecedorComponent,

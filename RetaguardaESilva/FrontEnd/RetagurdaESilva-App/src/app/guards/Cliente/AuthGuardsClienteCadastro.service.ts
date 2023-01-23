@@ -7,8 +7,8 @@ export class AuthGuardsClienteCadastroService implements CanActivate{
 
 constructor(private authService: AuthService) { }
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-  var visualizarCliente = this.authService.permissoesDoUsuario()[0].clienteCadastro;
-  return visualizarCliente;
+  var clienteCadastro = this.authService.permissoesDoUsuario()[0].clienteCadastro;
+  return clienteCadastro;
 }
 
 }

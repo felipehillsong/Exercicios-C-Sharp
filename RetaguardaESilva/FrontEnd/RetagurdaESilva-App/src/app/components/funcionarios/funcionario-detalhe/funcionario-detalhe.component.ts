@@ -105,6 +105,7 @@ export class FuncionarioDetalheComponent implements OnInit {
     this.authService.visualizarFornecedor();
     this.authService.visualizarProduto();
     this.authService.visualizarEstoque();
+    this.authService.visualizarEnderecoProduto();
     this.authService.visualizarFuncionario();
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();

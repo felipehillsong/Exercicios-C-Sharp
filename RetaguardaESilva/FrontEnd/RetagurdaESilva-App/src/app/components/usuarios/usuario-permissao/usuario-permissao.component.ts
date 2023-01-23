@@ -124,6 +124,10 @@ public validation(): void {
     estoqueEditar: [null],
     estoqueDetalhe: [null],
     estoqueExcluir: [null],
+    enderecoProdutoCadastro: [null],
+    enderecoProdutoEditar: [null],
+    enderecoProdutoDetalhe: [null],
+    enderecoProdutoExcluir: [null],
     fornecedorCadastro: [null],
     fornecedorEditar: [null],
     fornecedorDetalhe: [null],
@@ -162,6 +166,7 @@ public validation(): void {
     visualizarUsuario: [null],
     visualizarVenda: [null],
     visualizarRelatorio: [null],
+    visualizarEnderecoProduto: [null],
     empresaId: [null],
     usuarioId: [null]
   });
@@ -176,6 +181,7 @@ public validation(): void {
     this.authService.visualizarCliente();
     this.authService.visualizarProduto();
     this.authService.visualizarEstoque();
+    this.authService.visualizarEnderecoProduto();
     this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
     this.authService.visualizarTransportador();
@@ -214,6 +220,20 @@ public validation(): void {
   public liberarTodosEstoques(){
     if(this.permissoes.estoqueEditar == false || this.permissoes.estoqueDetalhe == false || this.permissoes.estoqueExcluir == false){
       this.permissoes.visualizarEstoque = true;
+    }
+  }
+
+  public todosEnderecosProdutos(){
+    if(this.permissoes.visualizarEnderecoProduto == true){
+      this.permissoes.enderecoProdutoEditar = false;
+      this.permissoes.enderecoProdutoDetalhe = false;
+      this.permissoes.enderecoProdutoExcluir = false;
+    }
+  }
+
+  public liberarEnderecosProdutos(){
+    if(this.permissoes.enderecoProdutoEditar == false || this.permissoes.enderecoProdutoDetalhe == false || this.permissoes.enderecoProdutoExcluir == false){
+      this.permissoes.visualizarEnderecoProduto = true;
     }
   }
 

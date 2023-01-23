@@ -371,6 +371,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             EstoqueEditar = false,
                             EstoqueDetalhe = false,
                             EstoqueExcluir = false,
+                            VisualizarEnderecoProduto = false,
+                            EnderecoProdutoCadastro = false,
+                            EnderecoProdutoEditar = false,
+                            EnderecoProdutoDetalhe = false,
+                            EnderecoProdutoExcluir = false,
                             VisualizarFornecedor = false,
                             FornecedorCadastro = false,
                             FornecedorEditar = false,
@@ -432,6 +437,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             EstoqueEditar = usuarioPermissao.EstoqueEditar,
                             EstoqueDetalhe = usuarioPermissao.EstoqueDetalhe,
                             EstoqueExcluir = usuarioPermissao.EstoqueExcluir,
+                            VisualizarEnderecoProduto = usuarioPermissao.VisualizarEnderecoProduto,
+                            EnderecoProdutoCadastro = usuarioPermissao.EnderecoProdutoCadastro,
+                            EnderecoProdutoEditar = usuarioPermissao.EnderecoProdutoEditar,
+                            EnderecoProdutoDetalhe = usuarioPermissao.EnderecoProdutoDetalhe,
+                            EnderecoProdutoExcluir = usuarioPermissao.EnderecoProdutoExcluir,
                             VisualizarFornecedor = usuarioPermissao.VisualizarFornecedor,
                             FornecedorCadastro = usuarioPermissao.FornecedorCadastro,
                             FornecedorEditar = usuarioPermissao.FornecedorEditar,
@@ -499,6 +509,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
             &&permissaoBD.EstoqueEditar == permissaoDTO.EstoqueEditar
             &&permissaoBD.EstoqueDetalhe == permissaoDTO.EstoqueDetalhe
             &&permissaoBD.EstoqueExcluir == permissaoDTO.EstoqueExcluir
+            &&permissaoBD.VisualizarEnderecoProduto == permissaoDTO.VisualizarEnderecoProduto
+            &&permissaoBD.EnderecoProdutoCadastro == permissaoDTO.EnderecoProdutoCadastro
+            &&permissaoBD.EnderecoProdutoEditar == permissaoDTO.EnderecoProdutoEditar
+            &&permissaoBD.EnderecoProdutoDetalhe == permissaoDTO.EnderecoProdutoDetalhe
+            &&permissaoBD.EnderecoProdutoExcluir == permissaoDTO.EnderecoProdutoExcluir
             &&permissaoBD.VisualizarFornecedor == permissaoDTO.VisualizarFornecedor
             &&permissaoBD.FornecedorCadastro == permissaoDTO.FornecedorCadastro
             &&permissaoBD.FornecedorEditar == permissaoDTO.FornecedorEditar
@@ -564,6 +579,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 EstoqueEditar = permissaoDTO.EstoqueEditar,
                 EstoqueDetalhe = permissaoDTO.EstoqueDetalhe,
                 EstoqueExcluir = permissaoDTO.EstoqueExcluir,
+                VisualizarEnderecoProduto = permissaoDTO.VisualizarEstoque,
+                EnderecoProdutoCadastro = permissaoDTO.EnderecoProdutoCadastro,
+                EnderecoProdutoEditar = permissaoDTO.EnderecoProdutoEditar,
+                EnderecoProdutoDetalhe = permissaoDTO.EnderecoProdutoDetalhe,
+                EnderecoProdutoExcluir = permissaoDTO.EnderecoProdutoExcluir,
                 VisualizarFornecedor = permissaoDTO.VisualizarFornecedor,
                 FornecedorCadastro = permissaoDTO.FornecedorCadastro,
                 FornecedorEditar = permissaoDTO.FornecedorEditar,

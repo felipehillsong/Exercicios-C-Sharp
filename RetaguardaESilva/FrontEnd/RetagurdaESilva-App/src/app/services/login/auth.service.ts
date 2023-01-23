@@ -372,4 +372,35 @@ public visualizarEmpresaExcluir():boolean{
   return vizualizar;
 }
 
+public visualizarEnderecoProduto():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarEnderecoProduto;
+  if(vizualizar){
+    this.nav.visualizarEnderecoProduto();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarEnderecoProduto();
+    return vizualizar;
+  }
+}
+
+public visualizarEnderecoProdutoCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].enderecoProdutoCadastro;
+  return vizualizar;
+}
+
+public visualizarEnderecoProdutoEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].enderecoProdutoEditar;
+  return vizualizar;
+}
+
+public visualizarEnderecoProdutoDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].enderecoProdutoDetalhe;
+  return vizualizar;
+}
+
+public visualizarEnderecoProdutoExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].enderecoProdutoExcluir;
+  return vizualizar;
+}
+
 }

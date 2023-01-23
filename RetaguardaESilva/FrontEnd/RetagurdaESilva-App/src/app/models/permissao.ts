@@ -11,6 +11,10 @@ export interface Permissao {
   estoqueEditar: boolean;
   estoqueDetalhe: boolean;
   estoqueExcluir: boolean;
+  enderecoProdutoCadastro: boolean;
+  enderecoProdutoEditar: boolean;
+  enderecoProdutoDetalhe: boolean;
+  enderecoProdutoExcluir: boolean;
   fornecedorCadastro: boolean;
   fornecedorEditar: boolean;
   fornecedorDetalhe: boolean;
@@ -41,6 +45,7 @@ export interface Permissao {
   vendaExcluir: boolean;
   visualizarCliente: boolean;
   visualizarEstoque: boolean;
+  visualizarEnderecoProduto: boolean;
   visualizarFornecedor: boolean;
   visualizarFuncionario: boolean;
   visualizarProduto: boolean;

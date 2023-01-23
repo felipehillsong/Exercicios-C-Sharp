@@ -32,6 +32,7 @@ export class EstoqueListaComponent implements OnInit {
   visualizarEditar!:boolean;
   visualizarDetalhe!:boolean;
   visualizarExcluir!:boolean;
+  visualizarAdicionarEndereco!:boolean;
 
   public get estoqueLista():string{
     return this._estoqueListado;
@@ -63,6 +64,10 @@ export class EstoqueListaComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  adicionarEndereco(id: number): void {
+    this.router.navigate([`enderecosProdutos/criar/${id}`]);
   }
 
   editar(id: number): void {
@@ -108,6 +113,7 @@ export class EstoqueListaComponent implements OnInit {
     this.authService.visualizarFornecedor();
     this.authService.visualizarProduto();
     this.authService.visualizarEstoque();
+    this.authService.visualizarEnderecoProduto();
     this.authService.visualizarFuncionario();
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
@@ -122,6 +128,7 @@ export class EstoqueListaComponent implements OnInit {
     this.visualizarEditar = validar[0];
     this.visualizarDetalhe = validar[1];
     this.visualizarExcluir = validar[2];
+    this.visualizarAdicionarEndereco = validar[3];
   }
 
 }

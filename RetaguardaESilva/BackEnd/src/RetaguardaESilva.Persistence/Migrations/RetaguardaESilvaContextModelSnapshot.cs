@@ -403,6 +403,18 @@ namespace RetaguardaESilva.Persistence.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("EnderecoProdutoCadastro")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnderecoProdutoDetalhe")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnderecoProdutoEditar")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnderecoProdutoExcluir")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("EstoqueDetalhe")
                         .HasColumnType("bit");
 
@@ -503,6 +515,9 @@ namespace RetaguardaESilva.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("VisualizarEmpresa")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("VisualizarEnderecoProduto")
                         .HasColumnType("bit");
 
                     b.Property<bool>("VisualizarEstoque")

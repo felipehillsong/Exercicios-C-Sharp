@@ -91,17 +91,26 @@ import { registerLocaleData } from '@angular/common';
 import { AuthGuardsEstoqueService } from './guards/estoque/AuthGuardsEstoque.service';
 import { AuthGuardsEstoqueDetalheService } from './guards/estoque/AuthGuardsEstoqueDetalhe.service';
 import { AuthGuardsEstoqueEditarService } from './guards/estoque/AuthGuardsEstoqueEditar.service';
+import { EnderecoProdutoCriarComponent } from './components/enderecosProdutos/enderecoProduto-criar/enderecoProduto-criar.component';
+import { EnderecoProdutoDetalheComponent } from './components/enderecosProdutos/enderecoProduto-detalhe/enderecoProduto-detalhe.component';
+import { EnderecoProdutoEditarComponent } from './components/enderecosProdutos/enderecoProduto-editar/enderecoProduto-editar.component';
+import { EnderecoProdutoListaComponent } from './components/enderecosProdutos/enderecoProduto-lista/enderecoProduto-lista.component';
+import { EnderecoProdutoComponent } from './components/enderecosProdutos/enderecoProdutoComponent';
+import { AuthGuardsEnderecoProdutoService } from './guards/enderecoProduto/AuthGuardsEnderecoProduto.service';
+import { AuthGuardsEnderecoProdutoCadastroService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoCadastro.service';
+import { AuthGuardsEnderecoProdutoDetalheService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoDetalhe.service';
+import { AuthGuardsEnderecoProdutoEditarService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoEditar.service';
 
 registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
-    EmpresaComponent,
     ClienteComponent,
     ClienteListaComponent,
     ClienteDetalheComponent,
     ClienteEditarComponent,
     ClienteCriarComponent,
+    EmpresaComponent,
     EmpresaListaComponent,
     EmpresaCriarComponent,
     EmpresaEditarComponent,
@@ -110,6 +119,11 @@ registerLocaleData(ptBr);
     EstoqueEditarComponent,
     EstoqueDetalheComponent,
     EstoqueListaComponent,
+    EnderecoProdutoComponent,
+    EnderecoProdutoListaComponent,
+    EnderecoProdutoCriarComponent,
+    EnderecoProdutoEditarComponent,
+    EnderecoProdutoDetalheComponent,
     FornecedorComponent,
     FornecedorListaComponent,
     FornecedorCriarComponent,
@@ -178,6 +192,10 @@ registerLocaleData(ptBr);
     AuthGuardsEstoqueService,
     AuthGuardsEstoqueEditarService,
     AuthGuardsEstoqueDetalheService,
+    AuthGuardsEnderecoProdutoService,
+    AuthGuardsEnderecoProdutoCadastroService,
+    AuthGuardsEnderecoProdutoDetalheService,
+    AuthGuardsEnderecoProdutoEditarService,
     AuthGuardsFornecedorService,
     AuthGuardsFornecedorCadastroService,
     AuthGuardsFornecedorDetalheService,

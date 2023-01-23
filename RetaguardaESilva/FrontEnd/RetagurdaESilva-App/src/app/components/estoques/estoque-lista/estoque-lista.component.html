@@ -27,6 +27,8 @@
           <i class="fa fa-edit"></i></button>&nbsp;
           <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" *ngIf="visualizarDetalhe" (click)="detalhe(estoque.id)">
             <i class="fa-solid fa-file"></i></button>&nbsp;
+          <button type="button" tooltip="Adicionar Endereço" class="btn btn-success btn-sm mr-2" *ngIf="visualizarAdicionarEndereco" (click)="adicionarEndereco(estoque.id)">
+            <i class="fa-solid fa-plus"></i></button>&nbsp;
         <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" *ngIf="visualizarExcluir" (click)="openModal($event, template, estoque.produtoNome, estoque.id)">
           <i class="fa fa-trash"></i></button>
       </td>

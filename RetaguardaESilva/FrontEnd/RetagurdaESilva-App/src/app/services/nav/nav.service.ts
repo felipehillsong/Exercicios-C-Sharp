@@ -12,6 +12,7 @@ export class NavService {
   visibleFornecedor: boolean;
   visibleFuncionario: boolean;
   visibleEstoque: boolean;
+  visibleEnderecoProduto: boolean;
   visibleProduto: boolean;
   visibleTransportador: boolean;
   visibleUsuario: boolean;
@@ -19,7 +20,7 @@ export class NavService {
   visibleRelatorio: boolean;
   constructor() {this.visible = false; this.visibleEmpresa = false; this.visibleCliente = false; this.visibleFornecedor = false;
   this.visibleFuncionario = false; this.visibleTransportador = false; this.visibleProduto = false; this.visibleUsuario = false;
-   this.visibleVenda = false; this.visibleRelatorio = false; this.visibleEstoque = false;}
+   this.visibleVenda = false; this.visibleRelatorio = false; this.visibleEstoque = false; this.visibleEnderecoProduto = false;}
   hide() { return this.visible = false; }
 
   show() { return this.visible = true; }
@@ -33,6 +34,10 @@ export class NavService {
   visualizarEstoque() { return this.visibleEstoque = true; }
 
   naoVisualizarEstoque() { return this.visibleEstoque = false; }
+
+  visualizarEnderecoProduto() { return this.visibleEnderecoProduto = true; }
+
+  naoVisualizarEnderecoProduto() { return this.visibleEnderecoProduto = false; }
 
   visualizarFornecedor() { return this.visibleFornecedor = true; }
 
