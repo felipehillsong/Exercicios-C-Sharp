@@ -21,6 +21,7 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
 export class EstoqueListaComponent implements OnInit {
   titulo =  Titulos.listaEstoques;
   iconClass = FontAwesome.listaEstoque;
+  novo = Botoes.listaEnderecoProduto;
   modalRef?: BsModalRef;
   message?: string;
   public loginUsuario!: Login;

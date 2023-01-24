@@ -1,5 +1,6 @@
 export enum Botoes {
   novoCliente = "/clientes/criar",
+  listaEnderecoProduto = '/enderecosProdutos/lista',
   novoFornecedor = "/fornecedores/criar",
   novoFuncionario = "/funcionarios/criar",
   novoProduto = "/produtos/criar",

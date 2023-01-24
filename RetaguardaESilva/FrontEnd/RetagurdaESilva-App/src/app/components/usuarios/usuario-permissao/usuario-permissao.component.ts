@@ -225,6 +225,7 @@ public validation(): void {
 
   public todosEnderecosProdutos(){
     if(this.permissoes.visualizarEnderecoProduto == true){
+      this.permissoes.enderecoProdutoCadastro = false;
       this.permissoes.enderecoProdutoEditar = false;
       this.permissoes.enderecoProdutoDetalhe = false;
       this.permissoes.enderecoProdutoExcluir = false;
@@ -232,7 +233,7 @@ public validation(): void {
   }
 
   public liberarEnderecosProdutos(){
-    if(this.permissoes.enderecoProdutoEditar == false || this.permissoes.enderecoProdutoDetalhe == false || this.permissoes.enderecoProdutoExcluir == false){
+    if(  this.permissoes.enderecoProdutoCadastro == false || this.permissoes.enderecoProdutoEditar == false || this.permissoes.enderecoProdutoDetalhe == false || this.permissoes.enderecoProdutoExcluir == false){
       this.permissoes.visualizarEnderecoProduto = true;
     }
   }

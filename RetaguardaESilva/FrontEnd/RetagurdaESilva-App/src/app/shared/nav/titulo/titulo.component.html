@@ -11,6 +11,12 @@
       <b class="ml-1 d-none d-sm-block">Novo</b>
     </a>
   </div>
+  <div class="p-3" id="novo" *ngIf="visualizarEnderecoProduto">
+    <a class="d-flex btn btn-outline-light" routerLink="{{novo}}">
+      <i class="fa-solid fa-magnifying-glass" id="novoFontEnderecoProduto"></i>
+      <b class="ml-1 d-none d-sm-block">Lista de Endereços dos Produtos</b>
+    </a>
+  </div>
 </div>
 
 <h2 id="titulo" *ngIf="titu.visibleTitulos">{{titulo}}</h2>

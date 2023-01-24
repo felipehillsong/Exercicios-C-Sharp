@@ -14,6 +14,7 @@ export class TituloComponent implements OnInit {
   @Input() novo!: string;
   @Output() validarCrud = new EventEmitter<boolean[]>();
   visualizarCadastros!: boolean;
+  visualizarEnderecoProduto!:boolean;
 
   constructor(public titu: TituloService, private authService: AuthService) { }
 
@@ -35,7 +36,8 @@ export class TituloComponent implements OnInit {
         this.visualizarCadastros = this.authService.visualizarFuncionarioCadastro();
         this.validarCrud.emit([this.authService.visualizarFuncionarioEditar(), this.authService.visualizarFuncionarioDetalhe(), this.authService.visualizarFuncionarioExcluir()]);
         break;
-        case Permissoes.CadastroEstoque:
+      case Permissoes.CadastroEstoque:
+        this.visualizarEnderecoProduto = this.authService.visualizarEnderecoProduto();
         this.validarCrud.emit([this.authService.visualizarEstoqueEditar(), this.authService.visualizarEstoqueDetalhe(), this.authService.visualizarEstoqueExcluir(), this.authService.visualizarEnderecoProdutoCadastro()]);
         break;
       case Permissoes.CadastroTransportador:
