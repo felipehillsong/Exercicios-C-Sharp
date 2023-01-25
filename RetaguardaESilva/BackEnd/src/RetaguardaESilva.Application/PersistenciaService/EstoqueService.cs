@@ -139,5 +139,127 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<EnderecoProdutoDTO> AddEnderecoProduto(EnderecoProdutoDTO model)
+        {
+            try
+            {
+                var endereco = await _validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.NomeEndereco, false);
+                if (endereco == true)
+                {
+                    throw new Exception("Endereço existente!");
+                }
+                else
+                {
+                    var enderecoProdutoDTO = _mapper.Map<EnderecoProduto>(model);
+                    _geralPersist.Add<EnderecoProduto>(enderecoProdutoDTO);
+                    if (await _geralPersist.SaveChangesAsync())
+                    {
+                        var retornoEnderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(enderecoProdutoDTO.EmpresaId, enderecoProdutoDTO.Id);
+                        return _mapper.Map<EnderecoProdutoDTO>(retornoEnderecoProduto);
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<EnderecoProduto> UpdateEnderecoProduto(int empresaId, int enderecoProdutoId, EnderecoProduto model)
+        {
+            try
+            {
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
+                if (enderecoProduto == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (await _validacoesPersist.ExisteEnderecoProduto(empresaId, model.NomeEndereco, true))
+                    {
+                        throw new Exception("Você esta tentando atualizar para um endereço existente!");
+                    }
+                    else
+                    {
+                        _geralPersist.Update(model);
+                        if (await _geralPersist.SaveChangesAsync())
+                        {
+                            model.Id = enderecoProduto.Id;
+                            return await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, model.Id);
+                        }
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> DeleteEnderecoProduto(int empresaId, int enderecoProdutoId)
+        {
+            try
+            {
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
+                if (enderecoProduto == null)
+                {
+                    throw new Exception("Endereço do produto não encontrado para delete");
+                }
+                else
+                {
+                    _geralPersist.Delete<EnderecoProduto>(enderecoProduto);
+                    return await _geralPersist.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EnderecoProduto>> GetAllEnderecosProdutosAsync(int empresaId)
+        {
+            try
+            {
+                var enderecosProdutos = await _estoquePersist.GetAllEnderecosProdutosAsync(empresaId);
+                if (enderecosProdutos == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return enderecosProdutos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<EnderecoProduto> GetEnderecoProdutoByIdAsync(int empresaId, int enderecoProdutoId)
+        {
+            try
+            {
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
+                if (enderecoProduto == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return enderecoProduto;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        
     }
 }

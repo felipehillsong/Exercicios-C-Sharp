@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
+using RetaguardaESilva.Application.PersistenciaService;
 using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Persistence.Data;
 
@@ -83,13 +84,144 @@ namespace RetaguardaESilva.Controllers
 
         // DELETE: api/Estoque/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCliente(int empresaId, int id)
+        public async Task<IActionResult> DeleteEstoque(int empresaId, int id)
         {
             try
             {
                 if (await _estoqueService.DeleteEstoque(empresaId, id))
                 {
                     return Ok( new { message = MensagemDeSucesso.EstoqueDeletado });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // GET: api/EnderecoProduto
+        /// <summary>
+        /// EnderecoProduto/GET
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("api/[controller]")]
+        [ActionName("Thumbnail")]
+        public async Task<ActionResult> GetEnderecoProduto(double empresaId)
+        {
+            int idEmpresa = (int)empresaId;
+            try
+            {
+                var estoques = await _estoqueService.GetAllEstoquesAsync(idEmpresa);
+                if (estoques == null)
+                {
+                    return NotFound();
+                }
+                return Ok(estoques);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // GET: api/EnderecoProduto
+        /// <summary>
+        /// EnderecoProduto/GET/ID
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("api/id/[controller]")]
+        public async Task<ActionResult> GetEnderecoProduto(double empresaId, double id)
+        {
+            int idEmpresa = (int)empresaId;
+            int idEnderecoProduto = (int)id;
+            try
+            {
+                var estoque = await _estoqueService.GetEstoqueByIdAsync(idEmpresa, idEnderecoProduto);
+                if (estoque == null)
+                {
+                    return NotFound();
+                }
+                return Ok(estoque);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // POST: api/EnderecoProduto
+        /// <summary>
+        /// EnderecoProduto/POST
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult> PostEnderecoProduto(EnderecoProdutoDTO model)
+        {
+            try
+            {
+                var cliente = await _estoqueService.AddEnderecoProduto(model);
+                if (cliente == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // PUT: api/EnderecoProduto
+        /// <summary>
+        /// EnderecoProduto/PUT
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("api/[controller]")]
+        public async Task<IActionResult> PutEnderecoProduto(EstoqueDTO model)
+        {
+            try
+            {
+                var estoque = await _estoqueService.UpdateEstoque(model.EmpresaId, model.Id, model.Quantidade);
+                if (estoque == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(estoque);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // DELETE: api/EnderecoProduto
+        /// <summary>
+        /// EnderecoProduto/DELETE
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpDelete("api/[controller]")]
+        public async Task<IActionResult> DeleteEnderecoProduto(int empresaId, int id)
+        {
+            try
+            {
+                if (await _estoqueService.DeleteEstoque(empresaId, id))
+                {
+                    return Ok(new { message = MensagemDeSucesso.EstoqueDeletado });
                 }
                 else
                 {

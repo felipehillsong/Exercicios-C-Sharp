@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RetaguardaESilva.Domain.Models
+namespace RetaguardaESilva.Application.DTO
 {
-    public class EnderecoProduto
+    public class EnderecoProdutoDTO
     {
         public int Id { get; set; }
         public string NomeEndereco { get; set; }

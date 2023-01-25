@@ -25,8 +25,6 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IClientePersist, ClientePersist>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 builder.Services.AddScoped<IEmpresaPersist, EmpresaPersist>();
-builder.Services.AddScoped<IEnderecoProdutoService, EnderecoProdutoService>();
-builder.Services.AddScoped<IEnderecoProdutoPersist, EnderecoProdutoPersist>();
 builder.Services.AddScoped<IEstoqueService, EstoqueService>();
 builder.Services.AddScoped<IEstoquePersist, EstoquePersist>();
 builder.Services.AddScoped<IFornecedorService, FornecedorService>();
