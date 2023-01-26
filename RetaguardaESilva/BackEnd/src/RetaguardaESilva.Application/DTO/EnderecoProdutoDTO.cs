@@ -13,6 +13,17 @@ namespace RetaguardaESilva.Application.DTO
         public int ProdutoId { get; set; }
         public int EstoqueId { get; set; }
         public int EmpresaId { get; set; }
+        public bool Ativo { get; set; }
         public DateTime? DataCadastroEnderecoProduto { get; set; }
+    }
+
+    public class EnderecoProdutoCreateDTO : EnderecoProdutoDTO
+    {
+   
+    }
+
+    public class EnderecoProdutoUpdateDTO : EnderecoProdutoDTO
+    {
+
     }
 }

@@ -165,7 +165,7 @@ namespace RetaguardaESilva.Controllers
         /// <returns></returns>
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> PostEnderecoProduto(EnderecoProdutoDTO model)
+        public async Task<ActionResult> PostEnderecoProduto(EnderecoProdutoCreateDTO model)
         {
             try
             {
@@ -190,11 +190,11 @@ namespace RetaguardaESilva.Controllers
         /// <returns></returns>
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("api/[controller]")]
-        public async Task<IActionResult> PutEnderecoProduto(EstoqueDTO model)
+        public async Task<IActionResult> PutEnderecoProduto(EnderecoProdutoUpdateDTO model)
         {
             try
             {
-                var estoque = await _estoqueService.UpdateEstoque(model.EmpresaId, model.Id, model.Quantidade);
+                var estoque = await _estoqueService.UpdateEnderecoProduto(model);
                 if (estoque == null)
                 {
                     return BadRequest();

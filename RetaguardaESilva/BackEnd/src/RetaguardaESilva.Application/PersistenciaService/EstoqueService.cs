@@ -140,7 +140,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<EnderecoProdutoDTO> AddEnderecoProduto(EnderecoProdutoDTO model)
+        public async Task<EnderecoProdutoCreateDTO> AddEnderecoProduto(EnderecoProdutoCreateDTO model)
         {
             try
             {
@@ -151,12 +151,15 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    var enderecoProdutoCreateDTO = _mapper.Map<EnderecoProduto>(model);
+                    enderecoProdutoCreateDTO.NomeEndereco = _validacoesPersist.AcertarNome(enderecoProdutoCreateDTO.NomeEndereco);
                     var enderecoProdutoDTO = _mapper.Map<EnderecoProduto>(model);
                     _geralPersist.Add<EnderecoProduto>(enderecoProdutoDTO);
                     if (await _geralPersist.SaveChangesAsync())
                     {
                         var retornoEnderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(enderecoProdutoDTO.EmpresaId, enderecoProdutoDTO.Id);
-                        return _mapper.Map<EnderecoProdutoDTO>(retornoEnderecoProduto);
+                        return _mapper.Map<EnderecoProdutoCreateDTO>(retornoEnderecoProduto);
                     }
                     return null;
                 }
@@ -167,28 +170,30 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<EnderecoProduto> UpdateEnderecoProduto(int empresaId, int enderecoProdutoId, EnderecoProduto model)
+        public async Task<EnderecoProdutoUpdateDTO> UpdateEnderecoProduto(EnderecoProdutoUpdateDTO model)
         {
             try
             {
-                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(model.EmpresaId, model.Id);
                 if (enderecoProduto == null)
                 {
                     return null;
                 }
                 else
                 {
-                    if (await _validacoesPersist.ExisteEnderecoProduto(empresaId, model.NomeEndereco, true))
+                    if (await _validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.NomeEndereco, true))
                     {
                         throw new Exception("Você esta tentando atualizar para um endereço existente!");
                     }
                     else
                     {
-                        _geralPersist.Update(model);
+                        var enderecoProdutoUpdateDTO = _mapper.Map<EnderecoProduto>(model);
+                        enderecoProdutoUpdateDTO.NomeEndereco = _validacoesPersist.AcertarNome(enderecoProdutoUpdateDTO.NomeEndereco);
+                        _geralPersist.Update(enderecoProdutoUpdateDTO);
                         if (await _geralPersist.SaveChangesAsync())
                         {
-                            model.Id = enderecoProduto.Id;
-                            return await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, model.Id);
+                            var retornoEnderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(model.EmpresaId, model.Id);
+                            return _mapper.Map<EnderecoProdutoUpdateDTO>(retornoEnderecoProduto);
                         }
                         return null;
                     }

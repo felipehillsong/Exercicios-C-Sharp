@@ -7,8 +7,8 @@ export class AuthGuardsEmpresaEditarService implements CanActivate {
 
   constructor(private authService: AuthService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    var visualizarEmpresa = this.authService.permissoesDoUsuario()[0].empresaEditar;
-    return visualizarEmpresa;
+    var empresaEditar = this.authService.permissoesDoUsuario()[0].empresaEditar;
+    return empresaEditar;
   }
 
 }

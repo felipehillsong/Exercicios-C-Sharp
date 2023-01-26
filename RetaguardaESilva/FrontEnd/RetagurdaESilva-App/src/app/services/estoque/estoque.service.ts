@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
+import { EnderecoProduto } from 'src/app/models/enderecoProduto';
 import { Estoque } from 'src/app/models/estoque';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './../login/auth.service';
@@ -28,6 +29,22 @@ public getEstoquesById(id : number) : Observable<Estoque>{
 
 public delete(id : number) : Observable<any>{
   return this.http.delete<string>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+}
+
+public addEnderecoProduto(enderecoProduto: EnderecoProduto): Observable<EnderecoProduto> {
+  return this.http.post<EnderecoProduto>(this.baseURL, enderecoProduto).pipe(take(1));
+}
+
+public getEnderecoProdutoById(id : number) : Observable<EnderecoProduto>{
+  return this.http.get<EnderecoProduto>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+}
+
+public editEnderecoProduto(enderecoProduto:EnderecoProduto): Observable<EnderecoProduto> {
+  return this.http.put<EnderecoProduto>(this.baseURLGetUpdateDelete, enderecoProduto).pipe(take(1));
+}
+
+public getEnderecoProduto(empresaId: number) : Observable<EnderecoProduto[]>{
+  return this.http.get<EnderecoProduto[]>(`${this.baseURL}empresaId=${empresaId}`).pipe(take(1));
 }
 
 }

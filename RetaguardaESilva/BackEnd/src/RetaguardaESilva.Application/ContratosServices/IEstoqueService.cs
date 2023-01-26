@@ -14,8 +14,8 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<bool> DeleteEstoque(int empresaId, int estoqueId);
         Task<IEnumerable<EstoqueViewModelDTO>> GetAllEstoquesAsync(int empresaId);
         Task<EstoqueViewModelUpdateDTO> GetEstoqueByIdAsync(int empresaId, int estoqueId);
-        Task<EnderecoProdutoDTO> AddEnderecoProduto(EnderecoProdutoDTO model);
-        Task<EnderecoProduto> UpdateEnderecoProduto(int empresaId, int enderecoProdutoId, EnderecoProduto model);
+        Task<EnderecoProdutoCreateDTO> AddEnderecoProduto(EnderecoProdutoCreateDTO model);
+        Task<EnderecoProdutoUpdateDTO> UpdateEnderecoProduto(EnderecoProdutoUpdateDTO model);
         Task<bool> DeleteEnderecoProduto(int empresaId, int enderecoProdutoId);        
         Task<IEnumerable<EnderecoProduto>> GetAllEnderecosProdutosAsync(int empresaId);
         Task<EnderecoProduto> GetEnderecoProdutoByIdAsync(int empresaId, int enderecoProdutoId);

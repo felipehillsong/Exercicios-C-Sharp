@@ -835,7 +835,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             if (isUpdate)
             {
-                var nomeEnderecoProdutoUpdate = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId != empresaId);
+                var nomeEnderecoProdutoUpdate = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId == empresaId);
 
                 if (nomeEnderecoProdutoUpdate == null)
                 {
@@ -849,7 +849,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
             else
             {
-                var nomeEnderecoProduto = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco);
+                var nomeEnderecoProduto = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId == empresaId);
                 if (nomeEnderecoProduto == null)
                 {
                     return false;
