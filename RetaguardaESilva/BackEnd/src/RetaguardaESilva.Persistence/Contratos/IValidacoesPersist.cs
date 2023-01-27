@@ -27,7 +27,7 @@ namespace RetaguardaESilva.Persistence.Contratos
         UsuarioViewModel RetornarUsuarioId(int usuarioId);
         UsuarioViewModel RetornarFuncionarioUsuarioId(int funcionarioId);
         IEnumerable<FuncionariosUsuariosViewModel> RetornarFuncionariosUsuario(int empresaId);
-        IEnumerable<EstoqueProdutoViewModel> RetornarProdutosEstoque(int empresaId);
+        IEnumerable<EstoqueViewModelEnderecoProduto> RetornarProdutosEstoque(int empresaId);
         EstoqueProdutoViewModelUpdate RetornarProdutosEstoqueId(int empresaId, int estoqueId);
     }
 }

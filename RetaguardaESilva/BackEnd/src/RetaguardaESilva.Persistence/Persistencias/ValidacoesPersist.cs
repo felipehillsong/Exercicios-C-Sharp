@@ -1056,13 +1056,14 @@ namespace RetaguardaESilva.Persistence.Persistencias
             return funcionariosUsuariosRetorno;
         }
 
-        public IEnumerable<EstoqueProdutoViewModel> RetornarProdutosEstoque(int empresaId)
+        public IEnumerable<EstoqueViewModelEnderecoProduto> RetornarProdutosEstoque(int empresaId)
         {
-            List<EstoqueProdutoViewModel> EstoqueProdutoRetorno = new List<EstoqueProdutoViewModel>();
+            List<EstoqueViewModelEnderecoProduto> EstoqueProdutoRetorno = new List<EstoqueViewModelEnderecoProduto>();
             var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId).ToList();
             var produtos = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId).ToList();
             var fornecedor = _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId).ToList();
             var empresa = _context.Empresa.AsNoTracking().Where(em => em.Id == empresaId).ToList();
+            var enderecoProduto = _context.EnderecoProduto.AsNoTracking().Where(ep => ep.EmpresaId == empresaId).ToList();
             var produtosSemFornecedores = estoques.Where(e => e.FornecedorId == (int)ZerarIdFornecedor.FornecedorId);
             if (produtosSemFornecedores != null)
             {
@@ -1083,7 +1084,19 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                                     };
                 foreach (var produtosSemFornecedor in produtosEstoquesSemFornecedor)
                 {
-                    EstoqueProdutoRetorno.Add(new EstoqueProdutoViewModel(produtosSemFornecedor.Id, produtosSemFornecedor.EmpresaId, produtosSemFornecedor.EmpresaNome, produtosSemFornecedor.FornecedorId, produtosSemFornecedor.FornecedorNome, produtosSemFornecedor.ProdutoId, produtosSemFornecedor.ProdutoNome, produtosSemFornecedor.Quantidade));
+                    foreach (var item in enderecoProduto)
+                    {
+                        if (item.EstoqueId == produtosSemFornecedor.Id)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosSemFornecedor.Id, produtosSemFornecedor.EmpresaId, produtosSemFornecedor.EmpresaNome, produtosSemFornecedor.FornecedorId, produtosSemFornecedor.FornecedorNome, produtosSemFornecedor.ProdutoId, produtosSemFornecedor.ProdutoNome, produtosSemFornecedor.Quantidade, item.Id));
+                        }
+                        else
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosSemFornecedor.Id, produtosSemFornecedor.EmpresaId, produtosSemFornecedor.EmpresaNome, produtosSemFornecedor.FornecedorId, produtosSemFornecedor.FornecedorNome, produtosSemFornecedor.ProdutoId, produtosSemFornecedor.ProdutoNome, produtosSemFornecedor.Quantidade, (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco));
+                        }
+                        
+                    }
+                    
                 }
             }
 
@@ -1105,7 +1118,18 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                    };
             foreach (var produtosComFornecedor in produtosEstoques)
             {
-                EstoqueProdutoRetorno.Add(new EstoqueProdutoViewModel(produtosComFornecedor.Id, produtosComFornecedor.EmpresaId, produtosComFornecedor.EmpresaNome, produtosComFornecedor.FornecedorId, produtosComFornecedor.FornecedorNome, produtosComFornecedor.ProdutoId, produtosComFornecedor.ProdutoNome, produtosComFornecedor.Quantidade));
+                foreach (var item in enderecoProduto)
+                {
+                    if (item.EstoqueId == produtosComFornecedor.Id)
+                    {
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosComFornecedor.Id, produtosComFornecedor.EmpresaId, produtosComFornecedor.EmpresaNome, produtosComFornecedor.FornecedorId, produtosComFornecedor.FornecedorNome, produtosComFornecedor.ProdutoId, produtosComFornecedor.ProdutoNome, produtosComFornecedor.Quantidade, item.Id));
+                    }
+                    else
+                    {
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosComFornecedor.Id, produtosComFornecedor.EmpresaId, produtosComFornecedor.EmpresaNome, produtosComFornecedor.FornecedorId, produtosComFornecedor.FornecedorNome, produtosComFornecedor.ProdutoId, produtosComFornecedor.ProdutoNome, produtosComFornecedor.Quantidade, (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco));
+                    }
+                }
+                
             }
             return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
         }

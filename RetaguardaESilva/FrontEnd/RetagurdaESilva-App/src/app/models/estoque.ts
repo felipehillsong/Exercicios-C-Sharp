@@ -7,4 +7,5 @@ fornecedorNome:string;
 produtoId:number;
 produtoNome:string;
 quantidade:number;
+enderecoProdutoId:number;
 }

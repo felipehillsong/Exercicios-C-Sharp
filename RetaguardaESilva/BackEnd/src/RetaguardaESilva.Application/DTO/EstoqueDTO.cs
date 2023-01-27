@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using RetaguardaESilva.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace RetaguardaESilva.Application.DTO
         public int ProdutoId { get; set; }
         public string ProdutoNome { get; set; }
         public int Quantidade { get; set; }
+        public int EnderecoProdutoId { get; set; }
 
         public EstoqueViewModelDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade)
         {
@@ -36,6 +39,18 @@ namespace RetaguardaESilva.Application.DTO
             this.ProdutoId = produtoId;
             this.ProdutoNome = produtoNome;
             this.Quantidade = quantidade;
+        }
+        public EstoqueViewModelDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId)
+        {
+            this.Id = estoqueId;
+            this.EmpresaId = empresaId;
+            this.EmpresaNome = empresaNome;
+            this.FornecedorId = fornecedorId;
+            this.FornecedorNome = fornecedorNome;
+            this.ProdutoId = produtoId;
+            this.ProdutoNome = produtoNome;
+            this.Quantidade = quantidade;
+            this.EnderecoProdutoId = enderecoProdutoId;
         }
     }
 

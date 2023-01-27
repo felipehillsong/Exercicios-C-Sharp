@@ -107,7 +107,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);
                     foreach (var produtoEstoque in estoqueProduto)
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade));
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.EnderecoProdutoId));
                     }
                     return EstoqueProdutoRetorno;
                 }
