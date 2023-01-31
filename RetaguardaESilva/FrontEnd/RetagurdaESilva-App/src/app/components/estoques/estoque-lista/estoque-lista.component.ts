@@ -34,6 +34,9 @@ export class EstoqueListaComponent implements OnInit {
   visualizarDetalhe!:boolean;
   visualizarExcluir!:boolean;
   visualizarAdicionarEndereco!:boolean;
+  visualizarEditarEndereco!:boolean;
+  visualizarDetalheEndereco!:boolean;
+  visualizarExcluirEndereco!:boolean;
 
   public get estoqueLista():string{
     return this._estoqueListado;
@@ -130,6 +133,9 @@ export class EstoqueListaComponent implements OnInit {
     this.visualizarDetalhe = validar[1];
     this.visualizarExcluir = validar[2];
     this.visualizarAdicionarEndereco = validar[3];
+    this.visualizarEditarEndereco = validar[4];
+    this.visualizarDetalheEndereco = validar[5];
+    this.visualizarExcluirEndereco = validar[6];
   }
 
 }
