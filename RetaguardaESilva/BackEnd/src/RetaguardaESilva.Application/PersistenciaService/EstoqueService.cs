@@ -70,6 +70,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 var estoque = await _estoquePersist.GetEstoqueByIdAsync(empresaId, estoqueId);
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoDeleteByIdAsync(empresaId, estoqueId);
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, estoque.ProdutoId);
                 if (estoque == null || produto == null)
                 {
@@ -77,13 +78,34 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    _geralPersist.Delete<Estoque>(estoque);
-                    if(await _geralPersist.SaveChangesAsync())
+                    if (enderecoProduto != null)
                     {
-                        _geralPersist.Delete<Produto>(produto);
-                        return await _geralPersist.SaveChangesAsync();
+                        _geralPersist.Delete<EnderecoProduto>(enderecoProduto);
+                        if (await _geralPersist.SaveChangesAsync())
+                        {
+                            _geralPersist.Delete<Estoque>(estoque);
+                            if (await _geralPersist.SaveChangesAsync())
+                            {
+                                _geralPersist.Delete<Produto>(produto);
+                                return await _geralPersist.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        return false;
                     }
-                    return false;
+                    else
+                    {
+                        _geralPersist.Delete<Estoque>(estoque);
+                        if (await _geralPersist.SaveChangesAsync())
+                        {
+                            _geralPersist.Delete<Produto>(produto);
+                            return await _geralPersist.SaveChangesAsync();
+                        }
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)

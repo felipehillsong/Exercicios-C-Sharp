@@ -144,7 +144,7 @@ namespace RetaguardaESilva.Controllers
             int idEnderecoProduto = (int)id;
             try
             {
-                var estoque = await _estoqueService.GetEstoqueByIdAsync(idEmpresa, idEnderecoProduto);
+                var estoque = await _estoqueService.GetEnderecoProdutoByIdAsync(idEmpresa, idEnderecoProduto);
                 if (estoque == null)
                 {
                     return NotFound();
@@ -219,7 +219,7 @@ namespace RetaguardaESilva.Controllers
         {
             try
             {
-                if (await _estoqueService.DeleteEstoque(empresaId, id))
+                if (await _estoqueService.DeleteEnderecoProduto(empresaId, id))
                 {
                     return Ok(new { message = MensagemDeSucesso.EstoqueDeletado });
                 }

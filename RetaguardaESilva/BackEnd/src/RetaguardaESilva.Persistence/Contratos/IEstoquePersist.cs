@@ -14,5 +14,6 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<Estoque> GetEstoqueByIdAsync(int empresaId, int estoqueId);
         Task<IEnumerable<EnderecoProduto>> GetAllEnderecosProdutosAsync(int empresaId);
         Task<EnderecoProduto> GetEnderecoProdutoByIdAsync(int empresaId, int enderecoProdutoId);
+        Task<EnderecoProduto> GetEnderecoProdutoDeleteByIdAsync(int empresaId, int estoqueId);
     }
 }

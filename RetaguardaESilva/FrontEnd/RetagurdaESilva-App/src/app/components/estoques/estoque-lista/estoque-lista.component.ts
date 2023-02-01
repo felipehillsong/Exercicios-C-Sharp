@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Botoes } from 'src/app/enums/botoes';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
+import { EnderecoProduto } from 'src/app/models/enderecoProduto';
 import { Estoque } from 'src/app/models/estoque';
 import { Login } from 'src/app/models/login';
 import { EstoqueService } from 'src/app/services/estoque/estoque.service';
@@ -28,8 +29,11 @@ export class EstoqueListaComponent implements OnInit {
   public estoques: Estoque[] = [];
   private _estoqueListado = '';
   estoquesFiltrados: Estoque[] = [];
+  enderecoProduto = {} as EnderecoProduto;
   produtoNome!: string;
+  enderecoNome!:string;
   estoqueId!: number;
+  enderecoProdutoId!:number;
   visualizarEditar!:boolean;
   visualizarDetalhe!:boolean;
   visualizarExcluir!:boolean;
@@ -64,14 +68,11 @@ export class EstoqueListaComponent implements OnInit {
     this.estoqueService.getEstoques(this.authService.empresaId()).subscribe(
       (_estoques: Estoque[]) => {
         this.estoques = _estoques;
+        console.log(this.estoques);
         this.estoquesFiltrados = this.estoques;
       },
       error => console.log(error)
     );
-  }
-
-  adicionarEndereco(id: number): void {
-    this.router.navigate([`enderecosProdutos/criar/${id}`]);
   }
 
   editar(id: number): void {
@@ -82,11 +83,42 @@ export class EstoqueListaComponent implements OnInit {
     this.router.navigate([`estoques/detalhe/${id}`]);
   }
 
+  adicionarEndereco(id: number): void {
+    this.router.navigate([`enderecosProdutos/criar/${id}`]);
+  }
+
+  editarEndereco(id: number): void {
+    this.router.navigate([`enderecosProdutos/editar/${id}`]);
+  }
+
+  detalheEndereco(id: number): void {
+    this.router.navigate([`enderecosProdutos/detalhe/${id}`]);
+  }
+
+  excluirEndereco(event: any, template: TemplateRef<any>, enderecoProdutoId:number):void{
+    this.estoqueService.getEnderecoProdutoById(enderecoProdutoId).subscribe(
+      (_enderecoProduto: EnderecoProduto) => {
+        this.enderecoProduto = _enderecoProduto;
+        this.enderecoProdutoId = this.enderecoProduto.id;
+        this.openModalEnderecoProduto(event, template, this.enderecoProduto.nomeEndereco, enderecoProdutoId);
+        this._changeDetectorRef.markForCheck();
+      },
+      error => console.log(error)
+    );
+  }
+
   openModal(event: any, template: TemplateRef<any>, produtoNome: string, estoqueId: number): void {
     event.stopPropagation();
     this.produtoNome = produtoNome;
     this.estoqueId = estoqueId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  openModalEnderecoProduto(event: any, templateEnderecoProduto: TemplateRef<any>, enderecoNome: string, estoqueId: number): void {
+    event.stopPropagation();
+    this.enderecoNome = enderecoNome;
+    this.estoqueId = estoqueId;
+    this.modalRef = this.modalService.show(templateEnderecoProduto, {class: 'modal-sm'});
   }
 
   confirm(): void {
@@ -107,7 +139,29 @@ export class EstoqueListaComponent implements OnInit {
     ).add(() => this.spinner.hide());
   }
 
+  confirmEnderecoProduto(): void {
+    this.modalRef?.hide();
+    this.spinner.show();
+    this.estoqueService.deleteEnderecoProduto(this.enderecoProdutoId).subscribe(
+      (result: any) =>{
+        console.log(result.message);
+          this.toastr.success(result.message);
+          this.getEstoques();
+          this.estoques = this.estoques.filter(e => e.id !== this.estoqueId);
+          this._changeDetectorRef.markForCheck();
+      },
+      (error: any) =>{
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    ).add(() => this.spinner.hide());
+  }
+
   decline(): void {
+    this.modalRef?.hide();
+  }
+
+  declineEnderecoProduto(): void {
     this.modalRef?.hide();
   }
 

@@ -20,7 +20,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
         public async Task<IEnumerable<Estoque>> GetAllEstoqueClienteAsync(int empresaId)
         {
-            return await _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId).OrderBy(e => e.Id).ToListAsync();            
+            return await _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId).OrderBy(e => e.Id).ToListAsync();
         }
 
         public async Task<Estoque> GetEstoqueByProdutoIdAsync(int empresaId, int produtoId)
@@ -30,7 +30,11 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
         public async Task<Estoque> GetEstoqueByIdAsync(int empresaId, int estoqueId)
         {
-            return await _context.Estoque.AsNoTracking().Where(e => e.Id == estoqueId && e.EmpresaId == empresaId).FirstOrDefaultAsync();            
+            return await _context.Estoque.AsNoTracking().Where(e => e.Id == estoqueId && e.EmpresaId == empresaId).FirstOrDefaultAsync();
+        }
+        public async Task<EnderecoProduto> GetEnderecoProdutoDeleteByIdAsync(int empresaId, int estoqueId)
+        {
+            return await _context.EnderecoProduto.AsNoTracking().Where(ep => ep.EstoqueId == estoqueId && ep.EmpresaId == empresaId).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<EnderecoProduto>> GetAllEnderecosProdutosAsync(int empresaId)
