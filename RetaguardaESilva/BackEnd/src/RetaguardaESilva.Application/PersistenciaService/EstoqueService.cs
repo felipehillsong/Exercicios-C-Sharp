@@ -165,11 +165,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
         public async Task<EnderecoProdutoCreateDTO> AddEnderecoProduto(EnderecoProdutoCreateDTO model)
         {
             try
-            {
-                var endereco = await _validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.NomeEndereco, false);
-                if (endereco == true)
+            {    
+                if (_validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.Id, model.NomeEndereco, false, out string mensagem))
                 {
-                    throw new Exception("Endereço existente!");
+                    throw new Exception(mensagem);
                 }
                 else
                 {
@@ -203,9 +202,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    if (await _validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.NomeEndereco, true))
+                    if (_validacoesPersist.ExisteEnderecoProduto(model.EmpresaId, model.Id, model.NomeEndereco, true, out string mensagem))
                     {
-                        throw new Exception("Você esta tentando atualizar para um endereço existente!");
+                        throw new Exception(mensagem);
                     }
                     else
                     {

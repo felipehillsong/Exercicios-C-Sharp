@@ -8,6 +8,7 @@ export enum Titulos {
   detalheEstoque = 'Detalhe do Estoque',
   listaEmpresas = 'Lista de Empresas',
   cadastroEnderecoProduto = 'Cadastro de Endereço do Produto',
+  editarEnderecoProduto = 'Editar Endereço do Produto',
   cadastroEmpresa = 'Cadastro de Empresa',
   editarEmpresa = 'Editar Empresa',
   detalheEmpresa = 'Detalhe da Empresa',

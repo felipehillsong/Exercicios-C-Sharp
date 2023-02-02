@@ -17,7 +17,7 @@ namespace RetaguardaESilva.Persistence.Contratos
         bool ExisteUsuario(int empresaId, int usuarioId, string email, bool isUpdate, out string mensagem);
         Produto ExisteProduto(int empresaId, string nomeProduto, decimal precoCompra, decimal precoVenda, double codigo, out string mensagem);
         bool ExisteProdutoUpdate(Produto produtoBanco, Produto produtoView, out Produto produtoAtualizaQuantidade, out string mensagem);
-        Task<bool> ExisteEnderecoProduto(int empresaId, string nomeEndereco, bool isUpdate);
+        bool ExisteEnderecoProduto(int empresaId, int enderecoId, string nomeEndereco, bool isUpdate, out string mensagem);
         bool ExisteEmpresa(int empresaId, int id, string CPFCNPJ, string inscricaoMunicipal, string inscricaoEstadual, bool isUpdate, out string mensagem);
         bool ExisteEmpresaCadastrada(int empresaId);
         bool VerificaAdministrador(int empresaId, out string mensagem);

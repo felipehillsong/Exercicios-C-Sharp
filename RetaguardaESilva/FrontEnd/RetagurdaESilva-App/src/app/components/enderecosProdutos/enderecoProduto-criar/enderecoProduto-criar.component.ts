@@ -56,7 +56,7 @@ export class EnderecoProdutoCriarComponent implements OnInit {
       this.enderecoProduto.produtoId = this.produtoId;
       this.enderecoProduto.estoqueId = this.estoqueId;
       this.estoqueService.addEnderecoProduto(this.enderecoProduto).subscribe(() => {
-        this.router.navigate(['enderecosProdutos/lista']);
+        this.router.navigate(['estoques/lista']);
       },
       (error: any) => {
         console.error(error);

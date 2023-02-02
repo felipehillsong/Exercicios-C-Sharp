@@ -831,34 +831,38 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
         }
 
-        public async Task<bool> ExisteEnderecoProduto(int empresaId, string nomeEndereco, bool isUpdate)
+        public bool ExisteEnderecoProduto(int empresaId, int enderecoId, string nomeEndereco, bool isUpdate, out string mensagem)
         {
             if (isUpdate)
             {
-                var nomeEnderecoProdutoUpdate = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId == empresaId);
+                var nomeEnderecoProdutoUpdate = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId == empresaId && ep.Id != enderecoId);
 
                 if (nomeEnderecoProdutoUpdate == null)
                 {
+                    mensagem = MensagemDeSucesso.AtualizarOK;
                     return false;
                 }
                 else if (nomeEnderecoProdutoUpdate.NomeEndereco == nomeEndereco)
                 {
+                    mensagem = MensagemDeErro.EnderecoProdutoSendoUsado;
                     return true;
                 }
-                return true;
             }
             else
             {
                 var nomeEnderecoProduto = _context.EnderecoProduto.AsNoTracking().FirstOrDefault(ep => ep.NomeEndereco == nomeEndereco && ep.EmpresaId == empresaId);
                 if (nomeEnderecoProduto == null)
                 {
+                    mensagem = MensagemDeSucesso.AtualizarOK;
                     return false;
                 }
                 else if (nomeEnderecoProduto.NomeEndereco == nomeEndereco)
                 {
+                    mensagem = MensagemDeErro.EnderecoProdutoSendoUsado;
                     return true;
                 }
             }
+            mensagem = MensagemDeErro.ErroAoAtualizarCriar;
             return false;
         }
 
