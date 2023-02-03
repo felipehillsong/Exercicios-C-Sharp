@@ -19,11 +19,25 @@ namespace RetaguardaESilva.Application.DTO
 
     public class EnderecoProdutoCreateDTO : EnderecoProdutoDTO
     {
-   
+
     }
 
     public class EnderecoProdutoUpdateDTO : EnderecoProdutoDTO
     {
 
+    }
+
+    public class EnderecoProdutoViewModelDTO
+    {
+        public string ProdutoNome { get; set; }
+        public string NomeEndereco { get; set; }
+        public bool Ativo { get; set; }
+
+        public EnderecoProdutoViewModelDTO(string produtoNome, string nomeEndereco, bool ativo)
+        {
+            this.ProdutoNome = produtoNome;
+            this.NomeEndereco = nomeEndereco;
+            this.Ativo = ativo;
+        }
     }
 }

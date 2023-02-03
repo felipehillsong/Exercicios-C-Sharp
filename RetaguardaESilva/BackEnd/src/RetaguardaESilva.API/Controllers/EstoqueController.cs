@@ -117,7 +117,7 @@ namespace RetaguardaESilva.Controllers
             int idEmpresa = (int)empresaId;
             try
             {
-                var estoques = await _estoqueService.GetAllEstoquesAsync(idEmpresa);
+                var estoques = await _estoqueService.GetAllEnderecosProdutosAsync(idEmpresa);
                 if (estoques == null)
                 {
                     return NotFound();

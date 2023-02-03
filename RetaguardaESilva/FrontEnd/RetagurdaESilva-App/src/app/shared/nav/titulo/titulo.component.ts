@@ -38,7 +38,7 @@ export class TituloComponent implements OnInit {
         break;
       case Permissoes.CadastroEstoque:
         this.visualizarEnderecoProduto = this.authService.visualizarEnderecoProduto();
-        this.validarCrud.emit([this.authService.visualizarEstoqueEditar(), this.authService.visualizarEstoqueDetalhe(), this.authService.visualizarEstoqueExcluir(), this.authService.visualizarEnderecoProdutoCadastro(), this.authService.visualizarEnderecoProdutoEditar(), this.authService.visualizarEnderecoProdutoDetalhe(), this.authService.visualizarEnderecoProdutoExcluir()]);
+        this.validarCrud.emit([this.authService.visualizarEnderecoProduto(), this.authService.visualizarEstoqueEditar(), this.authService.visualizarEstoqueDetalhe(), this.authService.visualizarEstoqueExcluir(), this.authService.visualizarEnderecoProdutoCadastro(), this.authService.visualizarEnderecoProdutoEditar(), this.authService.visualizarEnderecoProdutoDetalhe(), this.authService.visualizarEnderecoProdutoExcluir()]);
         break;
       case Permissoes.CadastroTransportador:
         this.visualizarCadastros = this.authService.visualizarTransportadorCadastro();

@@ -247,7 +247,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<EnderecoProduto>> GetAllEnderecosProdutosAsync(int empresaId)
+        public async Task<IEnumerable<EnderecoProdutoViewModelDTO>> GetAllEnderecosProdutosAsync(int empresaId)
         {
             try
             {
@@ -258,7 +258,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    return enderecosProdutos;
+                    List<EnderecoProdutoViewModelDTO> enderecoProdutoRetorno = new List<EnderecoProdutoViewModelDTO>();
+                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);
+                    foreach (var produtoEstoque in estoqueProduto)
+                    {
+                        if (produtoEstoque.EnderecoProdutoId != null && produtoEstoque.EnderecoProdutoId != (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco)
+                        {
+                            enderecoProdutoRetorno.Add(new EnderecoProdutoViewModelDTO(produtoEstoque.ProdutoNome, produtoEstoque.NomeEndereco, produtoEstoque.Ativo));
+                        }
+                    }
+                    return enderecoProdutoRetorno;
                 }
             }
             catch (Exception ex)

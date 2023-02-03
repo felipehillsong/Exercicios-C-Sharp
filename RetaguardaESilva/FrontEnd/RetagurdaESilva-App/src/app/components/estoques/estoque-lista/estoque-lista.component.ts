@@ -68,7 +68,6 @@ export class EstoqueListaComponent implements OnInit {
     this.estoqueService.getEstoques(this.authService.empresaId()).subscribe(
       (_estoques: Estoque[]) => {
         this.estoques = _estoques;
-        console.log(this.estoques);
         this.estoquesFiltrados = this.estoques;
       },
       error => console.log(error)

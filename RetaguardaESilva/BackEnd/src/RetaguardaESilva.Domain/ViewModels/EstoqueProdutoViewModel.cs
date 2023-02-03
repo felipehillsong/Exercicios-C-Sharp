@@ -46,10 +46,14 @@ namespace RetaguardaESilva.Domain.ViewModels
     public class EstoqueViewModelEnderecoProduto : EstoqueProdutoViewModel
     {
         public int EnderecoProdutoId { get; set; }
+        public string NomeEndereco { get; set; }
+        public bool Ativo { get; set; }
 
-        public EstoqueViewModelEnderecoProduto(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        public EstoqueViewModelEnderecoProduto(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId, string nomeEndereco, bool ativo) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
         {
             this.EnderecoProdutoId = enderecoProdutoId;
+            this.NomeEndereco = nomeEndereco;
+            this.Ativo = ativo;  
         }
 
     }

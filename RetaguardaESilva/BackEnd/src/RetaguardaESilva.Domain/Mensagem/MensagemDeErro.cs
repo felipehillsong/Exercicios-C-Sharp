@@ -76,7 +76,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ErroCEP = "Algum erro ocorreu, possivelmente CEP invalido, ou vazio, ou erro na API dos correios";
         public const string ErroSenha = "Senhas não conferem";
         public const string LoginErro = "Email ou senha errado";
-        public const string ProdutoSemFornecedor = "Produto sem fornecedor";
         public const string EnderecoProdutoSendoUsado = "Endereço sendo usado por outro estoque";
     }
 }

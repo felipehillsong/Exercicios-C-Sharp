@@ -13,7 +13,7 @@ export class EstoqueService {
   baseURL = environment.apiURL + 'api/Estoque?';
   baseURLGetUpdateDelete = environment.apiURL + 'api/Estoque';
   baseURLGetEnderecoProdutoId = environment.apiURL + 'api/Estoque/api/id/Estoque?';
-  baseURLDeleteEnderecoProdutoId = environment.apiURL + 'api/Estoque/api/Estoque?';
+  baseURLGetDeleteEnderecoProdutoId = environment.apiURL + 'api/Estoque/api/Estoque?';
   baseURLUpdateEnderecoProdutoId = environment.apiURL + 'api/Estoque/api/Estoque';
 
 constructor(private http: HttpClient, private authService: AuthService) { }
@@ -47,11 +47,11 @@ public editEnderecoProduto(enderecoProduto:EnderecoProduto): Observable<Endereco
 }
 
 public getEnderecoProduto(empresaId: number) : Observable<EnderecoProduto[]>{
-  return this.http.get<EnderecoProduto[]>(`${this.baseURL}empresaId=${empresaId}`).pipe(take(1));
+  return this.http.get<EnderecoProduto[]>(`${this.baseURLGetDeleteEnderecoProdutoId}empresaId=${empresaId}`).pipe(take(1));
 }
 
 public deleteEnderecoProduto(id : number) : Observable<any>{
-  return this.http.delete<string>(`${this.baseURLDeleteEnderecoProdutoId}empresaId=${this.authService.empresaId()}&id=${id}`).pipe(take(1));
+  return this.http.delete<string>(`${this.baseURLGetDeleteEnderecoProdutoId}empresaId=${this.authService.empresaId()}&id=${id}`).pipe(take(1));
 }
 
 }
