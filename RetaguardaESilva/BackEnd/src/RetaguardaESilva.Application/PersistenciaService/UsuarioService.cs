@@ -579,7 +579,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 EstoqueEditar = permissaoDTO.EstoqueEditar,
                 EstoqueDetalhe = permissaoDTO.EstoqueDetalhe,
                 EstoqueExcluir = permissaoDTO.EstoqueExcluir,
-                VisualizarEnderecoProduto = permissaoDTO.VisualizarEstoque,
+                VisualizarEnderecoProduto = permissaoDTO.VisualizarEnderecoProduto,
                 EnderecoProdutoCadastro = permissaoDTO.EnderecoProdutoCadastro,
                 EnderecoProdutoEditar = permissaoDTO.EnderecoProdutoEditar,
                 EnderecoProdutoDetalhe = permissaoDTO.EnderecoProdutoDetalhe,

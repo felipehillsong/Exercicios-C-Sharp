@@ -211,9 +211,14 @@ public validation(): void {
 
   public todosEstoques(){
     if(this.permissoes.visualizarEstoque == true){
+      this.permissoes.visualizarEnderecoProduto = false
       this.permissoes.estoqueEditar = false;
       this.permissoes.estoqueDetalhe = false;
       this.permissoes.estoqueExcluir = false;
+      this.permissoes.enderecoProdutoCadastro = false;
+      this.permissoes.enderecoProdutoEditar = false;
+      this.permissoes.enderecoProdutoDetalhe = false;
+      this.permissoes.enderecoProdutoExcluir = false;
     }
   }
 
@@ -233,8 +238,9 @@ public validation(): void {
   }
 
   public liberarEnderecosProdutos(){
-    if(  this.permissoes.enderecoProdutoCadastro == false || this.permissoes.enderecoProdutoEditar == false || this.permissoes.enderecoProdutoDetalhe == false || this.permissoes.enderecoProdutoExcluir == false){
+    if(this.permissoes.enderecoProdutoCadastro == false || this.permissoes.enderecoProdutoEditar == false || this.permissoes.enderecoProdutoDetalhe == false || this.permissoes.enderecoProdutoExcluir == false){
       this.permissoes.visualizarEnderecoProduto = true;
+      this.permissoes.visualizarEstoque = true;
     }
   }
 

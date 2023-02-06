@@ -6,6 +6,7 @@ export interface EnderecoProduto {
   estoqueId:number;
   empresaId:number;
   ativo:boolean;
+  ativoView:string;
   dataCadastroEnderecoProduto:string;
 }
 

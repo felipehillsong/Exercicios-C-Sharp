@@ -19,9 +19,8 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
   styleUrls: ['./enderecoProduto-lista.component.scss']
 })
 export class EnderecoProdutoListaComponent implements OnInit {
-  titulo =  Titulos.listaEstoques;
-  iconClass = FontAwesome.listaEstoque;
-  novo = Botoes.listaEnderecoProduto;
+  titulo =  Titulos.listaEndrecoProduto;
+  iconClass = FontAwesome.listaEnderecoProduto;
   public enderecosProdutos: EnderecoProduto[] = [];
   enderecoProduto = {} as EnderecoProduto;
   enderecosProdutosFiltrados: EnderecoProduto[] = [];
@@ -41,7 +40,7 @@ export class EnderecoProdutoListaComponent implements OnInit {
   public filtrarEnderecosProdutos(filtrarPor:string):EnderecoProduto[]{
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.enderecosProdutos.filter(
-      (estoque:any) => estoque.produtoNome.toLocaleLowerCase().indexOf(filtrarPor) !== -1);
+      (estoque:any) => estoque.nomeEndereco.toLocaleLowerCase().indexOf(filtrarPor) !== -1);
   }
 
   constructor(private router: Router, private route: ActivatedRoute, public titu: TituloService, private fb: FormBuilder, private estoqueService: EstoqueService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
@@ -55,10 +54,25 @@ export class EnderecoProdutoListaComponent implements OnInit {
     this.estoqueService.getEnderecoProduto(this.authService.empresaId()).subscribe(
       (_enderecoProduto: EnderecoProduto[]) => {
         this.enderecosProdutos = _enderecoProduto;
+        this.PreencherAtivo(this.enderecosProdutos);
         this.enderecosProdutosFiltrados = this.enderecosProdutos;
       },
       error => console.log(error)
     );
+  }
+
+  public PreencherAtivo(ativo:EnderecoProduto[]):void{
+    for(var i = 0; i < ativo.length; i++){
+      if(ativo[i].ativo == true){
+        this.enderecosProdutos[i].ativoView = 'Ativo';
+      }else{
+        this.enderecosProdutos[i].ativoView = 'Inativo';
+      }
+    }
+  }
+
+  public Voltar(){
+    this.router.navigate(['estoques/lista']);
   }
 
   permissoesDeTela(){
@@ -74,8 +88,8 @@ export class EnderecoProdutoListaComponent implements OnInit {
     this.authService.visualizarUsuario();
     this.authService.visualizarVenda();
     this.nav.hide();
-    this.titu.hide();
-    this.titu.showTitulo();
+    this.titu.show();
+    this.titu.hideTitulo();
   }
 
 }

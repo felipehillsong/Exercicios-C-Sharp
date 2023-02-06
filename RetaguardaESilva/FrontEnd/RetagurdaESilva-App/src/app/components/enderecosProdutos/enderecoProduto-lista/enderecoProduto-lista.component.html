@@ -1,26 +1,29 @@
 <div class="form-inline">
-  <app-titulo [titulo]=titulo [iconClass]=iconClass [novo]=novo></app-titulo>
+  <br>
+  <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
+  <br>
+  <app-titulo [titulo]=titulo [iconClass]=iconClass></app-titulo>
   <br>
   <div class="card rounded shadow-sm p-3">
   <div class="input-group mb-2" id="inputPesquisa">
     <div class="input-group-prepend">
       <div class="input-group-text">Filtro: </div>
     </div>
-    <input type="text" class="form-control" placeholder="Pesquisar Produtos" [(ngModel)]="enderecoProdutoLista">
+    <input type="text" class="form-control" placeholder="Pesquisar Estoque" [(ngModel)]="enderecoProdutoLista">
   </div>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
+        <th>Nome do Endereço</th>
       <th>Nome do Produto</th>
-      <th>Nome do Endereço</th>
       <th>Ativo</th>
     </tr>
   </thead>
   <tbody *ngIf="enderecosProdutos && enderecosProdutos.length">
     <tr *ngFor="let enderecoProduto of enderecosProdutosFiltrados">
-      <td>{{enderecoProduto.produtoNome}}</td>
       <td>{{enderecoProduto.nomeEndereco}}</td>
-      <td>{{enderecoProduto.ativo}}</td>
+      <td>{{enderecoProduto.produtoNome}}</td>
+      <td>{{enderecoProduto.ativoView}}</td>
     </tr>
   </tbody>
   <tfoot *ngIf="!enderecosProdutos.length">

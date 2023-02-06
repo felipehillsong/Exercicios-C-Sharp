@@ -1,6 +1,7 @@
 export enum FontAwesome {
   listaCliente = 'fa-solid fa-handshake',
   listaEstoque = 'fa-solid fa-boxes-stacked',
+  listaEnderecoProduto = 'fa-solid fa-road',
   listaFornecedor = 'fa-solid fa-dolly',
   listaProduto = 'fa-solid fa-box',
   listaFuncionario = 'fa-solid fa-helmet-safety',
