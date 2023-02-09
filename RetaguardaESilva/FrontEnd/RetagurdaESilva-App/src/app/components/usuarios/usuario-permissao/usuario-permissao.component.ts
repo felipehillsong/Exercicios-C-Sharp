@@ -234,6 +234,9 @@ public validation(): void {
       this.permissoes.enderecoProdutoEditar = false;
       this.permissoes.enderecoProdutoDetalhe = false;
       this.permissoes.enderecoProdutoExcluir = false;
+      this.permissoes.visualizarEstoque = true;
+    }else if(this.permissoes.visualizarEnderecoProduto == false){
+      this.permissoes.visualizarEstoque = true;
     }
   }
 

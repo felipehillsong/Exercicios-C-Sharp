@@ -22,6 +22,7 @@ namespace RetaguardaESilva.Persistence.Data
         public DbSet<Funcionario> Funcionario { get; set; }
         public DbSet<Permissao> Permissao { get; set; }
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Transportador> Transportador { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
