@@ -23,6 +23,8 @@ namespace RetaguardaESilva.Persistence.Data
         public DbSet<Permissao> Permissao { get; set; }
         public DbSet<Produto> Produto { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<PedidoNota> PedidoNota { get; set; }
+        public DbSet<NotaFiscal> NotaFiscal { get; set; }
         public DbSet<Transportador> Transportador { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
