@@ -12,7 +12,10 @@ namespace RetaguardaESilva.Domain.Models
         public int PedidoNotaId { get; set; }
         public int ClienteId { get; set; }
         public int EmpresaId { get; set; }
+        public int TransportadorId { get; set; }
+        public int QuantidadeItens { get; set; }
+        public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroNotaFiscal { get; set; }
-        public bool Ativo { get; set; }
+        public int Status { get; set; }
     }
 }

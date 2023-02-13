@@ -27,5 +27,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string UsuarioSemPermissao = "Vai criar um id novo de permissoes";
         public const string UsuarioMesmoDado = "Mesmos dados do banco";
         public const string UsuarioDadosDiferente = "Dados diferente, vai atualizar";
+        public const string PedidoDeletado = "Pedido deletado com sucesso";
     }
 }

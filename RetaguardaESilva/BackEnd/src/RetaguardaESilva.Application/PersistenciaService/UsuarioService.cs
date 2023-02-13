@@ -406,11 +406,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             UsuarioEditar = false,
                             UsuarioPermissoes = false,
                             UsuarioExcluir = false,
-                            VisualizarVenda = false,
-                            VendaCadastro = false,
-                            VendaEditar = false,
-                            VendaDetalhe = false,
-                            VendaExcluir = false,
+                            VisualizarPedido = false,
+                            PedidoCadastro = false,
+                            PedidoEditar = false,
+                            PedidoDetalhe = false,
+                            PedidoExcluir = false,
+                            VisualizarNotaFiscal = false,
+                            NotaFiscalCadastro = false,
+                            NotaFiscalEditar = false,
+                            NotaFiscalDetalhe = false,
+                            NotaFiscalExcluir = false,
                             EmpresaId = usuarioExistente.EmpresaId,
                             UsuarioId = usuarioExistente.Id
                         };
@@ -472,11 +477,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             UsuarioEditar = usuarioPermissao.UsuarioEditar,
                             UsuarioPermissoes = usuarioPermissao.UsuarioPermissoes,
                             UsuarioExcluir = usuarioPermissao.UsuarioExcluir,
-                            VisualizarVenda = usuarioPermissao.VisualizarVenda,
-                            VendaCadastro = usuarioPermissao.VendaCadastro,
-                            VendaEditar = usuarioPermissao.VendaEditar,
-                            VendaDetalhe = usuarioPermissao.VendaDetalhe,
-                            VendaExcluir = usuarioPermissao.VendaExcluir,
+                            VisualizarPedido = usuarioPermissao.VisualizarPedido,
+                            PedidoCadastro = usuarioPermissao.PedidoCadastro,
+                            PedidoEditar = usuarioPermissao.PedidoEditar,
+                            PedidoDetalhe = usuarioPermissao.PedidoDetalhe,
+                            PedidoExcluir = usuarioPermissao.PedidoExcluir,
+                            VisualizarNotaFiscal = usuarioPermissao.VisualizarNotaFiscal,
+                            NotaFiscalCadastro = usuarioPermissao.NotaFiscalCadastro,
+                            NotaFiscalEditar = usuarioPermissao.NotaFiscalEditar,
+                            NotaFiscalDetalhe = usuarioPermissao.NotaFiscalDetalhe,
+                            NotaFiscalExcluir = usuarioPermissao.NotaFiscalExcluir,
                             EmpresaId = usuarioPermissao.EmpresaId,
                             UsuarioId = usuarioPermissao.UsuarioId
                         };
@@ -544,11 +554,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
             &&permissaoBD.UsuarioEditar == permissaoDTO.UsuarioEditar
             &&permissaoBD.UsuarioPermissoes == permissaoDTO.UsuarioPermissoes
             &&permissaoBD.UsuarioExcluir == permissaoDTO.UsuarioExcluir
-            &&permissaoBD.VisualizarVenda == permissaoDTO.VisualizarVenda
-            &&permissaoBD.VendaCadastro == permissaoDTO.VendaCadastro
-            &&permissaoBD.VendaEditar == permissaoDTO.VendaEditar
-            &&permissaoBD.VendaDetalhe == permissaoDTO.VendaDetalhe
-            &&permissaoBD.VendaExcluir == permissaoDTO.VendaExcluir
+            &&permissaoBD.VisualizarPedido == permissaoDTO.VisualizarPedido
+            &&permissaoBD.PedidoCadastro == permissaoDTO.PedidoCadastro
+            &&permissaoBD.PedidoEditar == permissaoDTO.PedidoEditar
+            &&permissaoBD.PedidoDetalhe == permissaoDTO.PedidoDetalhe
+            &&permissaoBD.PedidoExcluir == permissaoDTO.PedidoExcluir
+            &&permissaoBD.VisualizarNotaFiscal == permissaoDTO.VisualizarNotaFiscal
+            &&permissaoBD.NotaFiscalCadastro == permissaoDTO.NotaFiscalCadastro
+            &&permissaoBD.NotaFiscalEditar == permissaoDTO.NotaFiscalEditar
+            &&permissaoBD.NotaFiscalDetalhe == permissaoDTO.NotaFiscalDetalhe
+            &&permissaoBD.NotaFiscalExcluir == permissaoDTO.NotaFiscalExcluir
             &&permissaoBD.EmpresaId == permissaoDTO.EmpresaId
             &&permissaoBD.UsuarioId == permissaoDTO.UsuarioId)
             {
@@ -566,7 +581,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 Id = permissaoDTO.Id,
                 VisualizarCliente = permissaoDTO.VisualizarCliente,
-                ClienteCadastro = permissaoDTO.ClienteCadastro,                
+                ClienteCadastro = permissaoDTO.ClienteCadastro,
                 ClienteEditar = permissaoDTO.ClienteEditar,
                 ClienteDetalhe = permissaoDTO.ClienteDetalhe,
                 ClienteExcluir = permissaoDTO.ClienteExcluir,
@@ -614,11 +629,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 UsuarioEditar = permissaoDTO.UsuarioEditar,
                 UsuarioPermissoes = permissaoDTO.UsuarioPermissoes,
                 UsuarioExcluir = permissaoDTO.UsuarioExcluir,
-                VisualizarVenda = permissaoDTO.VisualizarVenda,
-                VendaCadastro = permissaoDTO.VendaCadastro,
-                VendaEditar = permissaoDTO.VendaEditar,
-                VendaDetalhe = permissaoDTO.VendaDetalhe,
-                VendaExcluir = permissaoDTO.VendaExcluir,
+                VisualizarPedido = permissaoDTO.VisualizarPedido,
+                PedidoCadastro = permissaoDTO.PedidoCadastro,
+                PedidoEditar = permissaoDTO.PedidoEditar,
+                PedidoDetalhe = permissaoDTO.PedidoDetalhe,
+                PedidoExcluir = permissaoDTO.PedidoExcluir,
+                VisualizarNotaFiscal = permissaoDTO.VisualizarNotaFiscal,
+                NotaFiscalCadastro = permissaoDTO.NotaFiscalCadastro,
+                NotaFiscalEditar = permissaoDTO.NotaFiscalEditar,
+                NotaFiscalDetalhe = permissaoDTO.NotaFiscalDetalhe,
+                NotaFiscalExcluir = permissaoDTO.NotaFiscalExcluir,
                 EmpresaId = permissaoDTO.EmpresaId,
                 UsuarioId = permissaoDTO.UsuarioId
             };

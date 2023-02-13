@@ -189,7 +189,8 @@ export class UsuarioEditarComponent implements OnInit {
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
-    this.authService.visualizarVenda();
+    this.authService.visualizarPedido();
+    this.authService.visualizarNotaFiscal();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

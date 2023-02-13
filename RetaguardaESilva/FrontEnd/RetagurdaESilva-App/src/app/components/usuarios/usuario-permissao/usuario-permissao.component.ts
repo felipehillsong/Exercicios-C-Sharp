@@ -152,10 +152,14 @@ public validation(): void {
     usuarioEditar: [null],
     usuarioPermissoes: [null],
     usuarioExcluir: [null],
-    vendaCadastro: [null],
-    vendaEditar: [null],
-    vendaDetalhe: [null],
-    vendaExcluir: [null],
+    pedidoCadastro: [null],
+    pedidoEditar: [null],
+    pedidoDetalhe: [null],
+    pedidoExcluir: [null],
+    notaFiscalCadastro: [null],
+    notaFiscalEditar: [null],
+    notaFiscalDetalhe: [null],
+    notaFiscalExcluir: [null],
     visualizarCliente: [null],
     visualizarEstoque: [null],
     visualizarFornecedor: [null],
@@ -164,7 +168,8 @@ public validation(): void {
     visualizarTransportador: [null],
     visualizarEmpresa: [null],
     visualizarUsuario: [null],
-    visualizarVenda: [null],
+    visualizarPedido: [null],
+    visualizarNotaFiscal: [null],
     visualizarRelatorio: [null],
     visualizarEnderecoProduto: [null],
     empresaId: [null],
@@ -187,7 +192,8 @@ public validation(): void {
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
-    this.authService.visualizarVenda();
+    this.authService.visualizarPedido();
+    this.authService.visualizarNotaFiscal();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();
@@ -337,18 +343,33 @@ public validation(): void {
     }
   }
 
-  public todasVendas(){
-    if(this.permissoes.visualizarVenda == true){
-      this.permissoes.vendaCadastro = false;
-      this.permissoes.vendaEditar = false;
-      this.permissoes.vendaDetalhe = false;
-      this.permissoes.vendaExcluir = false;
+  public todosPedidos(){
+    if(this.permissoes.visualizarPedido == true){
+      this.permissoes.pedidoCadastro = false;
+      this.permissoes.pedidoEditar = false;
+      this.permissoes.pedidoDetalhe = false;
+      this.permissoes.pedidoExcluir = false;
     }
   }
 
-  public liberarTodasVendas(){
-    if(this.permissoes.vendaCadastro == false || this.permissoes.vendaEditar == false || this.permissoes.vendaDetalhe == false || this.permissoes.vendaExcluir == false){
-      this.permissoes.visualizarVenda = true;
+  public liberarTodosPedidos(){
+    if(this.permissoes.pedidoCadastro == false || this.permissoes.pedidoEditar == false || this.permissoes.pedidoDetalhe == false || this.permissoes.pedidoExcluir == false){
+      this.permissoes.visualizarPedido = true;
+    }
+  }
+
+  public todasNotasFiscais(){
+    if(this.permissoes.visualizarNotaFiscal == true){
+      this.permissoes.notaFiscalCadastro = false;
+      this.permissoes.notaFiscalEditar = false;
+      this.permissoes.notaFiscalDetalhe = false;
+      this.permissoes.notaFiscalExcluir = false;
+    }
+  }
+
+  public liberarTodasNotasDiscais(){
+    if(this.permissoes.notaFiscalCadastro == false || this.permissoes.notaFiscalEditar == false || this.permissoes.notaFiscalDetalhe == false || this.permissoes.notaFiscalExcluir == false){
+      this.permissoes.visualizarNotaFiscal = true;
     }
   }
 

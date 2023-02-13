@@ -33,6 +33,8 @@ builder.Services.AddScoped<IFuncionarioService, FuncionarioService>();
 builder.Services.AddScoped<IFuncionarioPersist, FuncionarioPersist>();
 builder.Services.AddScoped<IGeralPersist, GeralPersist>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IPedidoService, PedidoService>();
+builder.Services.AddScoped<IPedidoPersist, PedidoPersist>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<IProdutoPersist, ProdutoPersist>();
 builder.Services.AddScoped<ITransportadorService, TransportadorService>();

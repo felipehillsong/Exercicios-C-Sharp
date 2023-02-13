@@ -426,14 +426,14 @@
       <div class="col-2">
         <div class="row">
           <div class="form-group">
-            <h1>Venda</h1>
+            <h1>Pedido</h1>
         </div>
         </div>
         <div class="row">
           <div class="form-group">
           <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Visualizar Vendas</label>
-            <input class="form-check-input" (click)="todasVendas()" formControlName="visualizarVenda" [(ngModel)]="permissoes.visualizarVenda" type="checkbox">
+            <label class="required" style="font-weight: bold;">Visualizar Pedidos</label>
+            <input class="form-check-input" (click)="todosPedidos()" formControlName="visualizarPedido" [(ngModel)]="permissoes.visualizarPedido" type="checkbox">
           </div>
         </div>
         </div>
@@ -441,7 +441,7 @@
           <div class="form-group">
           <div class="form-group form-check form-switch">
             <label class="required" style="font-weight: bold;">Cadastro</label>
-            <input class="form-check-input" (click)="liberarTodasVendas()" formControlName="vendaCadastro" [(ngModel)]="permissoes.vendaCadastro" type="checkbox">
+            <input class="form-check-input" (click)="liberarTodosPedidos()" formControlName="pedidoCadastro" [(ngModel)]="permissoes.pedidoCadastro" type="checkbox">
           </div>
         </div>
         </div>
@@ -449,7 +449,7 @@
           <div class="form-group">
           <div class="form-group form-check form-switch">
             <label class="required" style="font-weight: bold;">Editar</label>
-            <input class="form-check-input" (click)="liberarTodasVendas()" formControlName="vendaEditar"  [(ngModel)]="permissoes.vendaEditar" type="checkbox">
+            <input class="form-check-input" (click)="liberarTodosPedidos()" formControlName="pedidoEditar"  [(ngModel)]="permissoes.pedidoEditar" type="checkbox">
           </div>
         </div>
         </div>
@@ -457,7 +457,7 @@
           <div class="form-group">
           <div class="form-group form-check form-switch">
             <label class="required" style="font-weight: bold;">Detalhe</label>
-            <input class="form-check-input" (click)="liberarTodasVendas()" formControlName="vendaDetalhe" [(ngModel)]="permissoes.vendaDetalhe" type="checkbox">
+            <input class="form-check-input" (click)="liberarTodosPedidos()" formControlName="pedidoDetalhe" [(ngModel)]="permissoes.pedidoDetalhe" type="checkbox">
           </div>
         </div>
         </div>
@@ -465,7 +465,54 @@
           <div class="form-group">
           <div class="form-group form-check form-switch">
             <label class="required" style="font-weight: bold;">Excluir</label>
-            <input class="form-check-input" (click)="liberarTodasVendas()" formControlName="vendaExcluir" [(ngModel)]="permissoes.vendaExcluir" type="checkbox">
+            <input class="form-check-input" (click)="liberarTodosPedidos()" formControlName="pedidoExcluir" [(ngModel)]="permissoes.pedidoExcluir" type="checkbox">
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="row">
+          <div class="form-group">
+            <h1>Nota Fiscal</h1>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <div class="form-group form-check form-switch">
+            <label class="required" style="font-weight: bold;">Visualizar Nota Fiscal</label>
+            <input class="form-check-input" (click)="todasNotasFiscais()" formControlName="visualizarNotaFiscal" [(ngModel)]="permissoes.visualizarNotaFiscal" type="checkbox">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <div class="form-group form-check form-switch">
+            <label class="required" style="font-weight: bold;">Cadastro</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalCadastro" [(ngModel)]="permissoes.notaFiscalCadastro" type="checkbox">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <div class="form-group form-check form-switch">
+            <label class="required" style="font-weight: bold;">Editar</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalEditar"  [(ngModel)]="permissoes.notaFiscalEditar" type="checkbox">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <div class="form-group form-check form-switch">
+            <label class="required" style="font-weight: bold;">Detalhe</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalDetalhe" [(ngModel)]="permissoes.notaFiscalDetalhe" type="checkbox">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+          <div class="form-group form-check form-switch">
+            <label class="required" style="font-weight: bold;">Excluir</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalExcluir" [(ngModel)]="permissoes.notaFiscalExcluir" type="checkbox">
           </div>
         </div>
         </div>

@@ -39,10 +39,14 @@ export interface Permissao {
   usuarioEditar: boolean;
   usuarioPermissoes: boolean;
   usuarioExcluir: boolean;
-  vendaCadastro: boolean;
-  vendaEditar: boolean;
-  vendaDetalhe: boolean;
-  vendaExcluir: boolean;
+  pedidoCadastro: boolean;
+  pedidoEditar: boolean;
+  pedidoDetalhe: boolean;
+  pedidoExcluir: boolean;
+  notaFiscalCadastro: boolean;
+  notaFiscalEditar: boolean;
+  notaFiscalDetalhe: boolean;
+  notaFiscalExcluir: boolean;
   visualizarCliente: boolean;
   visualizarEstoque: boolean;
   visualizarEnderecoProduto: boolean;
@@ -52,7 +56,8 @@ export interface Permissao {
   visualizarTransportador: boolean;
   visualizarEmpresa: boolean;
   visualizarUsuario: boolean;
-  visualizarVenda: boolean;
+  visualizarPedido: boolean;
+  visualizarNotaFiscal: boolean;
   visualizarRelatorio: boolean;
   empresaId: number;
   usuarioId: number;

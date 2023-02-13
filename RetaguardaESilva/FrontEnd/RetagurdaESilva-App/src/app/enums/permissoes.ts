@@ -8,6 +8,7 @@ export enum Permissoes {
   CadastroTransportador = '/transportadores/lista',
   CadastroEmpresa = '/empresas/lista',
   CadastroUsuario = '/usuarios/lista',
-  CadastroVenda = '/vendas/lista',
+  CadastroPedido = '/pedidos/lista',
+  CadastroNotasFiscais = '/notasFiscais/lista',
   CadastroRelatorios = '/transportadores/lista',
 }

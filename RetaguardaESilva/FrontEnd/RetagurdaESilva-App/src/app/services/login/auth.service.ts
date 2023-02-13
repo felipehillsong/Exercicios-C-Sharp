@@ -281,34 +281,65 @@ public visualizarUsuarioExcluir():boolean{
   return vizualizar;
 }
 
-public visualizarVenda():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].visualizarVenda;
+public visualizarPedido():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarPedido;
   if(vizualizar){
-    this.nav.visualizarVenda();
+    this.nav.visualizarPedido();
     return vizualizar;
   }else{
-    this.nav.naoVisualizarVenda();
+    this.nav.naoVisualizarPedido();
     return vizualizar;
   }
 }
 
-public visualizarVendaCadastro():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].vendaCadastro;
+public visualizarPedidoCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].pedidoCadastro;
   return vizualizar;
 }
 
-public visualizarVendaEditar():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].vendaEditar;
+public visualizarPedidoEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].pedidoEditar;
   return vizualizar;
 }
 
-public visualizarVendaDetalhe():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].vendaDetalhe;
+public visualizarPedidoDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].pedidoDetalhe;
   return vizualizar;
 }
 
-public visualizarVendaExcluir():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].vendaExcluir;
+public visualizarPedidoExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].pedidoExcluir;
+  return vizualizar;
+}
+
+public visualizarNotaFiscal():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].visualizarNotaFiscal;
+  if(vizualizar){
+    this.nav.visualizarNotaFiscal();
+    return vizualizar;
+  }else{
+    this.nav.naoVisualizarNotaFiscal();
+    return vizualizar;
+  }
+}
+
+public visualizarNotaFiscalCadastro():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalCadastro;
+  return vizualizar;
+}
+
+public visualizarNotaFiscalEditar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalEditar;
+  return vizualizar;
+}
+
+public visualizarNotaFiscalDetalhe():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalDetalhe;
+  return vizualizar;
+}
+
+public visualizarNotaFiscalExcluir():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalExcluir;
   return vizualizar;
 }
 

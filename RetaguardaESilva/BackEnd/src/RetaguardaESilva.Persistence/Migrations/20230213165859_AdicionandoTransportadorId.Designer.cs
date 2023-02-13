@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RetaguardaESilva.Persistence.Data;
 
@@ -11,9 +12,10 @@ using RetaguardaESilva.Persistence.Data;
 namespace RetaguardaESilva.Persistence.Migrations
 {
     [DbContext(typeof(RetaguardaESilvaContext))]
-    partial class RetaguardaESilvaContextModelSnapshot : ModelSnapshot
+    [Migration("20230213165859_AdicionandoTransportadorId")]
+    partial class AdicionandoTransportadorId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -571,30 +573,6 @@ namespace RetaguardaESilva.Persistence.Migrations
                     b.Property<bool>("FuncionarioExcluir")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("NotaFiscalCadastro")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NotaFiscalDetalhe")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NotaFiscalEditar")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NotaFiscalExcluir")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PedidoCadastro")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PedidoDetalhe")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PedidoEditar")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PedidoExcluir")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("ProdutoCadastro")
                         .HasColumnType("bit");
 
@@ -646,6 +624,18 @@ namespace RetaguardaESilva.Persistence.Migrations
                     b.Property<bool>("UsuarioPermissoes")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("VendaCadastro")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("VendaDetalhe")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("VendaEditar")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("VendaExcluir")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("VisualizarCliente")
                         .HasColumnType("bit");
 
@@ -664,12 +654,6 @@ namespace RetaguardaESilva.Persistence.Migrations
                     b.Property<bool>("VisualizarFuncionario")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("VisualizarNotaFiscal")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("VisualizarPedido")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("VisualizarProduto")
                         .HasColumnType("bit");
 
@@ -680,6 +664,9 @@ namespace RetaguardaESilva.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("VisualizarUsuario")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("VisualizarVenda")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

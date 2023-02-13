@@ -58,11 +58,16 @@ namespace RetaguardaESilva.Domain.Models
         public bool UsuarioEditar { get; set; }
         public bool UsuarioPermissoes { get; set; }
         public bool UsuarioExcluir { get; set; }
-        public bool VisualizarVenda { get; set; }
-        public bool VendaCadastro { get; set; }
-        public bool VendaEditar { get; set; }
-        public bool VendaDetalhe { get; set; }
-        public bool VendaExcluir { get; set; }
+        public bool VisualizarPedido { get; set; }
+        public bool PedidoCadastro { get; set; }
+        public bool PedidoEditar { get; set; }
+        public bool PedidoDetalhe { get; set; }
+        public bool PedidoExcluir { get; set; }
+        public bool VisualizarNotaFiscal { get; set; }
+        public bool NotaFiscalCadastro { get; set; }
+        public bool NotaFiscalEditar { get; set; }
+        public bool NotaFiscalDetalhe { get; set; }
+        public bool NotaFiscalExcluir { get; set; }
         public int EmpresaId { get; set; }
         public int UsuarioId { get; set; }
     }
