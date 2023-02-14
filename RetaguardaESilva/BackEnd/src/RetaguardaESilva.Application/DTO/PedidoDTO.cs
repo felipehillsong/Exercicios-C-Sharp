@@ -15,7 +15,7 @@ namespace RetaguardaESilva.Application.DTO
         public string TransportadorNome { get; set; } 
         public int UsuarioId { get; set; }
         public decimal PrecoTotal { get; set; }
-        public List<ProdutoDTO> Produtos { get; set; }
+        public List<ProdutoPedidoDTO> Produtos { get; set; }
         public DateTime? DataCadastroPedido { get; set; }
         public int Status { get; set; }
     }

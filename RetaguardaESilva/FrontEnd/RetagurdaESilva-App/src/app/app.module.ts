@@ -100,6 +100,15 @@ import { AuthGuardsEnderecoProdutoService } from './guards/enderecoProduto/AuthG
 import { AuthGuardsEnderecoProdutoCadastroService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoCadastro.service';
 import { AuthGuardsEnderecoProdutoDetalheService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoDetalhe.service';
 import { AuthGuardsEnderecoProdutoEditarService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoEditar.service';
+import { PedidoCriarComponent } from './components/pedidos/pedido-criar/pedido-criar.component';
+import { PedidoDetalheComponent } from './components/pedidos/pedido-detalhe/pedido-detalhe.component';
+import { PedidoEditarComponent } from './components/pedidos/pedido-editar/pedido-editar.component';
+import { PedidoListaComponent } from './components/pedidos/pedido-lista/pedido-lista.component';
+import { PedidoComponent } from './components/pedidos/pedido.component';
+import { AuthGuardsPedidoService } from './guards/pedido/AuthGuardsPedido.service';
+import { AuthGuardsPedidoCadastroService } from './guards/pedido/AuthGuardsPedidoCadastro.service';
+import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedidoDetalhe.service';
+import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -140,6 +149,11 @@ registerLocaleData(ptBr);
     ProdutoEditarComponent,
     ProdutoDetalheComponent,
     ProdutoListaComponent,
+    PedidoComponent,
+    PedidoCriarComponent,
+    PedidoEditarComponent,
+    PedidoDetalheComponent,
+    PedidoListaComponent,
     TituloComponent,
     TransportadorComponent,
     TransportadorListaComponent,
@@ -204,6 +218,10 @@ registerLocaleData(ptBr);
     AuthGuardsFuncionarioCadastroService,
     AuthGuardsFuncionarioEditarService,
     AuthGuardsFuncionarioDetalheService,
+    AuthGuardsPedidoService,
+    AuthGuardsPedidoCadastroService,
+    AuthGuardsPedidoEditarService,
+    AuthGuardsPedidoDetalheService,
     AuthGuardsProdutoService,
     AuthGuardsProdutoCadastroService,
     AuthGuardsProdutoDetalheService,

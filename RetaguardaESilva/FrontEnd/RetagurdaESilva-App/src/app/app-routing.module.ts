@@ -83,6 +83,15 @@ import { AuthGuardsEnderecoProdutoService } from './guards/enderecoProduto/AuthG
 import { AuthGuardsEnderecoProdutoCadastroService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoCadastro.service';
 import { AuthGuardsEnderecoProdutoDetalheService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoDetalhe.service';
 import { AuthGuardsEnderecoProdutoEditarService } from './guards/enderecoProduto/AuthGuardsEnderecoProdutoEditar.service';
+import { PedidoComponent } from './components/pedidos/pedido.component';
+import { PedidoCriarComponent } from './components/pedidos/pedido-criar/pedido-criar.component';
+import { PedidoDetalheComponent } from './components/pedidos/pedido-detalhe/pedido-detalhe.component';
+import { PedidoEditarComponent } from './components/pedidos/pedido-editar/pedido-editar.component';
+import { PedidoListaComponent } from './components/pedidos/pedido-lista/pedido-lista.component';
+import { AuthGuardsPedidoService } from './guards/pedido/AuthGuardsPedido.service';
+import { AuthGuardsPedidoCadastroService } from './guards/pedido/AuthGuardsPedidoCadastro.service';
+import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedidoDetalhe.service';
+import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -159,7 +168,15 @@ const routes: Routes = [
     {path: 'editar/:id', title: 'Editar', component: UsuarioEditarComponent, canActivate: [AuthGuardsUsuarioEditarService]},
     {path: 'permissao/:id', title: 'Permissões', component: UsuarioPermissaoComponent, canActivate: [AuthGuardsUsuarioPermissaoService]},
     {path: 'selecionar-funcionario', title: 'Seleção de Funcionario', component: UsuarioSelecionarFuncionarioComponent, canActivate: [AuthGuardsUsuarioCadastroService] }
-  ]}
+  ]},
+  { path: 'pedidos',
+  component: PedidoComponent, canActivate:[AuthGuardsService, AuthGuardsPedidoService],
+  children:[
+    {path: 'lista', title: 'Pedidos', component: PedidoListaComponent },
+    {path: 'criar', title: 'Cadastro', component: PedidoCriarComponent, canActivate: [AuthGuardsPedidoCadastroService]},
+    {path: 'editar/:id', title: 'Editar', component: PedidoEditarComponent, canActivate: [AuthGuardsPedidoEditarService]},
+    {path: 'detalhe/:id', title: 'Detalhe', component: PedidoDetalheComponent, canActivate: [AuthGuardsPedidoDetalheService]}
+  ]},
 ];
 
 @NgModule({

@@ -29,4 +29,9 @@ namespace RetaguardaESilva.Application.DTO
     {
 
     }
+
+    public class ProdutoPedidoDTO : ProdutoDTO
+    {
+
+    }
 }
