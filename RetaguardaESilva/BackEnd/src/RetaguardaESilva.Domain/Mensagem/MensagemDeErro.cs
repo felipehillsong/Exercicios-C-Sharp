@@ -72,6 +72,8 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ProdutoErroAoConsultar = "Erro ao consultar produto";
         public const string VisualizarEmpresa = "Pode visualizar apenas sua propria empresa";
         public const string ErroAoAtualizar = "Erro ao atualizar";
+        public const string ErroAoCadastrarItensPedido = "Erro ao cadastrar itens do pedido";
+        public const string ErroAoCadastrarPedido = "Erro ao cadastrar pedido";
         public const string ErroAoAtualizarCriar = "Erro ao atualizar ou criar";
         public const string ErroCEP = "Algum erro ocorreu, possivelmente CEP invalido, ou vazio, ou erro na API dos correios";
         public const string ErroSenha = "Senhas não conferem";

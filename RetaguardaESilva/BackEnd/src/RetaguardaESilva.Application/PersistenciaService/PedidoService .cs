@@ -19,150 +19,89 @@ namespace RetaguardaESilva.Application.PersistenciaService
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
-        private readonly IClientePersist _clientePersist;
+        private readonly IPedidoPersist _pedidoPersist;
         private readonly IMapper _mapper;
 
-        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IClientePersist clientePersist, IMapper mapper)
+        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
-            _clientePersist = clientePersist;
+            _pedidoPersist = pedidoPersist;
             _mapper = mapper;
         }
-        public async Task<ClienteCreateDTO> AddCliente(ClienteCreateDTO model)
+
+        public async Task<PedidoCreateDTO> AddPedido(PedidoCreateDTO model)
         {
             try
             {
-                if (_validacoesPersist.ExisteCliente(model.EmpresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, false, out string mensagem))
+                model.Status = (int)StatusPedido.PedidoEmAnalise;
+                var pedidoDTO = new PedidoDTO()
                 {
-                    throw new Exception(mensagem);
-                }
-                else
-                {
-                    model.Ativo = Convert.ToBoolean(Situacao.Ativo);
-                    var clienteCreateDTO = _mapper.Map<Cliente>(model);
-                    clienteCreateDTO.Nome = _validacoesPersist.AcertarNome(clienteCreateDTO.Nome);
-                    _geralPersist.Add<Cliente>(clienteCreateDTO);
-                    if (await _geralPersist.SaveChangesAsync())
-                    {
-                        var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteCreateDTO.EmpresaId, clienteCreateDTO.Id);
-                        return _mapper.Map<ClienteCreateDTO>(retornoCliente);
-                    }
-                    throw new Exception(mensagem);
-                }                
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+                    Id = (int)Ids.IdCreate,
+                    ClienteId = model.ClienteId,
+                    TransportadorId = model.TransportadorId,
+                    EmpresaId = model.EmpresaId,
+                    UsuarioId = model.UsuarioId,
+                    PrecoTotal = model.PrecoTotal,
+                    DataCadastroPedido = model.DataCadastroPedido,
+                    Status = model.Status
+                };
 
-        public async Task<ClienteUpdateDTO> UpdateCliente(ClienteUpdateDTO model)
-        {           
-            try
-            { 
-                var cliente = await _clientePersist.GetClienteByIdAsync(model.EmpresaId, model.Id);
-                if (cliente == null)
+                var pedidoCreateDTO = _mapper.Map<Pedido>(pedidoDTO);
+                _geralPersist.Add<Pedido>(pedidoCreateDTO);
+                if(await _geralPersist.SaveChangesAsync())
                 {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoUpdate);
-                }
-                else
-                {
-                    if (_validacoesPersist.ExisteCliente(model.EmpresaId, model.CPFCNPJ, model.InscricaoMunicipal, model.InscricaoEstadual, model.Id, true, out string mensagem))
+                    var retornoPedido = await _pedidoPersist.GetPedidoByIdAsync(pedidoCreateDTO.EmpresaId, pedidoCreateDTO.Id);
+                    if (retornoPedido != null)
                     {
-                        throw new Exception(mensagem);
-                    }
-                    else
-                    {   
-                        var clienteUpdateDTO = _mapper.Map<Cliente>(model);
-                        clienteUpdateDTO.Nome = _validacoesPersist.AcertarNome(clienteUpdateDTO.Nome);
-                        _geralPersist.Update(clienteUpdateDTO);
-                        if (await _geralPersist.SaveChangesAsync())
+                        List<string> produtosSemEstoque = new List<string>();
+                        foreach (var item in model.Produtos)
                         {
-                            var retornoCliente = await _clientePersist.GetClienteByIdAsync(clienteUpdateDTO.EmpresaId, clienteUpdateDTO.Id);
-                            return _mapper.Map<ClienteUpdateDTO>(retornoCliente);
+                            if (_validacoesPersist.ExisteEstoqueVenda(model.EmpresaId, item.Id))
+                            {
+                                var pedidoNotaDTO = new PedidoNotaDTO()
+                                {
+                                    Id = (int)Ids.IdCreate,
+                                    PedidoId = retornoPedido.Id,
+                                    ClienteId = retornoPedido.ClienteId,
+                                    FornecedorId = item.FornecedorId,
+                                    ProdutoId = item.Id,
+                                    EmpresaId = item.EmpresaId,
+                                    TransportadorId = retornoPedido.TransportadorId,
+                                    UsuarioId = retornoPedido.UsuarioId,
+                                    Quantidade = item.Quantidade,
+                                    PrecoVenda = item.PrecoVenda,
+                                    DataCadastroPedidoNota = item.DataCadastroProduto,
+                                    Status = retornoPedido.Status
+                                };
+                                var pedidoNotaCreateDTO = _mapper.Map<PedidoNota>(pedidoNotaDTO);
+                                _geralPersist.Add<PedidoNota>(pedidoNotaCreateDTO);
+                                if (await _geralPersist.SaveChangesAsync())
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    throw new Exception(MensagemDeErro.ErroAoCadastrarItensPedido);
+                                }
+                            }
+                            else
+                            {
+                                produtosSemEstoque.Add(_validacoesPersist.RetornarNomeProdutosNaoEncontrados(model.EmpresaId, item.Id));
+                            }
                         }
-                        throw new Exception(MensagemDeErro.ErroAoAtualizar);
-                    }   
+                        var retornoPedidoCompleto = _mapper.Map<PedidoCreateDTO>(retornoPedido);
+                        retornoPedidoCompleto.ProdutosSemEstoque = produtosSemEstoque;
+                        return retornoPedidoCompleto;
+                    }
                 }
+                throw new Exception(MensagemDeErro.ErroAoCadastrarPedido);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-        }
-
-        public async Task<bool> DeleteCliente(int empresaId, int clienteId)
-        {
-            try
-            {
-                var cliente = await _clientePersist.GetClienteByIdAsync(empresaId, clienteId);
-                if (cliente == null)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoDelete);
-                }
-                else
-                {
-                    _geralPersist.Delete<Cliente>(cliente);
-                    return await _geralPersist.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<IEnumerable<ClienteDTO>> GetAllClientesAsync(int empresaId)
-        {            
-            try
-            {
-                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);                
-                if (clientes == null)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
-                }
-                else if(clientes.Count() == 0)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
-                }   
-                else
-                {
-                    var resultadoClientes = _mapper.Map<IEnumerable<ClienteDTO>>(clientes);
-                    return resultadoClientes;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }        
-
-        public async Task<ClienteDTO> GetClienteByIdAsync(int empresaId, int clienteId)
-        {
-            try
-            {
-                var cliente = await _clientePersist.GetClienteByIdAsync(empresaId, clienteId);
-                if (cliente == null)
-                {                    
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
-                }
-                else
-                {
-                    var resultadoCliente = _mapper.Map<ClienteDTO>(cliente);
-                    return resultadoCliente;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public Task<PedidoCreateDTO> AddPedido(PedidoCreateDTO model)
-        {
-            throw new NotImplementedException();
-        }
+        } 
 
         public Task<PedidoUpdateDTO> UpdatePedido(PedidoUpdateDTO model)
         {

@@ -33,6 +33,12 @@ namespace RetaguardaESilva.Application.Helpers
             CreateMap<FuncionariosUsuariosViewModel, FuncionarioDTO>().ReverseMap();
             CreateMap<Permissao, PermissaoDTO>().ReverseMap();
             CreateMap<Permissao, List<PermissaoDTO>>().ReverseMap();
+            CreateMap<Pedido, PedidoDTO>().ReverseMap();
+            CreateMap<Pedido, PedidoCreateDTO>().ReverseMap();
+            CreateMap<Pedido, PedidoUpdateDTO>().ReverseMap();
+            CreateMap<PedidoNota, PedidoNotaDTO>().ReverseMap();
+            CreateMap<PedidoNota, PedidoNotaCreateDTO>().ReverseMap();
+            CreateMap<PedidoNota, PedidoNotaUpdateDTO>().ReverseMap();
             CreateMap<Produto, ProdutoDTO>().ReverseMap();
             CreateMap<Produto, ProdutoCreateDTO>().ReverseMap();
             CreateMap<Produto, ProdutoUpdateDTO>().ReverseMap();

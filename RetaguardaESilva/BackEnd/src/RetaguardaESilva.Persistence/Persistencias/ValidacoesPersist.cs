@@ -1165,5 +1165,25 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
             return produtoEstoqueSemFornecedor;
         }
+
+        public bool ExisteEstoqueVenda(int empresaId, int produtoId)
+        {
+            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId && p.Quantidade != 0);
+            var estoque = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId && e.Quantidade != 0);
+            if (produto != null && estoque != null)
+            {
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public string RetornarNomeProdutosNaoEncontrados(int empresaId, int produtoId)
+        {
+            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
+            return produto.Nome;
+        }
     }
 }
