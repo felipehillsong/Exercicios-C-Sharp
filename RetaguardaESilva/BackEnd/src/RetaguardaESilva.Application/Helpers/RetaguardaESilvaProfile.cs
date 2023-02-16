@@ -36,6 +36,8 @@ namespace RetaguardaESilva.Application.Helpers
             CreateMap<Pedido, PedidoDTO>().ReverseMap();
             CreateMap<Pedido, PedidoCreateDTO>().ReverseMap();
             CreateMap<Pedido, PedidoUpdateDTO>().ReverseMap();
+            CreateMap<Pedido, PedidoViewModel>().ReverseMap();
+            CreateMap<PedidoRetornoViewModel, PedidoRetornoDTO>().ReverseMap();
             CreateMap<PedidoNota, PedidoNotaDTO>().ReverseMap();
             CreateMap<PedidoNota, PedidoNotaCreateDTO>().ReverseMap();
             CreateMap<PedidoNota, PedidoNotaUpdateDTO>().ReverseMap();

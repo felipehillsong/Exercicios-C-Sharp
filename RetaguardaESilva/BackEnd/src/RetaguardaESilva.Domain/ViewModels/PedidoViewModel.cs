@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RetaguardaESilva.Application.DTO
+namespace RetaguardaESilva.Domain.ViewModels
 {
-    public class PedidoDTO
+    public class PedidoViewModel
     {
         public int Id { get; set; }
         public int ClienteId { get; set; }
@@ -17,30 +18,18 @@ namespace RetaguardaESilva.Application.DTO
         public DateTime? DataCadastroPedido { get; set; }
         public int Status { get; set; }
     }
-
-    public class PedidoCreateDTO : PedidoDTO
-    {
-        public List<ProdutoPedidoDTO> Produtos { get; set; }
-        public List<string>? ProdutosSemEstoque { get; set; }
-    }
-
-    public class PedidoUpdateDTO : PedidoCreateDTO
-    {
-
-    }
-
-    public class PedidoRetornoDTO
+    public class PedidoRetornoViewModel
     {
         public int Id { get; set; }
         public string ClienteNome { get; set; }
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroPedido { get; set; }
         public string Status { get; set; }
-        public PedidoRetornoDTO()
+        public PedidoRetornoViewModel()
         {
 
         }
-        public PedidoRetornoDTO(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string status)
+        public PedidoRetornoViewModel(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string status)
         {
             this.Id = id;
             this.ClienteNome = clienteNome;

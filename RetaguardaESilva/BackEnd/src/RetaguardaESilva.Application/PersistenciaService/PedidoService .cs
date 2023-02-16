@@ -6,8 +6,11 @@ using RetaguardaESilva.Application.Helpers;
 using RetaguardaESilva.Domain.Enumeradores;
 using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Domain.Models;
+using RetaguardaESilva.Domain.ViewModels;
 using RetaguardaESilva.Persistence.Contratos;
+using RetaguardaESilva.Persistence.Persistencias;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +74,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     UsuarioId = retornoPedido.UsuarioId,
                                     Quantidade = item.Quantidade,
                                     PrecoVenda = item.PrecoVenda,
+                                    PrecoTotal = item.Quantidade * item.PrecoVenda,
                                     DataCadastroPedidoNota = item.DataCadastroProduto,
                                     Status = retornoPedido.Status
                                 };
@@ -113,9 +117,31 @@ namespace RetaguardaESilva.Application.PersistenciaService
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<PedidoDTO>> GetAllPedidosAsync(int empresaId)
+        public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var pedidos = await _pedidoPersist.GetAllPedidosAsync(empresaId);
+                if (pedidos == null)
+                {
+                    throw new Exception(MensagemDeErro.PedidoNaoEncontradoEmpresa);
+                }
+                else if (pedidos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.PedidoNaoEncontrado);
+                }
+                else
+                {
+                    var pedidosViewModel = _mapper.Map<IEnumerable<PedidoViewModel>>(pedidos);
+                    var pedidosRetorno = _validacoesPersist.RetornarPedidosView(pedidosViewModel);
+                    var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidosRetorno);
+                    return resultadoPedidos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId)

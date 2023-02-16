@@ -1185,5 +1185,39 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
             return produto.Nome;
         }
+
+        public IEnumerable<PedidoRetornoViewModel> RetornarPedidosView(IEnumerable<PedidoViewModel> pedidos)
+        {
+            List<PedidoRetornoViewModel> pedidosRetorno = new List<PedidoRetornoViewModel>();
+            foreach (var item in pedidos)
+            {
+                var pedido = _context.Pedido.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.Id);
+                var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.EmpresaId == item.EmpresaId && c.Id == item.ClienteId);
+                if (pedido != null && cliente != null)
+                {
+                    var statusPedido = string.Empty;
+                    if (pedido.Status == (int)StatusPedido.PedidoEmAnalise)
+                    {
+                        statusPedido = MensagemDeAlerta.PedidoEmAnalise;
+                        pedidosRetorno.Add(new PedidoRetornoViewModel(pedido.Id, cliente.Nome, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido));
+                    }
+                    else if (pedido.Status == (int)StatusPedido.PedidoConfirmado)
+                    {
+                        statusPedido = MensagemDeAlerta.PedidoConfirmado;
+                        pedidosRetorno.Add(new PedidoRetornoViewModel(pedido.Id, cliente.Nome, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido));
+                    }
+                    else if (pedido.Status == (int)StatusPedido.PedidoCancelado)
+                    {
+                        statusPedido = MensagemDeAlerta.PedidoCancelado;
+                        pedidosRetorno.Add(new PedidoRetornoViewModel(pedido.Id, cliente.Nome, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido));
+                    }
+                }
+                else
+                {
+                    pedidosRetorno = null;
+                }
+            }
+            return pedidosRetorno;
+        }
     }
 }
