@@ -1219,5 +1219,23 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
             return pedidosRetorno;
         }
+
+        public Produto AtualizarQuantidadeProdutoPosPedido(Produto produto, out Estoque estoque)
+        {
+            var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == produto.EmpresaId && p.Id == produto.Id);
+            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == produto.EmpresaId && e.ProdutoId == produto.Id);
+            if (produtoBD != null && estoqueBD != null)
+            {
+                produto.Quantidade = produtoBD.Quantidade - produto.Quantidade;
+                estoqueBD.Quantidade = produto.Quantidade;
+                estoque = estoqueBD;
+                return produto;
+            }
+            else
+            {
+                estoque = null;
+                return null;
+            }
+        }
     }
 }

@@ -82,6 +82,12 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 _geralPersist.Add<PedidoNota>(pedidoNotaCreateDTO);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
+                                    var produtoUpdateDTO = _mapper.Map<Produto>(item);
+                                    var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(produtoUpdateDTO, out Estoque estoqueUpdate);
+                                    _geralPersist.Update<Produto>(produtoRetorno);
+                                    await _geralPersist.SaveChangesAsync();
+                                    _geralPersist.Update<Estoque>(estoqueUpdate);
+                                    await _geralPersist.SaveChangesAsync();
                                     continue;
                                 }
                                 else

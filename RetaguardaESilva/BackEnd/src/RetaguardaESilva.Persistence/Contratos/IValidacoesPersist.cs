@@ -32,5 +32,6 @@ namespace RetaguardaESilva.Persistence.Contratos
         bool ExisteEstoqueVenda(int empresaId, int produtoId);
         string RetornarNomeProdutosNaoEncontrados(int empresaId, int produtoId);
         IEnumerable<PedidoRetornoViewModel> RetornarPedidosView(IEnumerable<PedidoViewModel> pedidos);
+        Produto AtualizarQuantidadeProdutoPosPedido(Produto produto, out Estoque estoque);
     }
 }
