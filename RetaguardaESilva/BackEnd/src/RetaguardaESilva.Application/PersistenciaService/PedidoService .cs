@@ -78,8 +78,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     DataCadastroPedidoNota = item.DataCadastroProduto,
                                     Status = retornoPedido.Status
                                 };
-                                var pedidoNotaCreateDTO = _mapper.Map<PedidoNota>(pedidoNotaDTO);
-                                _geralPersist.Add<PedidoNota>(pedidoNotaCreateDTO);
+                                var pedidoNotaCreate = _mapper.Map<PedidoNota>(pedidoNotaDTO);
+                                _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
                                     var produtoUpdateDTO = _mapper.Map<Produto>(item);
@@ -118,9 +118,44 @@ namespace RetaguardaESilva.Application.PersistenciaService
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeletePedido(int empresaId, int pedidoId)
+        public async Task<bool> DeletePedido(int empresaId, int pedidoId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var pedido = await _pedidoPersist.GetPedidoByIdAsync(empresaId, pedidoId);
+                if (pedido == null)
+                {
+                    throw new Exception(MensagemDeErro.pedidoNaoEncontradoDelete);
+                }
+                else
+                {
+                    if(_validacoesPersist.AtualizarQuantidadeProdutoEstoquePosPedido(pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas))
+                    {
+                        foreach (var item in produtos)
+                        {
+                            _geralPersist.Update<Produto>(item);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                        foreach (var item in estoques)
+                        {
+                            _geralPersist.Update<Estoque>(item);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                        foreach (var item in pedidosNotas)
+                        {
+                            _geralPersist.Delete(item);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                        _geralPersist.Delete<Pedido>(pedido);
+                        return await _geralPersist.SaveChangesAsync();
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId)

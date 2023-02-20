@@ -81,5 +81,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string EnderecoProdutoSendoUsado = "Endereço sendo usado por outro estoque";
         public const string PedidoNaoEncontrado = "Nenhum pedido encontrado";
         public const string PedidoNaoEncontradoEmpresa = "Não existem pedidos cadastrados nessa empresa";
+        public const string pedidoNaoEncontradoDelete = "pedido não encontrado para delete, verifique o Id da empresa e o Id do pedido";
     }
 }

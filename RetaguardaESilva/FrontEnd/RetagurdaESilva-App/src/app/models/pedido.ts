@@ -8,5 +8,6 @@ export interface Pedido {
   usuarioId:number;
   precoTotal:number;
   dataCadastroPedido:string;
+  status:string;
   produtos: Array<Produto>;
 }

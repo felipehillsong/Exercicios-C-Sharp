@@ -26,6 +26,7 @@ export enum Titulos {
   cadastroProduto = 'Cadastro de Produto',
   editarProduto = 'Editar Produto',
   detalheProduto = 'Detalhe do Produto',
+  listaPedidos = 'Lista de Pedidos',
   listaTransportadores = 'Lista de Transportadores',
   cadastroTransportador = 'Cadastro de Transportador',
   editarTransportador = 'Editar Transportador',
