@@ -110,7 +110,7 @@ import { AuthGuardsPedidoCadastroService } from './guards/pedido/AuthGuardsPedid
 import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedidoDetalhe.service';
 import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
 import { Select2Module } from 'ng-select2-component';
-import 'select2';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -186,6 +186,7 @@ registerLocaleData(ptBr);
     HttpClientModule,
     ReactiveFormsModule,
     Select2Module,
+    MatAutocompleteModule,
     ModalModule.forRoot(),
     NgxMaskModule.forRoot(),
     NgxMaskModule.forChild(),

@@ -1,10 +1,39 @@
-<select2
-        [overlay]="overlay"
-        [data]="clientesNomes"
-        (update)="update('value1', $event)"
-        (change)="change('change1', $event)"
-        (search)="search('search1')"
-        resettable
-        id="selec2-1"
-    >
-    </select2>
+<br>
+<button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
+<br>
+<app-titulo [titulo]=titulo></app-titulo>
+<br>
+<div class="form-row">
+    <div class="card rounded shadow-sm">
+      <form [formGroup]="form">
+        <div class="p-3">
+          <div class="row">
+            <div class="form-group col-md-5">
+              <label class="required" style="font-weight: bold;">Nome</label>
+              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.nome)" formControlName="nome" [formControl]="control" [matAutocomplete]="auto" [(ngModel)]="clientePedido.nome" class="form-control">
+              <div *ngIf="f.nome.errors?.required && f.nome.touched" class="invalid-feedback">
+                Nome é obrigatório.
+              </div>
+              <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">
+                Nome deve ter no mínimo 3 caracteres.
+              </div>
+              <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">
+                Nome deve ter no máximo 50 caracteres.
+              </div>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let nomes of filteredNomes | async" [value]="nomes">
+                  {{nomes}}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div id="botaoCadastrar">
+            <button class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" (click)="Enviar()" type="submit">Cadastrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<label class="required">Campos Obrigatórios</label>
