@@ -20,7 +20,7 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
 })
 export class PedidoListaComponent implements OnInit {
   titulo =  Titulos.listaPedidos;
-  iconClass = FontAwesome.listaCliente;
+  iconClass = FontAwesome.listaPedido;
   novo = Botoes.novoPedido;
   modalRef?: BsModalRef;
   message?: string;
@@ -59,7 +59,6 @@ export class PedidoListaComponent implements OnInit {
     this.pedidoService.getPedidos(this.authService.empresaId()).subscribe(
       (_pedidos: Pedido[]) => {
         this.pedidos = _pedidos;
-        console.log(this.pedidos);
         this.pedidosFiltrados = this.pedidos;
       },
       error => console.log(error)

@@ -11,6 +11,7 @@ import { AuthService } from '../login/auth.service';
 export class PedidoService {
   baseURL = environment.apiURL + 'api/Pedido?';
   baseURLGetUpdateDelete = environment.apiURL + 'api/Pedido';
+  baseURLGetClientePedido = environment.apiURL + 'api/Cliente/api/Cliente?';
 
 constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -24,6 +25,10 @@ public editPedido(pedido: Pedido): Observable<Pedido> {
 
 public getPedidos(empresaId: number) : Observable<Pedido[]>{
   return this.http.get<Pedido[]>(`${this.baseURL}empresaId=${empresaId}`).pipe(take(1));
+}
+
+public getPedidoClientes(empresaId: number) : Observable<Pedido[]>{
+  return this.http.get<Pedido[]>(`${this.baseURLGetClientePedido}empresaId=${empresaId}`).pipe(take(1));
 }
 
 public getPedidoById(id : number) : Observable<Pedido>{

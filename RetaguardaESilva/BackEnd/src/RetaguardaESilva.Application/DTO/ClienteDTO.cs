@@ -37,4 +37,15 @@ namespace RetaguardaESilva.Application.DTO
     {
      
     }
+
+    public class ClientePedidoDTO
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public ClientePedidoDTO(int id, string nome)
+        {
+            this.Id = id;
+            this.Nome = nome;
+        }
+    }
 }

@@ -1,3 +1,10 @@
-<p>
-  pedido-criar works!
-</p>
+<select2
+        [overlay]="overlay"
+        [data]="clientesNomes"
+        (update)="update('value1', $event)"
+        (change)="change('change1', $event)"
+        (search)="search('search1')"
+        resettable
+        id="selec2-1"
+    >
+    </select2>

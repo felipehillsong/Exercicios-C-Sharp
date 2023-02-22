@@ -109,6 +109,8 @@ import { AuthGuardsPedidoService } from './guards/pedido/AuthGuardsPedido.servic
 import { AuthGuardsPedidoCadastroService } from './guards/pedido/AuthGuardsPedidoCadastro.service';
 import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedidoDetalhe.service';
 import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
+import { Select2Module } from 'ng-select2-component';
+import 'select2';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -183,6 +185,7 @@ registerLocaleData(ptBr);
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    Select2Module,
     ModalModule.forRoot(),
     NgxMaskModule.forRoot(),
     NgxMaskModule.forChild(),

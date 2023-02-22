@@ -6,9 +6,11 @@ using RetaguardaESilva.Application.Helpers;
 using RetaguardaESilva.Domain.Enumeradores;
 using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Domain.Models;
+using RetaguardaESilva.Domain.ViewModels;
 using RetaguardaESilva.Persistence.Contratos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,7 +119,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
         {            
             try
             {
-                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);                
+                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);
                 if (clientes == null)
                 {
                     throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
@@ -136,7 +138,36 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 throw new Exception(ex.Message);
             }
-        }        
+        }
+
+        public async Task<IEnumerable<ClientePedidoDTO>> GetAllClientesPedidoAsync(int empresaId)
+        {
+            try
+            {
+                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);
+                if (clientes == null)
+                {
+                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
+                }
+                else if (clientes.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
+                }
+                else
+                {
+                    List<ClientePedidoDTO> clientePedidoDTOS = new List<ClientePedidoDTO>();
+                    foreach (var item in clientes)
+                    {
+                        clientePedidoDTOS.Add(new ClientePedidoDTO(item.Id, item.Nome));
+                    }
+                    return clientePedidoDTOS;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public async Task<ClienteDTO> GetClienteByIdAsync(int empresaId, int clienteId)
         {
