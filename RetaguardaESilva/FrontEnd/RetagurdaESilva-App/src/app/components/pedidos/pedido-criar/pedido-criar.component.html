@@ -11,18 +11,9 @@
             <div class="form-group col-md-5">
               <label class="required" style="font-weight: bold;">Nome</label>
               <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.nome)" formControlName="nome" [formControl]="control" [matAutocomplete]="auto" [(ngModel)]="clientePedido.nome" class="form-control">
-              <div *ngIf="f.nome.errors?.required && f.nome.touched" class="invalid-feedback">
-                Nome é obrigatório.
-              </div>
-              <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">
-                Nome deve ter no mínimo 3 caracteres.
-              </div>
-              <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">
-                Nome deve ter no máximo 50 caracteres.
-              </div>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let nomes of filteredNomes | async" [value]="nomes">
-                  {{nomes}}
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                <mat-option *ngFor="let clientePedido of filteredNomes | async" [value]="clientePedido.nome">
+                  {{clientePedido.nome}}
                 </mat-option>
               </mat-autocomplete>
             </div>

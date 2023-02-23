@@ -25,11 +25,12 @@ export class PedidoCriarComponent implements OnInit {
   titulo =  Titulos.cadastroPedidos;
   form!: FormGroup;
   public loginUsuario!: Login;
-  clientesPedidos!: ClientePedido[];
+  clientesPedidos: ClientePedido[] = [];
   clientePedido = {} as ClientePedido;
   control = new FormControl('');
   nomes:string[] = [];
-  filteredNomes!: Observable<string[]>;
+  filteredNomes!: Observable<ClientePedido[]>;
+  nomeFiltrado!:ClientePedido[];
 
   constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -43,10 +44,6 @@ export class PedidoCriarComponent implements OnInit {
     this.pedidoService.getPedidoClientes(this.authService.empresaId()).subscribe(
       (_clientesPedidos: ClientePedido[]) => {
         this.clientesPedidos = _clientesPedidos;
-        console.log(this.clientesPedidos);
-        for(let i = 0; i < this.clientesPedidos.length; i++){
-          this.nomes[i] = this.clientesPedidos[i].nome;
-        }
         this.filteredNomes = this.control.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value || '')),
@@ -75,9 +72,17 @@ export class PedidoCriarComponent implements OnInit {
   }*/
 }
 
-  private _filter(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.nomes.filter(nomes => this._normalizeValue(nomes).includes(filterValue));
+  private _filter(value: string): ClientePedido[] {
+    const filterValue = value.toLowerCase();
+    var teste = this.clientesPedidos.filter(nomes => nomes.nome.toLowerCase().includes(filterValue));
+    return teste;
+  }
+
+  onOptionSelected(event: any) {
+    console.log(event);
+    const selectedNomes = this.clientesPedidos.find(ids => ids.nome === event.option.value);
+    console.log(selectedNomes);
+    // Faça algo com o ID da rua selecionada
   }
 
   private _normalizeValue(value: string): string {
