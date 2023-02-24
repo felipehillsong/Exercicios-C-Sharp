@@ -121,24 +121,5 @@ namespace RetaguardaESilva.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
             }
         }
-
-        // GET: api/Cliente
-        [HttpGet("api/[controller]")]
-        public async Task<ActionResult> GetClientesPedido(int empresaId)
-        {
-            try
-            {
-                var clientesPedido = await _clienteService.GetAllClientesPedidoAsync(empresaId);
-                if (clientesPedido == null)
-                {
-                    return NotFound();
-                }
-                return Ok(clientesPedido);
-            }
-            catch (Exception ex)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
-            }
-        }
     }
 }

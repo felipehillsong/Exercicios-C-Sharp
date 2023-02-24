@@ -140,35 +140,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<ClientePedidoDTO>> GetAllClientesPedidoAsync(int empresaId)
-        {
-            try
-            {
-                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);
-                if (clientes == null)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
-                }
-                else if (clientes.Count() == 0)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
-                }
-                else
-                {
-                    List<ClientePedidoDTO> clientePedidoDTOS = new List<ClientePedidoDTO>();
-                    foreach (var item in clientes)
-                    {
-                        clientePedidoDTOS.Add(new ClientePedidoDTO(item.Id, item.Nome));
-                    }
-                    return clientePedidoDTOS;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public async Task<ClienteDTO> GetClienteByIdAsync(int empresaId, int clienteId)
         {
             try

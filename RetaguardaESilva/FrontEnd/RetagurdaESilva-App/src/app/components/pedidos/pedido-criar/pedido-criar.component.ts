@@ -1,5 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,21 +18,24 @@ import { AuthService } from 'src/app/services/login/auth.service';
 import { NavService } from 'src/app/services/nav/nav.service';
 import { PedidoService } from 'src/app/services/pedido/pedido.service';
 import { TituloService } from 'src/app/services/titulo/titulo.service';
+import { _MatOptionBase } from '@angular/material/core';
+import { MensagensAlerta } from 'src/app/enums/mensagensAlerta';
 @Component({
   selector: 'app-pedido-criar',
   templateUrl: './pedido-criar.component.html',
   styleUrls: ['./pedido-criar.component.scss']
 })
 export class PedidoCriarComponent implements OnInit {
+[x: string]: any;
   titulo =  Titulos.cadastroPedidos;
   form!: FormGroup;
   public loginUsuario!: Login;
-  clientesPedidos: ClientePedido[] = [];
-  clientePedido = {} as ClientePedido;
+  pedidoNome: Pedido[] = [];
+  gerarPedido = {} as Pedido;
   control = new FormControl('');
   nomes:string[] = [];
-  filteredNomes!: Observable<ClientePedido[]>;
-  nomeFiltrado!:ClientePedido[];
+  filteredNomes!: Observable<Pedido[]>;
+  nomeFiltrado!:Pedido[];
 
   constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -42,8 +47,8 @@ export class PedidoCriarComponent implements OnInit {
 
   public getClientesPedido(): void{
     this.pedidoService.getPedidoClientes(this.authService.empresaId()).subscribe(
-      (_clientesPedidos: ClientePedido[]) => {
-        this.clientesPedidos = _clientesPedidos;
+      (_clientesPedidos: Pedido[]) => {
+        this.pedidoNome = _clientesPedidos;
         this.filteredNomes = this.control.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value || '')),
@@ -54,39 +59,60 @@ export class PedidoCriarComponent implements OnInit {
   }
 
   public Enviar(): void {
-    /*this.spinner.show();
+    this.spinner.show();
     if(this.form.valid){
-      this.produto = {...this.form.value};
-      this.produto.fornecedorId = this.form.value.fornecedor.id;
-      this.produto.empresaId = this.authService.empresaId();
-      this.produtoService.addProduto(this.produto).subscribe(() => {
-        this.router.navigate(['produtos/lista']);
-      },
-      (error: any) => {
-        console.error(error);
-        this.spinner.hide();
-        this.toastr.error(error.error);
-      },
+      this.gerarPedido = {...this.form.value};
+      if(this.VerificaNomeCliente(this.gerarPedido.clienteNome)){
+        this.pedidoService.addPedido(this.gerarPedido).subscribe(() => {
+          this.router.navigate(['produtos/lista']);
+        },
+        (error: any) => {
+          console.error(error);
+          this.spinner.hide();
+          this.toastr.error(error.error);
+        },
+        () => this.spinner.hide()
+      );
+      }else{
+          this.spinner.hide();
+          this.toastr.error(MensagensAlerta.ClienteInexistente);
+      }
       () => this.spinner.hide()
-    );
-  }*/
+  }
 }
 
-  private _filter(value: string): ClientePedido[] {
+  private _filter(value: string): Pedido[] {
     const filterValue = value.toLowerCase();
-    var teste = this.clientesPedidos.filter(nomes => nomes.nome.toLowerCase().includes(filterValue));
-    return teste;
+    var cliente = this.pedidoNome.filter(nome => nome.clienteNome.toLowerCase().includes(filterValue));
+    return cliente;
   }
 
-  onOptionSelected(event: any) {
-    console.log(event);
-    const selectedNomes = this.clientesPedidos.find(ids => ids.nome === event.option.value);
-    console.log(selectedNomes);
-    // Faça algo com o ID da rua selecionada
+  public pegarClienteId(id:number){
+    const selectedCliente = this.pedidoNome.find(cliente => cliente.clienteId === id);
+    console.log(selectedCliente);
   }
 
-  private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
+  onOptionSelected(event: MatAutocompleteSelectedEvent) {
+    if (event.source._keyManager.activeItem) {
+      const selectedOptionId = (event.option as _MatOptionBase)._getHostElement().getAttribute('data-id');
+      if(selectedOptionId !== null){
+        const selectedCliente = this.pedidoNome.find(cliente => cliente.clienteId === parseInt(selectedOptionId, 10));
+        console.log('ENTROU AQUI', selectedCliente);
+      }
+    }
+  }
+
+  public VerificaNomeCliente(nome:string):boolean{
+    let retorno:boolean = false;
+    for (let i = 0; i < this.pedidoNome.length; i++) {
+      if (this.pedidoNome[i].clienteNome === nome) {
+        retorno = true;
+        break;
+      }else{
+        retorno = false;
+      }
+    }
+    return retorno;
   }
 
   get f(): any {
@@ -103,7 +129,7 @@ export class PedidoCriarComponent implements OnInit {
 
   public validation(): void {
     this.form = this.fb.group({
-      nome: ['', Validators.required]
+      clienteNome: ['', Validators.required]
     });
   }
 

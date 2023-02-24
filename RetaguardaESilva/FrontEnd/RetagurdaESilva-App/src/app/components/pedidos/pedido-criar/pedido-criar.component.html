@@ -10,10 +10,10 @@
           <div class="row">
             <div class="form-group col-md-5">
               <label class="required" style="font-weight: bold;">Nome</label>
-              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.nome)" formControlName="nome" [formControl]="control" [matAutocomplete]="auto" [(ngModel)]="clientePedido.nome" class="form-control">
+              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.clienteNome)" formControlName="clienteNome" [formControl]="control" [matAutocomplete]="auto" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
-                <mat-option *ngFor="let clientePedido of filteredNomes | async" [value]="clientePedido.nome">
-                  {{clientePedido.nome}}
+                <mat-option *ngFor="let clienteNome of filteredNomes | async" [value]="clienteNome.clienteNome" [attr.data-id]="clienteNome.clienteId" (click)="pegarClienteId(clienteNome.clienteId)">
+                  {{clienteNome.clienteNome}}
                 </mat-option>
               </mat-autocomplete>
             </div>
@@ -21,7 +21,7 @@
         </div>
         <div class="card-footer">
           <div id="botaoCadastrar">
-            <button class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" (click)="Enviar()" type="submit">Cadastrar</button>
+            <button class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" (click)="Enviar()" type="submit">Criar Pedido</button>
           </div>
         </div>
       </form>

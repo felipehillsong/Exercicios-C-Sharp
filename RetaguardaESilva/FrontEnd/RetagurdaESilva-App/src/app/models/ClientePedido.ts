@@ -1,4 +1,4 @@
 export interface ClientePedido {
-  id:string;
+  id:number;
   nome: string;
 }

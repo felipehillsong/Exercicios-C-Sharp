@@ -23,13 +23,15 @@ namespace RetaguardaESilva.Application.PersistenciaService
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IPedidoPersist _pedidoPersist;
+        private readonly IClientePersist _clientePersist;
         private readonly IMapper _mapper;
 
-        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IMapper mapper)
+        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IClientePersist clientePersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
             _pedidoPersist = pedidoPersist;
+            _clientePersist = clientePersist;
             _mapper = mapper;
         }
 
@@ -177,6 +179,35 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var pedidosRetorno = _validacoesPersist.RetornarPedidosView(pedidosViewModel);
                     var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidosRetorno);
                     return resultadoPedidos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<ClientePedidoDTO>> GetAllClientesPedidoAsync(int empresaId)
+        {
+            try
+            {
+                var clientes = await _clientePersist.GetAllClientesAsync(empresaId);
+                if (clientes == null)
+                {
+                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
+                }
+                else if (clientes.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
+                }
+                else
+                {
+                    List<ClientePedidoDTO> clientePedidoDTOS = new List<ClientePedidoDTO>();
+                    foreach (var item in clientes)
+                    {
+                        clientePedidoDTOS.Add(new ClientePedidoDTO(item.Id, item.Nome));
+                    }
+                    return clientePedidoDTOS;
                 }
             }
             catch (Exception ex)
