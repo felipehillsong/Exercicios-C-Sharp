@@ -9,11 +9,20 @@
         <div class="p-3">
           <div class="row">
             <div class="form-group col-md-5">
-              <label class="required" style="font-weight: bold;">Nome</label>
-              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.clienteNome)" formControlName="clienteNome" [formControl]="control" [matAutocomplete]="auto" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
-              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
-                <mat-option *ngFor="let clienteNome of filteredNomes | async" [value]="clienteNome.clienteNome" [attr.data-id]="clienteNome.clienteId" (click)="pegarClienteId(clienteNome.clienteId)">
-                  {{clienteNome.clienteNome}}
+              <label class="required" style="font-weight: bold;">Cliente</label>
+              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
+              <mat-autocomplete #autoCliente="matAutocomplete" (optionSelected)="onOptionSelectedCliente($event)">
+                <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente.nome" [attr.data-id]="cliente.id" (click)="pegarClienteId(cliente.id)">
+                  {{cliente.nome}}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+            <div class="form-group col-md-5">
+              <label class="required" style="font-weight: bold;">Transportador</label>
+              <input type="text" placeholder="Pesquisar Transportador" [ngClass]="cssValidator(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
+              <mat-autocomplete #autoTransportador="matAutocomplete" (optionSelected)="onOptionSelectedTransportador($event)">
+                <mat-option *ngFor="let transportador of filteredTransportadores | async" [value]="transportador.nome" [attr.data-id]="transportador.id" (click)="pegarTransportadorId(transportador.id)">
+                  {{transportador.nome}}
                 </mat-option>
               </mat-autocomplete>
             </div>

@@ -14,6 +14,5 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<bool> DeletePedido(int empresaId, int pedidoId);
         Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId);
         Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId);
-        Task<IEnumerable<ClientePedidoDTO>> GetAllClientesPedidoAsync(int empresaId);
     }
 }

@@ -1,3 +1,3 @@
 export enum MensagensAlerta {
-  ClienteInexistente = 'Cliente inexistente!'
+  ClienteTransportadorUsuarioInexistente = 'Cliente, transportador ou usuario inexistente!'
 }
