@@ -4,8 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { map, Observable, startWith } from 'rxjs';
 import { Titulos } from 'src/app/enums/titulos';
 import { Login } from 'src/app/models/login';
 import { Pedido } from 'src/app/models/pedido';
@@ -19,6 +18,8 @@ import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cliente } from 'src/app/models/cliente';
 import { TransportadorService } from 'src/app/services/transportador/transportador.service';
 import { Transportador } from 'src/app/models/transportador';
+import { ProdutoService } from 'src/app/services/produto/produto.service';
+import { Produto } from 'src/app/models/produto';
 @Component({
   selector: 'app-pedido-criar',
   templateUrl: './pedido-criar.component.html',
@@ -27,28 +28,36 @@ import { Transportador } from 'src/app/models/transportador';
 export class PedidoCriarComponent implements OnInit {
 [x: string]: any;
   titulo =  Titulos.cadastroPedidos;
+  formCliente!: FormGroup;
   form!: FormGroup;
   public loginUsuario!: Login;
   pedidoNome: Pedido[] = [];
   public clientes: Cliente[] = [];
   public transportadores: Transportador[] = [];
+  public produtos: Produto[] = [];
   gerarPedido = {} as Pedido;
+  produto = {} as Produto;
   clienteControl = new FormControl('');
+  produtoControl = new FormControl('');
   transportadorControl = new FormControl('');
-  nomes:string[] = [];
   filteredClientes!: Observable<Cliente[]>;
   filteredTransportadores!: Observable<Transportador[]>;
+  filteredProdutos!: Observable<Produto[]>;
   clienteId!:number;
   transportadorId!:number;
+  produtoId!:number;
   usuarioId!:number;
+  mostrarProduto:boolean = false;
 
-  constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
     this.getClientes();
     this.getTransportadores();
-    this.validation();
+    this.getProdutos();
+    this.validationCliente();
+    this.validationPedido();
   }
 
   public getClientes(): void{
@@ -60,7 +69,6 @@ export class PedidoCriarComponent implements OnInit {
           map(value => this._filterClientes(value || '')),
         );
         this._changeDetectorRef.markForCheck();
-        console.log(this.filteredClientes);
       },
       error => console.log(error)
     );
@@ -80,6 +88,20 @@ export class PedidoCriarComponent implements OnInit {
     );
   }
 
+  public getProdutos(): void{
+    this.produtoService.getProdutos(this.authService.empresaId()).subscribe(
+      (_produtos: Produto[]) => {
+        this.produtos = _produtos;
+        this.filteredProdutos = this.produtoControl.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filterProdutos(value || '')),
+        );
+        this._changeDetectorRef.markForCheck();
+      },
+      error => console.log(error)
+    );
+  }
+
   private _filterClientes(value: string): Cliente[] {
     const filterCliente = value.toLowerCase();
     var cliente = this.clientes.filter(cliente => cliente.nome.toLowerCase().includes(filterCliente));
@@ -90,6 +112,12 @@ export class PedidoCriarComponent implements OnInit {
     const filterTransportador = value.toLowerCase();
     var transportador = this.transportadores.filter(transportador => transportador.nome.toLowerCase().includes(filterTransportador));
     return transportador;
+  }
+
+  private _filterProdutos(value: string): Produto[] {
+    const filterProduto = value.toLowerCase();
+    var produto = this.produtos.filter(produto => produto.nome.toLowerCase().includes(filterProduto));
+    return produto;
   }
 
   public pegarClienteId(id:number){
@@ -103,6 +131,13 @@ export class PedidoCriarComponent implements OnInit {
     const selectedTransportador = this.transportadores.find(transportador => transportador.id === id);
     if(selectedTransportador != null){
       this.transportadorId = selectedTransportador?.id;
+    }
+  }
+
+  public pegarProdutoId(id:number){
+    const selectedProduto = this.produtos.find(produto => produto.id === id);
+    if(selectedProduto != null){
+      this.produtoId = selectedProduto?.id;
     }
   }
 
@@ -125,6 +160,18 @@ export class PedidoCriarComponent implements OnInit {
         const selectedTransportador = this.transportadores.find(transportador => transportador.id === parseInt(selectedOptionId, 10));
         if(selectedTransportador != null){
           this.transportadorId = selectedTransportador?.id;
+        }
+      }
+    }
+  }
+
+  onOptionSelectedProduto(event: MatAutocompleteSelectedEvent) {
+    if (event.source._keyManager.activeItem) {
+      const selectedOptionId = (event.option as _MatOptionBase)._getHostElement().getAttribute('data-id');
+      if(selectedOptionId !== null){
+        const selectedProduto = this.produtos.find(produto => produto.id === parseInt(selectedOptionId, 10));
+        if(selectedProduto != null){
+          this.produtoId = selectedProduto?.id;
         }
       }
     }
@@ -156,6 +203,25 @@ export class PedidoCriarComponent implements OnInit {
     return retorno;
   }
 
+  public VerificaIdProduto(id:number):boolean{
+    let retorno:boolean = false;
+    for (let i = 0; i < this.produtos.length; i++) {
+      if (this.produtos[i].id === id) {
+        retorno = true;
+        break;
+      }else{
+        retorno = false;
+      }
+    }
+    return retorno;
+  }
+
+  public SelecionarProduto(selecionar:boolean){
+    if(selecionar){
+      this.mostrarProduto = true;
+    }
+  }
+
   public Enviar(): void {
     this.spinner.show();
     if(this.form.valid){
@@ -182,7 +248,7 @@ export class PedidoCriarComponent implements OnInit {
 }
 
   get f(): any {
-    return this.form.controls;
+    return this.formCliente.controls;
   }
 
   public cssValidator(campoForm: FormControl | AbstractControl): any {
@@ -193,7 +259,14 @@ export class PedidoCriarComponent implements OnInit {
     this.router.navigate(['pedidos/lista']);
   }
 
-  public validation(): void {
+  public validationCliente(): void {
+    this.formCliente = this.fb.group({
+      clienteNome: [null, Validators.required],
+      transportadorNome: [null, Validators.required]
+    });
+  }
+
+  public validationPedido(): void {
     this.form = this.fb.group({
       clienteNome: [null, Validators.required],
       transportadorNome: [null, Validators.required]
