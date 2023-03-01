@@ -29,12 +29,14 @@ export class PedidoCriarComponent implements OnInit {
 [x: string]: any;
   titulo =  Titulos.cadastroPedidos;
   formCliente!: FormGroup;
+  formProduto!: FormGroup;
   form!: FormGroup;
   public loginUsuario!: Login;
   pedidoNome: Pedido[] = [];
   public clientes: Cliente[] = [];
   public transportadores: Transportador[] = [];
   public produtos: Produto[] = [];
+  public pedidoProdutos: Produto[] = [];
   gerarPedido = {} as Pedido;
   produto = {} as Produto;
   clienteControl = new FormControl('');
@@ -48,8 +50,10 @@ export class PedidoCriarComponent implements OnInit {
   produtoId!:number;
   usuarioId!:number;
   mostrarProduto:boolean = false;
+  mostrarGrid:boolean = false;
+  indice:number = 0;
 
-  constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -57,7 +61,7 @@ export class PedidoCriarComponent implements OnInit {
     this.getTransportadores();
     this.getProdutos();
     this.validationCliente();
-    this.validationPedido();
+    this.validationProduto();
   }
 
   public getClientes(): void{
@@ -137,6 +141,12 @@ export class PedidoCriarComponent implements OnInit {
   public pegarProdutoId(id:number){
     const selectedProduto = this.produtos.find(produto => produto.id === id);
     if(selectedProduto != null){
+      while(this.pedidoProdutos[this.indice] == null){
+        this.pedidoProdutos[this.indice] = selectedProduto;
+        this.produtoId = selectedProduto.id;
+        this.indice++;
+        break;
+      }
       this.produtoId = selectedProduto?.id;
     }
   }
@@ -171,8 +181,13 @@ export class PedidoCriarComponent implements OnInit {
       if(selectedOptionId !== null){
         const selectedProduto = this.produtos.find(produto => produto.id === parseInt(selectedOptionId, 10));
         if(selectedProduto != null){
-          this.produtoId = selectedProduto?.id;
+          while(this.pedidoProdutos[this.indice] == null){
+            this.pedidoProdutos[this.indice] = selectedProduto;
+            this.produtoId = selectedProduto.id;
+            this.indice++;
+            break;
         }
+      }
       }
     }
   }
@@ -216,10 +231,39 @@ export class PedidoCriarComponent implements OnInit {
     return retorno;
   }
 
-  public SelecionarProduto(selecionar:boolean){
-    if(selecionar){
-      this.mostrarProduto = true;
+  public SelecionarCliente(){
+    this.gerarPedido = {...this.formCliente.value};
+    for (let i = 0; i < this.clientes.length; i++) {
+      if (this.clientes[i].nome === this.gerarPedido.clienteNome && this.clientes[i].id === this.clienteId) {
+        this.mostrarProduto = true;
+        break;
+      }else{
+        this.mostrarProduto = false;
+      }
     }
+
+    for (let i = 0; i < this.clientes.length; i++) {
+      if (this.transportadores[i].nome === this.gerarPedido.transportadorNome && this.transportadores[i].id === this.transportadorId) {
+        this.mostrarProduto = true;
+        break;
+      }else{
+        this.mostrarProduto = false;
+      }
+    }
+
+  }
+
+  public SelecionarProduto(){
+    this.produto = {...this.formProduto.value};
+    for (let i = 0; i < this.produtos.length; i++) {
+      if (this.produtos[i].nome === this.produto.nome) {
+          this.mostrarProduto = true;
+        break;
+      }else{
+        this.mostrarProduto = false;
+      }
+    }
+    console.log(this.pedidoProdutos);
   }
 
   public Enviar(): void {
@@ -251,7 +295,15 @@ export class PedidoCriarComponent implements OnInit {
     return this.formCliente.controls;
   }
 
-  public cssValidator(campoForm: FormControl | AbstractControl): any {
+  get p(): any {
+    return this.formProduto.controls;
+  }
+
+  public cssValidatorCliente(campoForm: FormControl | AbstractControl): any {
+    return { 'is-invalid': campoForm.errors && campoForm.touched };
+  }
+
+  public cssValidatorProduto(campoForm: FormControl | AbstractControl): any {
     return { 'is-invalid': campoForm.errors && campoForm.touched };
   }
 
@@ -266,10 +318,9 @@ export class PedidoCriarComponent implements OnInit {
     });
   }
 
-  public validationPedido(): void {
-    this.form = this.fb.group({
-      clienteNome: [null, Validators.required],
-      transportadorNome: [null, Validators.required]
+  public validationProduto(): void {
+    this.formProduto = this.fbProduto.group({
+      nome: [null, Validators.required]
     });
   }
 

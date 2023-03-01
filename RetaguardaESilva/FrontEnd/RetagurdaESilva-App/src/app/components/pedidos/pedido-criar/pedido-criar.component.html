@@ -10,7 +10,7 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Cliente</label>
-              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidator(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidatorCliente(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
               <mat-autocomplete #autoCliente="matAutocomplete" (optionSelected)="onOptionSelectedCliente($event)">
                 <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente.nome" [attr.data-id]="cliente.id" (click)="pegarClienteId(cliente.id)">
                   {{cliente.nome}}
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Transportador</label>
-              <input type="text" placeholder="Pesquisar Transportador" [ngClass]="cssValidator(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Transportador" [ngClass]="cssValidatorCliente(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
               <mat-autocomplete #autoTransportador="matAutocomplete" (optionSelected)="onOptionSelectedTransportador($event)">
                 <mat-option *ngFor="let transportador of filteredTransportadores | async" [value]="transportador.nome" [attr.data-id]="transportador.id" (click)="pegarTransportadorId(transportador.id)">
                   {{transportador.nome}}
@@ -30,7 +30,7 @@
           <br>
           <div class="row">
             <div id="botaoCadastrar">
-              <button class="btn btn-lg btn-success" [disabled]="!formCliente.valid" (click)="SelecionarProduto(true)" type="submit">Selecionar Produtos</button>
+              <button class="btn btn-lg btn-success" [disabled]="!formCliente.valid" (click)="SelecionarCliente()" type="submit">Selecionar Produtos</button>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <br>
             <br>
             <br>
-            <form [formGroup]="form">
+            <form [formGroup]="formProduto">
             <div class="container-fluid" *ngIf="mostrarProduto">
               <div class="row justify-content-center align-items-center">
                 <div class="col-lg-6 col-md-8 col-sm-10">
@@ -48,7 +48,7 @@
                     <div class="col-8">
                       <label class="required" style="font-weight: bold;">Produtos</label>
                       <div class="input-group">
-                        <input type="text" placeholder="Pesquisar Produto" [formControl]="produtoControl" [matAutocomplete]="autoProduto" [(ngModel)]="produto.nome" class="form-control">
+                        <input type="text" placeholder="Pesquisar Produto" [ngClass]="cssValidatorProduto(p.nome)" formControlName="nome" [formControl]="produtoControl" [matAutocomplete]="autoProduto" [(ngModel)]="produto.nome" class="form-control">
                         <mat-autocomplete #autoProduto="matAutocomplete" (optionSelected)="onOptionSelectedProduto($event)">
                           <mat-option *ngFor="let produto of filteredProdutos | async" [value]="produto.nome" [attr.data-id]="produto.id" (click)="pegarProdutoId(produto.id)">
                             {{produto.nome}}
@@ -57,16 +57,20 @@
                       </div>
                     </div>
                     <div class="col-4 d-flex align-items-end justify-content-center">
-                      <button class="btn btn-secondary" (click)="Enviar()" type="submit">Selecionar</button>
+                      <button class="btn btn-secondary" [disabled]="!formProduto.valid" (click)="SelecionarProduto()" type="submit">Selecionar</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-        <div class="card-footer">
-          <div id="botaoCadastrar">
-            <button class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid" (click)="Enviar()" type="submit">Criar Pedido</button>
-          </div>
-        </div>
+            <br>
+            <br>
+            <br>
+            <div></div>
       </form>
+      <div class="card-footer">
+        <div id="botaoCadastrar">
+          <button class="btn btn-lg btn-primary btn-block" (click)="Enviar()" type="submit">Criar Pedido</button>
+        </div>
+      </div>
 <label class="required">Campos Obrigatórios</label>
