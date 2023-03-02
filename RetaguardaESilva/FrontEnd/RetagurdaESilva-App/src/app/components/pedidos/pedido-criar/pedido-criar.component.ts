@@ -36,7 +36,8 @@ export class PedidoCriarComponent implements OnInit {
   public clientes: Cliente[] = [];
   public transportadores: Transportador[] = [];
   public produtos: Produto[] = [];
-  public pedidoProdutos: Produto[] = [];
+  public pedidoProdutos = {} as Produto;
+  public produtosGrid: Produto[] = [];
   gerarPedido = {} as Pedido;
   produto = {} as Produto;
   clienteControl = new FormControl('');
@@ -139,15 +140,21 @@ export class PedidoCriarComponent implements OnInit {
   }
 
   public pegarProdutoId(id:number){
+    this.produtoId = id;
     const selectedProduto = this.produtos.find(produto => produto.id === id);
     if(selectedProduto != null){
-      while(this.pedidoProdutos[this.indice] == null){
-        this.pedidoProdutos[this.indice] = selectedProduto;
-        this.produtoId = selectedProduto.id;
-        this.indice++;
-        break;
-      }
-      this.produtoId = selectedProduto?.id;
+      this.pedidoProdutos.id = selectedProduto.id;
+      this.pedidoProdutos.nome = selectedProduto.nome;
+      this.pedidoProdutos.quantidade = selectedProduto.quantidade;
+      this.pedidoProdutos.ativo = selectedProduto.ativo;
+      this.pedidoProdutos.precoCompra = selectedProduto.precoCompra;
+      this.pedidoProdutos.precoVenda = selectedProduto.precoVenda;
+      this.pedidoProdutos.precoCompraFormatado = selectedProduto.precoCompraFormatado;
+      this.pedidoProdutos.precoVendaFormatado = selectedProduto.precoVendaFormatado;
+      this.pedidoProdutos.codigo = selectedProduto.codigo;
+      this.pedidoProdutos.dataCadastroProduto = selectedProduto.dataCadastroProduto;
+      this.pedidoProdutos.empresaId = selectedProduto.empresaId;
+      this.pedidoProdutos.fornecedorId = selectedProduto.fornecedorId;
     }
   }
 
@@ -157,7 +164,7 @@ export class PedidoCriarComponent implements OnInit {
       if(selectedOptionId !== null){
         const selectedCliente = this.clientes.find(cliente => cliente.id === parseInt(selectedOptionId, 10));
         if(selectedCliente != null){
-          this.clienteId = selectedCliente?.id;
+          this.clienteId = selectedCliente.id;
         }
       }
     }
@@ -169,7 +176,7 @@ export class PedidoCriarComponent implements OnInit {
       if(selectedOptionId !== null){
         const selectedTransportador = this.transportadores.find(transportador => transportador.id === parseInt(selectedOptionId, 10));
         if(selectedTransportador != null){
-          this.transportadorId = selectedTransportador?.id;
+          this.transportadorId = selectedTransportador.id;
         }
       }
     }
@@ -181,13 +188,20 @@ export class PedidoCriarComponent implements OnInit {
       if(selectedOptionId !== null){
         const selectedProduto = this.produtos.find(produto => produto.id === parseInt(selectedOptionId, 10));
         if(selectedProduto != null){
-          while(this.pedidoProdutos[this.indice] == null){
-            this.pedidoProdutos[this.indice] = selectedProduto;
-            this.produtoId = selectedProduto.id;
-            this.indice++;
-            break;
+          this.produtoId = selectedProduto.id;
+          this.pedidoProdutos.id = selectedProduto.id;
+          this.pedidoProdutos.nome = selectedProduto.nome;
+          this.pedidoProdutos.quantidade = selectedProduto.quantidade;
+          this.pedidoProdutos.ativo = selectedProduto.ativo;
+          this.pedidoProdutos.precoCompra = selectedProduto.precoCompra;
+          this.pedidoProdutos.precoVenda = selectedProduto.precoVenda;
+          this.pedidoProdutos.precoCompraFormatado = selectedProduto.precoCompraFormatado;
+          this.pedidoProdutos.precoVendaFormatado = selectedProduto.precoVendaFormatado;
+          this.pedidoProdutos.codigo = selectedProduto.codigo;
+          this.pedidoProdutos.dataCadastroProduto = selectedProduto.dataCadastroProduto;
+          this.pedidoProdutos.empresaId = selectedProduto.empresaId;
+          this.pedidoProdutos.fornecedorId = selectedProduto.fornecedorId;
         }
-      }
       }
     }
   }
@@ -232,9 +246,9 @@ export class PedidoCriarComponent implements OnInit {
   }
 
   public SelecionarCliente(){
-    this.gerarPedido = {...this.formCliente.value};
+    var clienteTransportadorNome = {...this.formCliente.value};
     for (let i = 0; i < this.clientes.length; i++) {
-      if (this.clientes[i].nome === this.gerarPedido.clienteNome && this.clientes[i].id === this.clienteId) {
+      if (this.clientes[i].nome === clienteTransportadorNome.clienteNome && this.clientes[i].id === this.clienteId) {
         this.mostrarProduto = true;
         break;
       }else{
@@ -243,7 +257,7 @@ export class PedidoCriarComponent implements OnInit {
     }
 
     for (let i = 0; i < this.clientes.length; i++) {
-      if (this.transportadores[i].nome === this.gerarPedido.transportadorNome && this.transportadores[i].id === this.transportadorId) {
+      if (this.transportadores[i].nome === clienteTransportadorNome.transportadorNome && this.transportadores[i].id === this.transportadorId) {
         this.mostrarProduto = true;
         break;
       }else{
@@ -254,16 +268,30 @@ export class PedidoCriarComponent implements OnInit {
   }
 
   public SelecionarProduto(){
-    this.produto = {...this.formProduto.value};
     for (let i = 0; i < this.produtos.length; i++) {
-      if (this.produtos[i].nome === this.produto.nome) {
+      if (this.produtos[i].nome === this.produto.nome && this.produtos[i].id === this.produtoId) {
+        const produtoPedido = {
+          id: this.pedidoProdutos.id,
+          nome: this.pedidoProdutos.nome,
+          quantidade: this.pedidoProdutos.quantidade,
+          ativo: this.pedidoProdutos.ativo,
+          precoCompra: this.pedidoProdutos.precoCompra,
+          precoVenda: this.pedidoProdutos.precoVenda,
+          precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
+          precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
+          codigo: this.pedidoProdutos.codigo,
+          dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
+          empresaId: this.pedidoProdutos.empresaId,
+          fornecedorId: this.pedidoProdutos.fornecedorId
+        };
+          this.produtosGrid.push(produtoPedido);
           this.mostrarProduto = true;
         break;
       }else{
         this.mostrarProduto = false;
       }
     }
-    console.log(this.pedidoProdutos);
+    console.log(this.produtosGrid);
   }
 
   public Enviar(): void {
