@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
@@ -20,13 +20,14 @@ import { TransportadorService } from 'src/app/services/transportador/transportad
 import { Transportador } from 'src/app/models/transportador';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { Produto } from 'src/app/models/produto';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-pedido-criar',
   templateUrl: './pedido-criar.component.html',
   styleUrls: ['./pedido-criar.component.scss']
 })
 export class PedidoCriarComponent implements OnInit {
-[x: string]: any;
+  modalRef?: BsModalRef;
   titulo =  Titulos.cadastroPedidos;
   formCliente!: FormGroup;
   formProduto!: FormGroup;
@@ -49,12 +50,15 @@ export class PedidoCriarComponent implements OnInit {
   clienteId!:number;
   transportadorId!:number;
   produtoId!:number;
+  produtoIdGrid!: number;
   usuarioId!:number;
+  produtoNome!:string;
   mostrarProduto:boolean = false;
   mostrarGrid:boolean = false;
+  criarPedido:boolean = false;
   indice:number = 0;
 
-  constructor(private router: Router, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -285,22 +289,50 @@ export class PedidoCriarComponent implements OnInit {
           fornecedorId: this.pedidoProdutos.fornecedorId
         };
           this.produtosGrid.push(produtoPedido);
+          this.mostrarGrid = true;
           this.mostrarProduto = true;
+          this.criarPedido = true;
+          this._changeDetectorRef.markForCheck();
         break;
-      }else{
-        this.mostrarProduto = false;
       }
     }
     console.log(this.produtosGrid);
   }
 
-  public Enviar(): void {
+  openModal(event: any, template: TemplateRef<any>, produtoNome: string, produtoId: number): void {
+    event.stopPropagation();
+    this.produtoNome = produtoNome;
+    this.produtoIdGrid = produtoId;
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
     this.spinner.show();
-    if(this.form.valid){
-      this.gerarPedido = {...this.form.value};
+    let produtoDelete = this.produtosGrid.findIndex(produto => produto.id === this.produtoIdGrid);
+    this.produtosGrid.splice(produtoDelete, 1);
+    this.spinner.hide();
+    this._changeDetectorRef.markForCheck();
+    if(this.produtosGrid.length == 0){
+      this.mostrarGrid = false;
+      this.criarPedido = false;
+    }
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
+
+  }
+
+  public CriarPedido(): void {
+    this.spinner.show();
       var existeCliente = this.VerificaIdCliente(this.clienteId);
       var existeTransportador = this.VerificaIdTransportador(this.transportadorId);
-      if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado()){
+      if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null){
+        this.gerarPedido.clienteId = this.clienteId;
+        this.gerarPedido.transportadorId = this.transportadorId;
+        this.gerarPedido.produtos = [];
+        this.preencherPedido(this.produtosGrid);
         this.pedidoService.addPedido(this.gerarPedido).subscribe(() => {
           this.router.navigate(['produtos/lista']);
         },
@@ -316,8 +348,27 @@ export class PedidoCriarComponent implements OnInit {
           this.toastr.error(MensagensAlerta.ClienteTransportadorUsuarioInexistente);
       }
       () => this.spinner.hide()
-  }
-}
+    }
+
+    public preencherPedido(produtos:Produto[]){
+      for (let i = 0; i < produtos.length; i++) {
+        const produtoPedido = {
+          id: produtos[i].id,
+          nome: produtos[i].nome,
+          quantidade: produtos[i].quantidade,
+          ativo: produtos[i].ativo,
+          precoCompra: produtos[i].precoCompra,
+          precoVenda: produtos[i].precoVenda,
+          precoCompraFormatado: produtos[i].precoCompraFormatado,
+          precoVendaFormatado: produtos[i].precoVendaFormatado,
+          codigo: produtos[i].codigo,
+          dataCadastroProduto: produtos[i].dataCadastroProduto,
+          empresaId: produtos[i].empresaId,
+          fornecedorId: produtos[i].fornecedorId
+        };
+        this.gerarPedido.produtos.push(produtoPedido);
+      }
+    }
 
   get f(): any {
     return this.formCliente.controls;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente/cliente.service';
 import { Cliente } from 'src/app/models/cliente';

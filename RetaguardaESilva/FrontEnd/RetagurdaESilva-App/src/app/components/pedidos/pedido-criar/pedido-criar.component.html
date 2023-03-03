@@ -66,11 +66,40 @@
             <br>
             <br>
             <br>
-            <div></div>
+            <div *ngIf="mostrarGrid">
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                  <th>Codigo</th>
+                  <th>Nome do Produto</th>
+                  <th>Preço de Venda</th>
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="produtosGrid && produtosGrid.length">
+                <tr *ngFor="let produtoPedido of produtosGrid">
+                  <td>{{produtoPedido.codigo}}</td>
+                  <td>{{produtoPedido.nome}}</td>
+                  <td>{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
+                  <td>
+                    <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
+                      <i class="fa fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+      </div>
       </form>
       <div class="card-footer">
         <div id="botaoCadastrar">
-          <button class="btn btn-lg btn-primary btn-block" (click)="Enviar()" type="submit">Criar Pedido</button>
+          <button class="btn btn-lg btn-primary btn-block" *ngIf="criarPedido" (click)="CriarPedido()" type="submit">Criar Pedido</button>
         </div>
       </div>
+      <ng-template #template>
+        <div class="modal-body text-center">
+          <p>Tem certeza que deseja deletar o(a) cliente {{this.produtoNome}}?</p>
+          <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+          <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+        </div>
+      </ng-template>
 <label class="required">Campos Obrigatórios</label>
