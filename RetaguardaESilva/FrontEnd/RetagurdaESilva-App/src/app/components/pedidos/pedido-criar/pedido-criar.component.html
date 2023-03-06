@@ -66,21 +66,26 @@
             <br>
             <br>
             <br>
+            <form [formGroup]="formQuantidade">
             <div *ngIf="mostrarGrid">
               <table class="table table-striped">
                 <thead class="thead-dark">
                   <tr>
-                  <th>Codigo</th>
-                  <th>Nome do Produto</th>
-                  <th>Preço de Venda</th>
+                  <th scope="col" class="col-2">Codigo</th>
+                  <th scope="col" class="col-3">Nome do Produto</th>
+                  <th scope="col" class="col-2">Preço de Venda</th>
+                  <th scope="col" class="col-2">Quantidade</th>
+                  <th scope="col" class="col-2">Quantidade de Venda</th>
                   <th>Opções</th>
                 </tr>
               </thead>
               <tbody *ngIf="produtosGrid && produtosGrid.length">
-                <tr *ngFor="let produtoPedido of produtosGrid">
-                  <td>{{produtoPedido.codigo}}</td>
-                  <td>{{produtoPedido.nome}}</td>
-                  <td>{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
+                <tr *ngFor="let produtoPedido of produtosGrid; let i=index">
+                  <td class="col-2">{{produtoPedido.codigo}}</td>
+                  <td class="col-3">{{produtoPedido.nome}}</td>
+                  <td class="col-2">{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
+                  <td class="col-2">{{produtoPedido.quantidade}}</td>
+                  <td class="col-2"><input type="text" placeholder="Quantidade de Compra" (keypress)="somenteNumeros($event)" (keyup.enter)="EnviarQuantidade(produto.quantidadeVenda, produtoPedido.id)" formControlName="quantidadeVenda" [formControl]="pedidoControl" class="form-control form-control-sm"></td>
                   <td>
                     <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
                       <i class="fa fa-trash"></i></button>
@@ -92,9 +97,10 @@
       </form>
       <div class="card-footer">
         <div id="botaoCadastrar">
-          <button class="btn btn-lg btn-primary btn-block" *ngIf="criarPedido" (click)="CriarPedido()" type="submit">Criar Pedido</button>
+          <button class="btn btn-lg btn-primary btn-block" *ngIf="criarPedido" [disabled]="!formQuantidade.valid" (click)="CriarPedido()" type="submit">Criar Pedido</button>
         </div>
       </div>
+            </form>
       <ng-template #template>
         <div class="modal-body text-center">
           <p>Tem certeza que deseja deletar o(a) cliente {{this.produtoNome}}?</p>

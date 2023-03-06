@@ -31,7 +31,7 @@ export class PedidoCriarComponent implements OnInit {
   titulo =  Titulos.cadastroPedidos;
   formCliente!: FormGroup;
   formProduto!: FormGroup;
-  form!: FormGroup;
+  formQuantidade!: FormGroup;
   public loginUsuario!: Login;
   pedidoNome: Pedido[] = [];
   public clientes: Cliente[] = [];
@@ -41,8 +41,10 @@ export class PedidoCriarComponent implements OnInit {
   public produtosGrid: Produto[] = [];
   gerarPedido = {} as Pedido;
   produto = {} as Produto;
+  public produtoControls: FormControl<number | null>[] = [];
   clienteControl = new FormControl('');
   produtoControl = new FormControl('');
+  pedidoControl = new FormControl('');
   transportadorControl = new FormControl('');
   filteredClientes!: Observable<Cliente[]>;
   filteredTransportadores!: Observable<Transportador[]>;
@@ -58,7 +60,7 @@ export class PedidoCriarComponent implements OnInit {
   criarPedido:boolean = false;
   indice:number = 0;
 
-  constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -67,6 +69,7 @@ export class PedidoCriarComponent implements OnInit {
     this.getProdutos();
     this.validationCliente();
     this.validationProduto();
+    this.validationQuantidade();
   }
 
   public getClientes(): void{
@@ -150,6 +153,7 @@ export class PedidoCriarComponent implements OnInit {
       this.pedidoProdutos.id = selectedProduto.id;
       this.pedidoProdutos.nome = selectedProduto.nome;
       this.pedidoProdutos.quantidade = selectedProduto.quantidade;
+      this.pedidoProdutos.quantidadeVenda = selectedProduto.quantidadeVenda;
       this.pedidoProdutos.ativo = selectedProduto.ativo;
       this.pedidoProdutos.precoCompra = selectedProduto.precoCompra;
       this.pedidoProdutos.precoVenda = selectedProduto.precoVenda;
@@ -196,6 +200,7 @@ export class PedidoCriarComponent implements OnInit {
           this.pedidoProdutos.id = selectedProduto.id;
           this.pedidoProdutos.nome = selectedProduto.nome;
           this.pedidoProdutos.quantidade = selectedProduto.quantidade;
+          this.pedidoProdutos.quantidadeVenda = selectedProduto.quantidadeVenda;
           this.pedidoProdutos.ativo = selectedProduto.ativo;
           this.pedidoProdutos.precoCompra = selectedProduto.precoCompra;
           this.pedidoProdutos.precoVenda = selectedProduto.precoVenda;
@@ -278,6 +283,7 @@ export class PedidoCriarComponent implements OnInit {
           id: this.pedidoProdutos.id,
           nome: this.pedidoProdutos.nome,
           quantidade: this.pedidoProdutos.quantidade,
+          quantidadeVenda: this.pedidoProdutos.quantidadeVenda,
           ativo: this.pedidoProdutos.ativo,
           precoCompra: this.pedidoProdutos.precoCompra,
           precoVenda: this.pedidoProdutos.precoVenda,
@@ -356,6 +362,7 @@ export class PedidoCriarComponent implements OnInit {
           id: produtos[i].id,
           nome: produtos[i].nome,
           quantidade: produtos[i].quantidade,
+          quantidadeVenda: produtos[i].quantidadeVenda,
           ativo: produtos[i].ativo,
           precoCompra: produtos[i].precoCompra,
           precoVenda: produtos[i].precoVenda,
@@ -370,6 +377,17 @@ export class PedidoCriarComponent implements OnInit {
       }
     }
 
+    EnviarQuantidade(quantidade: number, id:number): void {
+      const produtoQuantidade = this.produtosGrid.find(produto => produto.id === id);
+      if(produtoQuantidade != null){
+        let produto = this.produtosGrid.findIndex(produto => produto.id === id);
+        produtoQuantidade.quantidadeVenda = quantidade;
+        this.produto.quantidadeVenda = 0;
+        this.formQuantidade.enabled;
+      }
+      console.log('entrou aqui!', produtoQuantidade);
+    }
+
   get f(): any {
     return this.formCliente.controls;
   }
@@ -378,12 +396,35 @@ export class PedidoCriarComponent implements OnInit {
     return this.formProduto.controls;
   }
 
+  get pe(): any{
+    return this.formQuantidade.controls;
+  }
+
   public cssValidatorCliente(campoForm: FormControl | AbstractControl): any {
     return { 'is-invalid': campoForm.errors && campoForm.touched };
   }
 
   public cssValidatorProduto(campoForm: FormControl | AbstractControl): any {
     return { 'is-invalid': campoForm.errors && campoForm.touched };
+  }
+
+  public cssValidatorQuantidade(campoForm: FormControl | AbstractControl): any {
+    return { 'is-invalid': campoForm.errors && campoForm.touched };
+  }
+
+  somenteNumeros(e: any):boolean {
+    let charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace
+    // charCode 9 = tab
+
+    if (charCode != 8 && charCode != 9) {
+      // charCode 48 equivale a 0
+      // charCode 57 equivale a 9
+      let max = 10;
+
+      if ((charCode < 48 || charCode > 57)||(e.target.value.length >= max)) return false;
+    }
+    return true;
   }
 
   public Voltar(){
@@ -402,6 +443,15 @@ export class PedidoCriarComponent implements OnInit {
       nome: [null, Validators.required]
     });
   }
+
+  public validationQuantidade(): void {
+    this.formQuantidade = this.fbPedido.group({
+      quantidadeVenda: [null, Validators.required]
+    });
+  }
+
+
+
 
   permissoesDeTela(){
     this.authService.verificaAdministrador();
