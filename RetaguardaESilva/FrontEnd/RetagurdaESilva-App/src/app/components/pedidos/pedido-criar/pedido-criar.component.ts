@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -59,6 +59,7 @@ export class PedidoCriarComponent implements OnInit {
   mostrarGrid:boolean = false;
   criarPedido:boolean = false;
   indice:number = 0;
+  selecionarProduto:boolean = true;
 
   constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -298,11 +299,12 @@ export class PedidoCriarComponent implements OnInit {
           this.mostrarGrid = true;
           this.mostrarProduto = true;
           this.criarPedido = true;
+          this.produto.quantidadeVenda = 0 //this.produtosGrid.findIndex(produto => produto.id === i);
           this._changeDetectorRef.markForCheck();
+          this.selecionarProduto = false;
         break;
       }
     }
-    console.log(this.produtosGrid);
   }
 
   openModal(event: any, template: TemplateRef<any>, produtoNome: string, produtoId: number): void {
@@ -377,15 +379,13 @@ export class PedidoCriarComponent implements OnInit {
       }
     }
 
-    EnviarQuantidade(quantidade: number, id:number): void {
-      const produtoQuantidade = this.produtosGrid.find(produto => produto.id === id);
-      if(produtoQuantidade != null){
-        let produto = this.produtosGrid.findIndex(produto => produto.id === id);
-        produtoQuantidade.quantidadeVenda = quantidade;
-        this.produto.quantidadeVenda = 0;
-        this.formQuantidade.enabled;
-      }
-      console.log('entrou aqui!', produtoQuantidade);
+    EnviarQuantidade(id:number): void {
+      var quantidade = this.formQuantidade.get('quantidadeVenda')?.value;
+      let produto = this.produtosGrid.findIndex(produto => produto.id === id);
+      this.produtosGrid[produto].quantidadeVenda = quantidade;
+      this.produto.quantidadeVenda = 0;
+      this.selecionarProduto = true;
+      console.log('entrou aqui!', this.produtosGrid);
     }
 
   get f(): any {
@@ -449,9 +449,6 @@ export class PedidoCriarComponent implements OnInit {
       quantidadeVenda: [null, Validators.required]
     });
   }
-
-
-
 
   permissoesDeTela(){
     this.authService.verificaAdministrador();
