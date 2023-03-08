@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit, TemplateRef} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -37,6 +37,7 @@ export class PedidoCriarComponent implements OnInit {
   public clientes: Cliente[] = [];
   public transportadores: Transportador[] = [];
   public produtos: Produto[] = [];
+  public produtosSelecionados: Produto[] = [];
   public pedidoProdutos = {} as Produto;
   public produtosGrid: Produto[] = [];
   gerarPedido = {} as Pedido;
@@ -55,10 +56,12 @@ export class PedidoCriarComponent implements OnInit {
   produtoIdGrid!: number;
   usuarioId!:number;
   produtoNome!:string;
+  inputCliente:boolean = false;
+  inputTransportador:boolean = false;
+  inputProduto:boolean = false;
   mostrarProduto:boolean = false;
   mostrarGrid:boolean = false;
   criarPedido:boolean = false;
-  indice:number = 0;
   selecionarProduto:boolean = true;
 
   constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
@@ -130,6 +133,7 @@ export class PedidoCriarComponent implements OnInit {
   private _filterProdutos(value: string): Produto[] {
     const filterProduto = value.toLowerCase();
     var produto = this.produtos.filter(produto => produto.nome.toLowerCase().includes(filterProduto));
+    this._changeDetectorRef.markForCheck();
     return produto;
   }
 
@@ -260,6 +264,8 @@ export class PedidoCriarComponent implements OnInit {
     for (let i = 0; i < this.clientes.length; i++) {
       if (this.clientes[i].nome === clienteTransportadorNome.clienteNome && this.clientes[i].id === this.clienteId) {
         this.mostrarProduto = true;
+        this.inputCliente = true;
+        this.inputTransportador = true;
         break;
       }else{
         this.mostrarProduto = false;
@@ -299,7 +305,7 @@ export class PedidoCriarComponent implements OnInit {
           this.mostrarGrid = true;
           this.mostrarProduto = true;
           this.criarPedido = true;
-          this.produto.quantidadeVenda = 0 //this.produtosGrid.findIndex(produto => produto.id === i);
+          this.formQuantidade.reset();
           this._changeDetectorRef.markForCheck();
           this.selecionarProduto = false;
         break;
@@ -317,13 +323,20 @@ export class PedidoCriarComponent implements OnInit {
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
+    console.log(this.produtos);
     let produtoDelete = this.produtosGrid.findIndex(produto => produto.id === this.produtoIdGrid);
+    var teste = this.produtos.find(produto => produto.id === this.produtoIdGrid);
     this.produtosGrid.splice(produtoDelete, 1);
     this.spinner.hide();
-    this._changeDetectorRef.markForCheck();
     if(this.produtosGrid.length == 0){
       this.mostrarGrid = false;
       this.criarPedido = false;
+    }
+    let produto = this.produtosSelecionados.find(produto => produto.id === this.produtoIdGrid);
+    console.log(produto);
+    if(produto != null){
+      this.produtos.push(produto);
+      this._changeDetectorRef.markForCheck();
     }
   }
 
@@ -380,12 +393,28 @@ export class PedidoCriarComponent implements OnInit {
     }
 
     EnviarQuantidade(id:number): void {
+      this.inputProduto = false;
       var quantidade = this.formQuantidade.get('quantidadeVenda')?.value;
       let produto = this.produtosGrid.findIndex(produto => produto.id === id);
       this.produtosGrid[produto].quantidadeVenda = quantidade;
-      this.produto.quantidadeVenda = 0;
       this.selecionarProduto = true;
+      var produtoSelecionadoGrid = this.produtos.filter(p => p.id == id);
+      for(var i = 0; i < produtoSelecionadoGrid.length; i++){
+        this.produtosSelecionados.push(produtoSelecionadoGrid[i]);
+      }
+      this.produtos = this.produtos.filter(p => p.id !== id);
+      this._changeDetectorRef.markForCheck();
       console.log('entrou aqui!', this.produtosGrid);
+    }
+
+    EditarQuantidade(id:number): void {
+      for(var i = 0; i < this.produtosGrid.length; i++){
+        if(this.produtosGrid[i].id == id){
+          this.produtosGrid[i].quantidadeVenda = 0;
+          this.inputProduto = true;
+        }
+        this.inputProduto = false;
+      }
     }
 
   get f(): any {

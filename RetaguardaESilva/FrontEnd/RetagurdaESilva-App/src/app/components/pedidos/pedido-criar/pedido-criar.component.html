@@ -10,7 +10,7 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Cliente</label>
-              <input type="text" placeholder="Pesquisar Cliente" [ngClass]="cssValidatorCliente(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Cliente" [readonly]="inputCliente" [ngClass]="cssValidatorCliente(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
               <mat-autocomplete #autoCliente="matAutocomplete" (optionSelected)="onOptionSelectedCliente($event)">
                 <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente.nome" [attr.data-id]="cliente.id" (click)="pegarClienteId(cliente.id)">
                   {{cliente.nome}}
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Transportador</label>
-              <input type="text" placeholder="Pesquisar Transportador" [ngClass]="cssValidatorCliente(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Transportador" [readonly]="inputTransportador" [ngClass]="cssValidatorCliente(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
               <mat-autocomplete #autoTransportador="matAutocomplete" (optionSelected)="onOptionSelectedTransportador($event)">
                 <mat-option *ngFor="let transportador of filteredTransportadores | async" [value]="transportador.nome" [attr.data-id]="transportador.id" (click)="pegarTransportadorId(transportador.id)">
                   {{transportador.nome}}
@@ -75,9 +75,9 @@
                   <th scope="col" class="col-2">Codigo</th>
                   <th scope="col" class="col-3">Nome do Produto</th>
                   <th scope="col" class="col-2">Preço de Venda</th>
-                  <th scope="col" class="col-2">Quantidade</th>
-                  <th scope="col" class="col-2">Quantidade de Venda</th>
-                  <th>Opções</th>
+                  <th scope="col" class="col-1">Quantidade</th>
+                  <th scope="col" class="col-4">Quantidade de Venda</th>
+                  <th scope="col" class="col-1">Opções</th>
                 </tr>
               </thead>
               <tbody *ngIf="produtosGrid && produtosGrid.length">
@@ -86,13 +86,22 @@
                   <td class="col-2">{{produtoPedido.nome}}</td>
                   <td class="col-2">{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
                   <td class="col-2">{{produtoPedido.quantidade}}</td>
-                  <td class="col-2"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
-                  <td>
-                    <button type="button" tooltip="Confirmar Quantidade" class="btn btn-success btn-sm" (click)="EnviarQuantidade(produtoPedido.id)">
-                      <i class="fa fa-trash"></i></button>
+                  <td *ngIf="produtoPedido.quantidadeVenda" class="col-2">{{produtoPedido.quantidadeVenda}}</td>
+                  <td *ngIf="!produtoPedido.quantidadeVenda || inputProduto" class="col-3"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
+                  <td *ngIf="!produtoPedido.quantidadeVenda" class="col-2">
+                    <button type="button" tooltip="Confirmar Quantidade" class="btn btn-success btn-sm" [disabled]="!formQuantidade.valid" (click)="EnviarQuantidade(produtoPedido.id)">
+                      <i class="fa-sharp fa-solid fa-check"></i></button>
                   </td>
-                  <td>
-                    <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
+                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
+                    <button class="btn btn-warning" tooltip="Quantidade Confirmada">
+                      <i class="fa-sharp fa-solid fa-xmark"></i></button>
+                  </td>
+                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
+                    <button type="button" tooltip="Editar Quantidade" class="btn btn-info mb-2" (click)="EditarQuantidade(produtoPedido.id)">
+                      <i class="fa-sharp fa-solid fa-pen"></i></button>
+                  </td>&nbsp;&nbsp;&nbsp;
+                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
+                    <button type="button" tooltip="Excluir" class="btn btn-danger mb-2" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
                       <i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
