@@ -86,22 +86,22 @@
                   <td class="col-2">{{produtoPedido.nome}}</td>
                   <td class="col-2">{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
                   <td class="col-2">{{produtoPedido.quantidade}}</td>
-                  <td *ngIf="produtoPedido.quantidadeVenda" class="col-2">{{produtoPedido.quantidadeVenda}}</td>
-                  <td *ngIf="!produtoPedido.quantidadeVenda || inputProduto" class="col-3"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
-                  <td *ngIf="!produtoPedido.quantidadeVenda" class="col-2">
+                  <td class="col-1" *ngIf="produtoPedido.quantidadeProdutoGrid">{{produtoPedido.quantidadeVenda}}</td>
+                  <td class="col-1" *ngIf="produtoPedido.inputProduto"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
+                  <td class="col-1" *ngIf="produtoPedido.inputProduto">
                     <button type="button" tooltip="Confirmar Quantidade" class="btn btn-success btn-sm" [disabled]="!formQuantidade.valid" (click)="EnviarQuantidade(produtoPedido.id)">
                       <i class="fa-sharp fa-solid fa-check"></i></button>
                   </td>
-                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
-                    <button class="btn btn-warning" tooltip="Quantidade Confirmada">
-                      <i class="fa-sharp fa-solid fa-xmark"></i></button>
+                  <td class="col-2" *ngIf="produtoPedido.botaoQuantidadeConfirmada && produtoPedido.quantidadeVenda">
+                    <button class="btn btn-warning btn-sm" tooltip="Quantidade Confirmada">
+                      <i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
                   </td>
-                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
-                    <button type="button" tooltip="Editar Quantidade" class="btn btn-info mb-2" (click)="EditarQuantidade(produtoPedido.id)">
+                  <td class="col-2" *ngIf="produtoPedido.botaoEditarQuantidade && produtoPedido.quantidadeVenda">
+                    <button type="button" tooltip="Editar Quantidade" class="btn btn-info btn-sm" (click)="EditarQuantidade(produtoPedido.id)">
                       <i class="fa-sharp fa-solid fa-pen"></i></button>
-                  </td>&nbsp;&nbsp;&nbsp;
+                  </td>&nbsp;&nbsp;&nbsp;&nbsp;
                   <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
-                    <button type="button" tooltip="Excluir" class="btn btn-danger mb-2" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
+                    <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
                       <i class="fa fa-trash"></i></button>
                   </td>
                 </tr>

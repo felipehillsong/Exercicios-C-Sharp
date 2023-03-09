@@ -12,4 +12,9 @@ export interface Produto {
     dataCadastroProduto:string;
     empresaId:number;
     fornecedorId:number;
+    inputProduto:boolean;
+    quantidadeProdutoGrid:boolean;
+    botaoEnviarQuantidade: boolean;
+    botaoEditarQuantidade: boolean;
+    botaoQuantidadeConfirmada: boolean;
 }

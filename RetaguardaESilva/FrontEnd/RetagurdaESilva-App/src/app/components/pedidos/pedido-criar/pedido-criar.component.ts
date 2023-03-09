@@ -58,7 +58,6 @@ export class PedidoCriarComponent implements OnInit {
   produtoNome!:string;
   inputCliente:boolean = false;
   inputTransportador:boolean = false;
-  inputProduto:boolean = false;
   mostrarProduto:boolean = false;
   mostrarGrid:boolean = false;
   criarPedido:boolean = false;
@@ -299,7 +298,12 @@ export class PedidoCriarComponent implements OnInit {
           codigo: this.pedidoProdutos.codigo,
           dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
           empresaId: this.pedidoProdutos.empresaId,
-          fornecedorId: this.pedidoProdutos.fornecedorId
+          fornecedorId: this.pedidoProdutos.fornecedorId,
+          inputProduto: true,
+          quantidadeProdutoGrid: false,
+          botaoEnviarQuantidade: true,
+          botaoEditarQuantidade: false,
+          botaoQuantidadeConfirmada: false
         };
           this.produtosGrid.push(produtoPedido);
           this.mostrarGrid = true;
@@ -386,35 +390,58 @@ export class PedidoCriarComponent implements OnInit {
           codigo: produtos[i].codigo,
           dataCadastroProduto: produtos[i].dataCadastroProduto,
           empresaId: produtos[i].empresaId,
-          fornecedorId: produtos[i].fornecedorId
+          fornecedorId: produtos[i].fornecedorId,
+          inputProduto: produtos[i].inputProduto,
+          quantidadeProdutoGrid: produtos[i].quantidadeProdutoGrid,
+          botaoEnviarQuantidade: produtos[i].botaoEnviarQuantidade,
+          botaoEditarQuantidade: produtos[i].botaoEditarQuantidade,
+          botaoQuantidadeConfirmada: produtos[i].botaoQuantidadeConfirmada
         };
         this.gerarPedido.produtos.push(produtoPedido);
       }
     }
 
     EnviarQuantidade(id:number): void {
-      this.inputProduto = false;
       var quantidade = this.formQuantidade.get('quantidadeVenda')?.value;
       let produto = this.produtosGrid.findIndex(produto => produto.id === id);
       this.produtosGrid[produto].quantidadeVenda = quantidade;
+      this.produtosGrid[produto].quantidadeProdutoGrid = true;
+      this.produtosGrid[produto].botaoEditarQuantidade = true;
+      this.produtosGrid[produto].botaoQuantidadeConfirmada = true;
+      this.produtosGrid[produto].inputProduto = false;
       this.selecionarProduto = true;
       var produtoSelecionadoGrid = this.produtos.filter(p => p.id == id);
-      for(var i = 0; i < produtoSelecionadoGrid.length; i++){
+      for(let i = 0; i < produtoSelecionadoGrid.length; i++){
         this.produtosSelecionados.push(produtoSelecionadoGrid[i]);
       }
       this.produtos = this.produtos.filter(p => p.id !== id);
       this._changeDetectorRef.markForCheck();
-      console.log('entrou aqui!', this.produtosGrid);
+      //console.log('entrou aqui!', this.produtosGrid);
     }
 
     EditarQuantidade(id:number): void {
+      this.selecionarProduto = false;
       for(var i = 0; i < this.produtosGrid.length; i++){
         if(this.produtosGrid[i].id == id){
-          this.produtosGrid[i].quantidadeVenda = 0;
-          this.inputProduto = true;
+          this.formQuantidade.patchValue({
+            quantidadeVenda: this.produtosGrid[i].quantidadeVenda
+          });
+          this.produtosGrid[i].inputProduto = true;
+          this.produtosGrid[i].quantidadeProdutoGrid = false;
+          this.produtosGrid[i].quantidadeProdutoGrid = false;
+          this.produtosGrid[i].botaoEditarQuantidade = false;
+          this.produtosGrid[i].botaoQuantidadeConfirmada = false;
+        }else{
+          this.produtosGrid[i].inputProduto = false;
         }
-        this.inputProduto = false;
+        var produtos = this.produtosGrid[i].id != id;
+        console.log(produtos);
       }
+
+      /*for(let i = 0; i < produtosGrid.length; i++){
+        this.produtosGrid[i].inputProduto = false;
+      }*/
+      //console.log(this.produtosGrid);
     }
 
   get f(): any {
