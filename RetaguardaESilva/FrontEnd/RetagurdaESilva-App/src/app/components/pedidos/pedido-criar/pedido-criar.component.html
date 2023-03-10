@@ -85,7 +85,8 @@
                   <td class="col-2">{{produtoPedido.codigo}}</td>
                   <td class="col-2">{{produtoPedido.nome}}</td>
                   <td class="col-2">{{produtoPedido.precoVenda | currency: 'BRL'}}</td>
-                  <td class="col-2">{{produtoPedido.quantidade}}</td>
+                  <td *ngIf="produtoPedido.quantidade < limiteDeProduto" class="col-2 text-danger">{{produtoPedido.quantidade}}</td>
+                  <td *ngIf="produtoPedido.quantidade > 10" class="col-2">{{produtoPedido.quantidade}}</td>
                   <td class="col-1" *ngIf="produtoPedido.quantidadeProdutoGrid">{{produtoPedido.quantidadeVenda}}</td>
                   <td class="col-1" *ngIf="produtoPedido.inputProduto"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
                   <td class="col-1" *ngIf="produtoPedido.inputProduto">
@@ -100,7 +101,7 @@
                     <button type="button" tooltip="Editar Quantidade" class="btn btn-info btn-sm" (click)="EditarQuantidade(produtoPedido.id)">
                       <i class="fa-sharp fa-solid fa-pen"></i></button>
                   </td>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <td class="col-2" *ngIf="produtoPedido.quantidadeVenda">
+                  <td class="col-2" *ngIf="produtoPedido.botaoExcluir">
                     <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" (click)="openModal($event, template, produtoPedido.nome, produtoPedido.id)">
                       <i class="fa fa-trash"></i></button>
                   </td>
@@ -110,7 +111,7 @@
       </div>
       <div class="card-footer">
         <div id="botaoCadastrar">
-          <button class="btn btn-lg btn-primary btn-block" *ngIf="criarPedido" [disabled]="!formQuantidade.valid" (click)="CriarPedido()" type="submit">Criar Pedido</button>
+          <button class="btn btn-lg btn-primary btn-block" *ngIf="criarPedido" (click)="CriarPedido()" type="submit">Criar Pedido</button>
         </div>
       </div>
             </form>

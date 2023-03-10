@@ -17,4 +17,5 @@ export interface Produto {
     botaoEnviarQuantidade: boolean;
     botaoEditarQuantidade: boolean;
     botaoQuantidadeConfirmada: boolean;
+    botaoExcluir: boolean;
 }
