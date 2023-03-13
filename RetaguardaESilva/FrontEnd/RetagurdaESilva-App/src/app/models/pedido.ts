@@ -6,6 +6,7 @@ export interface Pedido {
   transportadorNome:string;
   transportadorId:number;
   usuarioId:number;
+  empresaId:number;
   precoTotal:number;
   dataCadastroPedido:string;
   status:string;

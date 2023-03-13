@@ -76,7 +76,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     UsuarioId = retornoPedido.UsuarioId,
                                     Quantidade = item.Quantidade,
                                     PrecoVenda = item.PrecoVenda,
-                                    PrecoTotal = item.Quantidade * item.PrecoVenda,
+                                    PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
                                     DataCadastroPedidoNota = item.DataCadastroProduto,
                                     Status = retornoPedido.Status
                                 };
@@ -84,7 +84,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
                                 if (await _geralPersist.SaveChangesAsync())
                                 {
-                                    var produtoUpdateDTO = _mapper.Map<Produto>(item);
+                                    var produtoUpdateDTO = _mapper.Map<ProdutoViewModel>(item);
                                     var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(produtoUpdateDTO, out Estoque estoqueUpdate);
                                     _geralPersist.Update<Produto>(produtoRetorno);
                                     await _geralPersist.SaveChangesAsync();

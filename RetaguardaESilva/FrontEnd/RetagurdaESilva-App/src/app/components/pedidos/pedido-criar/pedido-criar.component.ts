@@ -65,6 +65,7 @@ export class PedidoCriarComponent implements OnInit {
   botaoExcluir:boolean = false;
   selecionarProduto:boolean = true;
   limiteDeProduto = MensagensAlerta.LimiteDeProduto;
+  precoTotalPedido:number = 0;
 
   constructor(private router: Router, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
@@ -296,6 +297,7 @@ export class PedidoCriarComponent implements OnInit {
           ativo: this.pedidoProdutos.ativo,
           precoCompra: this.pedidoProdutos.precoCompra,
           precoVenda: this.pedidoProdutos.precoVenda,
+          precoTotal: this.pedidoProdutos.precoCompra,
           precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
           precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
           codigo: this.pedidoProdutos.codigo,
@@ -332,7 +334,6 @@ export class PedidoCriarComponent implements OnInit {
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
-    console.log(this.produtos);
     let produtoDelete = this.produtosGrid.findIndex(produto => produto.id === this.produtoIdGrid);
     this.produtosGrid.splice(produtoDelete, 1);
     this.spinner.hide();
@@ -379,12 +380,10 @@ export class PedidoCriarComponent implements OnInit {
       var existeCliente = this.VerificaIdCliente(this.clienteId);
       var existeTransportador = this.VerificaIdTransportador(this.transportadorId);
       if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null){
-        this.gerarPedido.clienteId = this.clienteId;
-        this.gerarPedido.transportadorId = this.transportadorId;
         this.gerarPedido.produtos = [];
         this.preencherPedido(this.produtosGrid);
         this.pedidoService.addPedido(this.gerarPedido).subscribe(() => {
-          this.router.navigate(['produtos/lista']);
+          this.router.navigate(['pedidos/lista']);
         },
         (error: any) => {
           console.error(error);
@@ -422,35 +421,49 @@ export class PedidoCriarComponent implements OnInit {
           botaoEditarQuantidade: produtos[i].botaoEditarQuantidade,
           botaoQuantidadeConfirmada: produtos[i].botaoQuantidadeConfirmada,
           botaoExcluir: produtos[i].botaoExcluir,
+          precoTotal: produtos[i].precoVenda * produtos[i].quantidadeVenda
         };
+        this.precoTotalPedido += produtoPedido.precoTotal;
         this.gerarPedido.produtos.push(produtoPedido);
       }
+      this.gerarPedido.clienteId = this.clienteId;
+      this.gerarPedido.transportadorId = this.transportadorId;
+      this.gerarPedido.dataCadastroPedido = new Date().toISOString().split('T')[0];
+      this.gerarPedido.usuarioId = this.authService.idDoUsuarioLogado();
+      this.gerarPedido.empresaId = this.authService.empresaId();
+      this.gerarPedido.precoTotal = this.precoTotalPedido;
     }
 
     EnviarQuantidade(id:number): void {
       var quantidadeVenda = this.formQuantidade.get('quantidadeVenda')?.value;
-      let produto = this.produtosGrid.findIndex(produto => produto.id === id);
-      this.produtosGrid[produto].quantidadeVenda = quantidadeVenda;
-      this.produtosGrid[produto].quantidadeProdutoGrid = true;
-      this.produtosGrid[produto].botaoEditarQuantidade = true;
-      this.produtosGrid[produto].botaoQuantidadeConfirmada = true;
-      this.produtosGrid[produto].inputProduto = false;
-      this.selecionarProduto = true;
-      this.criarPedido = true;
-      var produtoSelecionadoGrid = this.produtos.filter(p => p.id == id);
-      this.produtosSelecionados.push(produtoSelecionadoGrid[0]);
-      this.produtos = this.produtos.filter(p => p.id !== id);
-      this._changeDetectorRef.markForCheck();
-      for(let i = 0; i < this.produtosGrid.length; i++){
-        this.produtosGrid[i].botaoEditarQuantidade = true;
-        this.produtosGrid[i].botaoExcluir = true;
-        if(this.produtosGrid[i].quantidadeVenda == null){
-          this.formQuantidade.reset();
-          this.produtosGrid[i].inputProduto = true;
-          this.criarPedido = false;
-          this._changeDetectorRef.markForCheck();
+      const quantidadeVendaString = quantidadeVenda.toString();
+      if(quantidadeVendaString.charAt(0) === '0'){
+        this.toastr.error(MensagensAlerta.ZeroQuantidade);
+      }else{
+        let produto = this.produtosGrid.findIndex(produto => produto.id === id);
+        this.produtosGrid[produto].quantidadeVenda = quantidadeVenda;
+        this.produtosGrid[produto].quantidadeProdutoGrid = true;
+        this.produtosGrid[produto].botaoEditarQuantidade = true;
+        this.produtosGrid[produto].botaoQuantidadeConfirmada = true;
+        this.produtosGrid[produto].inputProduto = false;
+        this.selecionarProduto = true;
+        this.criarPedido = true;
+        var produtoSelecionadoGrid = this.produtos.filter(p => p.id == id);
+        this.produtosSelecionados.push(produtoSelecionadoGrid[0]);
+        this.produtos = this.produtos.filter(p => p.id !== id);
+        this._changeDetectorRef.markForCheck();
+        for(let i = 0; i < this.produtosGrid.length; i++){
+          this.produtosGrid[i].botaoEditarQuantidade = true;
+          this.produtosGrid[i].botaoExcluir = true;
+          if(this.produtosGrid[i].quantidadeVenda == null){
+            this.formQuantidade.reset();
+            this.produtosGrid[i].inputProduto = true;
+            this.criarPedido = false;
+            this._changeDetectorRef.markForCheck();
+          }
         }
       }
+
     }
 
     EditarQuantidade(id:number): void {

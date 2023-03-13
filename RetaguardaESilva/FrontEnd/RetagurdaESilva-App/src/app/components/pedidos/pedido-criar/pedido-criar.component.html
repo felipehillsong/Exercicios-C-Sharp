@@ -10,7 +10,10 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Cliente</label>
-              <input type="text" placeholder="Pesquisar Cliente" [readonly]="inputCliente" [ngClass]="cssValidatorCliente(f.clienteNome)" formControlName="clienteNome" [formControl]="clienteControl" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Cliente" [readonly]="inputCliente" [ngClass]="cssValidatorCliente(f.clienteNome)" formControlName="clienteNome" [matAutocomplete]="autoCliente" [(ngModel)]="gerarPedido.clienteNome" class="form-control">
+              <div *ngIf="f.clienteNome.errors?.required && f.clienteNome.touched" class="invalid-feedback">
+                Selecionar o cliente é obrigatório.
+                </div>
               <mat-autocomplete #autoCliente="matAutocomplete" (optionSelected)="onOptionSelectedCliente($event)">
                 <mat-option *ngFor="let cliente of filteredClientes | async" [value]="cliente.nome" [attr.data-id]="cliente.id" (click)="pegarClienteId(cliente.id)">
                   {{cliente.nome}}
@@ -19,7 +22,10 @@
             </div>
             <div class="form-group col-md-6">
               <label class="required" style="font-weight: bold;">Transportador</label>
-              <input type="text" placeholder="Pesquisar Transportador" [readonly]="inputTransportador" [ngClass]="cssValidatorCliente(f.transportadorNome)" formControlName="transportadorNome" [formControl]="transportadorControl" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
+              <input type="text" placeholder="Pesquisar Transportador" [readonly]="inputTransportador" [ngClass]="cssValidatorCliente(f.transportadorNome)" formControlName="transportadorNome" [matAutocomplete]="autoTransportador" [(ngModel)]="gerarPedido.transportadorNome" class="form-control">
+              <div *ngIf="f.transportadorNome.errors?.required && f.transportadorNome.touched" class="invalid-feedback">
+                Selecionar a transportadora é obrigatório.
+                </div>
               <mat-autocomplete #autoTransportador="matAutocomplete" (optionSelected)="onOptionSelectedTransportador($event)">
                 <mat-option *ngFor="let transportador of filteredTransportadores | async" [value]="transportador.nome" [attr.data-id]="transportador.id" (click)="pegarTransportadorId(transportador.id)">
                   {{transportador.nome}}
@@ -48,7 +54,10 @@
                     <div class="col-8">
                       <label class="required" style="font-weight: bold;">Produtos</label>
                       <div class="input-group">
-                        <input type="text" placeholder="Pesquisar Produto" [ngClass]="cssValidatorProduto(p.nome)" formControlName="nome" [formControl]="produtoControl" [matAutocomplete]="autoProduto" [(ngModel)]="produto.nome" class="form-control">
+                        <input type="text" placeholder="Pesquisar Produto" [ngClass]="cssValidatorProduto(p.nome)" formControlName="nome" [matAutocomplete]="autoProduto" [(ngModel)]="produto.nome" class="form-control">
+                        <div *ngIf="p.nome.errors?.required && p.nome.touched" class="invalid-feedback">
+                          Selecionar o produto é obrigatório.
+                          </div>
                         <mat-autocomplete #autoProduto="matAutocomplete" (optionSelected)="onOptionSelectedProduto($event)">
                           <mat-option *ngFor="let produto of filteredProdutos | async" [value]="produto.nome" [attr.data-id]="produto.id" (click)="pegarProdutoId(produto.id)">
                             {{produto.nome}}
@@ -88,7 +97,10 @@
                   <td *ngIf="produtoPedido.quantidade < limiteDeProduto" class="col-2 text-danger">{{produtoPedido.quantidade}}</td>
                   <td *ngIf="produtoPedido.quantidade > 10" class="col-2">{{produtoPedido.quantidade}}</td>
                   <td class="col-1" *ngIf="produtoPedido.quantidadeProdutoGrid">{{produtoPedido.quantidadeVenda}}</td>
-                  <td class="col-1" *ngIf="produtoPedido.inputProduto"><input type="text" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm"></td>
+                  <td class="col-1" *ngIf="produtoPedido.inputProduto"><input type="text" ng-pattern="/^(?!0)\d+$/" placeholder="Quantidade de Compra" [ngClass]="cssValidatorQuantidade(pe.quantidadeVenda)" (keypress)="somenteNumeros($event)" formControlName="quantidadeVenda" class="form-control form-control-sm">
+                    <div *ngIf="pe.quantidadeVenda.errors?.required && pe.quantidadeVenda.touched" class="invalid-feedback">
+                    Quantidade é obrigatória.
+                    </div></td>
                   <td class="col-1" *ngIf="produtoPedido.inputProduto">
                     <button type="button" tooltip="Confirmar Quantidade" class="btn btn-success btn-sm" [disabled]="!formQuantidade.valid" (click)="EnviarQuantidade(produtoPedido.id)">
                       <i class="fa-sharp fa-solid fa-check"></i></button>
