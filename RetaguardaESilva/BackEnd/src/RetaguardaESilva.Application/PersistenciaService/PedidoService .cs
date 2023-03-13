@@ -74,7 +74,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     EmpresaId = item.EmpresaId,
                                     TransportadorId = retornoPedido.TransportadorId,
                                     UsuarioId = retornoPedido.UsuarioId,
-                                    Quantidade = item.Quantidade,
+                                    Quantidade = item.QuantidadeVenda,
                                     PrecoVenda = item.PrecoVenda,
                                     PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
                                     DataCadastroPedidoNota = item.DataCadastroProduto,
