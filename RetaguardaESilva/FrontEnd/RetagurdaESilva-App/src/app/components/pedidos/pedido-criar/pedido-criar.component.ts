@@ -450,8 +450,6 @@ export class PedidoCriarComponent implements OnInit {
         this.criarPedido = true;
         var produtoSelecionadoGrid = this.produtos.filter(p => p.id == id);
         this.produtosSelecionados.push(produtoSelecionadoGrid[0]);
-        this.produtos = this.produtos.filter(p => p.id !== id);
-        this._changeDetectorRef.markForCheck();
         for(let i = 0; i < this.produtosGrid.length; i++){
           this.produtosGrid[i].botaoEditarQuantidade = true;
           this.produtosGrid[i].botaoExcluir = true;
@@ -462,8 +460,10 @@ export class PedidoCriarComponent implements OnInit {
             this._changeDetectorRef.markForCheck();
           }
         }
+        this.produtos = this.produtos.filter(p => p.id != id);
+        this._changeDetectorRef.markForCheck();
       }
-
+      this._changeDetectorRef.markForCheck();
     }
 
     EditarQuantidade(id:number): void {

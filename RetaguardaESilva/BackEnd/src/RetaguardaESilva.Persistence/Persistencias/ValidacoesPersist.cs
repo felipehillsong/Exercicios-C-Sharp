@@ -1245,7 +1245,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var pedidoNotaBD = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == pedido.EmpresaId && pn.PedidoId == pedido.Id).ToList();
             foreach (var item in pedidoNotaBD)
             {
-                var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId);
+                var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.Status == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
                 var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == pedido.EmpresaId && e.ProdutoId == item.ProdutoId);
                 if (produtoBD != null && estoqueBD != null)
                 {
@@ -1256,8 +1256,8 @@ namespace RetaguardaESilva.Persistence.Persistencias
                 }
                 else
                 {
-                    produto = null;
-                    estoque = null;
+                    produto.Add(null);
+                    estoque.Add(null);
                 }
             }
             

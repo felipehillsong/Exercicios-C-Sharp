@@ -20,14 +20,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IProdutoPersist _produtoPersist;
         private readonly IEstoquePersist _estoquePersist;
+        private readonly IPedidoNotaPersist _pedidoNotaPersist;
         private readonly IMapper _mapper;
 
-        public ProdutoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IProdutoPersist produtoPersist, IEstoquePersist estoquePersist, IMapper mapper)
+        public ProdutoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IProdutoPersist produtoPersist, IEstoquePersist estoquePersist, IPedidoNotaPersist pedidoNotaPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
             _produtoPersist = produtoPersist;
             _estoquePersist = estoquePersist;
+            _pedidoNotaPersist = pedidoNotaPersist;
             _mapper = mapper;
         }
         public async Task<ProdutoCreateDTO> AddProduto(ProdutoCreateDTO model)
@@ -37,7 +39,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 model.Nome = _validacoesPersist.AcertarNome(model.Nome);
                 var produto = _validacoesPersist.ExisteProduto(model.EmpresaId, model.Nome, model.PrecoCompra, model.PrecoVenda, model.Codigo, out string mensagem);
                 if (produto != null)
-                {
+                {   
                     model.Quantidade = model.Quantidade + produto.Quantidade;
                     model.Id = produto.Id;
                     var produtoCreateDTO = _mapper.Map<Produto>(model);
@@ -79,6 +81,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else if(produto == null && mensagem == MensagemDeSucesso.CadastrarOk)
                 {
                     model.Ativo = Convert.ToBoolean(Situacao.Ativo);
+                    model.Status = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
                     var produtoCreateDTO = _mapper.Map<Produto>(model);
                     _geralPersist.Add<Produto>(produtoCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
@@ -124,7 +127,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    model.Nome = _validacoesPersist.AcertarNome(model.Nome);                    
+                    model.Nome = _validacoesPersist.AcertarNome(model.Nome);
+                    model.Status = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
                     var produto = _mapper.Map<Produto>(model);
                     if (!_validacoesPersist.ExisteProdutoUpdate(produtoBanco, produto, out Produto produtoAtualizaQuantidade, out string mensagem))
                     {
@@ -205,18 +209,45 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, produtoId);
                 var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(empresaId, produtoId);
+                var pedidosNotas = await _pedidoNotaPersist.GetAllPedidosNotaAsync(empresaId, produtoId);
                 if (produto == null || estoqueProduto == null)
                 {
                     throw new Exception(MensagemDeErro.ProdutoNaoEncontradoDelete);
                 }
                 else
                 {
-                    _geralPersist.Delete<Produto>(produto);
-                    if (await _geralPersist.SaveChangesAsync())
+                    if (pedidosNotas != null)
                     {
-                        _geralPersist.Delete<Estoque>(estoqueProduto);
+                        var produtos = new Produto()
+                        {
+                            Id = produto.Id,
+                            Nome = produto.Nome,
+                            Quantidade = (int)StatusProduto.ZerarQuantidade,
+                            Ativo = Convert.ToBoolean(Situacao.Inativo),
+                            Status = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
+                            PrecoCompra = produto.PrecoCompra,
+                            PrecoVenda = produto.PrecoVenda,
+                            Codigo = produto.Codigo,
+                            DataCadastroProduto = produto.DataCadastroProduto,
+                            EmpresaId = produto.EmpresaId,
+                            FornecedorId = produto.FornecedorId
+                        };
+                        _geralPersist.Update<Produto>(produtos);
+                        if (await _geralPersist.SaveChangesAsync())
+                        {
+                            _geralPersist.Delete<Estoque>(estoqueProduto);
+                        }
+                        return await _geralPersist.SaveChangesAsync();
                     }
-                    return await _geralPersist.SaveChangesAsync();
+                    else
+                    {
+                        _geralPersist.Delete<Produto>(produto);
+                        if (await _geralPersist.SaveChangesAsync())
+                        {
+                            _geralPersist.Delete<Estoque>(estoqueProduto);
+                        }
+                        return await _geralPersist.SaveChangesAsync();
+                    }
                 }
             }
             catch (Exception ex)

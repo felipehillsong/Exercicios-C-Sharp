@@ -16,12 +16,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
         private readonly RetaguardaESilvaContext _context;
         public ProdutoPersist(RetaguardaESilvaContext context)
         {
-            _context = context;            
+            _context = context;
         }
 
         public async Task<IEnumerable<Produto>> GetAllProdutosAsync(int empresaId)
         {
-            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId).OrderBy(p => p.Nome).ToListAsync();
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.Status == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).OrderBy(p => p.Nome).ToListAsync();
         }
 
         public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresAsync(int empresaId)
@@ -31,7 +31,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
         public async Task<Produto> GetProdutoByIdAsync(int empresaId, int produtoId)
         {
-            return await _context.Produto.AsNoTracking().Where(p => p.Id == produtoId && p.EmpresaId == empresaId).OrderBy(p => p.Id).FirstOrDefaultAsync();
+            return await _context.Produto.AsNoTracking().Where(p => p.Id == produtoId && p.EmpresaId == empresaId && p.Status == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).OrderBy(p => p.Id).FirstOrDefaultAsync();
         }
     }
 }

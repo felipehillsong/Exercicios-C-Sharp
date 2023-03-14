@@ -135,13 +135,19 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     {
                         foreach (var item in produtos)
                         {
-                            _geralPersist.Update<Produto>(item);
-                            await _geralPersist.SaveChangesAsync();
+                            if (item != null)
+                            {
+                                _geralPersist.Update<Produto>(item);
+                                await _geralPersist.SaveChangesAsync();
+                            }
                         }
                         foreach (var item in estoques)
                         {
-                            _geralPersist.Update<Estoque>(item);
-                            await _geralPersist.SaveChangesAsync();
+                            if (item != null)
+                            {
+                                _geralPersist.Update<Estoque>(item);
+                                await _geralPersist.SaveChangesAsync();
+                            }
                         }
                         foreach (var item in pedidosNotas)
                         {
