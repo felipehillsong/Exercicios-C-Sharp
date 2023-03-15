@@ -39,6 +39,14 @@ namespace RetaguardaESilva.Application.PersistenciaService
         {
             try
             {
+                foreach (var item in model.Produtos)
+                {
+                    if (!_validacoesPersist.VerificaQuantidade(model.EmpresaId, item.Id, item.QuantidadeVenda, out string mensagem))
+                    {
+                        throw new Exception(mensagem);
+                    }
+                }
+                
                 model.Status = (int)StatusPedido.PedidoEmAnalise;
                 var pedidoDTO = new PedidoDTO()
                 {
@@ -62,44 +70,37 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         List<string> produtosSemEstoque = new List<string>();
                         foreach (var item in model.Produtos)
                         {
-                            if (_validacoesPersist.ExisteEstoqueVenda(model.EmpresaId, item.Id))
+                            var pedidoNotaDTO = new PedidoNotaDTO()
                             {
-                                var pedidoNotaDTO = new PedidoNotaDTO()
-                                {
-                                    Id = (int)Ids.IdCreate,
-                                    PedidoId = retornoPedido.Id,
-                                    ClienteId = retornoPedido.ClienteId,
-                                    FornecedorId = item.FornecedorId,
-                                    ProdutoId = item.Id,
-                                    EmpresaId = item.EmpresaId,
-                                    TransportadorId = retornoPedido.TransportadorId,
-                                    UsuarioId = retornoPedido.UsuarioId,
-                                    Quantidade = item.QuantidadeVenda,
-                                    PrecoVenda = item.PrecoVenda,
-                                    PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
-                                    DataCadastroPedidoNota = item.DataCadastroProduto,
-                                    Status = retornoPedido.Status
-                                };
-                                var pedidoNotaCreate = _mapper.Map<PedidoNota>(pedidoNotaDTO);
-                                _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
-                                if (await _geralPersist.SaveChangesAsync())
-                                {
-                                    var produtoUpdateDTO = _mapper.Map<ProdutoViewModel>(item);
-                                    var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(produtoUpdateDTO, out Estoque estoqueUpdate);
-                                    _geralPersist.Update<Produto>(produtoRetorno);
-                                    await _geralPersist.SaveChangesAsync();
-                                    _geralPersist.Update<Estoque>(estoqueUpdate);
-                                    await _geralPersist.SaveChangesAsync();
-                                    continue;
-                                }
-                                else
-                                {
-                                    throw new Exception(MensagemDeErro.ErroAoCadastrarItensPedido);
-                                }
+                                Id = (int)Ids.IdCreate,
+                                PedidoId = retornoPedido.Id,
+                                ClienteId = retornoPedido.ClienteId,
+                                FornecedorId = item.FornecedorId,
+                                ProdutoId = item.Id,
+                                EmpresaId = item.EmpresaId,
+                                TransportadorId = retornoPedido.TransportadorId,
+                                UsuarioId = retornoPedido.UsuarioId,
+                                Quantidade = item.QuantidadeVenda,
+                                PrecoVenda = item.PrecoVenda,
+                                PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
+                                DataCadastroPedidoNota = item.DataCadastroProduto,
+                                Status = retornoPedido.Status
+                            };
+                            var pedidoNotaCreate = _mapper.Map<PedidoNota>(pedidoNotaDTO);
+                            _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
+                            if (await _geralPersist.SaveChangesAsync())
+                            {
+                                var produtoUpdateDTO = _mapper.Map<ProdutoViewModel>(item);
+                                var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(produtoUpdateDTO, out Estoque estoqueUpdate);
+                                _geralPersist.Update<Produto>(produtoRetorno);
+                                await _geralPersist.SaveChangesAsync();
+                                _geralPersist.Update<Estoque>(estoqueUpdate);
+                                await _geralPersist.SaveChangesAsync();
+                                continue;
                             }
                             else
                             {
-                                produtosSemEstoque.Add(_validacoesPersist.RetornarNomeProdutosNaoEncontrados(model.EmpresaId, item.Id));
+                                throw new Exception(MensagemDeErro.ErroAoCadastrarItensPedido);
                             }
                         }
                         var retornoPedidoCompleto = _mapper.Map<PedidoCreateDTO>(retornoPedido);
