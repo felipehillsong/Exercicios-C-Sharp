@@ -13,6 +13,6 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<PedidoUpdateDTO> UpdatePedido(PedidoUpdateDTO model);
         Task<bool> DeletePedido(int empresaId, int pedidoId);
         Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId);
-        Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId);
+        Task<PedidoRetornoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId);
     }
 }

@@ -194,7 +194,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId)
+        public async Task<PedidoRetornoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId)
         {
             try
             {
@@ -206,7 +206,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     var pedidoRetorno = _validacoesPersist.MontarPedidoRetorno(pedido);
-                    var resultadoPedido = _mapper.Map<PedidoDTO>(pedidoRetorno);
+                    var resultadoPedido = _mapper.Map<PedidoRetornoDTO>(pedidoRetorno);
                     return resultadoPedido;
                 }
             }

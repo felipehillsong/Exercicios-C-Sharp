@@ -30,7 +30,7 @@ namespace RetaguardaESilva.Application.DTO
 
     }
 
-    public class PedidoRetornoDTO : PedidoViewModel
+    public class PedidoRetornoDTO : PedidoDTO
     {
         public string ClienteNome { get; set; }
         public string TransportadorNome { get; set; }
