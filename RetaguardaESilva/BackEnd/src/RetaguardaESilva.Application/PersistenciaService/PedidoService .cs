@@ -194,9 +194,26 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId)
+        public async Task<PedidoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var pedido = await _pedidoPersist.GetPedidoByIdAsync(empresaId, pedidoId);
+                if (pedido == null)
+                {
+                    throw new Exception(MensagemDeErro.PedidoNaoEncontrado);
+                }
+                else
+                {
+                    var pedidoRetorno = _validacoesPersist.MontarPedidoRetorno(pedido);
+                    var resultadoPedido = _mapper.Map<PedidoDTO>(pedidoRetorno);
+                    return resultadoPedido;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

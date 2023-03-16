@@ -25,7 +25,7 @@
       <td>{{pedido.clienteNome}}</td>
       <td>{{pedido.precoTotal | currency: 'BRL'}}</td>
       <td>{{pedido.dataCadastroPedido | date: "dd/MM/yyyy"}}</td>
-      <td>{{pedido.status}}</td>
+      <td>{{pedido.statusPedido}}</td>
       <td>
         <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(pedido.id)">
           <i class="fa fa-edit"></i></button>&nbsp;

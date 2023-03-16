@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RetaguardaESilva.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,24 +30,39 @@ namespace RetaguardaESilva.Application.DTO
 
     }
 
-    public class PedidoRetornoDTO
+    public class PedidoRetornoDTO : PedidoViewModel
     {
-        public int Id { get; set; }
         public string ClienteNome { get; set; }
-        public decimal PrecoTotal { get; set; }
-        public DateTime? DataCadastroPedido { get; set; }
-        public string Status { get; set; }
+        public string TransportadorNome { get; set; }
+        public List<ProdutoPedidoDTO> Produtos { get; set; }
+        public string StatusPedido { get; set; }
         public PedidoRetornoDTO()
         {
 
         }
-        public PedidoRetornoDTO(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string status)
+
+        public PedidoRetornoDTO(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, int status)
         {
             this.Id = id;
             this.ClienteNome = clienteNome;
             this.PrecoTotal = precoTotal;
             this.DataCadastroPedido = dataCadastroPedido;
             this.Status = status;
+            this.StatusPedido = statusPedido;
+        }
+        public PedidoRetornoDTO(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, int status, List<ProdutoPedidoDTO> produtos)
+        {
+            this.Id = id;
+            this.ClienteId = clienteId;
+            this.ClienteNome = clienteNome;
+            this.TransportadorId = transportadorId;
+            this.TransportadorNome = transportadorNome;
+            this.EmpresaId = empresaId;
+            this.UsuarioId = usuarioId;
+            this.PrecoTotal = precoTotal;
+            this.DataCadastroPedido = dataCadastroPedido;
+            this.Status = status;
+            this.Produtos = produtos;
         }
     }
 }
