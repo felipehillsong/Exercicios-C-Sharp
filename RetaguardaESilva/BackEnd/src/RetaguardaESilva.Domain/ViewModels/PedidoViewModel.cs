@@ -17,7 +17,6 @@ namespace RetaguardaESilva.Domain.ViewModels
         public int UsuarioId { get; set; }
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroPedido { get; set; }
-        public int Status { get; set; }
         public string ClienteNome { get; set; }
         public string TransportadorNome { get; set; }
         public List<ProdutoViewModel> Produtos { get; set; }
@@ -28,7 +27,7 @@ namespace RetaguardaESilva.Domain.ViewModels
 
         }
 
-        public PedidoViewModel(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, int status)
+        public PedidoViewModel(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido)
         {
             this.Id = id;
             this.ClienteId = clienteId;
@@ -38,12 +37,11 @@ namespace RetaguardaESilva.Domain.ViewModels
             this.EmpresaId = empresaId;
             this.UsuarioId = usuarioId;
             this.PrecoTotal = precoTotal;
-            this.DataCadastroPedido = dataCadastroPedido;
+            this.DataCadastroPedido = dataCadastroPedido;          
             this.StatusPedido = statusPedido;
-            this.Status = status;
         }
 
-        public PedidoViewModel(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, int status, List<ProdutoViewModel> produtos)
+        public PedidoViewModel(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, List<ProdutoViewModel> produtos)
         {
             this.Id = id;
             this.ClienteId = clienteId;
@@ -53,9 +51,8 @@ namespace RetaguardaESilva.Domain.ViewModels
             this.EmpresaId = empresaId;
             this.UsuarioId = usuarioId;
             this.PrecoTotal = precoTotal;
-            this.DataCadastroPedido = dataCadastroPedido;
+            this.DataCadastroPedido = dataCadastroPedido;     
             this.StatusPedido = statusPedido;
-            this.Status = status;
             this.Produtos = produtos;
         }
     }

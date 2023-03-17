@@ -1,4 +1,5 @@
-﻿using RetaguardaESilva.Domain.ViewModels;
+﻿using RetaguardaESilva.Domain.Enumeradores;
+using RetaguardaESilva.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,12 @@ namespace RetaguardaESilva.Application.DTO
         public int UsuarioId { get; set; }
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroPedido { get; set; }
-        public int Status { get; set; }
     }
 
     public class PedidoCreateDTO : PedidoDTO
     {
         public List<ProdutoPedidoDTO> Produtos { get; set; }
-        public List<string>? ProdutosSemEstoque { get; set; }
+        public int Status { get; set; }
     }
 
     public class PedidoUpdateDTO : PedidoCreateDTO
@@ -41,16 +41,15 @@ namespace RetaguardaESilva.Application.DTO
 
         }
 
-        public PedidoRetornoDTO(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, int status)
+        public PedidoRetornoDTO(int id, string clienteNome, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido)
         {
             this.Id = id;
             this.ClienteNome = clienteNome;
             this.PrecoTotal = precoTotal;
             this.DataCadastroPedido = dataCadastroPedido;
-            this.Status = status;
             this.StatusPedido = statusPedido;
         }
-        public PedidoRetornoDTO(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, int status, List<ProdutoPedidoDTO> produtos)
+        public PedidoRetornoDTO(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, List<ProdutoPedidoDTO> produtos)
         {
             this.Id = id;
             this.ClienteId = clienteId;
@@ -61,7 +60,7 @@ namespace RetaguardaESilva.Application.DTO
             this.UsuarioId = usuarioId;
             this.PrecoTotal = precoTotal;
             this.DataCadastroPedido = dataCadastroPedido;
-            this.Status = status;
+            this.StatusPedido = statusPedido;
             this.Produtos = produtos;
         }
     }

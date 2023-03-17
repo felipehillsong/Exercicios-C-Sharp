@@ -81,7 +81,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else if(produto == null && mensagem == MensagemDeSucesso.CadastrarOk)
                 {
                     model.Ativo = Convert.ToBoolean(Situacao.Ativo);
-                    model.Status = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
+                    model.StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
                     var produtoCreateDTO = _mapper.Map<Produto>(model);
                     _geralPersist.Add<Produto>(produtoCreateDTO);
                     if (await _geralPersist.SaveChangesAsync())
@@ -128,7 +128,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     model.Nome = _validacoesPersist.AcertarNome(model.Nome);
-                    model.Status = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
+                    model.StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido);
                     var produto = _mapper.Map<Produto>(model);
                     if (!_validacoesPersist.ExisteProdutoUpdate(produtoBanco, produto, out Produto produtoAtualizaQuantidade, out string mensagem))
                     {
@@ -224,7 +224,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             Nome = produto.Nome,
                             Quantidade = (int)StatusProduto.ZerarQuantidade,
                             Ativo = Convert.ToBoolean(Situacao.Inativo),
-                            Status = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
                             PrecoCompra = produto.PrecoCompra,
                             PrecoVenda = produto.PrecoVenda,
                             Codigo = produto.Codigo,

@@ -48,26 +48,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 
                 model.Status = (int)StatusPedido.PedidoEmAnalise;
-                var pedidoDTO = new PedidoDTO()
-                {
-                    Id = (int)Ids.IdCreate,
-                    ClienteId = model.ClienteId,
-                    TransportadorId = model.TransportadorId,
-                    EmpresaId = model.EmpresaId,
-                    UsuarioId = model.UsuarioId,
-                    PrecoTotal = model.PrecoTotal,
-                    DataCadastroPedido = model.DataCadastroPedido,
-                    Status = model.Status
-                };
-
-                var pedidoCreateDTO = _mapper.Map<Pedido>(pedidoDTO);
+                var pedidoCreateDTO = _mapper.Map<Pedido>(model);
                 _geralPersist.Add<Pedido>(pedidoCreateDTO);
                 if(await _geralPersist.SaveChangesAsync())
                 {
                     var retornoPedido = await _pedidoPersist.GetPedidoByIdAsync(pedidoCreateDTO.EmpresaId, pedidoCreateDTO.Id);
                     if (retornoPedido != null)
-                    {
-                        List<string> produtosSemEstoque = new List<string>();
+                    {   
                         foreach (var item in model.Produtos)
                         {
                             var pedidoNotaDTO = new PedidoNotaDTO()
@@ -104,7 +91,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             }
                         }
                         var retornoPedidoCompleto = _mapper.Map<PedidoCreateDTO>(retornoPedido);
-                        retornoPedidoCompleto.ProdutosSemEstoque = produtosSemEstoque;
                         return retornoPedidoCompleto;
                     }
                 }
