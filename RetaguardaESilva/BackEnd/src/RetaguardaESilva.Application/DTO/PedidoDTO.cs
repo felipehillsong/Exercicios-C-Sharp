@@ -17,11 +17,11 @@ namespace RetaguardaESilva.Application.DTO
         public int UsuarioId { get; set; }
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroPedido { get; set; }
+        public List<ProdutoPedidoDTO> Produtos { get; set; }
     }
 
     public class PedidoCreateDTO : PedidoDTO
     {
-        public List<ProdutoPedidoDTO> Produtos { get; set; }
         public int Status { get; set; }
     }
 
@@ -34,7 +34,6 @@ namespace RetaguardaESilva.Application.DTO
     {
         public string ClienteNome { get; set; }
         public string TransportadorNome { get; set; }
-        public List<ProdutoPedidoDTO> Produtos { get; set; }
         public string StatusPedido { get; set; }
         public PedidoRetornoDTO()
         {
@@ -49,6 +48,7 @@ namespace RetaguardaESilva.Application.DTO
             this.DataCadastroPedido = dataCadastroPedido;
             this.StatusPedido = statusPedido;
         }
+
         public PedidoRetornoDTO(int id, int clienteId, string clienteNome, int transportadorId, string transportadorNome, int empresaId, int usuarioId, decimal precoTotal, DateTime? dataCadastroPedido, string statusPedido, List<ProdutoPedidoDTO> produtos)
         {
             this.Id = id;
