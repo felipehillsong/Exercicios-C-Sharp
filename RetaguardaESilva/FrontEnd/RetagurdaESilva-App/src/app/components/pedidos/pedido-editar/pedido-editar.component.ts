@@ -89,7 +89,8 @@ export class PedidoEditarComponent implements OnInit {
       (_pedido: Pedido) => {
         this.gerarPedido = _pedido;
         this.pedido = this.gerarPedido;
-        console.log(this.gerarPedido);
+        this.clienteId = this.pedido.clienteId;
+        this.transportadorId = this.pedido.transportadorId;
         this.PreencherProdutos(this.gerarPedido.produtos);
         this._changeDetectorRef.markForCheck();
       },
@@ -333,13 +334,13 @@ export class PedidoEditarComponent implements OnInit {
   public SelecionarCliente(){
     this.gerarPedido = {...this.formCliente.value};
     for (let i = 0; i < this.clientes.length; i++) {
-      if (this.clientes[i].nome === this.gerarPedido.clienteNome && this.clientes[i].id === this.pedido.clienteId) {
+      if (this.clientes[i].nome === this.gerarPedido.clienteNome && this.clientes[i].id === this.clienteId) {
         this.mostrarProduto = true;
         this.inputCliente = true;
         this.inputTransportador = true;
         this.mostrarGrid = true;
         this.mostrarProduto = true;
-        this.criarPedido = false;
+        this.criarPedido = true;
         this.selecionarProduto = true;
         this.botaoExcluir = true;
         this._changeDetectorRef.markForCheck();
@@ -350,7 +351,7 @@ export class PedidoEditarComponent implements OnInit {
     }
 
     for (let i = 0; i < this.clientes.length; i++) {
-      if (this.transportadores[i].nome === this.gerarPedido.transportadorNome && this.transportadores[i].id === this.pedido.transportadorId) {
+      if (this.transportadores[i].nome === this.gerarPedido.transportadorNome && this.transportadores[i].id === this.transportadorId) {
         this.mostrarProduto = true;
         this.inputCliente = true;
         this.inputTransportador = true;
@@ -362,41 +363,45 @@ export class PedidoEditarComponent implements OnInit {
   }
 
   public SelecionarProduto(){
-    for (let i = 0; i < this.produtos.length; i++) {
-      if (this.produtos[i].nome === this.produto.nome && this.produtos[i].id === this.produtoId) {
-        const produtoPedido = {
-          id: this.pedidoProdutos.id,
-          nome: this.pedidoProdutos.nome,
-          quantidade: this.pedidoProdutos.quantidade,
-          quantidadeVenda: this.pedidoProdutos.quantidadeVenda,
-          ativo: this.pedidoProdutos.ativo,
-          precoCompra: this.pedidoProdutos.precoCompra,
-          precoVenda: this.pedidoProdutos.precoVenda,
-          precoTotal: this.pedidoProdutos.precoCompra,
-          precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
-          precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
-          codigo: this.pedidoProdutos.codigo,
-          dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
-          empresaId: this.pedidoProdutos.empresaId,
-          fornecedorId: this.pedidoProdutos.fornecedorId,
-          inputProduto: true,
-          quantidadeProdutoGrid: false,
-          botaoEnviarQuantidade: true,
-          botaoEditarQuantidade: false,
-          botaoQuantidadeConfirmada: false,
-          botaoExcluir: true
-        };
-          this.produtosGrid.push(produtoPedido);
-          this.mostrarGrid = true;
-          this.mostrarProduto = true;
-          this.criarPedido = false;
-          this.formQuantidade.reset();
-          this.selecionarProduto = false;
-          this.botaoExcluir = true;
-          this._changeDetectorRef.markForCheck();
-        break;
+    var produtoGrid = this.produtosGrid.filter(p => p.id == this.produtoId);
+    if(produtoGrid.length == 0){
+      for (let i = 0; i < this.pedido.produtos.length; i++) {
+        if (this.produtos[i].nome === this.produto.nome && this.produtos[i].id === this.produtoId) {
+          const produtoPedido = {
+            id: this.pedidoProdutos.id,
+            nome: this.pedidoProdutos.nome,
+            quantidade: this.pedidoProdutos.quantidade,
+            quantidadeVenda: this.pedidoProdutos.quantidadeVenda,
+            ativo: this.pedidoProdutos.ativo,
+            precoCompra: this.pedidoProdutos.precoCompra,
+            precoVenda: this.pedidoProdutos.precoVenda,
+            precoTotal: this.pedidoProdutos.precoCompra,
+            precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
+            precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
+            codigo: this.pedidoProdutos.codigo,
+            dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
+            empresaId: this.pedidoProdutos.empresaId,
+            fornecedorId: this.pedidoProdutos.fornecedorId,
+            inputProduto: true,
+            quantidadeProdutoGrid: false,
+            botaoEnviarQuantidade: true,
+            botaoEditarQuantidade: false,
+            botaoQuantidadeConfirmada: false,
+            botaoExcluir: true
+          };
+            this.produtosGrid.push(produtoPedido);
+            this.mostrarGrid = true;
+            this.mostrarProduto = true;
+            this.criarPedido = false;
+            this.formQuantidade.reset();
+            this.selecionarProduto = false;
+            this.botaoExcluir = true;
+            this._changeDetectorRef.markForCheck();
+          break;
+        }
       }
     }
+
   }
 
   openModal(event: any, template: TemplateRef<any>, produtoNome: string, produtoId: number): void {
@@ -450,14 +455,14 @@ export class PedidoEditarComponent implements OnInit {
 
   }
 
-  public CriarPedido(): void {
+  public EditarPedido(): void {
     this.spinner.show();
       var existeCliente = this.VerificaIdCliente(this.clienteId);
       var existeTransportador = this.VerificaIdTransportador(this.transportadorId);
       if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null && this.produtosQuantidadeMaiorVenda.length == 0){
         this.gerarPedido.produtos = [];
         this.preencherPedido(this.produtosGrid);
-        this.pedidoService.addPedido(this.gerarPedido).subscribe(() => {
+        this.pedidoService.editPedido(this.gerarPedido).subscribe(() => {
           this.router.navigate(['pedidos/lista']);
         },
         (error: any) => {
