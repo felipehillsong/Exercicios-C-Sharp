@@ -102,9 +102,77 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         } 
 
-        public Task<PedidoUpdateDTO> UpdatePedido(PedidoUpdateDTO model)
+        public async Task<PedidoUpdateDTO> UpdatePedido(PedidoUpdateDTO model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Produto> produtosRetorno = new List<Produto>();
+                foreach (var item in model.Produtos)
+                {
+                    if (!_validacoesPersist.VerificaQuantidade(model.EmpresaId, item.Id, item.QuantidadeVenda, out string mensagem))
+                    {
+                        throw new Exception(mensagem);
+                    }
+                }
+
+                foreach (var item in model.Produtos)
+                {
+                    var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoEditar(model.Id, item.EmpresaId, item.Id, item.QuantidadeVenda, out Estoque estoque, out string mensagem);
+                    if (produtoRetorno == null || estoque == null)
+                    {
+                        throw new Exception(mensagem);
+                    }
+                    else
+                    {
+                        produtosRetorno.Add(produtoRetorno);
+                        _geralPersist.Update<Produto>(produtoRetorno);
+                        if(await _geralPersist.SaveChangesAsync())
+                        {
+                            _geralPersist.Update<Estoque>(estoque);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                    }
+                }
+                model.Status = (int)StatusPedido.PedidoEmAnalise;
+                var pedidoUpdateDTO = _mapper.Map<Pedido>(model);
+                _geralPersist.Update<Pedido>(pedidoUpdateDTO);
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var retornoPedido = await _pedidoPersist.GetPedidoByIdAsync(pedidoUpdateDTO.EmpresaId, pedidoUpdateDTO.Id);
+                    if (retornoPedido != null)
+                    {
+                        foreach (var item in model.Produtos)
+                        {
+                            var pedidoNotaUpdateDTO = new PedidoNotaUpdateDTO()
+                            {
+                                Id = (int)Ids.IdCreate,
+                                PedidoId = retornoPedido.Id,
+                                ClienteId = retornoPedido.ClienteId,
+                                FornecedorId = item.FornecedorId,
+                                ProdutoId = item.Id,
+                                EmpresaId = item.EmpresaId,
+                                TransportadorId = retornoPedido.TransportadorId,
+                                UsuarioId = retornoPedido.UsuarioId,
+                                Quantidade = item.QuantidadeVenda,
+                                PrecoVenda = item.PrecoVenda,
+                                PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
+                                DataCadastroPedidoNota = item.DataCadastroProduto,
+                                Status = retornoPedido.Status
+                            };
+                            var pedidoNotaUpdate = _mapper.Map<PedidoNota>(pedidoNotaUpdateDTO);
+                            _geralPersist.Update<PedidoNota>(pedidoNotaUpdate);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+                        var retornoPedidoCompleto = _mapper.Map<PedidoUpdateDTO>(retornoPedido);
+                        return retornoPedidoCompleto;
+                    }
+                }
+                throw new Exception(MensagemDeErro.ErroAoCadastrarPedido);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<bool> DeletePedido(int empresaId, int pedidoId)
@@ -118,7 +186,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    if(_validacoesPersist.AtualizarQuantidadeProdutoEstoquePosPedido(pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas))
+                    if(_validacoesPersist.AtualizarQuantidadeProdutoEstoquePosDeletePedido(pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas))
                     {
                         foreach (var item in produtos)
                         {

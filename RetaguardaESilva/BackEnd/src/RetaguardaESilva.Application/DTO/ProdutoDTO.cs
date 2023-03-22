@@ -21,12 +21,12 @@ namespace RetaguardaESilva.Application.DTO
         public int FornecedorId { get; set; }
     }
 
-    public class ProdutoCreateDTO : ProdutoDTO
+    public class ProdutoCreateDTO : ProdutoPedidoDTO
     {
 
     }
 
-    public class ProdutoUpdateDTO : ProdutoDTO
+    public class ProdutoUpdateDTO : ProdutoPedidoDTO
     {
 
     }

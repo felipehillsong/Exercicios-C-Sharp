@@ -21,6 +21,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ProdutoDeletado = "Produto deletado com sucesso";
         public const string UsuarioDeletado = "Usuario deletado com sucesso";
         public const string ProdutoExiste = "Produto existe no banco de dados";
+        public const string ProdutoSeraAtualizado = "Produto será atualizado";
         public const string ProdutoQuantidadeVenda = "Quantidade correta";
         public const string SucessoSenha = "Senhas conferem";
         public const string LoginSucesso = "Pode logar";

@@ -1241,7 +1241,65 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
         }
 
-        public bool AtualizarQuantidadeProdutoEstoquePosPedido(Pedido pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas)
+        public Produto AtualizarQuantidadeProdutoEditar(int pedidoId, int empresaId, int produtoId, int quantidadeVenda, out Estoque estoque, out string mensagem)
+        {
+            var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
+            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId);
+            var pedidoBD = _context.Pedido.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == pedidoId);
+            var pedidoNotaBD = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == empresaId && pn.PedidoId == pedidoId).ToList();
+            Produto produtoRetorno = null;
+            Estoque estoqueRetorno = null;
+            foreach (var item in pedidoNotaBD)
+            {
+                if (produtoBD != null && estoqueBD != null && pedidoBD != null && pedidoNotaBD != null)
+                {
+                    if (quantidadeVenda < item.Quantidade)
+                    {
+                        var quantidade = item.Quantidade - quantidadeVenda;
+                        produtoBD.Quantidade = quantidade;
+                        estoqueBD.Quantidade = quantidade;
+                        produtoRetorno = produtoBD;
+                        estoqueRetorno = estoqueBD;
+                    }
+                    else if (quantidadeVenda > item.Quantidade)
+                    {
+                        if (quantidadeVenda < produtoBD.Quantidade)
+                        {
+                            var quantidade = produtoBD.Quantidade - quantidadeVenda;
+                            produtoBD.Quantidade = quantidade;
+                            estoqueBD.Quantidade = quantidade;
+                            produtoRetorno = produtoBD;
+                            estoqueRetorno = estoqueBD;
+                        }
+                    }
+                    else if (quantidadeVenda == item.Quantidade)
+                    {
+                        produtoRetorno = produtoBD;
+                        estoqueRetorno = estoqueBD;
+                    }
+                }
+                else
+                {
+                    produtoRetorno = null;
+                    estoqueRetorno = null;
+                }
+            }
+
+            if (produtoRetorno != null && estoqueRetorno != null)
+            {
+                estoque = estoqueRetorno;
+                mensagem = MensagemDeSucesso.ProdutoSeraAtualizado;
+                return produtoRetorno;
+            }
+            else
+            {
+                estoque = estoqueRetorno;
+                mensagem = MensagemDeErro.ProdutoErroQauntidadeAtualizar;
+                return produtoRetorno;
+            }
+        }
+
+        public bool AtualizarQuantidadeProdutoEstoquePosDeletePedido(Pedido pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas)
         {
             List<Produto> produto = new List<Produto>();
             List<Estoque> estoque = new List<Estoque>();
@@ -1278,7 +1336,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
                 pedidosNotas = null;
                 return false;
             }
-            
         }
 
         public PedidoViewModel MontarPedidoRetorno(Pedido pedido)

@@ -32,7 +32,8 @@ namespace RetaguardaESilva.Persistence.Contratos
         bool VerificaQuantidade(int empresaId, int produtoId, int quantidadeVenda, out string mensagem);
         IEnumerable<PedidoViewModel> RetornarPedidosView(IEnumerable<PedidoViewModel> pedidos);
         Produto AtualizarQuantidadeProdutoPosPedido(ProdutoViewModel produto, out Estoque estoque);
-        bool AtualizarQuantidadeProdutoEstoquePosPedido(Pedido pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas);
+        Produto AtualizarQuantidadeProdutoEditar(int pedidoId, int empresaId, int produtoId, int quantidadeVenda, out Estoque estoque, out string mensagem);
+        bool AtualizarQuantidadeProdutoEstoquePosDeletePedido(Pedido pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas);
         PedidoViewModel MontarPedidoRetorno(Pedido pedido);
     }
 }
