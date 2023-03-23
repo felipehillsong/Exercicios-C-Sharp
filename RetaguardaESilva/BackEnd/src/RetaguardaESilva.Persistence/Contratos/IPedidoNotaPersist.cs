@@ -10,5 +10,6 @@ namespace RetaguardaESilva.Persistence.Contratos
     public interface IPedidoNotaPersist
     {
         Task<IEnumerable<PedidoNota>> GetAllPedidosNotaAsync(int empresaId, int produto);
+        Task<PedidoNota> GetPedidosNotaByIdAsync(int empresaId, int pedidoId, int produtoId);
     }
 }

@@ -10,5 +10,6 @@ export interface Pedido {
   precoTotal:number;
   dataCadastroPedido:string;
   statusPedido:string;
+  status:number;
   produtos: Array<Produto>;
 }

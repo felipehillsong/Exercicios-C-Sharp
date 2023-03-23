@@ -23,14 +23,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IPedidoPersist _pedidoPersist;
+        private readonly IPedidoNotaPersist _pedidoNotaPersist;
         private readonly IClientePersist _clientePersist;
         private readonly IMapper _mapper;
 
-        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IClientePersist clientePersist, IMapper mapper)
+        public PedidoService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IPedidoNotaPersist pedidoNotaPersist, IClientePersist clientePersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
             _pedidoPersist = pedidoPersist;
+            _pedidoNotaPersist = pedidoNotaPersist;
             _clientePersist = clientePersist;
             _mapper = mapper;
         }
@@ -70,19 +72,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 Quantidade = item.QuantidadeVenda,
                                 PrecoVenda = item.PrecoVenda,
                                 PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
-                                DataCadastroPedidoNota = item.DataCadastroProduto,
+                                DataCadastroPedidoNota = model.DataCadastroPedido,
                                 Status = retornoPedido.Status
                             };
                             var pedidoNotaCreate = _mapper.Map<PedidoNota>(pedidoNotaDTO);
                             _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
                             if (await _geralPersist.SaveChangesAsync())
                             {
-                                var produtoUpdateDTO = _mapper.Map<ProdutoViewModel>(item);
-                                var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(produtoUpdateDTO, out Estoque estoqueUpdate);
-                                _geralPersist.Update<Produto>(produtoRetorno);
-                                await _geralPersist.SaveChangesAsync();
-                                _geralPersist.Update<Estoque>(estoqueUpdate);
-                                await _geralPersist.SaveChangesAsync();
                                 continue;
                             }
                             else
@@ -106,31 +102,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
         {
             try
             {
-                List<Produto> produtosRetorno = new List<Produto>();
                 foreach (var item in model.Produtos)
                 {
                     if (!_validacoesPersist.VerificaQuantidade(model.EmpresaId, item.Id, item.QuantidadeVenda, out string mensagem))
                     {
                         throw new Exception(mensagem);
-                    }
-                }
-
-                foreach (var item in model.Produtos)
-                {
-                    var produtoRetorno = _validacoesPersist.AtualizarQuantidadeProdutoEditar(model.Id, item.EmpresaId, item.Id, item.QuantidadeVenda, out Estoque estoque, out string mensagem);
-                    if (produtoRetorno == null || estoque == null)
-                    {
-                        throw new Exception(mensagem);
-                    }
-                    else
-                    {
-                        produtosRetorno.Add(produtoRetorno);
-                        _geralPersist.Update<Produto>(produtoRetorno);
-                        if(await _geralPersist.SaveChangesAsync())
-                        {
-                            _geralPersist.Update<Estoque>(estoque);
-                            await _geralPersist.SaveChangesAsync();
-                        }
                     }
                 }
                 model.Status = (int)StatusPedido.PedidoEmAnalise;
@@ -143,20 +119,21 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     {
                         foreach (var item in model.Produtos)
                         {
+                            var pedidosNotas = await _pedidoNotaPersist.GetPedidosNotaByIdAsync(retornoPedido.EmpresaId, retornoPedido.Id, item.Id);
                             var pedidoNotaUpdateDTO = new PedidoNotaUpdateDTO()
                             {
-                                Id = (int)Ids.IdCreate,
+                                Id = pedidosNotas.Id,
                                 PedidoId = retornoPedido.Id,
-                                ClienteId = retornoPedido.ClienteId,
+                                ClienteId = model.ClienteId,
                                 FornecedorId = item.FornecedorId,
                                 ProdutoId = item.Id,
                                 EmpresaId = item.EmpresaId,
-                                TransportadorId = retornoPedido.TransportadorId,
-                                UsuarioId = retornoPedido.UsuarioId,
+                                TransportadorId = model.TransportadorId,
+                                UsuarioId = model.UsuarioId,
                                 Quantidade = item.QuantidadeVenda,
                                 PrecoVenda = item.PrecoVenda,
                                 PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
-                                DataCadastroPedidoNota = item.DataCadastroProduto,
+                                DataCadastroPedidoNota = pedidosNotas.DataCadastroPedidoNota,
                                 Status = retornoPedido.Status
                             };
                             var pedidoNotaUpdate = _mapper.Map<PedidoNota>(pedidoNotaUpdateDTO);

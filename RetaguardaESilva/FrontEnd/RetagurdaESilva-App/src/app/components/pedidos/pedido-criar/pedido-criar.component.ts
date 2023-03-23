@@ -493,8 +493,6 @@ export class PedidoCriarComponent implements OnInit {
     }
 
     EditarQuantidade(id:number): void {
-      var quantidadeVenda = this.formQuantidade.get('quantidadeVenda')?.value;
-      this.verificaQuantidadeProduto(quantidadeVenda, id);
       this.selecionarProduto = false;
       this.criarPedido = false;
       for(var i = 0; i < this.produtosGrid.length; i++){

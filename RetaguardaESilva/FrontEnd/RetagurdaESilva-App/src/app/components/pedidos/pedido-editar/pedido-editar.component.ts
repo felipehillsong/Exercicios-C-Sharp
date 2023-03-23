@@ -21,6 +21,7 @@ import { Transportador } from 'src/app/models/transportador';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { Produto } from 'src/app/models/produto';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { StatusPedido } from 'src/app/enums/statusPedido';
 
 @Component({
   selector: 'app-pedido-editar',
@@ -92,10 +93,21 @@ export class PedidoEditarComponent implements OnInit {
         this.clienteId = this.pedido.clienteId;
         this.transportadorId = this.pedido.transportadorId;
         this.PreencherProdutos(this.gerarPedido.produtos);
+        this.PreencherStatusPedido(this.pedido.statusPedido);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
+  }
+
+  public PreencherStatusPedido(status:string){
+    if(status == StatusPedido.PedidoEmAnalise){
+      this.gerarPedido.status = 1;
+    }else if(status == StatusPedido.PedidoConfirmado){
+      this.gerarPedido.status = 2;
+    }else if(status == StatusPedido.PedidoCancelado){
+      this.gerarPedido.status = 3;
+    }
   }
 
   public PreencherProdutos(produtosBD:Produto[]){
@@ -462,6 +474,8 @@ export class PedidoEditarComponent implements OnInit {
       if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null && this.produtosQuantidadeMaiorVenda.length == 0){
         this.gerarPedido.produtos = [];
         this.preencherPedido(this.produtosGrid);
+        this.gerarPedido.id = this.pedidoId;
+        this.gerarPedido.status = this.pedido.status;
         this.pedidoService.editPedido(this.gerarPedido).subscribe(() => {
           this.router.navigate(['pedidos/lista']);
         },
@@ -553,6 +567,7 @@ export class PedidoEditarComponent implements OnInit {
       }else{
         this.toastr.error(MensagensAlerta.QuantidadeVendaMaior + this.produtosQuantidadeMaiorVenda);
         this.produtosQuantidadeMaiorVenda = '';
+        this._changeDetectorRef.markForCheck();
       }
     }
 
@@ -572,8 +587,6 @@ export class PedidoEditarComponent implements OnInit {
     }
 
     EditarQuantidade(id:number): void {
-      var quantidadeVenda = this.formQuantidade.get('quantidadeVenda')?.value;
-      this.verificaQuantidadeProduto(quantidadeVenda, id);
       this.selecionarProduto = false;
       this.criarPedido = false;
       for(var i = 0; i < this.produtosGrid.length; i++){

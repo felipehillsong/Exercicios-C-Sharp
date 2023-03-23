@@ -22,5 +22,10 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             return await _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == empresaId && pn.ProdutoId == produtoId).OrderBy(p => p.EmpresaId).ToListAsync();
         }
+
+        public async Task<PedidoNota> GetPedidosNotaByIdAsync(int empresaId, int pedidoId, int produtoId)
+        {
+            return await _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == empresaId && pn.PedidoId == pedidoId && pn.ProdutoId == produtoId).OrderBy(pn => pn.Id).FirstOrDefaultAsync();
+        }
     }
 }
