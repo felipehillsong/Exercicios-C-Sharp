@@ -120,25 +120,53 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         foreach (var item in model.Produtos)
                         {
                             var pedidosNotas = await _pedidoNotaPersist.GetPedidosNotaByIdAsync(retornoPedido.EmpresaId, retornoPedido.Id, item.Id);
-                            var pedidoNotaUpdateDTO = new PedidoNotaUpdateDTO()
+                            if (pedidosNotas == null)
                             {
-                                Id = pedidosNotas.Id,
-                                PedidoId = retornoPedido.Id,
-                                ClienteId = model.ClienteId,
-                                FornecedorId = item.FornecedorId,
-                                ProdutoId = item.Id,
-                                EmpresaId = item.EmpresaId,
-                                TransportadorId = model.TransportadorId,
-                                UsuarioId = model.UsuarioId,
-                                Quantidade = item.QuantidadeVenda,
-                                PrecoVenda = item.PrecoVenda,
-                                PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
-                                DataCadastroPedidoNota = pedidosNotas.DataCadastroPedidoNota,
-                                Status = retornoPedido.Status
-                            };
-                            var pedidoNotaUpdate = _mapper.Map<PedidoNota>(pedidoNotaUpdateDTO);
-                            _geralPersist.Update<PedidoNota>(pedidoNotaUpdate);
-                            await _geralPersist.SaveChangesAsync();
+                                var pedidoNotaDTO = new PedidoNotaDTO()
+                                {
+                                    Id = (int)Ids.IdCreate,
+                                    PedidoId = model.Id,
+                                    ClienteId = model.ClienteId,
+                                    FornecedorId = item.FornecedorId,
+                                    ProdutoId = item.Id,
+                                    EmpresaId = item.EmpresaId,
+                                    TransportadorId = model.TransportadorId,
+                                    UsuarioId = model.UsuarioId,
+                                    Quantidade = item.QuantidadeVenda,
+                                    PrecoVenda = item.PrecoVenda,
+                                    PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
+                                    DataCadastroPedidoNota = model.DataCadastroPedido,
+                                    Status = retornoPedido.Status
+                                };
+                                var pedidoNotaCreate = _mapper.Map<PedidoNota>(pedidoNotaDTO);
+                                _geralPersist.Add<PedidoNota>(pedidoNotaCreate);
+                                if (await _geralPersist.SaveChangesAsync())
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                var pedidoNotaUpdateDTO = new PedidoNotaUpdateDTO()
+                                {
+                                    Id = pedidosNotas.Id,
+                                    PedidoId = retornoPedido.Id,
+                                    ClienteId = model.ClienteId,
+                                    FornecedorId = item.FornecedorId,
+                                    ProdutoId = item.Id,
+                                    EmpresaId = item.EmpresaId,
+                                    TransportadorId = model.TransportadorId,
+                                    UsuarioId = model.UsuarioId,
+                                    Quantidade = item.QuantidadeVenda,
+                                    PrecoVenda = item.PrecoVenda,
+                                    PrecoTotal = item.QuantidadeVenda * item.PrecoVenda,
+                                    DataCadastroPedidoNota = pedidosNotas.DataCadastroPedidoNota,
+                                    Status = retornoPedido.Status
+                                };
+                                var pedidoNotaUpdate = _mapper.Map<PedidoNota>(pedidoNotaUpdateDTO);
+                                _geralPersist.Update<PedidoNota>(pedidoNotaUpdate);
+                                await _geralPersist.SaveChangesAsync();
+                            }
                         }
                         var retornoPedidoCompleto = _mapper.Map<PedidoUpdateDTO>(retornoPedido);
                         return retornoPedidoCompleto;
