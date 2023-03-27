@@ -376,44 +376,42 @@ export class PedidoEditarComponent implements OnInit {
 
   public SelecionarProduto(){
     var produtoGrid = this.produtosGrid.filter(p => p.id == this.produtoId);
-    if(produtoGrid.length == 0){
-      for (let i = 0; i < this.pedido.produtos.length; i++) {
-        if (this.produtos[i].nome === this.produto.nome && this.produtos[i].id === this.produtoId) {
-          const produtoPedido = {
-            id: this.pedidoProdutos.id,
-            nome: this.pedidoProdutos.nome,
-            quantidade: this.pedidoProdutos.quantidade,
-            quantidadeVenda: this.pedidoProdutos.quantidadeVenda,
-            ativo: this.pedidoProdutos.ativo,
-            precoCompra: this.pedidoProdutos.precoCompra,
-            precoVenda: this.pedidoProdutos.precoVenda,
-            precoTotal: this.pedidoProdutos.precoCompra,
-            precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
-            precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
-            codigo: this.pedidoProdutos.codigo,
-            dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
-            empresaId: this.pedidoProdutos.empresaId,
-            fornecedorId: this.pedidoProdutos.fornecedorId,
-            inputProduto: true,
-            quantidadeProdutoGrid: false,
-            botaoEnviarQuantidade: true,
-            botaoEditarQuantidade: false,
-            botaoQuantidadeConfirmada: false,
-            botaoExcluir: true
-          };
-            this.produtosGrid.push(produtoPedido);
-            this.mostrarGrid = true;
-            this.mostrarProduto = true;
-            this.criarPedido = false;
-            this.formQuantidade.reset();
-            this.selecionarProduto = false;
-            this.botaoExcluir = true;
-            this._changeDetectorRef.markForCheck();
-          break;
-        }
+    console.log(produtoGrid);
+    for (let i = 0; i < this.produtos.length; i++) {
+      if (this.produtos[i].nome === this.produto.nome && this.produtos[i].id === this.produtoId && produtoGrid.length == 0) {
+        const produtoPedido = {
+          id: this.pedidoProdutos.id,
+          nome: this.pedidoProdutos.nome,
+          quantidade: this.pedidoProdutos.quantidade,
+          quantidadeVenda: this.pedidoProdutos.quantidadeVenda,
+          ativo: this.pedidoProdutos.ativo,
+          precoCompra: this.pedidoProdutos.precoCompra,
+          precoVenda: this.pedidoProdutos.precoVenda,
+          precoTotal: this.pedidoProdutos.precoCompra,
+          precoCompraFormatado: this.pedidoProdutos.precoCompraFormatado,
+          precoVendaFormatado: this.pedidoProdutos.precoVendaFormatado,
+          codigo: this.pedidoProdutos.codigo,
+          dataCadastroProduto: this.pedidoProdutos.dataCadastroProduto,
+          empresaId: this.pedidoProdutos.empresaId,
+          fornecedorId: this.pedidoProdutos.fornecedorId,
+          inputProduto: true,
+          quantidadeProdutoGrid: false,
+          botaoEnviarQuantidade: true,
+          botaoEditarQuantidade: false,
+          botaoQuantidadeConfirmada: false,
+          botaoExcluir: true
+        };
+          this.produtosGrid.push(produtoPedido);
+          this.mostrarGrid = true;
+          this.mostrarProduto = true;
+          this.criarPedido = false;
+          this.formQuantidade.reset();
+          this.selecionarProduto = false;
+          this.botaoExcluir = true;
+          this._changeDetectorRef.markForCheck();
+        break;
       }
     }
-
   }
 
   openModal(event: any, template: TemplateRef<any>, produtoNome: string, produtoId: number): void {

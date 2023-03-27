@@ -8,6 +8,7 @@ namespace RetaguardaESilva.Domain.Enumeradores
 {
     public enum StatusPedido
     {
+        RetornoPedido = 0,
         PedidoEmAnalise = 1,
         PedidoConfirmado = 2,
         PedidoCancelado = 3

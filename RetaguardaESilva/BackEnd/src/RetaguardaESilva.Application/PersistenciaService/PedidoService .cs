@@ -168,6 +168,17 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 await _geralPersist.SaveChangesAsync();
                             }
                         }
+                        var pedidoNota = await _pedidoNotaPersist.GetAllPedidosNotaAsync(model.EmpresaId, model.Id);
+                        foreach (var item in pedidoNota)
+                        {
+                            var produto = model.Produtos.Where(p => p.Id == item.ProdutoId).FirstOrDefault();
+                            if (produto == null)
+                            {
+                                var pedidoNotaDelete = await _pedidoNotaPersist.GetPedidosNotaByIdAsync(item.EmpresaId, model.Id, item.ProdutoId);
+                                _geralPersist.Delete<PedidoNota>(pedidoNotaDelete);
+                                await _geralPersist.SaveChangesAsync();
+                            }
+                        }
                         var retornoPedidoCompleto = _mapper.Map<PedidoUpdateDTO>(retornoPedido);
                         return retornoPedidoCompleto;
                     }
@@ -213,6 +224,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         {
                             _geralPersist.Delete(item);
                             await _geralPersist.SaveChangesAsync();
+                        }
+
+                        if (produtos.Count == (int)StatusPedido.RetornoPedido && estoques.Count == (int)StatusPedido.RetornoPedido && pedidosNotas.Count == (int)StatusPedido.RetornoPedido)
+                        {
+                            var pedidoNotaDelete = await _pedidoNotaPersist.GetAllPedidosNotaAsync(empresaId, pedidoId);
+                            foreach (var item in pedidoNotaDelete)
+                            {
+                                _geralPersist.Delete<PedidoNota>(item);
+                                await _geralPersist.SaveChangesAsync();
+                            }
                         }
                         _geralPersist.Delete<Pedido>(pedido);
                         return await _geralPersist.SaveChangesAsync();

@@ -1303,7 +1303,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             List<Produto> produto = new List<Produto>();
             List<Estoque> estoque = new List<Estoque>();
-            var pedidoNotaBD = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == pedido.EmpresaId && pn.PedidoId == pedido.Id).ToList();
+            var pedidoNotaBD = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == pedido.EmpresaId && pn.PedidoId == pedido.Id && pn.Status == (int)StatusPedido.PedidoConfirmado).ToList();
             foreach (var item in pedidoNotaBD)
             {
                 var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
