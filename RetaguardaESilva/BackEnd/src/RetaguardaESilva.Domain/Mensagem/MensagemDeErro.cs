@@ -71,6 +71,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ProdutoNaoEncontrado = "Nenhum produto encontrado";
         public const string ProdutoNaoEncontradoEmpresa = "Não existem produtos cadastrados nessa empresa";
         public const string ProdutoErroAoConsultar = "Erro ao consultar produto";
+        public const string ProdutoEstoqueZerados = "Produto ou estoque estão zerados";
         public const string ProdutoErroQuantidadeVenda = "Produtos com quantidade de venda maior que a quantidade do estoque";
         public const string VisualizarEmpresa = "Pode visualizar apenas sua propria empresa";
         public const string ErroAoAtualizar = "Erro ao atualizar";

@@ -56,7 +56,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 ProdutoId = produtoCreateDTO.Id,
                                 Quantidade = produtoCreateDTO.Quantidade,
                                 EmpresaId = produtoCreateDTO.EmpresaId,
-                                FornecedorId = produtoCreateDTO.FornecedorId
+                                FornecedorId = produtoCreateDTO.FornecedorId,
+                                StatusExclusao = produtoCreateDTO.StatusExclusao
                             };
                             var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
                             _geralPersist.Update<Estoque>(estoqueDTO);
@@ -92,8 +93,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             ProdutoId = produtoRetorno.Result.Id,
                             Quantidade = produtoRetorno.Result.Quantidade,
                             EmpresaId = produtoRetorno.Result.EmpresaId,
-                            FornecedorId = produtoRetorno.Result.FornecedorId
-                        };
+                            FornecedorId = produtoRetorno.Result.FornecedorId,
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)
+                    };
                         var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
                         _geralPersist.Add<Estoque>(estoqueDTO);
                         if (await _geralPersist.SaveChangesAsync())
@@ -208,46 +210,44 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, produtoId);
-                var estoqueProduto = await _estoquePersist.GetEstoqueByProdutoIdAsync(empresaId, produtoId);
-                var pedidosNotas = await _pedidoNotaPersist.GetAllPedidosNotaAsync(empresaId, produtoId);
-                if (produto == null || estoqueProduto == null)
+                var estoque = await _estoquePersist.GetEstoqueByProdutoIdAsync(empresaId, produtoId);
+                if (produto == null || estoque == null)
                 {
                     throw new Exception(MensagemDeErro.ProdutoNaoEncontradoDelete);
                 }
                 else
                 {
-                    if (pedidosNotas != null)
+                    var produtos = new Produto()
                     {
-                        var produtos = new Produto()
+                        Id = produto.Id,
+                        Nome = produto.Nome,
+                        Quantidade = (int)StatusProduto.ZerarQuantidade,
+                        Ativo = Convert.ToBoolean(Situacao.Inativo),
+                        StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
+                        PrecoCompra = produto.PrecoCompra,
+                        PrecoVenda = produto.PrecoVenda,
+                        Codigo = produto.Codigo,
+                        DataCadastroProduto = produto.DataCadastroProduto,
+                        EmpresaId = produto.EmpresaId,
+                        FornecedorId = produto.FornecedorId
+                    };
+
+                    _geralPersist.Update<Produto>(produtos);
+                    if (await _geralPersist.SaveChangesAsync())
+                    {
+                        var estoques = new Estoque()
                         {
-                            Id = produto.Id,
-                            Nome = produto.Nome,
+                            Id = estoque.Id,
+                            EmpresaId = estoque.EmpresaId,
+                            FornecedorId = estoque.FornecedorId,
+                            ProdutoId = estoque.ProdutoId,
                             Quantidade = (int)StatusProduto.ZerarQuantidade,
-                            Ativo = Convert.ToBoolean(Situacao.Inativo),
-                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
-                            PrecoCompra = produto.PrecoCompra,
-                            PrecoVenda = produto.PrecoVenda,
-                            Codigo = produto.Codigo,
-                            DataCadastroProduto = produto.DataCadastroProduto,
-                            EmpresaId = produto.EmpresaId,
-                            FornecedorId = produto.FornecedorId
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido)
                         };
-                        _geralPersist.Update<Produto>(produtos);
-                        if (await _geralPersist.SaveChangesAsync())
-                        {
-                            _geralPersist.Delete<Estoque>(estoqueProduto);
-                        }
+                        _geralPersist.Update<Estoque>(estoques);
                         return await _geralPersist.SaveChangesAsync();
                     }
-                    else
-                    {
-                        _geralPersist.Delete<Produto>(produto);
-                        if (await _geralPersist.SaveChangesAsync())
-                        {
-                            _geralPersist.Delete<Estoque>(estoqueProduto);
-                        }
-                        return await _geralPersist.SaveChangesAsync();
-                    }
+                    return false;
                 }
             }
             catch (Exception ex)

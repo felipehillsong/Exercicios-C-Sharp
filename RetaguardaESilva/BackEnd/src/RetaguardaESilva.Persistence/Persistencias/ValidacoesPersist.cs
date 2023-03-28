@@ -1183,7 +1183,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                     return true;
                 }
             }
-            mensagem = MensagemDeErro.ProdutoErroAoConsultar;
+            mensagem = MensagemDeErro.ProdutoEstoqueZerados;
             return false;
         }
 
