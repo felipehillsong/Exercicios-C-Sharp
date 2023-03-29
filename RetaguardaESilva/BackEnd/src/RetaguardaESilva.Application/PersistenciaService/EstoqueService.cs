@@ -74,7 +74,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, estoque.ProdutoId);
                 if (estoque == null || produto == null)
                 {
-                    throw new Exception("Estoque não encontrado para delete");
+                    throw new Exception(MensagemDeErro.EstoqueNaoEncontradoDelete);
                 }
                 else
                 {
@@ -244,7 +244,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
                 if (enderecoProduto == null)
                 {
-                    throw new Exception("Endereço do produto não encontrado para delete");
+                    throw new Exception(MensagemDeErro.EnderecoProdutoNaoEncontradoDelete);
                 }
                 else
                 {

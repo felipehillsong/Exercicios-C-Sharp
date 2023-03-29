@@ -198,7 +198,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var pedido = await _pedidoPersist.GetPedidoByIdAsync(empresaId, pedidoId);
                 if (pedido == null)
                 {
-                    throw new Exception(MensagemDeErro.pedidoNaoEncontradoDelete);
+                    throw new Exception(MensagemDeErro.PedidoNaoEncontradoDelete);
                 }
                 else
                 {
