@@ -1063,8 +1063,8 @@ namespace RetaguardaESilva.Persistence.Persistencias
         public IEnumerable<EstoqueViewModelEnderecoProduto> RetornarProdutosEstoque(int empresaId)
         {
             List<EstoqueViewModelEnderecoProduto> EstoqueProdutoRetorno = new List<EstoqueViewModelEnderecoProduto>();
-            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId).ToList();
-            var produtos = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId).ToList();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).ToList();
+            var produtos = _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).ToList();
             var fornecedor = _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId).ToList();
             var empresa = _context.Empresa.AsNoTracking().Where(em => em.Id == empresaId).ToList();
             var enderecoProduto = _context.EnderecoProduto.AsNoTracking().Where(ep => ep.EmpresaId == empresaId).ToList();
@@ -1348,7 +1348,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
             foreach (var item in pedidoNota)
             {
-                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId);
+                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
                 if (produto != null)
                 {
                     var produtoView = new ProdutoViewModel()

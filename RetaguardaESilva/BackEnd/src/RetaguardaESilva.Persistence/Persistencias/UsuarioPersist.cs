@@ -15,12 +15,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
         private readonly RetaguardaESilvaContext _context;
         public UsuarioPersist(RetaguardaESilvaContext context)
         {
-            _context = context;            
+            _context = context;
         }  
 
         public async Task<IEnumerable<Usuario>> GetAllUsuariosAsync(int empresaId)
         {
-            return await _context.Usuario.AsNoTracking().Where(u => u.EmpresaId == empresaId).OrderBy(u => u.Id).ToListAsync();            
+            return await _context.Usuario.AsNoTracking().Where(u => u.EmpresaId == empresaId).OrderBy(u => u.Id).ToListAsync();
         }
 
         public async Task<IEnumerable<Funcionario>> GetAllFuncionariosUsuariosAsync(int empresaId)

@@ -78,34 +78,45 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    if (enderecoProduto != null)
+                    var produtos = new Produto()
                     {
-                        _geralPersist.Delete<EnderecoProduto>(enderecoProduto);
-                        if (await _geralPersist.SaveChangesAsync())
-                        {
-                            _geralPersist.Delete<Estoque>(estoque);
-                            if (await _geralPersist.SaveChangesAsync())
-                            {
-                                _geralPersist.Delete<Produto>(produto);
-                                return await _geralPersist.SaveChangesAsync();
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                        return false;
-                    }
-                    else
+                        Id = produto.Id,
+                        Nome = produto.Nome,
+                        Quantidade = (int)StatusProduto.ZerarQuantidade,
+                        Ativo = Convert.ToBoolean(Situacao.Inativo),
+                        StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
+                        PrecoCompra = (int)StatusProduto.ZerarQuantidade,
+                        PrecoVenda = (int)StatusProduto.ZerarQuantidade,
+                        Codigo = (int)StatusProduto.ZerarQuantidade,
+                        DataCadastroProduto = produto.DataCadastroProduto,
+                        EmpresaId = produto.EmpresaId,
+                        FornecedorId = produto.FornecedorId
+                    };
+
+                    _geralPersist.Update<Produto>(produtos);
+                    if (await _geralPersist.SaveChangesAsync())
                     {
-                        _geralPersist.Delete<Estoque>(estoque);
-                        if (await _geralPersist.SaveChangesAsync())
+                        var estoques = new Estoque()
                         {
-                            _geralPersist.Delete<Produto>(produto);
-                            return await _geralPersist.SaveChangesAsync();
+                            Id = estoque.Id,
+                            EmpresaId = estoque.EmpresaId,
+                            FornecedorId = estoque.FornecedorId,
+                            ProdutoId = estoque.ProdutoId,
+                            Quantidade = (int)StatusProduto.ZerarQuantidade,
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido)
+                        };
+                        _geralPersist.Update<Estoque>(estoques);
+                        await _geralPersist.SaveChangesAsync();
+                        if (enderecoProduto != null)
+                        {
+                            return await DeleteEnderecoProduto(empresaId, enderecoProduto.Id);
                         }
-                        return false;
+                        else
+                        {
+                            return true;
+                        }
                     }
+                    return false;
                 }
             }
             catch (Exception ex)

@@ -211,6 +211,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 var produto = await _produtoPersist.GetProdutoByIdAsync(empresaId, produtoId);
                 var estoque = await _estoquePersist.GetEstoqueByProdutoIdAsync(empresaId, produtoId);
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoDeleteByIdAsync(empresaId, estoque.Id);
                 if (produto == null || estoque == null)
                 {
                     throw new Exception(MensagemDeErro.ProdutoNaoEncontradoDelete);
@@ -224,9 +225,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         Quantidade = (int)StatusProduto.ZerarQuantidade,
                         Ativo = Convert.ToBoolean(Situacao.Inativo),
                         StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
-                        PrecoCompra = produto.PrecoCompra,
-                        PrecoVenda = produto.PrecoVenda,
-                        Codigo = produto.Codigo,
+                        PrecoCompra = (int)StatusProduto.ZerarQuantidade,
+                        PrecoVenda = (int)StatusProduto.ZerarQuantidade,
+                        Codigo = (int)StatusProduto.ZerarQuantidade,
                         DataCadastroProduto = produto.DataCadastroProduto,
                         EmpresaId = produto.EmpresaId,
                         FornecedorId = produto.FornecedorId
@@ -245,7 +246,15 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido)
                         };
                         _geralPersist.Update<Estoque>(estoques);
-                        return await _geralPersist.SaveChangesAsync();
+                        await _geralPersist.SaveChangesAsync();
+                        if (enderecoProduto != null)
+                        {
+                            return await DeleteEnderecoProduto(empresaId, enderecoProduto.Id);
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                     return false;
                 }
@@ -319,6 +328,27 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 {
                     var resultadoProduto = _mapper.Map<ProdutoDTO>(produto);
                     return resultadoProduto;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<bool> DeleteEnderecoProduto(int empresaId, int enderecoProdutoId)
+        {
+            try
+            {
+                var enderecoProduto = await _estoquePersist.GetEnderecoProdutoByIdAsync(empresaId, enderecoProdutoId);
+                if (enderecoProduto == null)
+                {
+                    throw new Exception("Endereço do produto não encontrado para delete");
+                }
+                else
+                {
+                    _geralPersist.Delete<EnderecoProduto>(enderecoProduto);
+                    return await _geralPersist.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
