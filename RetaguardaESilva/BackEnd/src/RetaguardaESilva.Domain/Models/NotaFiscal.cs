@@ -9,7 +9,7 @@ namespace RetaguardaESilva.Domain.Models
     public class NotaFiscal
     {
         public int Id { get; set; }
-        public int PedidoNotaId { get; set; }
+        public int PedidoId { get; set; }
         public int ClienteId { get; set; }
         public int EmpresaId { get; set; }
         public int TransportadorId { get; set; }
