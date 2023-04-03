@@ -295,5 +295,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public Task<NotaFiscalDTO> AddNotaFiscal(NotaFiscalDTO model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

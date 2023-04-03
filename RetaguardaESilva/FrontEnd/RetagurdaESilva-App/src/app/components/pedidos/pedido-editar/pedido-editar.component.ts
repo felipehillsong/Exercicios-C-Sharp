@@ -22,6 +22,7 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { Produto } from 'src/app/models/produto';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StatusPedido } from 'src/app/enums/statusPedido';
+import { NotaFiscal } from 'src/app/models/notaFiscal';
 
 @Component({
   selector: 'app-pedido-editar',
@@ -46,6 +47,7 @@ export class PedidoEditarComponent implements OnInit {
   pedido = {} as Pedido;
   produto = {} as Produto;
   produtoGrid = {} as Produto;
+  public notaFiscal = {} as NotaFiscal;
   public produtoControls: FormControl<number | null>[] = [];
   clienteControl = new FormControl('');
   produtoControl = new FormControl('');
@@ -86,7 +88,7 @@ export class PedidoEditarComponent implements OnInit {
   }
 
   public getPedidoById(): void{
-    this.pedidoId = this.route.snapshot.params['id'];
+    this.pedidoId = parseInt(this.route.snapshot.params['id']);
     this.pedidoService.getPedidoById(this.pedidoId).subscribe(
       (_pedido: Pedido) => {
         this.gerarPedido = _pedido;
@@ -508,11 +510,9 @@ export class PedidoEditarComponent implements OnInit {
         var existeCliente = this.VerificaIdCliente(this.clienteId);
         var existeTransportador = this.VerificaIdTransportador(this.transportadorId);
         if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null && this.produtosQuantidadeMaiorVenda.length == 0){
-          this.gerarPedido.produtos = [];
-          this.preencherPedido(this.produtosGrid);
-          this.gerarPedido.id = this.pedidoId;
-          this.gerarPedido.status = this.pedido.status;
-          this.pedidoService.editPedido(this.gerarPedido).subscribe(() => {
+          this.EditarPedido();
+          this.PreencherNotaFiscal();
+          this.pedidoService.finalizarPedido(this.notaFiscal).subscribe(() => {
             this.router.navigate(['pedidos/lista']);
           },
           (error: any) => {
@@ -522,16 +522,24 @@ export class PedidoEditarComponent implements OnInit {
           },
           () => this.spinner.hide()
         );
-        }else if(this.produtosQuantidadeMaiorVenda){
-          this.spinner.hide();
-            this.toastr.error(MensagensAlerta.QuantidadeVendaMaior);
-        }
-        else{
-            this.spinner.hide();
-            this.toastr.error(MensagensAlerta.ClienteTransportadorUsuarioInexistente);
-        }
-        () => this.spinner.hide()
       }
+    }
+
+      public PreencherNotaFiscal(){
+        let quantidadeItens = 0;
+        for(var i = 0; i < this.gerarPedido.produtos.length; i++){
+          quantidadeItens += this.gerarPedido.produtos[i].quantidadeVenda;
+        }
+        this.notaFiscal.pedidoId = this.pedidoId;
+        this.notaFiscal.clienteId = this.clienteId;
+        this.notaFiscal.transportadorId = this.transportadorId;
+        this.notaFiscal.quantidadeItens = quantidadeItens;
+        this.notaFiscal.empresaId = this.authService.empresaId();
+        this.notaFiscal.precoTotal = this.gerarPedido.precoTotal;
+        this.notaFiscal.dataCadastroNotaFiscal = new Date().toISOString().split('T')[0];
+        this.notaFiscal.status = 1;
+      }
+
 
     public preencherPedido(produtos:Produto[]){
       for (let i = 0; i < produtos.length; i++) {
@@ -569,7 +577,8 @@ export class PedidoEditarComponent implements OnInit {
     }
 
     EnviarQuantidade(id:number): void {
-      var quantidadeVenda = this.formQuantidade.get('quantidadeVenda')?.value;
+      var quantidadeVendaString = this.formQuantidade.get('quantidadeVenda')?.value;
+      var quantidadeVenda = parseInt(quantidadeVendaString);
       this.verificaQuantidadeProduto(quantidadeVenda, id);
       if(this.produtosQuantidadeMaiorVenda.length == 0){
         const quantidadeVendaString = quantidadeVenda.toString();

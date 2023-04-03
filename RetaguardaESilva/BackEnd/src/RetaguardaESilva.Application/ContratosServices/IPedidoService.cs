@@ -12,6 +12,7 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<PedidoCreateDTO> AddPedido(PedidoCreateDTO model);
         Task<PedidoUpdateDTO> UpdatePedido(PedidoUpdateDTO model);
         Task<bool> DeletePedido(int empresaId, int pedidoId);
+        Task<NotaFiscalDTO> AddNotaFiscal(NotaFiscalDTO model);
         Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId);
         Task<PedidoRetornoDTO> GetPedidoByIdAsync(int empresaId, int pedidoId);
     }
