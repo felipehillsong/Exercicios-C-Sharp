@@ -23,6 +23,7 @@ import { Produto } from 'src/app/models/produto';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StatusPedido } from 'src/app/enums/statusPedido';
 import { NotaFiscal } from 'src/app/models/notaFiscal';
+import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.service';
 
 @Component({
   selector: 'app-pedido-editar',
@@ -74,7 +75,7 @@ export class PedidoEditarComponent implements OnInit {
   limiteDeProduto = MensagensAlerta.LimiteDeProduto;
   precoTotalPedido:number = 0;
   produtosQuantidadeMaiorVenda:string = "";
-  constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -512,7 +513,7 @@ export class PedidoEditarComponent implements OnInit {
         if(existeCliente && existeTransportador && this.authService.idDoUsuarioLogado() && this.produtosGrid.length != null && this.produtosQuantidadeMaiorVenda.length == 0){
           this.EditarPedido();
           this.PreencherNotaFiscal();
-          this.pedidoService.finalizarPedido(this.notaFiscal).subscribe(() => {
+          this.notaFiscalService.addNotaFiscal(this.notaFiscal).subscribe(() => {
             this.router.navigate(['pedidos/lista']);
           },
           (error: any) => {
@@ -537,7 +538,6 @@ export class PedidoEditarComponent implements OnInit {
         this.notaFiscal.empresaId = this.authService.empresaId();
         this.notaFiscal.precoTotal = this.gerarPedido.precoTotal;
         this.notaFiscal.dataCadastroNotaFiscal = new Date().toISOString().split('T')[0];
-        this.notaFiscal.status = 1;
       }
 
 

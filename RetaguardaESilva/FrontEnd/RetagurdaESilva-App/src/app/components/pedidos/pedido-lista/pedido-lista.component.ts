@@ -7,9 +7,11 @@ import { Botoes } from 'src/app/enums/botoes';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
 import { Login } from 'src/app/models/login';
+import { NotaFiscal } from 'src/app/models/notaFiscal';
 import { Pedido } from 'src/app/models/pedido';
 import { AuthService } from 'src/app/services/login/auth.service';
 import { NavService } from 'src/app/services/nav/nav.service';
+import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.service';
 import { PedidoService } from 'src/app/services/pedido/pedido.service';
 import { TituloService } from 'src/app/services/titulo/titulo.service';
 
@@ -26,6 +28,7 @@ export class PedidoListaComponent implements OnInit {
   message?: string;
   public loginUsuario!: Login;
   public pedidos: Pedido[] = [];
+  public notasFiscais: NotaFiscal[] = [];
   private _clienteNomeListado = '';
   pedidosFiltrados: Pedido[] = [];
   pedidoId!: number;
@@ -48,7 +51,7 @@ export class PedidoListaComponent implements OnInit {
       (pedido:any) => pedido.clienteNome.toLocaleLowerCase().indexOf(filtrarPor) !== -1);
   }
 
-  constructor(private router: Router, private pedidoService: PedidoService, public titu: TituloService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private router: Router, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, public titu: TituloService, public nav: NavService, private authService: AuthService, private modalService: BsModalService, private spinner: NgxSpinnerService, private toastr: ToastrService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -59,10 +62,32 @@ export class PedidoListaComponent implements OnInit {
     this.pedidoService.getPedidos(this.authService.empresaId()).subscribe(
       (_pedidos: Pedido[]) => {
         this.pedidos = _pedidos;
+        this.getNotasFiscais();
         this.pedidosFiltrados = this.pedidos;
+        console.log(this.pedidosFiltrados);
       },
       error => console.log(error)
     );
+  }
+
+  public getNotasFiscais(): void{
+    this.notaFiscalService.getNotasFiscais(this.authService.empresaId()).subscribe(
+      (_notasFiscais: NotaFiscal[]) => {
+        this.notasFiscais = _notasFiscais;
+        this.preencherNotasFiscais(this.notasFiscais);
+      },
+      error => console.log(error)
+    );
+  }
+
+  public preencherNotasFiscais(notasFiscais: NotaFiscal[]){
+    for(var i = 0; i < notasFiscais.length; i++){
+      const pedido = this.pedidos.find(pedido => pedido.id === this.notasFiscais[i].pedidoId);
+      if(this.pedidos.find(pedido => pedido.id === pedido?.id)){
+        this.pedidos[i].possuiNotaFiscal = true;
+      }
+    }
+
   }
 
   editar(id: number): void {

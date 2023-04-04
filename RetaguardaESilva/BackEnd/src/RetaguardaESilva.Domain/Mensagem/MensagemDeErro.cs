@@ -77,6 +77,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ErroAoAtualizar = "Erro ao atualizar";
         public const string ErroAoCadastrarItensPedido = "Erro ao cadastrar itens do pedido";
         public const string ErroAoCadastrarPedido = "Erro ao cadastrar pedido";
+        public const string ErroAoCadastrarNotaFiscal = "Erro ao cadastrar nota fiscal";
         public const string ErroAoAtualizarCriar = "Erro ao atualizar ou criar";
         public const string ErroCEP = "Algum erro ocorreu, possivelmente CEP invalido, ou vazio, ou erro na API dos correios";
         public const string ErroSenha = "Senhas não conferem";
@@ -87,5 +88,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string PedidoNaoEncontradoDelete = "Pedido não encontrado para delete, verifique o Id da empresa e o Id do pedido";
         public const string EstoqueNaoEncontradoDelete = "Estoque não encontrado para delete";
         public const string EnderecoProdutoNaoEncontradoDelete = "Endereço do produto não encontrado para delete";
+        public const string NotaFiscalNaoEncontradoEmpresa = "Não existem notas fiscais cadastradas nessa empresa";
+        public const string NotaFiscalNaoEncontrada = "Nenhuma nota fiscal encontrada";
     }
 }

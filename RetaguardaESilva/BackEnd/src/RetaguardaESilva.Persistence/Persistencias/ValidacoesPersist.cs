@@ -1223,66 +1223,31 @@ namespace RetaguardaESilva.Persistence.Persistencias
             return pedidosRetorno;
         }
 
-        public Produto AtualizarQuantidadeProdutoPosPedido(ProdutoViewModel produtoView, out Estoque estoque)
+        public Produto AtualizarQuantidadeProdutoPosPedido(int pedidoId, int empresaId, int produtoId, int quantidadeVenda, out Estoque estoque, out string mensagem)
         {
-            var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == produtoView.EmpresaId && p.Id == produtoView.Id);
-            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == produtoView.EmpresaId && e.ProdutoId == produtoView.Id);
+            var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
+            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId);            
+            Produto produtoRetorno = null;
+            Estoque estoqueRetorno = null;
             if (produtoBD != null && estoqueBD != null)
             {
-                produtoBD.Quantidade = produtoBD.Quantidade - produtoView.QuantidadeVenda;
-                estoqueBD.Quantidade = produtoBD.Quantidade;
-                estoque = estoqueBD;
-                return produtoBD;
+                if (quantidadeVenda < produtoBD.Quantidade && quantidadeVenda < estoqueBD.Quantidade)
+                {   
+                    produtoBD.Quantidade -= quantidadeVenda;
+                    estoqueBD.Quantidade -= quantidadeVenda;
+                    produtoRetorno = produtoBD;
+                    estoqueRetorno = estoqueBD;
+                }
+                else if (quantidadeVenda == produtoBD.Quantidade && quantidadeVenda == estoqueBD.Quantidade)
+                {
+                    produtoRetorno = produtoBD;
+                    estoqueRetorno = estoqueBD;
+                }
             }
             else
             {
-                estoque = null;
-                return null;
-            }
-        }
-
-        public Produto AtualizarQuantidadeProdutoEditar(int pedidoId, int empresaId, int produtoId, int quantidadeVenda, out Estoque estoque, out string mensagem)
-        {
-            var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
-            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId);
-            var pedidoBD = _context.Pedido.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == pedidoId);
-            var pedidoNotaBD = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == empresaId && pn.PedidoId == pedidoId).ToList();
-            Produto produtoRetorno = null;
-            Estoque estoqueRetorno = null;
-            foreach (var item in pedidoNotaBD)
-            {
-                if (produtoBD != null && estoqueBD != null && pedidoBD != null && pedidoNotaBD != null)
-                {
-                    if (quantidadeVenda < item.Quantidade)
-                    {
-                        var quantidade = item.Quantidade - quantidadeVenda;
-                        produtoBD.Quantidade = quantidade;
-                        estoqueBD.Quantidade = quantidade;
-                        produtoRetorno = produtoBD;
-                        estoqueRetorno = estoqueBD;
-                    }
-                    else if (quantidadeVenda > item.Quantidade)
-                    {
-                        if (quantidadeVenda < produtoBD.Quantidade)
-                        {
-                            var quantidade = produtoBD.Quantidade - quantidadeVenda;
-                            produtoBD.Quantidade = quantidade;
-                            estoqueBD.Quantidade = quantidade;
-                            produtoRetorno = produtoBD;
-                            estoqueRetorno = estoqueBD;
-                        }
-                    }
-                    else if (quantidadeVenda == item.Quantidade)
-                    {
-                        produtoRetorno = produtoBD;
-                        estoqueRetorno = estoqueBD;
-                    }
-                }
-                else
-                {
-                    produtoRetorno = null;
-                    estoqueRetorno = null;
-                }
+                produtoRetorno = null;
+                estoqueRetorno = null;
             }
 
             if (produtoRetorno != null && estoqueRetorno != null)

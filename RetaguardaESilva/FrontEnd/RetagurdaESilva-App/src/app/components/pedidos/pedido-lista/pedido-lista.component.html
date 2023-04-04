@@ -27,7 +27,9 @@
       <td>{{pedido.dataCadastroPedido | date: "dd/MM/yyyy"}}</td>
       <td>{{pedido.statusPedido}}</td>
       <td>
-        <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(pedido.id)">
+        <button *ngIf="pedido.possuiNotaFiscal" type="button" tooltip="Pedido com Nota Fiscal" class="btn btn-warning btn-sm">
+            <i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+        <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar && !pedido.possuiNotaFiscal" (click)="editar(pedido.id)">
           <i class="fa fa-edit"></i></button>&nbsp;
           <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" *ngIf="visualizarDetalhe" (click)="detalhe(pedido.id)">
             <i class="fa-solid fa-file"></i></button>&nbsp;

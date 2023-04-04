@@ -31,6 +31,7 @@ namespace RetaguardaESilva.Application.Helpers
             CreateMap<FuncionarioCreateDTO, Funcionario>().ReverseMap();
             CreateMap<FuncionarioUpdateDTO, Funcionario>().ReverseMap();
             CreateMap<FuncionariosUsuariosViewModel, FuncionarioDTO>().ReverseMap();
+            CreateMap<NotaFiscal, NotaFiscalDTO>().ReverseMap();
             CreateMap<Permissao, PermissaoDTO>().ReverseMap();
             CreateMap<Permissao, List<PermissaoDTO>>().ReverseMap();
             CreateMap<Pedido, PedidoDTO>().ReverseMap();

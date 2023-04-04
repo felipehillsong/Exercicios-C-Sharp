@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { NotaFiscal } from 'src/app/models/notaFiscal';
 import { Pedido } from 'src/app/models/pedido';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../login/auth.service';
@@ -22,10 +21,6 @@ public addPedido(pedido: Pedido): Observable<Pedido> {
 
 public editPedido(pedido: Pedido): Observable<Pedido> {
   return this.http.put<Pedido>(`${this.baseURLGetUpdateDelete}/`, pedido).pipe(take(1));
-}
-
-public finalizarPedido(notaFiscal: NotaFiscal): Observable<NotaFiscal> {
-  return this.http.post<NotaFiscal>(`${this.baseURLAddNotaFiscal}/`, notaFiscal).pipe(take(1));
 }
 
 public getPedidos(empresaId: number) : Observable<Pedido[]>{

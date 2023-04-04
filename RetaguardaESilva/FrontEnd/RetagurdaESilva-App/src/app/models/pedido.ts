@@ -11,5 +11,6 @@ export interface Pedido {
   dataCadastroPedido:string;
   statusPedido:string;
   status:number;
+  possuiNotaFiscal:boolean;
   produtos: Array<Produto>;
 }

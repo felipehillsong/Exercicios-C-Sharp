@@ -121,25 +121,5 @@ namespace RetaguardaESilva.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
             }
         }
-
-        // POST: api/Pedido
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("api/[controller]")]
-        public async Task<ActionResult> FinalizarPedido(NotaFiscalDTO model)
-        {
-            try
-            {
-                var pedido = await _pedidoService.AddNotaFiscal(model);
-                if (pedido == null)
-                {
-                    return BadRequest();
-                }
-                return Ok(pedido);
-            }
-            catch (Exception ex)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
-            }
-        }
     }
 }
