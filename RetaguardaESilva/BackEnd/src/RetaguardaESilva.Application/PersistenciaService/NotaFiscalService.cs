@@ -42,9 +42,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
             try
             {
                 var pedido = await _pedidoPersist.GetPedidoByIdAsync(model.EmpresaId, model.PedidoId);
-                if (pedido == null)
+                var notaFiscalExistente = await _notaFiscalPersist.GetNotaFiscalPedidoByIdAsync(model.EmpresaId, model.PedidoId);
+                if (pedido == null || notaFiscalExistente != null)
                 {
-                    throw new Exception(MensagemDeErro.PedidoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.PedidoNaoEncontradoOuNFExistente);
                 }
                 else
                 {
@@ -119,6 +120,27 @@ namespace RetaguardaESilva.Application.PersistenciaService
         public async Task<NotaFiscalDTO> GetNotaFiscalByIdAsync(int empresaId, int clienteId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<NotaFiscalDTO> GetNotaFiscalPedidoByIdAsync(int empresaId, int pedidoId)
+        {
+            try
+            {
+                var notaPedido = await _notaFiscalPersist.GetNotaFiscalPedidoByIdAsync(empresaId, pedidoId);
+                if (notaPedido == null)
+                {
+                    throw new Exception(MensagemDeErro.NotaFiscalNaoEncontrada);
+                }
+                else
+                {
+                    var resultadoNotaPedido = _mapper.Map<NotaFiscalDTO>(notaPedido);
+                    return resultadoNotaPedido;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<bool> DeleteCliente(int empresaId, int notafiscalId)

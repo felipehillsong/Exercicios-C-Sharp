@@ -84,6 +84,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string LoginErro = "Email ou senha errado";
         public const string EnderecoProdutoSendoUsado = "Endereço sendo usado por outro estoque";
         public const string PedidoNaoEncontrado = "Nenhum pedido encontrado";
+        public const string PedidoNaoEncontradoOuNFExistente = "Nenhum pedido encontrado ou nota fiscal existente";
         public const string PedidoNaoEncontradoEmpresa = "Não existem pedidos cadastrados nessa empresa";
         public const string PedidoNaoEncontradoDelete = "Pedido não encontrado para delete, verifique o Id da empresa e o Id do pedido";
         public const string EstoqueNaoEncontradoDelete = "Estoque não encontrado para delete";

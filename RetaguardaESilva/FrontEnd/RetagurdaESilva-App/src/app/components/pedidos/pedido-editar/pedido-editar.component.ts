@@ -49,6 +49,7 @@ export class PedidoEditarComponent implements OnInit {
   produto = {} as Produto;
   produtoGrid = {} as Produto;
   public notaFiscal = {} as NotaFiscal;
+  notaFiscalPedido = {} as NotaFiscal;
   public produtoControls: FormControl<number | null>[] = [];
   clienteControl = new FormControl('');
   produtoControl = new FormControl('');
@@ -98,10 +99,29 @@ export class PedidoEditarComponent implements OnInit {
         this.transportadorId = this.pedido.transportadorId;
         this.PreencherProdutos(this.gerarPedido.produtos);
         this.PreencherStatusPedido(this.pedido.statusPedido);
+        this.getNotaFiscalPedidoById();
+        console.log(this.pedidoId);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
+  }
+
+  public getNotaFiscalPedidoById(): void{
+    this.notaFiscalService.GetNotaFiscalPedidoById(this.pedidoId).subscribe(
+      (_notaFiscal: NotaFiscal) => {
+        this.notaFiscalPedido = _notaFiscal;
+        this.preencherNotaExistente(this.notaFiscalPedido.pedidoId);
+        this._changeDetectorRef.markForCheck();
+      },
+      error => console.log(error)
+    );
+  }
+
+  public preencherNotaExistente(pedidoId:number){
+    if(pedidoId){
+      this.pedido.possuiNotaFiscal = true;
+    }
   }
 
   public PreencherStatusPedido(status:string){

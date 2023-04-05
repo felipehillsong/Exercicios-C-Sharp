@@ -33,7 +33,7 @@
           <i class="fa fa-edit"></i></button>&nbsp;
           <button type="button" tooltip="Visualizar" class="btn btn-secondary btn-sm mr-2" *ngIf="visualizarDetalhe" (click)="detalhe(pedido.id)">
             <i class="fa-solid fa-file"></i></button>&nbsp;
-        <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" *ngIf="visualizarExcluir" (click)="openModal($event, template, pedido.id)">
+        <button type="button" tooltip="Excluir" class="btn btn-danger btn-sm" *ngIf="visualizarExcluir && !pedido.possuiNotaFiscal" (click)="openModal($event, template, pedido.id)">
           <i class="fa fa-trash"></i></button>
       </td>
     </tr>

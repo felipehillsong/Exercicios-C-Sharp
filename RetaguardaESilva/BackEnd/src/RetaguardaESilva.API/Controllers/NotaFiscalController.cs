@@ -62,5 +62,24 @@ namespace RetaguardaESilva.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
             }
         }
+
+        // GET: api/NotaFiscal/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetNotaFiscalPedido(int empresaId, int id)
+        {
+            try
+            {
+                var notaPedido = await _notaFiscalService.GetNotaFiscalPedidoByIdAsync(empresaId, id);
+                if (notaPedido == null)
+                {
+                    return NotFound();
+                }
+                return Ok(notaPedido);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
     }
 }

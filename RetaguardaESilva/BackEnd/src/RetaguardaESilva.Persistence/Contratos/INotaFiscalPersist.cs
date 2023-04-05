@@ -11,5 +11,6 @@ namespace RetaguardaESilva.Persistence.Contratos
     {
         Task<IEnumerable<NotaFiscal>> GetAllNotaFiscalAsync(int empresaId);
         Task<NotaFiscal> GetNotaFiscalByIdAsync(int empresaId, int notaFiscalId);
+        Task<NotaFiscal> GetNotaFiscalPedidoByIdAsync(int empresaId, int pedidoId);
     }
 }

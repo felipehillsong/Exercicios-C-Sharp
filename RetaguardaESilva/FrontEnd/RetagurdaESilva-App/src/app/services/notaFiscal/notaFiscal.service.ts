@@ -23,4 +23,8 @@ public getNotasFiscais(empresaId: number) : Observable<NotaFiscal[]>{
   return this.http.get<NotaFiscal[]>(`${this.baseURL}empresaId=${empresaId}`).pipe(take(1));
 }
 
+public GetNotaFiscalPedidoById(id : number) : Observable<NotaFiscal>{
+  return this.http.get<NotaFiscal>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+}
+
 }
