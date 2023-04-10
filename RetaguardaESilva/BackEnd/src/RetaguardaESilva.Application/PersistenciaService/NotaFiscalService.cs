@@ -49,9 +49,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    pedido.Status = (int)StatusPedido.PedidoConfirmado;
                     var pedidoNota = _pedidoNotaPersist.GetAllPedidosNotaAsync(model.EmpresaId, model.PedidoId);
                     foreach (var item in pedidoNota.Result)
                     {
+                        item.Status = (int)StatusPedido.PedidoConfirmado;
                         var produto = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(model.PedidoId, model.EmpresaId, item.ProdutoId, item.Quantidade, out Estoque estoque, out string mensagem);
                         if (produto == null || estoque == null)
                         {
@@ -60,6 +62,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         else
                         {
                             _geralPersist.Update<Produto>(produto);
+                            await _geralPersist.SaveChangesAsync();
+                            _geralPersist.Update<PedidoNota>(item);
+                            await _geralPersist.SaveChangesAsync();
+                            _geralPersist.Update<Pedido>(pedido);
                             await _geralPersist.SaveChangesAsync();
                             _geralPersist.Update<Estoque>(estoque);
                             await _geralPersist.SaveChangesAsync();
@@ -85,11 +91,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 throw new Exception(ex.Message);
             }
-        }
-
-        public async Task<NotaFiscalDTO> UpdateNotaFiscal(NotaFiscalDTO model)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<NotaFiscalDTO>> GetAllNotaFiscalAsync(int empresaId)
@@ -143,7 +144,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<bool> DeleteCliente(int empresaId, int notafiscalId)
+        public async Task<bool> DeleteNotaFiscal(int empresaId, int notafiscalId)
         {
             throw new NotImplementedException();
         }

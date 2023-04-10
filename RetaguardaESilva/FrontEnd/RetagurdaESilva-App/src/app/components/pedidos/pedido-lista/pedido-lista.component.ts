@@ -64,7 +64,6 @@ export class PedidoListaComponent implements OnInit {
         this.pedidos = _pedidos;
         this.getNotasFiscais();
         this.pedidosFiltrados = this.pedidos;
-        console.log(this.pedidosFiltrados);
       },
       error => console.log(error)
     );
