@@ -13,5 +13,8 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string PedidoEmAnalise = "Pedido em analise";
         public const string PedidoConfirmado = "Pedido confirmado";
         public const string PedidoCancelado = "Pedido cancelado";
+        public const string NotaFiscalAprovada = "Nota fiscal aprovada";
+        public const string NotaFiscalCancelada = "Nota fiscal cancelada";
+        public const string ClienteExcluido = "Cliente excluído";
     }
 }

@@ -18,4 +18,15 @@ namespace RetaguardaESilva.Application.DTO
         public DateTime? DataCadastroNotaFiscal { get; set; }
         public int Status { get; set; }
     }
+
+    public class NotasFiscaisDTO
+    {
+        public int Id { get; set; }
+        public int PedidoId { get; set; }
+        public string NomeCliente { get; set; }
+        public int QuantidadeItens { get; set; }
+        public decimal PrecoTotal { get; set; }
+        public DateTime? DataCadastroNotaFiscal { get; set; }
+        public string Status { get; set; }
+    }
 }

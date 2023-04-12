@@ -76,6 +76,7 @@ export class PedidoEditarComponent implements OnInit {
   limiteDeProduto = MensagensAlerta.LimiteDeProduto;
   precoTotalPedido:number = 0;
   produtosQuantidadeMaiorVenda:string = "";
+  criarNotaFiscal: boolean = false;
   constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
@@ -731,6 +732,7 @@ export class PedidoEditarComponent implements OnInit {
     this.authService.visualizarUsuario();
     this.authService.visualizarPedido();
     this.authService.visualizarNotaFiscal();
+    this.criarNotaFiscal = this.authService.visualizarNotaFiscalCadastro();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

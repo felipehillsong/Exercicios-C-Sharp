@@ -93,7 +93,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<NotaFiscalDTO>> GetAllNotaFiscalAsync(int empresaId)
+        public async Task<IEnumerable<NotasFiscaisDTO>> GetAllNotaFiscalAsync(int empresaId)
         {
             try
             {
@@ -108,8 +108,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    var resultadoNotaFiscal = _mapper.Map<IEnumerable<NotaFiscalDTO>>(notasFiscais);
-                    return resultadoNotaFiscal;
+                    var notasFiscaisRetorno = _validacoesPersist.RetornarNotasFiscais(notasFiscais);
+                    var resultadoNotasFiscais = _mapper.Map<IEnumerable<NotasFiscaisDTO>>(notasFiscais);
+                    return resultadoNotasFiscais;
                 }
             }
             catch (Exception ex)
