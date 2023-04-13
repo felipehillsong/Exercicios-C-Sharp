@@ -92,6 +92,9 @@ import { AuthGuardsPedidoService } from './guards/pedido/AuthGuardsPedido.servic
 import { AuthGuardsPedidoCadastroService } from './guards/pedido/AuthGuardsPedidoCadastro.service';
 import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedidoDetalhe.service';
 import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
+import { NotaFiscalComponent } from './components/notasFiscais/notaFiscal.component';
+import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-lista/notaFiscal-lista.component';
+import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -176,6 +179,11 @@ const routes: Routes = [
     {path: 'criar', title: 'Cadastro', component: PedidoCriarComponent, canActivate: [AuthGuardsPedidoCadastroService]},
     {path: 'editar/:id', title: 'Editar', component: PedidoEditarComponent, canActivate: [AuthGuardsPedidoEditarService]},
     {path: 'detalhe/:id', title: 'Detalhe', component: PedidoDetalheComponent, canActivate: [AuthGuardsPedidoDetalheService]}
+  ]},
+  { path: 'notasFiscais',
+  component: NotaFiscalComponent, canActivate:[AuthGuardsService, AuthGuardsNotaFiscalService],
+  children:[
+    {path: 'lista', title: 'NotaFiscal', component: NotaFiscalListaComponent }
   ]},
 ];
 

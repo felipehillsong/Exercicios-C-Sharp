@@ -111,6 +111,9 @@ import { AuthGuardsPedidoDetalheService } from './guards/pedido/AuthGuardsPedido
 import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoEditar.service';
 import { Select2Module } from 'ng-select2-component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NotaFiscalComponent } from './components/notasFiscais/notaFiscal.component';
+import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-lista/notaFiscal-lista.component';
+import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -146,6 +149,8 @@ registerLocaleData(ptBr);
     FuncionarioEditarComponent,
     FuncionarioListaComponent,
     LoginComponent,
+    NotaFiscalComponent,
+    NotaFiscalListaComponent,
     ProdutoComponent,
     ProdutoCriarComponent,
     ProdutoEditarComponent,
@@ -238,6 +243,7 @@ registerLocaleData(ptBr);
     AuthGuardsUsuarioCadastroService,
     AuthGuardsUsuarioEditarService,
     AuthGuardsUsuarioPermissaoService,
+    AuthGuardsNotaFiscalService,
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],

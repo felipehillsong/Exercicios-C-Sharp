@@ -108,9 +108,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    List<NotasFiscaisDTO> notasFiscaisList = new List<NotasFiscaisDTO>();
                     var notasFiscaisRetorno = _validacoesPersist.RetornarNotasFiscais(notasFiscais);
-                    var resultadoNotasFiscais = _mapper.Map<IEnumerable<NotasFiscaisDTO>>(notasFiscais);
-                    return resultadoNotasFiscais;
+                    foreach (var item in notasFiscaisRetorno)
+                    {
+                        notasFiscaisList.Add(new NotasFiscaisDTO(item.Id, item.PedidoId, item.NomeCliente, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, item.Status));
+                    }
+                    return notasFiscaisList;
                 }
             }
             catch (Exception ex)

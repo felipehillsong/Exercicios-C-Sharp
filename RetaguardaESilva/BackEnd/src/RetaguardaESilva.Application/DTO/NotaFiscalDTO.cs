@@ -28,5 +28,21 @@ namespace RetaguardaESilva.Application.DTO
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroNotaFiscal { get; set; }
         public string Status { get; set; }
+
+        public NotasFiscaisDTO()
+        {
+
+        }
+
+        public NotasFiscaisDTO(int id, int pedidoId, string nomeCliente, int quantidadeItens, decimal precoTotal, DateTime? dataCadastroNotaFiscal, string status)
+        {
+            this.Id = id;
+            this.PedidoId = pedidoId;
+            this.NomeCliente = nomeCliente;
+            this.QuantidadeItens = quantidadeItens;
+            this.PrecoTotal = precoTotal;
+            this.DataCadastroNotaFiscal = dataCadastroNotaFiscal;
+            this.Status = status;
+        }
     }
 }
