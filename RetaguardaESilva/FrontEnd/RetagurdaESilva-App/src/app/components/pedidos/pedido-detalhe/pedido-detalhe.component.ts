@@ -31,52 +31,11 @@ import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.servic
   styleUrls: ['./pedido-detalhe.component.scss']
 })
 export class PedidoDetalheComponent implements OnInit {
-  modalRef?: BsModalRef;
   titulo =  Titulos.detalhePedidos;
-  formCliente!: FormGroup;
-  formProduto!: FormGroup;
-  formQuantidade!: FormGroup;
-  public loginUsuario!: Login;
-  pedidoNome: Pedido[] = [];
-  public clientes: Cliente[] = [];
-  public transportadores: Transportador[] = [];
-  public produtos: Produto[] = [];
-  public produtosSelecionados: Produto[] = [];
-  public pedidoProdutos = {} as Produto;
-  public produtosGrid: Produto[] = [];
-  gerarPedido = {} as Pedido;
   pedido = {} as Pedido;
-  produto = {} as Produto;
-  produtoGrid = {} as Produto;
-  public notaFiscal = {} as NotaFiscal;
   notaFiscalPedido = {} as NotaFiscal;
-  public produtoControls: FormControl<number | null>[] = [];
-  clienteControl = new FormControl('');
-  produtoControl = new FormControl('');
-  pedidoControl = new FormControl('');
-  transportadorControl = new FormControl('');
-  filteredClientes!: Observable<Cliente[]>;
-  filteredTransportadores!: Observable<Transportador[]>;
-  filteredProdutos!: Observable<Produto[]>;
-  clienteId!:number;
-  transportadorId!:number;
-  produtoId!:number;
   pedidoId!:number;
-  produtoIdGrid!: number;
-  usuarioId!:number;
-  produtoNome!:string;
-  inputCliente:boolean = false;
-  inputTransportador:boolean = false;
-  mostrarProduto:boolean = false;
-  mostrarGrid:boolean = false;
-  editarPedido:boolean = false;
-  finalizarPedido:boolean = false;
-  botaoExcluir:boolean = false;
-  selecionarProduto:boolean = true;
-  limiteDeProduto = MensagensAlerta.LimiteDeProduto;
-  precoTotalPedido:number = 0;
-  produtosQuantidadeMaiorVenda:string = "";
-  constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
+  constructor(private router: Router, private route: ActivatedRoute, public titu: TituloService, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.permissoesDeTela();

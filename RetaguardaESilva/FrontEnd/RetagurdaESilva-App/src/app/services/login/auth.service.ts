@@ -328,18 +328,13 @@ public visualizarNotaFiscalCadastro():boolean{
   return vizualizar;
 }
 
-public visualizarNotaFiscalEditar():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalEditar;
+public visualizarNotaFiscalGerarPDF():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalGerarPDF;
   return vizualizar;
 }
 
-public visualizarNotaFiscalDetalhe():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalDetalhe;
-  return vizualizar;
-}
-
-public visualizarNotaFiscalExcluir():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalExcluir;
+public visualizarNotaFiscalCancelar():boolean{
+  var vizualizar = this.permissoesDoUsuario()[0].notaFiscalCancelar;
   return vizualizar;
 }
 

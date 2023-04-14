@@ -22,6 +22,7 @@ export enum Titulos {
   cadastroFuncionario = 'Cadastro de Funcionario',
   editarFuncionario = 'Editar Funcionario',
   detalheFuncionario = 'Detalhe do Funcionario',
+  listaNotaFiscal = 'Lista de Notas Fiscais',
   listaProduto = 'Lista de Produtos',
   cadastroProduto = 'Cadastro de Produto',
   editarProduto = 'Editar Produto',

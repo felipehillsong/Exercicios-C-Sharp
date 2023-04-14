@@ -413,9 +413,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             PedidoExcluir = false,
                             VisualizarNotaFiscal = false,
                             NotaFiscalCadastro = false,
-                            NotaFiscalEditar = false,
-                            NotaFiscalDetalhe = false,
-                            NotaFiscalExcluir = false,
+                            NotaFiscalGerarPDF = false,
+                            NotaFiscalCancelar = false,
                             EmpresaId = usuarioExistente.EmpresaId,
                             UsuarioId = usuarioExistente.Id
                         };
@@ -484,9 +483,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             PedidoExcluir = usuarioPermissao.PedidoExcluir,
                             VisualizarNotaFiscal = usuarioPermissao.VisualizarNotaFiscal,
                             NotaFiscalCadastro = usuarioPermissao.NotaFiscalCadastro,
-                            NotaFiscalEditar = usuarioPermissao.NotaFiscalEditar,
-                            NotaFiscalDetalhe = usuarioPermissao.NotaFiscalDetalhe,
-                            NotaFiscalExcluir = usuarioPermissao.NotaFiscalExcluir,
+                            NotaFiscalGerarPDF = usuarioPermissao.NotaFiscalGerarPDF,
+                            NotaFiscalCancelar = usuarioPermissao.NotaFiscalCancelar,
                             EmpresaId = usuarioPermissao.EmpresaId,
                             UsuarioId = usuarioPermissao.UsuarioId
                         };
@@ -561,9 +559,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
             &&permissaoBD.PedidoExcluir == permissaoDTO.PedidoExcluir
             &&permissaoBD.VisualizarNotaFiscal == permissaoDTO.VisualizarNotaFiscal
             &&permissaoBD.NotaFiscalCadastro == permissaoDTO.NotaFiscalCadastro
-            &&permissaoBD.NotaFiscalEditar == permissaoDTO.NotaFiscalEditar
-            &&permissaoBD.NotaFiscalDetalhe == permissaoDTO.NotaFiscalDetalhe
-            &&permissaoBD.NotaFiscalExcluir == permissaoDTO.NotaFiscalExcluir
+            &&permissaoBD.NotaFiscalGerarPDF == permissaoDTO.NotaFiscalGerarPDF
+            &&permissaoBD.NotaFiscalCancelar == permissaoDTO.NotaFiscalCancelar
             &&permissaoBD.EmpresaId == permissaoDTO.EmpresaId
             &&permissaoBD.UsuarioId == permissaoDTO.UsuarioId)
             {
@@ -636,9 +633,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 PedidoExcluir = permissaoDTO.PedidoExcluir,
                 VisualizarNotaFiscal = permissaoDTO.VisualizarNotaFiscal,
                 NotaFiscalCadastro = permissaoDTO.NotaFiscalCadastro,
-                NotaFiscalEditar = permissaoDTO.NotaFiscalEditar,
-                NotaFiscalDetalhe = permissaoDTO.NotaFiscalDetalhe,
-                NotaFiscalExcluir = permissaoDTO.NotaFiscalExcluir,
+                NotaFiscalGerarPDF = permissaoDTO.NotaFiscalGerarPDF,
+                NotaFiscalCancelar = permissaoDTO.NotaFiscalCancelar,
                 EmpresaId = permissaoDTO.EmpresaId,
                 UsuarioId = permissaoDTO.UsuarioId
             };

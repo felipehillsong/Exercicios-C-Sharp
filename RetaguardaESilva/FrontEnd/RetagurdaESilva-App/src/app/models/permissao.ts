@@ -44,9 +44,8 @@ export interface Permissao {
   pedidoDetalhe: boolean;
   pedidoExcluir: boolean;
   notaFiscalCadastro: boolean;
-  notaFiscalEditar: boolean;
-  notaFiscalDetalhe: boolean;
-  notaFiscalExcluir: boolean;
+  notaFiscalGerarPDF: boolean;
+  notaFiscalCancelar: boolean;
   visualizarCliente: boolean;
   visualizarEstoque: boolean;
   visualizarEnderecoProduto: boolean;

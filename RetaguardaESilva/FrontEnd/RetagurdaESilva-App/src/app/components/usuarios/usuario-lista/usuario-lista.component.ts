@@ -33,6 +33,7 @@ export class UsuarioListaComponent implements OnInit {
   visualizarEditar!:boolean;
   visualizarPermissao!:boolean;
   visualizarExcluir!:boolean;
+  visualizarPermissaoExcluir!: boolean;
 
   public get usuarioLista():string{
     return this._usuarioListado;
@@ -61,9 +62,20 @@ export class UsuarioListaComponent implements OnInit {
       (_usuarios: Usuario[]) => {
         this.usuarios = _usuarios;
         this.usuariosFiltrados = this.usuarios;
+        this.PreencherBotaoExcluir(this.usuarios);
       },
       error => console.log(error)
     );
+  }
+
+  public PreencherBotaoExcluir(usuarios:Usuario[]){
+    for(var i = 0; i < usuarios.length; i++){
+      if(this.authService.idDoUsuarioLogado() == usuarios[i].id){
+        usuarios[i].botaoExcluir = false;
+      }else{
+        usuarios[i].botaoExcluir = true;
+      }
+    }
   }
 
   editar(id: number): void {

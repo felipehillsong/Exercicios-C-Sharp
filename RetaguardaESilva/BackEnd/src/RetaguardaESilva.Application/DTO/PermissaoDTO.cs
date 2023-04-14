@@ -20,7 +20,6 @@ namespace RetaguardaESilva.Application.DTO
         public bool EmpresaDetalhe { get; set; }
         public bool EmpresaExcluir { get; set; }
         public bool VisualizarEstoque { get; set; }
-        public bool EstoqueCadastro { get; set; }
         public bool EstoqueEditar { get; set; }
         public bool EstoqueDetalhe { get; set; }
         public bool EstoqueExcluir { get; set; }
@@ -66,9 +65,8 @@ namespace RetaguardaESilva.Application.DTO
         public bool PedidoExcluir { get; set; }
         public bool VisualizarNotaFiscal { get; set; }
         public bool NotaFiscalCadastro { get; set; }
-        public bool NotaFiscalEditar { get; set; }
-        public bool NotaFiscalDetalhe { get; set; }
-        public bool NotaFiscalExcluir { get; set; }
+        public bool NotaFiscalGerarPDF { get; set; }
+        public bool NotaFiscalCancelar { get; set; }
         public int EmpresaId { get; set; }
         public int UsuarioId { get; set; }
     }

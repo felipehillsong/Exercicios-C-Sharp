@@ -157,9 +157,8 @@ public validation(): void {
     pedidoDetalhe: [null],
     pedidoExcluir: [null],
     notaFiscalCadastro: [null],
-    notaFiscalEditar: [null],
-    notaFiscalDetalhe: [null],
-    notaFiscalExcluir: [null],
+    notaFiscalGerarPDF: [null],
+    notaFiscalCancelar: [null],
     visualizarCliente: [null],
     visualizarEstoque: [null],
     visualizarFornecedor: [null],
@@ -361,14 +360,13 @@ public validation(): void {
   public todasNotasFiscais(){
     if(this.permissoes.visualizarNotaFiscal == true){
       this.permissoes.notaFiscalCadastro = false;
-      this.permissoes.notaFiscalEditar = false;
-      this.permissoes.notaFiscalDetalhe = false;
-      this.permissoes.notaFiscalExcluir = false;
+      this.permissoes.notaFiscalGerarPDF = false;
+      this.permissoes.notaFiscalCancelar = false;
     }
   }
 
   public liberarTodasNotasDiscais(){
-    if(this.permissoes.notaFiscalCadastro == false || this.permissoes.notaFiscalEditar == false || this.permissoes.notaFiscalDetalhe == false || this.permissoes.notaFiscalExcluir == false){
+    if(this.permissoes.notaFiscalCadastro == false || this.permissoes.notaFiscalGerarPDF == false || this.permissoes.notaFiscalCancelar == false){
       this.permissoes.visualizarNotaFiscal = true;
     }
   }

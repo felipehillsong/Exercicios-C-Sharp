@@ -27,4 +27,8 @@ public GetNotaFiscalPedidoById(id : number) : Observable<NotaFiscal>{
   return this.http.get<NotaFiscal>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
 }
 
+public cancelar(id : number) : Observable<any>{
+  return this.http.delete<string>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+  }
+
 }

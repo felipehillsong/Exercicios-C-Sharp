@@ -3,6 +3,7 @@ export enum FontAwesome {
   listaEstoque = 'fa-solid fa-boxes-stacked',
   listaEnderecoProduto = 'fa-solid fa-road',
   listaFornecedor = 'fa-solid fa-dolly',
+  listaNotaFiscal = 'fa-solid fa-file',
   listaProduto = 'fa-solid fa-box',
   listaPedido = 'fa-solid fa-basket-shopping',
   listaFuncionario = 'fa-solid fa-helmet-safety',

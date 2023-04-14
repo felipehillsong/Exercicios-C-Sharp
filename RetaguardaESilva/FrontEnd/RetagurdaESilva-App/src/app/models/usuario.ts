@@ -11,4 +11,5 @@ export interface Usuario {
   funcionarioId: number;
   empresaId: number;
   permissoes: Array<Permissao>;
+  botaoExcluir:boolean;
 }

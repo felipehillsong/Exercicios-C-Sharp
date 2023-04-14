@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RetaguardaESilva.Persistence.Data;
 
@@ -11,9 +12,10 @@ using RetaguardaESilva.Persistence.Data;
 namespace RetaguardaESilva.Persistence.Migrations
 {
     [DbContext(typeof(RetaguardaESilvaContext))]
-    partial class RetaguardaESilvaContextModelSnapshot : ModelSnapshot
+    [Migration("20230414204707_ArrumandoPermissaoNF")]
+    partial class ArrumandoPermissaoNF
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

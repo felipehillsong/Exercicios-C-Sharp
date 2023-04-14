@@ -495,24 +495,16 @@
         <div class="row">
           <div class="form-group">
           <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Editar</label>
-            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalEditar"  [(ngModel)]="permissoes.notaFiscalEditar" type="checkbox">
+            <label class="required" style="font-weight: bold;">Gerar PDF</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalGerarPDF"  [(ngModel)]="permissoes.notaFiscalGerarPDF" type="checkbox">
           </div>
         </div>
         </div>
         <div class="row">
           <div class="form-group">
           <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Detalhe</label>
-            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalDetalhe" [(ngModel)]="permissoes.notaFiscalDetalhe" type="checkbox">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-          <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Excluir</label>
-            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalExcluir" [(ngModel)]="permissoes.notaFiscalExcluir" type="checkbox">
+            <label class="required" style="font-weight: bold;">Cancelar</label>
+            <input class="form-check-input" (click)="liberarTodasNotasDiscais()" formControlName="notaFiscalCancelar" [(ngModel)]="permissoes.notaFiscalCancelar" type="checkbox">
           </div>
         </div>
         </div>
