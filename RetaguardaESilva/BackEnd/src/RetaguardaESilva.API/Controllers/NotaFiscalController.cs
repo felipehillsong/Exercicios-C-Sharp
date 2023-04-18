@@ -64,6 +64,27 @@ namespace RetaguardaESilva.Controllers
         }
 
         // GET: api/NotaFiscal/5
+        [HttpGet("api/[controller]/{id}")]
+        public async Task<ActionResult> GetNotaFiscalId(double empresaId, double id)
+        {
+            int idEmpresa = (int)empresaId;
+            int idNotaFiscal = (int)id;
+            try
+            {
+                var notaFiscal = await _notaFiscalService.GetNotaFiscalByIdAsync(idEmpresa, idNotaFiscal);
+                if (notaFiscal == null)
+                {
+                    return NotFound();
+                }
+                return Ok(notaFiscal);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
+
+        // GET: api/NotaFiscal/5
         [HttpGet("{id}")]
         public async Task<ActionResult> GetNotaFiscalPedido(int empresaId, int id)
         {

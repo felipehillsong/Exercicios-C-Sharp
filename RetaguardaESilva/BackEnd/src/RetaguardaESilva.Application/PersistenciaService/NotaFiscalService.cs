@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
@@ -123,9 +124,111 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<NotaFiscalDTO> GetNotaFiscalByIdAsync(int empresaId, int clienteId)
+        public async Task<NotaFiscalIdDTO> GetNotaFiscalByIdAsync(int empresaId, int notaFiscalId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var notaFiscal = await _notaFiscalPersist.GetNotaFiscalByIdAsync(empresaId, notaFiscalId);
+                if (notaFiscal == null)
+                {
+                    throw new Exception(MensagemDeErro.NotaFiscalNaoEncontrada);
+                }
+                else
+                {
+                    var notaFiscalRetornoDTO = new NotaFiscalIdDTO();
+                    notaFiscalRetornoDTO.Cliente = new Cliente();
+                    notaFiscalRetornoDTO.Transportador = new Transportador();
+                    notaFiscalRetornoDTO.Empresa = new Empresa();
+                    notaFiscalRetornoDTO.Produto = new List<ProdutoPedidoDTO>();
+
+                    var notasFiscaisRetorno = _validacoesPersist.RetornarNotaFiscal(notaFiscal);
+
+                    notaFiscalRetornoDTO.ClienteId = notasFiscaisRetorno.Cliente.Id;
+                    notaFiscalRetornoDTO.EmpresaId = notasFiscaisRetorno.Empresa.Id;
+                    notaFiscalRetornoDTO.Id = notasFiscaisRetorno.Id;
+                    notaFiscalRetornoDTO.PedidoId = notasFiscaisRetorno.Id;
+                    notaFiscalRetornoDTO.PrecoTotal = notasFiscaisRetorno.PrecoTotal;
+                    notaFiscalRetornoDTO.QuantidadeItens = notasFiscaisRetorno.QuantidadeItens;
+                    notaFiscalRetornoDTO.Cliente.Id = notasFiscaisRetorno.Cliente.Id;
+                    notaFiscalRetornoDTO.Cliente.Nome = notasFiscaisRetorno.Cliente.Nome;
+                    notaFiscalRetornoDTO.Cliente.Endereco = notasFiscaisRetorno.Cliente.Endereco;
+                    notaFiscalRetornoDTO.Cliente.Bairro = notasFiscaisRetorno.Cliente.Bairro;
+                    notaFiscalRetornoDTO.Cliente.Numero = notasFiscaisRetorno.Cliente.Numero;
+                    notaFiscalRetornoDTO.Cliente.Municipio = notasFiscaisRetorno.Cliente.Municipio;
+                    notaFiscalRetornoDTO.Cliente.UF = notasFiscaisRetorno.Cliente.UF;
+                    notaFiscalRetornoDTO.Cliente.Pais = notasFiscaisRetorno.Cliente.Pais;
+                    notaFiscalRetornoDTO.Cliente.CEP = notasFiscaisRetorno.Cliente.CEP;
+                    notaFiscalRetornoDTO.Cliente.Complemento = notasFiscaisRetorno.Cliente.Complemento;
+                    notaFiscalRetornoDTO.Cliente.Telefone = notasFiscaisRetorno.Cliente.Telefone;
+                    notaFiscalRetornoDTO.Cliente.Email = notasFiscaisRetorno.Cliente.Email;
+                    notaFiscalRetornoDTO.Cliente.CPFCNPJ = notasFiscaisRetorno.Cliente.CPFCNPJ;
+                    notaFiscalRetornoDTO.Cliente.InscricaoMunicipal = notasFiscaisRetorno.Cliente.InscricaoMunicipal;
+                    notaFiscalRetornoDTO.Cliente.InscricaoEstadual = notasFiscaisRetorno.Cliente.InscricaoEstadual;
+                    notaFiscalRetornoDTO.Cliente.DataCadastroCliente = notasFiscaisRetorno.Cliente.DataCadastroCliente;
+                    notaFiscalRetornoDTO.Cliente.Ativo = notasFiscaisRetorno.Cliente.Ativo;
+                    notaFiscalRetornoDTO.Cliente.EmpresaId = notasFiscaisRetorno.Cliente.EmpresaId;
+                    notaFiscalRetornoDTO.Transportador.Id = notasFiscaisRetorno.Transportador.Id;
+                    notaFiscalRetornoDTO.Transportador.Nome = notasFiscaisRetorno.Transportador.Nome;
+                    notaFiscalRetornoDTO.Transportador.Endereco = notasFiscaisRetorno.Transportador.Endereco;
+                    notaFiscalRetornoDTO.Transportador.Bairro = notasFiscaisRetorno.Transportador.Bairro;
+                    notaFiscalRetornoDTO.Transportador.Numero = notasFiscaisRetorno.Transportador.Numero;
+                    notaFiscalRetornoDTO.Transportador.Municipio = notasFiscaisRetorno.Transportador.Municipio;
+                    notaFiscalRetornoDTO.Transportador.UF = notasFiscaisRetorno.Transportador.UF;
+                    notaFiscalRetornoDTO.Transportador.Pais = notasFiscaisRetorno.Transportador.Pais;
+                    notaFiscalRetornoDTO.Transportador.CEP = notasFiscaisRetorno.Transportador.CEP;
+                    notaFiscalRetornoDTO.Transportador.Complemento = notasFiscaisRetorno.Transportador.Complemento;
+                    notaFiscalRetornoDTO.Transportador.Telefone = notasFiscaisRetorno.Transportador.Telefone;
+                    notaFiscalRetornoDTO.Transportador.Email = notasFiscaisRetorno.Transportador.Email;
+                    notaFiscalRetornoDTO.Transportador.CNPJ = notasFiscaisRetorno.Transportador.CNPJ;
+                    notaFiscalRetornoDTO.Transportador.InscricaoMunicipal = notasFiscaisRetorno.Transportador.InscricaoMunicipal;
+                    notaFiscalRetornoDTO.Transportador.InscricaoEstadual = notasFiscaisRetorno.Transportador.InscricaoEstadual;
+                    notaFiscalRetornoDTO.Transportador.DataCadastroTransportador = notasFiscaisRetorno.Transportador.DataCadastroTransportador;
+                    notaFiscalRetornoDTO.Transportador.Ativo = notasFiscaisRetorno.Transportador.Ativo;
+                    notaFiscalRetornoDTO.Transportador.EmpresaId = notasFiscaisRetorno.Transportador.EmpresaId;
+                    notaFiscalRetornoDTO.Empresa.Id = notasFiscaisRetorno.Empresa.Id;
+                    notaFiscalRetornoDTO.Empresa.Nome = notasFiscaisRetorno.Empresa.Nome;
+                    notaFiscalRetornoDTO.Empresa.Endereco = notasFiscaisRetorno.Empresa.Endereco;
+                    notaFiscalRetornoDTO.Empresa.Bairro = notasFiscaisRetorno.Empresa.Bairro;
+                    notaFiscalRetornoDTO.Empresa.Numero = notasFiscaisRetorno.Empresa.Numero;
+                    notaFiscalRetornoDTO.Empresa.Municipio = notasFiscaisRetorno.Empresa.Municipio;
+                    notaFiscalRetornoDTO.Empresa.UF = notasFiscaisRetorno.Empresa.UF;
+                    notaFiscalRetornoDTO.Empresa.Pais = notasFiscaisRetorno.Empresa.Pais;
+                    notaFiscalRetornoDTO.Empresa.CEP = notasFiscaisRetorno.Empresa.CEP;
+                    notaFiscalRetornoDTO.Empresa.Complemento = notasFiscaisRetorno.Empresa.Complemento;
+                    notaFiscalRetornoDTO.Empresa.Telefone = notasFiscaisRetorno.Empresa.Telefone;
+                    notaFiscalRetornoDTO.Empresa.Email = notasFiscaisRetorno.Empresa.Email;
+                    notaFiscalRetornoDTO.Empresa.CNPJ = notasFiscaisRetorno.Empresa.CNPJ;
+                    notaFiscalRetornoDTO.Empresa.InscricaoMunicipal = notasFiscaisRetorno.Empresa.InscricaoMunicipal;
+                    notaFiscalRetornoDTO.Empresa.InscricaoEstadual = notasFiscaisRetorno.Empresa.InscricaoEstadual;
+                    notaFiscalRetornoDTO.Empresa.DataCadastroEmpresa = notasFiscaisRetorno.Empresa.DataCadastroEmpresa;
+                    notaFiscalRetornoDTO.Empresa.Ativo = notasFiscaisRetorno.Empresa.Ativo;
+
+                    foreach (var item in notasFiscaisRetorno.Produto)
+                    {
+                        var produtoDTO = new ProdutoPedidoDTO()
+                        {
+                            Id = item.Id,
+                            Nome = item.Nome,
+                            Quantidade = item.Quantidade,
+                            QuantidadeVenda = item.QuantidadeVenda,
+                            Ativo = item.Ativo,
+                            PrecoCompra = item.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            Codigo = item.Codigo,
+                            DataCadastroProduto = item.DataCadastroProduto,
+                            EmpresaId = item.EmpresaId,
+                            FornecedorId = item.FornecedorId
+                        };
+                        notaFiscalRetornoDTO.Produto.Add(produtoDTO);
+                    }
+
+                    return notaFiscalRetornoDTO;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<NotaFiscalDTO> GetNotaFiscalPedidoByIdAsync(int empresaId, int pedidoId)

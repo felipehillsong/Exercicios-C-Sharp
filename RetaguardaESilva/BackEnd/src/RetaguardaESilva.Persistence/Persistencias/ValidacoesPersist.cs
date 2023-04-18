@@ -682,7 +682,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                 mensagem = MensagemDeErro.CadastrarEmpresa;
                 return true;
             }
-            
+
         }
 
         public bool ExisteUsuario(int empresaId, int usuarioId, string email, bool isUpdate, out string mensagem)
@@ -891,7 +891,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             {
                 return true;
             }
-        }        
+        }
 
         public string AcertarNome(string nome)
         {
@@ -949,25 +949,25 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             List<UsuarioViewModel> usuariosRetorno = new List<UsuarioViewModel>();
             var usuarios = (from users in _context.Usuario
-                           join func in _context.Funcionario on users.FuncionarioId equals func.Id
-                           join empre in _context.Empresa on users.EmpresaId equals empre.Id
-                           select new
-                           {
-                               Id = users.Id,
-                               NomeEmpresa = empre.Nome,
-                               Nome = func.Nome,
-                               Email = users.Email,
-                               Senha = users.Senha,
-                               DataCadastroUsuario = users.DataCadastroUsuario,
-                               Ativo = users.Ativo,
-                               EmpresaId = users.EmpresaId,
-                               FuncionarioId = users.FuncionarioId
-                           }).Where(u => u.EmpresaId == empresaId).ToList();
-            
+                            join func in _context.Funcionario on users.FuncionarioId equals func.Id
+                            join empre in _context.Empresa on users.EmpresaId equals empre.Id
+                            select new
+                            {
+                                Id = users.Id,
+                                NomeEmpresa = empre.Nome,
+                                Nome = func.Nome,
+                                Email = users.Email,
+                                Senha = users.Senha,
+                                DataCadastroUsuario = users.DataCadastroUsuario,
+                                Ativo = users.Ativo,
+                                EmpresaId = users.EmpresaId,
+                                FuncionarioId = users.FuncionarioId
+                            }).Where(u => u.EmpresaId == empresaId).ToList();
+
             foreach (var item in usuarios)
             {
                 usuariosRetorno.Add(new UsuarioViewModel(item.Id, item.NomeEmpresa, item.Nome, item.Email, item.Senha, item.DataCadastroUsuario, item.Ativo, item.FuncionarioId, item.EmpresaId));
-            }            
+            }
 
             return usuariosRetorno;
         }
@@ -1011,20 +1011,20 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             var usuarioRetorno = new UsuarioViewModel();
             var usuario = (from users in _context.Usuario
-                            join func in _context.Funcionario on users.FuncionarioId equals func.Id
-                            join empre in _context.Empresa on users.EmpresaId equals empre.Id
-                            select new
-                            {
-                                Id = users.Id,
-                                Nome = func.Nome,
-                                NomeEmpresa = empre.Nome,
-                                Email = users.Email,
-                                Senha = users.Senha,
-                                DataCadastroUsuario = users.DataCadastroUsuario,
-                                Ativo = users.Ativo,
-                                EmpresaId = users.EmpresaId,
-                                FuncionarioId = users.FuncionarioId
-                            }).Where(u => u.Id == usuarioId).ToList();
+                           join func in _context.Funcionario on users.FuncionarioId equals func.Id
+                           join empre in _context.Empresa on users.EmpresaId equals empre.Id
+                           select new
+                           {
+                               Id = users.Id,
+                               Nome = func.Nome,
+                               NomeEmpresa = empre.Nome,
+                               Email = users.Email,
+                               Senha = users.Senha,
+                               DataCadastroUsuario = users.DataCadastroUsuario,
+                               Ativo = users.Ativo,
+                               EmpresaId = users.EmpresaId,
+                               FuncionarioId = users.FuncionarioId
+                           }).Where(u => u.Id == usuarioId).ToList();
 
             foreach (var item in usuario)
             {
@@ -1052,7 +1052,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                        where func.Id == user.FuncionarioId
                                        select func;
             var listaFinal = funcionarios.Except(funcionariosUsuarios);
-            
+
             foreach (var item in listaFinal)
             {
                 funcionariosUsuariosRetorno.Add(new FuncionariosUsuariosViewModel(item.Id, item.Nome, item.Endereco, item.Bairro, item.Numero, item.Municipio, item.UF, item.Pais, item.CEP, item.Complemento, item.Telefone, item.Email, item.CPF, item.DataCadastroFuncionario, item.Ativo, item.EmpresaId));
@@ -1226,13 +1226,13 @@ namespace RetaguardaESilva.Persistence.Persistencias
         public Produto AtualizarQuantidadeProdutoPosPedido(int pedidoId, int empresaId, int produtoId, int quantidadeVenda, out Estoque estoque, out string mensagem)
         {
             var produtoBD = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == produtoId);
-            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId);            
+            var estoqueBD = _context.Estoque.AsNoTracking().FirstOrDefault(e => e.EmpresaId == empresaId && e.ProdutoId == produtoId);
             Produto produtoRetorno = null;
             Estoque estoqueRetorno = null;
             if (produtoBD != null && estoqueBD != null)
             {
                 if (quantidadeVenda < produtoBD.Quantidade && quantidadeVenda < estoqueBD.Quantidade)
-                {   
+                {
                     produtoBD.Quantidade -= quantidadeVenda;
                     estoqueBD.Quantidade -= quantidadeVenda;
                     produtoRetorno = produtoBD;
@@ -1286,7 +1286,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                     estoque.Add(null);
                 }
             }
-            
+
             if (produto != null && estoque != null)
             {
                 produtos = produto;
@@ -1364,9 +1364,9 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             List<NotaFiscalViewModel> notaFiscalRetorno = new List<NotaFiscalViewModel>();
             if (notaFiscal != null)
-            {   
+            {
                 foreach (var item in notaFiscal)
-                {  
+                {
                     var pedido = _context.Pedido.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.PedidoId);
                     var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.EmpresaId == item.EmpresaId && c.Id == item.ClienteId);
                     if (pedido != null && cliente != null)
@@ -1394,6 +1394,116 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         {
                             var status = MensagemDeAlerta.NotaFiscalCancelada;
                             notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, clienteSemNome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status));
+                        }
+                    }
+                }
+            }
+            return notaFiscalRetorno;
+        }
+
+        public NotaFiscalIdViewModel RetornarNotaFiscal(NotaFiscal notaFiscal)
+        {
+            var notaFiscalRetorno = new NotaFiscalIdViewModel();
+            notaFiscalRetorno.Cliente = new Cliente();
+            notaFiscalRetorno.Transportador = new Transportador();
+            notaFiscalRetorno.Empresa = new Empresa();
+            notaFiscalRetorno.Produto = new List<ProdutoViewModel>();
+            if (notaFiscal != null)
+            {
+                var pedido = _context.Pedido.AsNoTracking().FirstOrDefault(p => p.EmpresaId == notaFiscal.EmpresaId && p.Id == notaFiscal.PedidoId);
+                var empresa = _context.Empresa.AsNoTracking().FirstOrDefault(e => e.Id == notaFiscal.EmpresaId);
+                var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.EmpresaId == notaFiscal.EmpresaId && c.Id == notaFiscal.ClienteId);
+                var transportador = _context.Transportador.AsNoTracking().FirstOrDefault(t => t.EmpresaId == notaFiscal.EmpresaId && t.Id == notaFiscal.TransportadorId);
+                var pedidoNota = _context.PedidoNota.AsNoTracking().Where(pn => pn.EmpresaId == notaFiscal.EmpresaId && pn.PedidoId == notaFiscal.PedidoId);
+
+                if (pedido != null && cliente != null && empresa != null && transportador != null)
+                {
+                    notaFiscalRetorno.Id = notaFiscal.Id;
+                    notaFiscalRetorno.PedidoId = pedido.Id;
+                    notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
+                    notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
+                    notaFiscalRetorno.Cliente.Id = cliente.Id;
+                    notaFiscalRetorno.Cliente.Nome = cliente.Nome;
+                    notaFiscalRetorno.Cliente.Endereco = cliente.Endereco;
+                    notaFiscalRetorno.Cliente.Bairro = cliente.Bairro;
+                    notaFiscalRetorno.Cliente.Numero = cliente.Numero;
+                    notaFiscalRetorno.Cliente.Municipio = cliente.Municipio;
+                    notaFiscalRetorno.Cliente.UF = cliente.UF;
+                    notaFiscalRetorno.Cliente.Pais = cliente.Pais;
+                    notaFiscalRetorno.Cliente.CEP = cliente.CEP;
+                    notaFiscalRetorno.Cliente.Complemento = cliente.Complemento;
+                    notaFiscalRetorno.Cliente.Telefone = cliente.Telefone;
+                    notaFiscalRetorno.Cliente.Email = cliente.Email;
+                    notaFiscalRetorno.Cliente.CPFCNPJ = cliente.CPFCNPJ;
+                    notaFiscalRetorno.Cliente.InscricaoMunicipal = cliente.InscricaoMunicipal;
+                    notaFiscalRetorno.Cliente.InscricaoEstadual = cliente.InscricaoEstadual;
+                    notaFiscalRetorno.Cliente.DataCadastroCliente = cliente.DataCadastroCliente;
+                    notaFiscalRetorno.Cliente.Ativo = cliente.Ativo;
+                    notaFiscalRetorno.Cliente.EmpresaId = cliente.EmpresaId;
+                    notaFiscalRetorno.Transportador.Id = transportador.Id;
+                    notaFiscalRetorno.Transportador.Nome = transportador.Nome;
+                    notaFiscalRetorno.Transportador.Endereco = transportador.Endereco;
+                    notaFiscalRetorno.Transportador.Bairro = transportador.Bairro;
+                    notaFiscalRetorno.Transportador.Numero = transportador.Numero;
+                    notaFiscalRetorno.Transportador.Municipio = transportador.Municipio;
+                    notaFiscalRetorno.Transportador.UF = transportador.UF;
+                    notaFiscalRetorno.Transportador.Pais = transportador.Pais;
+                    notaFiscalRetorno.Transportador.CEP = transportador.CEP;
+                    notaFiscalRetorno.Transportador.Complemento = transportador.Complemento;
+                    notaFiscalRetorno.Transportador.Telefone = transportador.Telefone;
+                    notaFiscalRetorno.Transportador.Email = transportador.Email;
+                    notaFiscalRetorno.Transportador.CNPJ = transportador.CNPJ;
+                    notaFiscalRetorno.Transportador.InscricaoMunicipal = transportador.InscricaoMunicipal;
+                    notaFiscalRetorno.Transportador.InscricaoEstadual = transportador.InscricaoEstadual;
+                    notaFiscalRetorno.Transportador.DataCadastroTransportador = transportador.DataCadastroTransportador;
+                    notaFiscalRetorno.Transportador.Ativo = transportador.Ativo;
+                    notaFiscalRetorno.Transportador.EmpresaId = transportador.EmpresaId;
+                    notaFiscalRetorno.Empresa.Id = empresa.Id;
+                    notaFiscalRetorno.Empresa.Nome = empresa.Nome;
+                    notaFiscalRetorno.Empresa.Endereco = empresa.Endereco;
+                    notaFiscalRetorno.Empresa.Bairro = empresa.Bairro;
+                    notaFiscalRetorno.Empresa.Numero = empresa.Numero;
+                    notaFiscalRetorno.Empresa.Municipio = empresa.Municipio;
+                    notaFiscalRetorno.Empresa.UF = empresa.UF;
+                    notaFiscalRetorno.Empresa.Pais = empresa.Pais;
+                    notaFiscalRetorno.Empresa.CEP = empresa.CEP;
+                    notaFiscalRetorno.Empresa.Complemento = empresa.Complemento;
+                    notaFiscalRetorno.Empresa.Telefone = empresa.Telefone;
+                    notaFiscalRetorno.Empresa.Email = empresa.Email;
+                    notaFiscalRetorno.Empresa.CNPJ = empresa.CNPJ;
+                    notaFiscalRetorno.Empresa.InscricaoMunicipal = empresa.InscricaoMunicipal;
+                    notaFiscalRetorno.Empresa.InscricaoEstadual = empresa.InscricaoEstadual;
+                    notaFiscalRetorno.Empresa.DataCadastroEmpresa = empresa.DataCadastroEmpresa;
+                    notaFiscalRetorno.Empresa.Ativo = empresa.Ativo;
+
+                    foreach (var item in pedidoNota)
+                    {
+                        var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                        if (produto != null)
+                        {
+                            var produtoView = new ProdutoViewModel()
+                            {
+                                Id = produto.Id,
+                                Nome = produto.Nome,
+                                Quantidade = produto.Quantidade,
+                                QuantidadeVenda = item.Quantidade,
+                                Ativo = produto.Ativo,
+                                PrecoCompra = produto.PrecoCompra,
+                                PrecoVenda = produto.PrecoVenda,
+                                Codigo = produto.Codigo,
+                                DataCadastroProduto = produto.DataCadastroProduto,
+                                EmpresaId = produto.EmpresaId,
+                                FornecedorId = produto.FornecedorId
+                            };
+
+                            if (produtoView != null)
+                            {
+                                notaFiscalRetorno.Produto.Add(produtoView);
+                            }
+                            else
+                            {
+                                notaFiscalRetorno.Produto.Add(null);
+                            }
                         }
                     }
                 }

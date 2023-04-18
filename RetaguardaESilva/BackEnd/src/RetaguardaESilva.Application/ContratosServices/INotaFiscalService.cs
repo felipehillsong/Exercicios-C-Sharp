@@ -12,7 +12,7 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<NotaFiscalDTO> AddNotaFiscal(NotaFiscalDTO model);
         Task<bool> DeleteNotaFiscal(int empresaId, int notafiscalId);
         Task<IEnumerable<NotasFiscaisDTO>> GetAllNotaFiscalAsync(int empresaId);
-        Task<NotaFiscalDTO> GetNotaFiscalByIdAsync(int empresaId, int notaFiscalId);
+        Task<NotaFiscalIdDTO> GetNotaFiscalByIdAsync(int empresaId, int notaFiscalId);
         Task<NotaFiscalDTO> GetNotaFiscalPedidoByIdAsync(int empresaId, int pedidoId);
     }
 }

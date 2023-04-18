@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RetaguardaESilva.Domain.Models;
+using RetaguardaESilva.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,5 +46,13 @@ namespace RetaguardaESilva.Application.DTO
             this.DataCadastroNotaFiscal = dataCadastroNotaFiscal;
             this.StatusNota = statusNota;
         }
+    }
+
+    public class NotaFiscalIdDTO : NotaFiscalDTO
+    {
+        public Cliente Cliente { get; set; }
+        public Empresa Empresa { get; set; }
+        public Transportador Transportador { get; set; }
+        public List<ProdutoPedidoDTO> Produto { get; set; }
     }
 }
