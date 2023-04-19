@@ -144,11 +144,22 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var notasFiscaisRetorno = _validacoesPersist.RetornarNotaFiscal(notaFiscal);
 
                     notaFiscalRetornoDTO.ClienteId = notasFiscaisRetorno.Cliente.Id;
+                    notaFiscalRetornoDTO.TransportadorId = notasFiscaisRetorno.Transportador.Id;
                     notaFiscalRetornoDTO.EmpresaId = notasFiscaisRetorno.Empresa.Id;
                     notaFiscalRetornoDTO.Id = notasFiscaisRetorno.Id;
                     notaFiscalRetornoDTO.PedidoId = notasFiscaisRetorno.Id;
                     notaFiscalRetornoDTO.PrecoTotal = notasFiscaisRetorno.PrecoTotal;
                     notaFiscalRetornoDTO.QuantidadeItens = notasFiscaisRetorno.QuantidadeItens;
+                    notaFiscalRetornoDTO.DataCadastroNotaFiscal = notasFiscaisRetorno.DataCadastroNotaFiscal;
+                    notaFiscalRetornoDTO.StatusNota = notasFiscaisRetorno.StatusNota;
+                    if (notaFiscalRetornoDTO.StatusNota == MensagemDeAlerta.NotaFiscalAprovada)
+                    {
+                        notaFiscalRetornoDTO.Status = (int)StatusNotaFiscal.NotaFiscalAprovada;
+                    }
+                    else
+                    {
+                        notaFiscalRetornoDTO.Status = (int)StatusNotaFiscal.NotaFiscalCancelada;
+                    }
                     notaFiscalRetornoDTO.Cliente.Id = notasFiscaisRetorno.Cliente.Id;
                     notaFiscalRetornoDTO.Cliente.Nome = notasFiscaisRetorno.Cliente.Nome;
                     notaFiscalRetornoDTO.Cliente.Endereco = notasFiscaisRetorno.Cliente.Endereco;

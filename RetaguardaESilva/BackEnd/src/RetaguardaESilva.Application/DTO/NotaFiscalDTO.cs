@@ -54,5 +54,6 @@ namespace RetaguardaESilva.Application.DTO
         public Empresa Empresa { get; set; }
         public Transportador Transportador { get; set; }
         public List<ProdutoPedidoDTO> Produto { get; set; }
+        public string StatusNota { get; set; }
     }
 }

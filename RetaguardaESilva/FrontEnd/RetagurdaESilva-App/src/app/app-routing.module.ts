@@ -95,6 +95,8 @@ import { AuthGuardsPedidoEditarService } from './guards/pedido/AuthGuardsPedidoE
 import { NotaFiscalComponent } from './components/notasFiscais/notaFiscal.component';
 import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-lista/notaFiscal-lista.component';
 import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
+import { NotaFiscalPdfComponent } from './components/notasFiscais/notaFiscal-pdf/notaFiscal-pdf.component';
+import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNotaFiscalPdf.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -183,7 +185,8 @@ const routes: Routes = [
   { path: 'notasFiscais',
   component: NotaFiscalComponent, canActivate:[AuthGuardsService, AuthGuardsNotaFiscalService],
   children:[
-    {path: 'lista', title: 'NotaFiscal', component: NotaFiscalListaComponent }
+    {path: 'lista', title: 'NotaFiscal', component: NotaFiscalListaComponent },
+    {path: 'pdf/:id', title: 'Pdf', component: NotaFiscalPdfComponent, canActivate: [AuthGuardsNotaFiscalPdfService] }
   ]},
 ];
 

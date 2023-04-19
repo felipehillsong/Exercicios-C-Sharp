@@ -1,0 +1,38 @@
+<div style="text-align: center;">
+  <div style="display: inline-block;">
+    <h1><b>DANFE</b></h1>
+  </div>
+</div>
+<div class="card rounded shadow-sm p-3">
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Numero da Nota</th>
+        <th>Numero do Pedido</th>
+        <th>Nome do Cliente</th>
+        <th>Quantidade de Itens</th>
+        <th>Preço total</th>
+        <th>Data de Cadastro</th>
+        <th>Status da Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notaFiscal">
+        <td>{{notaFiscal.id}}</td>
+        <td>{{notaFiscal.pedidoId}}</td>
+        <td>{{notaFiscal.nomeCliente}}</td>
+        <td>{{notaFiscal.quantidadeItens}}</td>
+        <td>{{notaFiscal.precoTotal}}</td>
+        <td>{{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</td>
+        <td>{{notaFiscal.statusNota}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="text-center" colspan="8">
+          <h4>Nenhuma nota fiscal encontrada!</h4>
+        </td>
+      </tr>
+    </tfoot>
+</table>
+  </div>

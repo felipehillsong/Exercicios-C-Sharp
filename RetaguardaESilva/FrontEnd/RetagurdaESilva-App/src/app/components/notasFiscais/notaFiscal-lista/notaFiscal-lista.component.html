@@ -31,7 +31,7 @@
         <td>{{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</td>
         <td>{{notaFiscal.statusNota}}</td>
         <td>
-          <button type="button" tooltip="Gerar PDF" *ngIf="visualizarGerarPDF" class="btn btn-success btn-sm mr-2">
+          <button type="button" tooltip="Gerar PDF" *ngIf="visualizarGerarPDF" (click)="gerarPDF(notaFiscal.id)" class="btn btn-success btn-sm mr-2">
             <i class="fa-solid fa-file-pdf"></i></button>&nbsp;
           <button type="button" tooltip="Cancelar NF" class="btn btn-danger btn-sm" *ngIf="visualizarCancelar" (click)="openModal($event, template, notaFiscal.nomeCliente, notaFiscal.id)">
             <i class="fa fa-trash"></i></button>

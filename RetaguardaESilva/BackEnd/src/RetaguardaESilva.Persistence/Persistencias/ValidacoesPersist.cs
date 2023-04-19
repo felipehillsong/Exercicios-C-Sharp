@@ -1418,94 +1418,194 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
                 if (pedido != null && cliente != null && empresa != null && transportador != null)
                 {
-                    notaFiscalRetorno.Id = notaFiscal.Id;
-                    notaFiscalRetorno.PedidoId = pedido.Id;
-                    notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
-                    notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
-                    notaFiscalRetorno.Cliente.Id = cliente.Id;
-                    notaFiscalRetorno.Cliente.Nome = cliente.Nome;
-                    notaFiscalRetorno.Cliente.Endereco = cliente.Endereco;
-                    notaFiscalRetorno.Cliente.Bairro = cliente.Bairro;
-                    notaFiscalRetorno.Cliente.Numero = cliente.Numero;
-                    notaFiscalRetorno.Cliente.Municipio = cliente.Municipio;
-                    notaFiscalRetorno.Cliente.UF = cliente.UF;
-                    notaFiscalRetorno.Cliente.Pais = cliente.Pais;
-                    notaFiscalRetorno.Cliente.CEP = cliente.CEP;
-                    notaFiscalRetorno.Cliente.Complemento = cliente.Complemento;
-                    notaFiscalRetorno.Cliente.Telefone = cliente.Telefone;
-                    notaFiscalRetorno.Cliente.Email = cliente.Email;
-                    notaFiscalRetorno.Cliente.CPFCNPJ = cliente.CPFCNPJ;
-                    notaFiscalRetorno.Cliente.InscricaoMunicipal = cliente.InscricaoMunicipal;
-                    notaFiscalRetorno.Cliente.InscricaoEstadual = cliente.InscricaoEstadual;
-                    notaFiscalRetorno.Cliente.DataCadastroCliente = cliente.DataCadastroCliente;
-                    notaFiscalRetorno.Cliente.Ativo = cliente.Ativo;
-                    notaFiscalRetorno.Cliente.EmpresaId = cliente.EmpresaId;
-                    notaFiscalRetorno.Transportador.Id = transportador.Id;
-                    notaFiscalRetorno.Transportador.Nome = transportador.Nome;
-                    notaFiscalRetorno.Transportador.Endereco = transportador.Endereco;
-                    notaFiscalRetorno.Transportador.Bairro = transportador.Bairro;
-                    notaFiscalRetorno.Transportador.Numero = transportador.Numero;
-                    notaFiscalRetorno.Transportador.Municipio = transportador.Municipio;
-                    notaFiscalRetorno.Transportador.UF = transportador.UF;
-                    notaFiscalRetorno.Transportador.Pais = transportador.Pais;
-                    notaFiscalRetorno.Transportador.CEP = transportador.CEP;
-                    notaFiscalRetorno.Transportador.Complemento = transportador.Complemento;
-                    notaFiscalRetorno.Transportador.Telefone = transportador.Telefone;
-                    notaFiscalRetorno.Transportador.Email = transportador.Email;
-                    notaFiscalRetorno.Transportador.CNPJ = transportador.CNPJ;
-                    notaFiscalRetorno.Transportador.InscricaoMunicipal = transportador.InscricaoMunicipal;
-                    notaFiscalRetorno.Transportador.InscricaoEstadual = transportador.InscricaoEstadual;
-                    notaFiscalRetorno.Transportador.DataCadastroTransportador = transportador.DataCadastroTransportador;
-                    notaFiscalRetorno.Transportador.Ativo = transportador.Ativo;
-                    notaFiscalRetorno.Transportador.EmpresaId = transportador.EmpresaId;
-                    notaFiscalRetorno.Empresa.Id = empresa.Id;
-                    notaFiscalRetorno.Empresa.Nome = empresa.Nome;
-                    notaFiscalRetorno.Empresa.Endereco = empresa.Endereco;
-                    notaFiscalRetorno.Empresa.Bairro = empresa.Bairro;
-                    notaFiscalRetorno.Empresa.Numero = empresa.Numero;
-                    notaFiscalRetorno.Empresa.Municipio = empresa.Municipio;
-                    notaFiscalRetorno.Empresa.UF = empresa.UF;
-                    notaFiscalRetorno.Empresa.Pais = empresa.Pais;
-                    notaFiscalRetorno.Empresa.CEP = empresa.CEP;
-                    notaFiscalRetorno.Empresa.Complemento = empresa.Complemento;
-                    notaFiscalRetorno.Empresa.Telefone = empresa.Telefone;
-                    notaFiscalRetorno.Empresa.Email = empresa.Email;
-                    notaFiscalRetorno.Empresa.CNPJ = empresa.CNPJ;
-                    notaFiscalRetorno.Empresa.InscricaoMunicipal = empresa.InscricaoMunicipal;
-                    notaFiscalRetorno.Empresa.InscricaoEstadual = empresa.InscricaoEstadual;
-                    notaFiscalRetorno.Empresa.DataCadastroEmpresa = empresa.DataCadastroEmpresa;
-                    notaFiscalRetorno.Empresa.Ativo = empresa.Ativo;
-
-                    foreach (var item in pedidoNota)
+                    if (notaFiscal.Status == (int)StatusNotaFiscal.NotaFiscalAprovada)
                     {
-                        var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
-                        if (produto != null)
-                        {
-                            var produtoView = new ProdutoViewModel()
-                            {
-                                Id = produto.Id,
-                                Nome = produto.Nome,
-                                Quantidade = produto.Quantidade,
-                                QuantidadeVenda = item.Quantidade,
-                                Ativo = produto.Ativo,
-                                PrecoCompra = produto.PrecoCompra,
-                                PrecoVenda = produto.PrecoVenda,
-                                Codigo = produto.Codigo,
-                                DataCadastroProduto = produto.DataCadastroProduto,
-                                EmpresaId = produto.EmpresaId,
-                                FornecedorId = produto.FornecedorId
-                            };
+                        var status = MensagemDeAlerta.NotaFiscalAprovada;
+                        notaFiscalRetorno.Id = notaFiscal.Id;
+                        notaFiscalRetorno.PedidoId = pedido.Id;
+                        notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
+                        notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
+                        notaFiscalRetorno.DataCadastroNotaFiscal = notaFiscal.DataCadastroNotaFiscal;
+                        notaFiscalRetorno.StatusNota = status;
+                        notaFiscalRetorno.Cliente.Id = cliente.Id;
+                        notaFiscalRetorno.Cliente.Nome = cliente.Nome;
+                        notaFiscalRetorno.Cliente.Endereco = cliente.Endereco;
+                        notaFiscalRetorno.Cliente.Bairro = cliente.Bairro;
+                        notaFiscalRetorno.Cliente.Numero = cliente.Numero;
+                        notaFiscalRetorno.Cliente.Municipio = cliente.Municipio;
+                        notaFiscalRetorno.Cliente.UF = cliente.UF;
+                        notaFiscalRetorno.Cliente.Pais = cliente.Pais;
+                        notaFiscalRetorno.Cliente.CEP = cliente.CEP;
+                        notaFiscalRetorno.Cliente.Complemento = cliente.Complemento;
+                        notaFiscalRetorno.Cliente.Telefone = cliente.Telefone;
+                        notaFiscalRetorno.Cliente.Email = cliente.Email;
+                        notaFiscalRetorno.Cliente.CPFCNPJ = cliente.CPFCNPJ;
+                        notaFiscalRetorno.Cliente.InscricaoMunicipal = cliente.InscricaoMunicipal;
+                        notaFiscalRetorno.Cliente.InscricaoEstadual = cliente.InscricaoEstadual;
+                        notaFiscalRetorno.Cliente.DataCadastroCliente = cliente.DataCadastroCliente;
+                        notaFiscalRetorno.Cliente.Ativo = cliente.Ativo;
+                        notaFiscalRetorno.Cliente.EmpresaId = cliente.EmpresaId;
+                        notaFiscalRetorno.Transportador.Id = transportador.Id;
+                        notaFiscalRetorno.Transportador.Nome = transportador.Nome;
+                        notaFiscalRetorno.Transportador.Endereco = transportador.Endereco;
+                        notaFiscalRetorno.Transportador.Bairro = transportador.Bairro;
+                        notaFiscalRetorno.Transportador.Numero = transportador.Numero;
+                        notaFiscalRetorno.Transportador.Municipio = transportador.Municipio;
+                        notaFiscalRetorno.Transportador.UF = transportador.UF;
+                        notaFiscalRetorno.Transportador.Pais = transportador.Pais;
+                        notaFiscalRetorno.Transportador.CEP = transportador.CEP;
+                        notaFiscalRetorno.Transportador.Complemento = transportador.Complemento;
+                        notaFiscalRetorno.Transportador.Telefone = transportador.Telefone;
+                        notaFiscalRetorno.Transportador.Email = transportador.Email;
+                        notaFiscalRetorno.Transportador.CNPJ = transportador.CNPJ;
+                        notaFiscalRetorno.Transportador.InscricaoMunicipal = transportador.InscricaoMunicipal;
+                        notaFiscalRetorno.Transportador.InscricaoEstadual = transportador.InscricaoEstadual;
+                        notaFiscalRetorno.Transportador.DataCadastroTransportador = transportador.DataCadastroTransportador;
+                        notaFiscalRetorno.Transportador.Ativo = transportador.Ativo;
+                        notaFiscalRetorno.Transportador.EmpresaId = transportador.EmpresaId;
+                        notaFiscalRetorno.Empresa.Id = empresa.Id;
+                        notaFiscalRetorno.Empresa.Nome = empresa.Nome;
+                        notaFiscalRetorno.Empresa.Endereco = empresa.Endereco;
+                        notaFiscalRetorno.Empresa.Bairro = empresa.Bairro;
+                        notaFiscalRetorno.Empresa.Numero = empresa.Numero;
+                        notaFiscalRetorno.Empresa.Municipio = empresa.Municipio;
+                        notaFiscalRetorno.Empresa.UF = empresa.UF;
+                        notaFiscalRetorno.Empresa.Pais = empresa.Pais;
+                        notaFiscalRetorno.Empresa.CEP = empresa.CEP;
+                        notaFiscalRetorno.Empresa.Complemento = empresa.Complemento;
+                        notaFiscalRetorno.Empresa.Telefone = empresa.Telefone;
+                        notaFiscalRetorno.Empresa.Email = empresa.Email;
+                        notaFiscalRetorno.Empresa.CNPJ = empresa.CNPJ;
+                        notaFiscalRetorno.Empresa.InscricaoMunicipal = empresa.InscricaoMunicipal;
+                        notaFiscalRetorno.Empresa.InscricaoEstadual = empresa.InscricaoEstadual;
+                        notaFiscalRetorno.Empresa.DataCadastroEmpresa = empresa.DataCadastroEmpresa;
+                        notaFiscalRetorno.Empresa.Ativo = empresa.Ativo;
 
-                            if (produtoView != null)
+                        foreach (var item in pedidoNota)
+                        {
+                            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                            if (produto != null)
                             {
-                                notaFiscalRetorno.Produto.Add(produtoView);
-                            }
-                            else
-                            {
-                                notaFiscalRetorno.Produto.Add(null);
+                                var produtoView = new ProdutoViewModel()
+                                {
+                                    Id = produto.Id,
+                                    Nome = produto.Nome,
+                                    Quantidade = produto.Quantidade,
+                                    QuantidadeVenda = item.Quantidade,
+                                    Ativo = produto.Ativo,
+                                    PrecoCompra = produto.PrecoCompra,
+                                    PrecoVenda = produto.PrecoVenda,
+                                    Codigo = produto.Codigo,
+                                    DataCadastroProduto = produto.DataCadastroProduto,
+                                    EmpresaId = produto.EmpresaId,
+                                    FornecedorId = produto.FornecedorId
+                                };
+
+                                if (produtoView != null)
+                                {
+                                    notaFiscalRetorno.Produto.Add(produtoView);
+                                }
+                                else
+                                {
+                                    notaFiscalRetorno.Produto.Add(null);
+                                }
                             }
                         }
                     }
+                    else
+                    {
+                        var status = MensagemDeAlerta.NotaFiscalCancelada;
+                        notaFiscalRetorno.Id = notaFiscal.Id;
+                        notaFiscalRetorno.PedidoId = pedido.Id;
+                        notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
+                        notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
+                        notaFiscalRetorno.StatusNota = status;
+                        notaFiscalRetorno.Cliente.Id = cliente.Id;
+                        notaFiscalRetorno.Cliente.Nome = cliente.Nome;
+                        notaFiscalRetorno.Cliente.Endereco = cliente.Endereco;
+                        notaFiscalRetorno.Cliente.Bairro = cliente.Bairro;
+                        notaFiscalRetorno.Cliente.Numero = cliente.Numero;
+                        notaFiscalRetorno.Cliente.Municipio = cliente.Municipio;
+                        notaFiscalRetorno.Cliente.UF = cliente.UF;
+                        notaFiscalRetorno.Cliente.Pais = cliente.Pais;
+                        notaFiscalRetorno.Cliente.CEP = cliente.CEP;
+                        notaFiscalRetorno.Cliente.Complemento = cliente.Complemento;
+                        notaFiscalRetorno.Cliente.Telefone = cliente.Telefone;
+                        notaFiscalRetorno.Cliente.Email = cliente.Email;
+                        notaFiscalRetorno.Cliente.CPFCNPJ = cliente.CPFCNPJ;
+                        notaFiscalRetorno.Cliente.InscricaoMunicipal = cliente.InscricaoMunicipal;
+                        notaFiscalRetorno.Cliente.InscricaoEstadual = cliente.InscricaoEstadual;
+                        notaFiscalRetorno.Cliente.DataCadastroCliente = cliente.DataCadastroCliente;
+                        notaFiscalRetorno.Cliente.Ativo = cliente.Ativo;
+                        notaFiscalRetorno.Cliente.EmpresaId = cliente.EmpresaId;
+                        notaFiscalRetorno.Transportador.Id = transportador.Id;
+                        notaFiscalRetorno.Transportador.Nome = transportador.Nome;
+                        notaFiscalRetorno.Transportador.Endereco = transportador.Endereco;
+                        notaFiscalRetorno.Transportador.Bairro = transportador.Bairro;
+                        notaFiscalRetorno.Transportador.Numero = transportador.Numero;
+                        notaFiscalRetorno.Transportador.Municipio = transportador.Municipio;
+                        notaFiscalRetorno.Transportador.UF = transportador.UF;
+                        notaFiscalRetorno.Transportador.Pais = transportador.Pais;
+                        notaFiscalRetorno.Transportador.CEP = transportador.CEP;
+                        notaFiscalRetorno.Transportador.Complemento = transportador.Complemento;
+                        notaFiscalRetorno.Transportador.Telefone = transportador.Telefone;
+                        notaFiscalRetorno.Transportador.Email = transportador.Email;
+                        notaFiscalRetorno.Transportador.CNPJ = transportador.CNPJ;
+                        notaFiscalRetorno.Transportador.InscricaoMunicipal = transportador.InscricaoMunicipal;
+                        notaFiscalRetorno.Transportador.InscricaoEstadual = transportador.InscricaoEstadual;
+                        notaFiscalRetorno.Transportador.DataCadastroTransportador = transportador.DataCadastroTransportador;
+                        notaFiscalRetorno.Transportador.Ativo = transportador.Ativo;
+                        notaFiscalRetorno.Transportador.EmpresaId = transportador.EmpresaId;
+                        notaFiscalRetorno.Empresa.Id = empresa.Id;
+                        notaFiscalRetorno.Empresa.Nome = empresa.Nome;
+                        notaFiscalRetorno.Empresa.Endereco = empresa.Endereco;
+                        notaFiscalRetorno.Empresa.Bairro = empresa.Bairro;
+                        notaFiscalRetorno.Empresa.Numero = empresa.Numero;
+                        notaFiscalRetorno.Empresa.Municipio = empresa.Municipio;
+                        notaFiscalRetorno.Empresa.UF = empresa.UF;
+                        notaFiscalRetorno.Empresa.Pais = empresa.Pais;
+                        notaFiscalRetorno.Empresa.CEP = empresa.CEP;
+                        notaFiscalRetorno.Empresa.Complemento = empresa.Complemento;
+                        notaFiscalRetorno.Empresa.Telefone = empresa.Telefone;
+                        notaFiscalRetorno.Empresa.Email = empresa.Email;
+                        notaFiscalRetorno.Empresa.CNPJ = empresa.CNPJ;
+                        notaFiscalRetorno.Empresa.InscricaoMunicipal = empresa.InscricaoMunicipal;
+                        notaFiscalRetorno.Empresa.InscricaoEstadual = empresa.InscricaoEstadual;
+                        notaFiscalRetorno.Empresa.DataCadastroEmpresa = empresa.DataCadastroEmpresa;
+                        notaFiscalRetorno.Empresa.Ativo = empresa.Ativo;
+
+                        foreach (var item in pedidoNota)
+                        {
+                            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                            if (produto != null)
+                            {
+                                var produtoView = new ProdutoViewModel()
+                                {
+                                    Id = produto.Id,
+                                    Nome = produto.Nome,
+                                    Quantidade = produto.Quantidade,
+                                    QuantidadeVenda = item.Quantidade,
+                                    Ativo = produto.Ativo,
+                                    PrecoCompra = produto.PrecoCompra,
+                                    PrecoVenda = produto.PrecoVenda,
+                                    Codigo = produto.Codigo,
+                                    DataCadastroProduto = produto.DataCadastroProduto,
+                                    EmpresaId = produto.EmpresaId,
+                                    FornecedorId = produto.FornecedorId
+                                };
+
+                                if (produtoView != null)
+                                {
+                                    notaFiscalRetorno.Produto.Add(produtoView);
+                                }
+                                else
+                                {
+                                    notaFiscalRetorno.Produto.Add(null);
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
             return notaFiscalRetorno;

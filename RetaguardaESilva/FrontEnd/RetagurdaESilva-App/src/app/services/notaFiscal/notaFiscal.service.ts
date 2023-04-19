@@ -11,6 +11,7 @@ import { AuthService } from '../login/auth.service';
 export class NotaFiscalService {
   baseURL = environment.apiURL + 'api/NotaFiscal?';
   baseURLGetUpdateDelete = environment.apiURL + 'api/NotaFiscal';
+  baseURLGerarPDF = environment.apiURL + 'api/NotaFiscal/api/NotaFiscal';
   baseURLAddNotaFiscal = environment.apiURL + 'api/Pedido/api/Pedido';
 
 constructor(private http: HttpClient, private authService: AuthService) { }
@@ -25,6 +26,10 @@ public getNotasFiscais(empresaId: number) : Observable<NotaFiscal[]>{
 
 public GetNotaFiscalPedidoById(id : number) : Observable<NotaFiscal>{
   return this.http.get<NotaFiscal>(`${this.baseURLGetUpdateDelete}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
+}
+
+public GerarPdf(id : number) : Observable<NotaFiscal>{
+  return this.http.get<NotaFiscal>(`${this.baseURLGerarPDF}/${id}?empresaId=${this.authService.empresaId()}`).pipe(take(1));
 }
 
 public cancelar(id : number) : Observable<any>{

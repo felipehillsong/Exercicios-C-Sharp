@@ -114,6 +114,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NotaFiscalComponent } from './components/notasFiscais/notaFiscal.component';
 import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-lista/notaFiscal-lista.component';
 import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
+import { NotaFiscalPdfComponent } from './components/notasFiscais/notaFiscal-pdf/notaFiscal-pdf.component';
+import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNotaFiscalPdf.service';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -151,6 +153,7 @@ registerLocaleData(ptBr);
     LoginComponent,
     NotaFiscalComponent,
     NotaFiscalListaComponent,
+    NotaFiscalPdfComponent,
     ProdutoComponent,
     ProdutoCriarComponent,
     ProdutoEditarComponent,
@@ -244,6 +247,7 @@ registerLocaleData(ptBr);
     AuthGuardsUsuarioEditarService,
     AuthGuardsUsuarioPermissaoService,
     AuthGuardsNotaFiscalService,
+    AuthGuardsNotaFiscalPdfService,
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],

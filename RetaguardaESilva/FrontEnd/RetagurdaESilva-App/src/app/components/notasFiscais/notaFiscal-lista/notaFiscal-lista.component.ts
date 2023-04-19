@@ -24,6 +24,7 @@ export class NotaFiscalListaComponent implements OnInit {
   message?: string;
   public notasFiscais: NotaFiscal[] = [];
   notasFiscaisFiltradas: NotaFiscal[] = [];
+  notaFiscal = {} as NotaFiscal;
   private _notaFiscalListada = '';
   fornecedorNome!: string;
   notaFiscalId!: number;
@@ -62,6 +63,10 @@ export class NotaFiscalListaComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  gerarPDF(id: number): void {
+    this.router.navigate([`notasFiscais/pdf/${id}`]);
   }
 
   openModal(event: any, template: TemplateRef<any>, clienteNome: string, notaFiscalId: number): void {
