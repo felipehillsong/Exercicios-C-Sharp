@@ -33,6 +33,7 @@ namespace RetaguardaESilva.Application.DTO
 
     public class ProdutoPedidoDTO : ProdutoDTO
     {
+        public decimal PrecoVendaTotal { get; set; }
         public int QuantidadeVenda { get; set; }
     }
 }

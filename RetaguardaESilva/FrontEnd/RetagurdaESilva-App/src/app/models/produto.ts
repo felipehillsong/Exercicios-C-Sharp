@@ -6,6 +6,7 @@ export interface Produto {
     ativo:boolean;
     precoCompra:number;
     precoVenda:number;
+    precoVendaTotal:number;
     precoTotal:number;
     precoCompraFormatado:string;
     precoVendaFormatado:string;

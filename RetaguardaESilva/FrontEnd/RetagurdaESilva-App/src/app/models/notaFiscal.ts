@@ -14,8 +14,8 @@ export interface NotaFiscal {
   precoTotal:number;
   dataCadastroNotaFiscal:string;
   statusNota:string;
-  cliente: Array<Cliente>;
-  empresa: Array<Empresa>;
-  transportador: Array<Transportador>;
+  cliente: Cliente;
+  empresa: Empresa;
+  transportador: Transportador;
   produto: Array<Produto>;
 }

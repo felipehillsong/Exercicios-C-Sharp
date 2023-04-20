@@ -1,38 +1,147 @@
-<div style="text-align: center;">
-  <div style="display: inline-block;">
+<br>
+<button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
+<br>
+<br>
+<div class="card rounded shadow-sm p-3" style="text-align: center;">
+  <div style="display: inline-block; white-space: pre-line;">
     <h1><b>DANFE</b></h1>
+    <h2>Número da Nota: {{notaFiscalId}}</h2>
+    <h2>Entrada(1) Saida(2): {{notaFiscalId}}</h2>
+    <h2>Data: {{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</h2>
   </div>
+</div>
+<br>
+<div>
+  <label><b>Remetente</b></label>
 </div>
 <div class="card rounded shadow-sm p-3">
 <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
-        <th>Numero da Nota</th>
-        <th>Numero do Pedido</th>
-        <th>Nome do Cliente</th>
-        <th>Quantidade de Itens</th>
-        <th>Preço total</th>
-        <th>Data de Cadastro</th>
-        <th>Status da Nota</th>
+        <th>Nome/Razão Social</th>
+        <th>CNPJ</th>
+        <th>Inscrição Estadual</th>
+        <th>Inscrição Municipal</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>CEP</th>
+        <th>Municipio</th>
+        <th>Telefone</th>
+        <th>UF</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let notaFiscal">
-        <td>{{notaFiscal.id}}</td>
-        <td>{{notaFiscal.pedidoId}}</td>
-        <td>{{notaFiscal.nomeCliente}}</td>
-        <td>{{notaFiscal.quantidadeItens}}</td>
-        <td>{{notaFiscal.precoTotal}}</td>
-        <td>{{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</td>
-        <td>{{notaFiscal.statusNota}}</td>
+      <tr>
+        <td>{{empresa.nome}}</td>
+        <td>{{empresa.cnpj}}</td>
+        <td>{{empresa.inscricaoMunicipal}}</td>
+        <td>{{empresa.inscricaoEstadual}}</td>
+        <td>{{empresa.endereco}} {{empresa.numero}}</td>
+        <td>{{empresa.bairro}}</td>
+        <td>{{empresa.cep}}</td>
+        <td>{{empresa.municipio}}</td>
+        <td>{{empresa.telefone}}</td>
+        <td>{{empresa.uf}}</td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <td class="text-center" colspan="8">
-          <h4>Nenhuma nota fiscal encontrada!</h4>
-        </td>
-      </tr>
-    </tfoot>
 </table>
   </div>
+  <br>
+  <div>
+    <label><b>Destinatario</b></label>
+  </div>
+  <div class="card rounded shadow-sm p-3">
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nome/Razão Social</th>
+          <th>CPF/CNPJ</th>
+          <th>Inscrição Estadual</th>
+          <th>Inscrição Municipal</th>
+          <th>Endereço</th>
+          <th>Bairro</th>
+          <th>CEP</th>
+          <th>Municipio</th>
+          <th>Telefone</th>
+          <th>UF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.cpfcnpj}}</td>
+          <td>{{cliente.inscricaoMunicipal}}</td>
+          <td>{{cliente.inscricaoEstadual}}</td>
+          <td>{{cliente.endereco}} {{cliente.numero}}</td>
+          <td>{{cliente.bairro}}</td>
+          <td>{{cliente.cep}}</td>
+          <td>{{cliente.municipio}}</td>
+          <td>{{cliente.telefone}}</td>
+          <td>{{cliente.uf}}</td>
+        </tr>
+      </tbody>
+  </table>
+    </div>
+<br>
+<div>
+  <label><b>Transportador</b></label>
+</div>
+<div class="card rounded shadow-sm p-3">
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome/Razão Social</th>
+        <th>CNPJ</th>
+        <th>Inscrição Estadual</th>
+        <th>Inscrição Municipal</th>
+        <th>Endereço</th>
+        <th>Bairro</th>
+        <th>CEP</th>
+        <th>Municipio</th>
+        <th>Telefone</th>
+        <th>UF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{transportador.nome}}</td>
+        <td>{{transportador.cnpj}}</td>
+        <td>{{transportador.inscricaoMunicipal}}</td>
+        <td>{{transportador.inscricaoEstadual}}</td>
+        <td>{{transportador.endereco}} {{transportador.numero}}</td>
+        <td>{{transportador.bairro}}</td>
+        <td>{{transportador.cep}}</td>
+        <td>{{transportador.municipio}}</td>
+        <td>{{transportador.telefone}}</td>
+        <td>{{transportador.uf}}</td>
+      </tr>
+    </tbody>
+</table>
+  </div>
+  <br>
+  <div>
+    <label><b>Produtos</b></label>
+  </div>
+  <div class="card rounded shadow-sm p-3">
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Codigo</th>
+          <th>Nome</th>
+          <th>Quantidade de Venda</th>
+          <th>Preço de Venda</th>
+          <th>Preço Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td>{{produto.codigo}}</td>
+          <td>{{produto.nome}}</td>
+          <td>{{produto.quantidadeVenda}}</td>
+          <td>{{produto.precoVenda}}</td>
+          <td>{{produto.precoVendaTotal}}</td>
+        </tr>
+      </tbody>
+  </table>
+    </div>
+    <br>

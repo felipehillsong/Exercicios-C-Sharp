@@ -14,6 +14,7 @@ namespace RetaguardaESilva.Domain.ViewModels
         public bool Ativo { get; set; }
         public decimal PrecoCompra { get; set; }
         public decimal PrecoVenda { get; set; }
+        public decimal PrecoVendaTotal { get; set; }
         public int QuantidadeVenda { get; set; }
         public double Codigo { get; set; }
         public DateTime? DataCadastroProduto { get; set; }

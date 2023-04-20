@@ -186,7 +186,7 @@ const routes: Routes = [
   component: NotaFiscalComponent, canActivate:[AuthGuardsService, AuthGuardsNotaFiscalService],
   children:[
     {path: 'lista', title: 'NotaFiscal', component: NotaFiscalListaComponent },
-    {path: 'pdf/:id', title: 'Pdf', component: NotaFiscalPdfComponent, canActivate: [AuthGuardsNotaFiscalPdfService] }
+    {path: 'pdf/:id', title: 'Gerar DANFE', component: NotaFiscalPdfComponent, canActivate: [AuthGuardsNotaFiscalPdfService] }
   ]},
 ];
 

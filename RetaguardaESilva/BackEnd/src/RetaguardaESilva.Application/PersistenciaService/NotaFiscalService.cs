@@ -225,6 +225,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             Ativo = item.Ativo,
                             PrecoCompra = item.PrecoCompra,
                             PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoVendaTotal,
                             Codigo = item.Codigo,
                             DataCadastroProduto = item.DataCadastroProduto,
                             EmpresaId = item.EmpresaId,
