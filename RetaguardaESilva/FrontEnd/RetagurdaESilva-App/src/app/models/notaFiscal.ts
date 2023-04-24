@@ -18,4 +18,5 @@ export interface NotaFiscal {
   empresa: Empresa;
   transportador: Transportador;
   produto: Array<Produto>;
+  chaveAcesso:string;
 }

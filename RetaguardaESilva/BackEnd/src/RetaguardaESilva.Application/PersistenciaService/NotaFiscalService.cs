@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace RetaguardaESilva.Application.PersistenciaService
 {
@@ -26,15 +27,17 @@ namespace RetaguardaESilva.Application.PersistenciaService
         private readonly INotaFiscalPersist _notaFiscalPersist;
         private readonly IPedidoPersist _pedidoPersist;
         private readonly IPedidoNotaPersist _pedidoNotaPersist;
+        private readonly ITransportadorPersist _transportadorPersist;
         private readonly IMapper _mapper;
 
-        public NotaFiscalService(IGeralPersist geralPersist, INotaFiscalPersist notaFiscalPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IPedidoNotaPersist pedidoNotaPersist, IMapper mapper)
+        public NotaFiscalService(IGeralPersist geralPersist, INotaFiscalPersist notaFiscalPersist, ITransportadorPersist transportadorPersist, IValidacoesPersist validacoesPersist, IPedidoPersist pedidoPersist, IPedidoNotaPersist pedidoNotaPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
             _notaFiscalPersist = notaFiscalPersist;
             _pedidoPersist = pedidoPersist;
             _pedidoNotaPersist = pedidoNotaPersist;
+            _transportadorPersist = transportadorPersist;
             _mapper = mapper;
         }
 
@@ -50,11 +53,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    var transportador = await _transportadorPersist.GetTransportadorByIdAsync(model.EmpresaId, pedido.TransportadorId);
                     pedido.Status = (int)StatusPedido.PedidoConfirmado;
-                    var pedidoNota = _pedidoNotaPersist.GetAllPedidosNotaAsync(model.EmpresaId, model.PedidoId);
-                    foreach (var item in pedidoNota.Result)
-                    {
-                        item.Status = (int)StatusPedido.PedidoConfirmado;
+                    var pedidoNota = await _pedidoNotaPersist.GetAllPedidosNotaAsync(model.EmpresaId, model.PedidoId);
+                    foreach (var item in pedidoNota)
+                    {   
                         var produto = _validacoesPersist.AtualizarQuantidadeProdutoPosPedido(model.PedidoId, model.EmpresaId, item.ProdutoId, item.Quantidade, out Estoque estoque, out string mensagem);
                         if (produto == null || estoque == null)
                         {
@@ -64,6 +67,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         {
                             _geralPersist.Update<Produto>(produto);
                             await _geralPersist.SaveChangesAsync();
+                            item.Status = (int)StatusPedido.PedidoConfirmado;
                             _geralPersist.Update<PedidoNota>(item);
                             await _geralPersist.SaveChangesAsync();
                             _geralPersist.Update<Pedido>(pedido);
@@ -73,6 +77,23 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         }
                     }
 
+                    var pedidoNotaAtualizaStatus = await _pedidoNotaPersist.GetPedidosNotaByIdStatusAsync(model.EmpresaId, model.PedidoId, (int)StatusPedido.PedidoEmAnalise);
+                    if (pedidoNotaAtualizaStatus != null)
+                    {
+                        pedidoNotaAtualizaStatus.Status = (int)StatusPedido.PedidoConfirmado;
+                        _geralPersist.Update<PedidoNota>(pedidoNotaAtualizaStatus);
+                        await _geralPersist.SaveChangesAsync();
+                    }
+
+                    Random random = new Random();
+                    List<int> randomNumbers = new List<int>();
+                    string chaveAcesso = string.Empty;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        randomNumbers.Add(random.Next(1000, 9999));
+                        chaveAcesso += randomNumbers[i];
+                    }
+                    model.ChaveAcesso = transportador.CNPJ + chaveAcesso;
                     model.Status = (int)StatusNotaFiscal.NotaFiscalAprovada;
                     var notaFiscalDTO = _mapper.Map<NotaFiscal>(model);
                     _geralPersist.Add<NotaFiscal>(notaFiscalDTO);
@@ -152,6 +173,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     notaFiscalRetornoDTO.QuantidadeItens = notasFiscaisRetorno.QuantidadeItens;
                     notaFiscalRetornoDTO.DataCadastroNotaFiscal = notasFiscaisRetorno.DataCadastroNotaFiscal;
                     notaFiscalRetornoDTO.StatusNota = notasFiscaisRetorno.StatusNota;
+                    notaFiscalRetornoDTO.ChaveAcesso = notasFiscaisRetorno.ChaveAcesso;
                     if (notaFiscalRetornoDTO.StatusNota == MensagemDeAlerta.NotaFiscalAprovada)
                     {
                         notaFiscalRetornoDTO.Status = (int)StatusNotaFiscal.NotaFiscalAprovada;

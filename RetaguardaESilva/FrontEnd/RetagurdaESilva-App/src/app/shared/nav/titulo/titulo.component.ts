@@ -12,6 +12,7 @@ export class TituloComponent implements OnInit {
   @Input() titulo!: string;
   @Input() iconClass!: string;
   @Input() novo!: string;
+  @Input() urlNF!: string;
   @Output() validarCrud = new EventEmitter<boolean[]>();
   visualizarCadastros!: boolean;
   visualizarEnderecoProduto!:boolean;
@@ -61,7 +62,7 @@ export class TituloComponent implements OnInit {
         this.validarCrud.emit([this.authService.visualizarPedidoEditar(), this.authService.visualizarPedidoDetalhe(), this.authService.visualizarPedidoExcluir()]);
         break;
       case Permissoes.CadastroNotasFiscais:
-        this.visualizarCadastros = this.authService.visualizarNotaFiscalCadastro();
+        this.visualizarCadastros = false;
         this.validarCrud.emit([this.authService.visualizarNotaFiscalGerarPDF(), this.authService.visualizarNotaFiscalCancelar()]);
         break;
       case Permissoes.CadastroRelatorios:

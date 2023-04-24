@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -31,7 +31,6 @@ export class NotaFiscalListaComponent implements OnInit {
   clienteNome!:string;
   visualizarGerarPDF!: boolean;
   visualizarCancelar!: boolean;
-
 
   public get notaFiscalLista():string{
     return this._notaFiscalListada;

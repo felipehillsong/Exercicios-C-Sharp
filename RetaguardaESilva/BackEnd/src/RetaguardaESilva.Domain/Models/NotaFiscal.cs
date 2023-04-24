@@ -15,6 +15,7 @@ namespace RetaguardaESilva.Domain.Models
         public int TransportadorId { get; set; }
         public int QuantidadeItens { get; set; }
         public decimal PrecoTotal { get; set; }
+        public string ChaveAcesso { get; set; }
         public DateTime? DataCadastroNotaFiscal { get; set; }
         public int Status { get; set; }
     }

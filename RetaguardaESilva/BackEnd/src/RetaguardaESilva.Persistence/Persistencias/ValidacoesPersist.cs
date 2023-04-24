@@ -1426,6 +1426,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
                         notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
                         notaFiscalRetorno.DataCadastroNotaFiscal = notaFiscal.DataCadastroNotaFiscal;
+                        notaFiscalRetorno.ChaveAcesso = notaFiscal.ChaveAcesso;
                         notaFiscalRetorno.StatusNota = status;
                         notaFiscalRetorno.Cliente.Id = cliente.Id;
                         notaFiscalRetorno.Cliente.Nome = cliente.Nome;

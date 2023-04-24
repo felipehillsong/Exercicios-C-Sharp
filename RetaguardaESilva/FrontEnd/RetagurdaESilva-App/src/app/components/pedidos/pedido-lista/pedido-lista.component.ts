@@ -64,6 +64,7 @@ export class PedidoListaComponent implements OnInit {
         this.pedidos = _pedidos;
         this.getNotasFiscais();
         this.pedidosFiltrados = this.pedidos;
+        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
@@ -74,6 +75,7 @@ export class PedidoListaComponent implements OnInit {
       (_notasFiscais: NotaFiscal[]) => {
         this.notasFiscais = _notasFiscais;
         this.preencherNotasFiscais(this.notasFiscais);
+        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );

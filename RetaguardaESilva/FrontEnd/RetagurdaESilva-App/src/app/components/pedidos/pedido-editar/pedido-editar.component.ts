@@ -77,6 +77,7 @@ export class PedidoEditarComponent implements OnInit {
   precoTotalPedido:number = 0;
   produtosQuantidadeMaiorVenda:string = "";
   criarNotaFiscal: boolean = false;
+  chaveAcesso: string = "";
   constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, public titu: TituloService, private fb: FormBuilder, private fbProduto: FormBuilder, private fbPedido: FormBuilder, private produtoService: ProdutoService, private clienteService: ClienteService, private transportadorService: TransportadorService, private notaFiscalService: NotaFiscalService, private pedidoService: PedidoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
@@ -537,6 +538,7 @@ export class PedidoEditarComponent implements OnInit {
           this.EditarPedido();
           this.PreencherNotaFiscal();
           this.notaFiscalService.addNotaFiscal(this.notaFiscal).subscribe(() => {
+            this._changeDetectorRef.markForCheck();
             this.router.navigate(['pedidos/lista']);
           },
           (error: any) => {
@@ -560,6 +562,7 @@ export class PedidoEditarComponent implements OnInit {
         this.notaFiscal.quantidadeItens = quantidadeItens;
         this.notaFiscal.empresaId = this.authService.empresaId();
         this.notaFiscal.precoTotal = this.gerarPedido.precoTotal;
+        this.notaFiscal.chaveAcesso = this.chaveAcesso;
         this.notaFiscal.dataCadastroNotaFiscal = new Date().toISOString().split('T')[0];
       }
 
