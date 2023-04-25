@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { Cliente } from 'src/app/models/cliente';
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/login/auth.service';
 import { NavService } from 'src/app/services/nav/nav.service';
 import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.service';
 import { TituloService } from 'src/app/services/titulo/titulo.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notaFiscal-pdf',
@@ -17,13 +18,16 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
   styleUrls: ['./notaFiscal-pdf.component.scss']
 })
 export class NotaFiscalPdfComponent implements OnInit {
+  @ViewChild('content', {static: false}) el!: ElementRef;
   notaFiscal = {} as NotaFiscal;
   empresa = {} as Empresa;
   cliente = {} as Cliente;
   transportador = {} as Transportador;
   produtos: Produto[] = [];
   notaFiscalId!: number;
-  constructor(private notaFiscalService: NotaFiscalService, private route: ActivatedRoute, private router: Router, private authService: AuthService, public nav: NavService,public titu: TituloService,) { }
+  botaoVolta: boolean = false;
+  botaoImprimir: boolean = false;
+  constructor(private titleService: Title, private notaFiscalService: NotaFiscalService, private route: ActivatedRoute, private router: Router, private authService: AuthService, public nav: NavService,public titu: TituloService) { }
 
   ngOnInit() {
     this.permissoesDeTela();
@@ -32,7 +36,6 @@ export class NotaFiscalPdfComponent implements OnInit {
 
   public gerarPDF(): void{
     this.notaFiscalId = this.route.snapshot.params['id'];
-    //this.printPDF();
     this.notaFiscalService.GerarPdf(this.notaFiscalId).subscribe(
       (_notaFiscal: NotaFiscal) => {
         this.notaFiscal = _notaFiscal;
@@ -40,17 +43,28 @@ export class NotaFiscalPdfComponent implements OnInit {
         this.cliente = this.notaFiscal.cliente;
         this.transportador = this.notaFiscal.transportador;
         this.produtos = this.notaFiscal.produto;
-        console.log(this.notaFiscal);
+        this.botaoVolta = true;
+        this.botaoImprimir = true;
       },
       error => console.log(error)
     );
-    //this.router.navigate([`notasFiscais/lista`]);
   }
 
-  printPDF(){
-    const doc = new jsPDF();
-    doc.text("Hello World!", 10, 10);
-    doc.save("a4.pdf");
+  printPDF() {
+    this.botaoVolta = false;
+    this.botaoImprimir = false;
+    this.titleService.setTitle('Nota Fiscal ' + this.notaFiscalId);
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    let container = this.el.nativeElement;
+    container.style.fontSize = '12pt';
+    container.style.transform = 'scale(0.75)'; // Ajusta a escala para caber na página
+    pdf.html(container, {
+      callback: (pdf) => {
+        window.print();
+        this.botaoVolta = true;
+        this.botaoImprimir = true;
+      }
+    });
   }
 
   public Voltar(){

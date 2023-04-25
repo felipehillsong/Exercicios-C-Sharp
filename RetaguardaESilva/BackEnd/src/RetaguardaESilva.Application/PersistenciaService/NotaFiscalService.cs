@@ -65,9 +65,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         }
                         else
                         {
+                            item.Status = (int)StatusPedido.PedidoConfirmado;
                             _geralPersist.Update<Produto>(produto);
                             await _geralPersist.SaveChangesAsync();
-                            item.Status = (int)StatusPedido.PedidoConfirmado;
                             _geralPersist.Update<PedidoNota>(item);
                             await _geralPersist.SaveChangesAsync();
                             _geralPersist.Update<Pedido>(pedido);
@@ -77,6 +77,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         }
                     }
 
+                    /*Esse trecho do código é so para atualizar o status dos produtos na tabaela pedidoNota
+                    porque no codigo acima quando tem vários produtos no pedido, um produto sempre fica com o status errado*/
                     var pedidoNotaAtualizaStatus = await _pedidoNotaPersist.GetPedidosNotaByIdStatusAsync(model.EmpresaId, model.PedidoId, (int)StatusPedido.PedidoEmAnalise);
                     if (pedidoNotaAtualizaStatus != null)
                     {

@@ -1,16 +1,38 @@
 <br>
-<button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
+<div class="d-flex justify-content-between">
+  <button *ngIf="botaoVolta" type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
+  <button *ngIf="botaoImprimir" type="button" class="btn btn-success btn-sm mr-2" tooltip="Gerar PDF" (click)="printPDF()"><i class="fa-solid fa-download"></i></button>
+</div>
 <br>
 <br>
+<div id="content" #content>
 <div class="card rounded shadow-sm p-3" style="text-align: center;">
   <div style="display: inline-block; white-space: pre-line;">
     <h1><b>DANFE</b></h1>
-    <h2>Número da Nota: {{notaFiscalId}}</h2>
-    <h2>Entrada(1) Saida(2): {{notaFiscalId}}</h2>
+    <h2><b>Número da Nota: {{notaFiscalId}}</b></h2>
+    <h2>Entrada(1) Saida(2): 2</h2>
+    <h2>Valor Total da Nota: {{notaFiscal.precoTotal}}</h2>
     <h2>Data: {{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</h2>
   </div>
 </div>
 <br>
+<div class="card rounded shadow-sm p-3">
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Natureza da Operação</th>
+          <th>Chave da Nota NF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Venda de Mercadoria</td>
+          <td>{{notaFiscal.chaveAcesso}}</td>
+        </tr>
+      </tbody>
+  </table>
+    </div>
+    <br>
 <div>
   <label><b>Remetente</b></label>
 </div>
@@ -145,3 +167,13 @@
   </table>
     </div>
     <br>
+    <div>
+      <label><b>Dados Adicionais</b></label>
+    </div>
+    <div class="form-control form-control-lg card rounded shadow-sm p-3">
+      <textarea id="dadosAdicionais" readonly>
+        Email Remetente: {{empresa.email}}
+        Email Destinatario: {{cliente.email}}
+      </textarea>
+    </div>
+  </div>
