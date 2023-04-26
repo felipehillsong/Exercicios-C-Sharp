@@ -56,6 +56,7 @@ export class NotaFiscalPdfComponent implements OnInit {
     this.titleService.setTitle('Nota Fiscal ' + this.notaFiscalId);
     let pdf = new jsPDF('p', 'pt', 'a4');
     let container = this.el.nativeElement;
+    container.setAttribute('style', 'text-align: left');
     container.style.fontSize = '12pt';
     container.style.transform = 'scale(0.75)'; // Ajusta a escala para caber na página
     pdf.html(container, {
@@ -63,6 +64,7 @@ export class NotaFiscalPdfComponent implements OnInit {
         window.print();
         this.botaoVolta = true;
         this.botaoImprimir = true;
+        container.style.transform = 'scale(1)'; // Ajusta a escala para caber na página
       }
     });
   }
