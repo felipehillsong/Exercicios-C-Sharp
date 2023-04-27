@@ -91,5 +91,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string EnderecoProdutoNaoEncontradoDelete = "Endereço do produto não encontrado para delete";
         public const string NotaFiscalNaoEncontradoEmpresa = "Não existem notas fiscais cadastradas nessa empresa";
         public const string NotaFiscalNaoEncontrada = "Nenhuma nota fiscal encontrada";
+        public const string NotaFiscalNaoEncontradaDelete = "Nota fiscal encontrada para ser cancelada";
     }
 }

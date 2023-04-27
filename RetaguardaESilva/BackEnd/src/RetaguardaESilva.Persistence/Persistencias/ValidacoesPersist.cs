@@ -1374,12 +1374,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         if (item.Status == (int)StatusNotaFiscal.NotaFiscalAprovada)
                         {
                             var status = MensagemDeAlerta.NotaFiscalAprovada;
-                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, cliente.Nome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status));
+                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, cliente.Nome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status, item.Status));
                         }
                         else if (item.Status == (int)StatusNotaFiscal.NotaFiscalCancelada)
                         {
                             var status = MensagemDeAlerta.NotaFiscalCancelada;
-                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, cliente.Nome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status));
+                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, cliente.Nome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status, item.Status));
                         }
                     }
                     else
@@ -1388,12 +1388,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         if (item.Status == (int)StatusNotaFiscal.NotaFiscalAprovada)
                         {
                             var status = MensagemDeAlerta.NotaFiscalAprovada;
-                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, clienteSemNome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status));
+                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, clienteSemNome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status, item.Status));
                         }
                         else if (item.Status == (int)StatusNotaFiscal.NotaFiscalCancelada)
                         {
                             var status = MensagemDeAlerta.NotaFiscalCancelada;
-                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, clienteSemNome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status));
+                            notaFiscalRetorno.Add(new NotaFiscalViewModel(item.Id, item.PedidoId, clienteSemNome, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, status, item.Status));
                         }
                     }
                 }
@@ -1520,6 +1520,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                         notaFiscalRetorno.Id = notaFiscal.Id;
                         notaFiscalRetorno.PedidoId = pedido.Id;
                         notaFiscalRetorno.PrecoTotal = notaFiscal.PrecoTotal;
+                        notaFiscalRetorno.DataCadastroNotaFiscal = notaFiscal.DataCadastroNotaFiscal;
                         notaFiscalRetorno.QuantidadeItens = notaFiscal.QuantidadeItens;
                         notaFiscalRetorno.StatusNota = status;
                         notaFiscalRetorno.Cliente.Id = cliente.Id;

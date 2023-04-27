@@ -28,6 +28,7 @@
     "html2pdf.js": "^0.10.1",
     "jquery": "^3.6.3",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "ng-select2-component": "^10.0.0",

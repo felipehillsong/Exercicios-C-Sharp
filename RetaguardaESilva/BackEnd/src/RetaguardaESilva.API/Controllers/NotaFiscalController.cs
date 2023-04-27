@@ -102,5 +102,26 @@ namespace RetaguardaESilva.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
             }
         }
+
+        // DELETE: api/NotaFiscal/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> CancelarNotaFiscal(int empresaId, int id)
+        {
+            try
+            {
+                if (await _notaFiscalService.CancelarNotaFiscal(empresaId, id))
+                {
+                    return Ok(new { message = MensagemDeSucesso.NotaFiscalCancelada });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro: {ex.Message}");
+            }
+        }
     }
 }

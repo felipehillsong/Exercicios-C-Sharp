@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { statusNotaFiscal } from 'src/app/enums/StatusNotaFiscal.enum';
 import { Botoes } from 'src/app/enums/botoes';
 import { FontAwesome } from 'src/app/enums/fontAwesome';
 import { Titulos } from 'src/app/enums/titulos';
@@ -31,6 +32,8 @@ export class NotaFiscalListaComponent implements OnInit {
   clienteNome!:string;
   visualizarGerarPDF!: boolean;
   visualizarCancelar!: boolean;
+  notaFiscalAprovada: number = statusNotaFiscal.NotaFiscalAprovada;
+  notaFiscalCancelada: number = statusNotaFiscal.NotaFiscalCancelada;
 
   public get notaFiscalLista():string{
     return this._notaFiscalListada;
@@ -59,6 +62,7 @@ export class NotaFiscalListaComponent implements OnInit {
       (_notasFiscais: NotaFiscal[]) => {
         this.notasFiscais = _notasFiscais;
         this.notasFiscaisFiltradas = this.notasFiscais;
+        console.log(this.notasFiscais);
       },
       error => console.log(error)
     );
@@ -84,7 +88,6 @@ export class NotaFiscalListaComponent implements OnInit {
           this.toastr.success(result.message);
           this.spinner.hide();
           this.getNotasFiscais();
-          this.notasFiscais = this.notasFiscais.filter(nf => nf.id !== this.notaFiscalId);
           this._changeDetectorRef.markForCheck();
       },
       (error: any) =>{

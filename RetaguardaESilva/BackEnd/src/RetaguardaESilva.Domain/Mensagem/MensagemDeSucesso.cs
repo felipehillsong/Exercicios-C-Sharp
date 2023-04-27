@@ -30,5 +30,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string UsuarioMesmoDado = "Mesmos dados do banco";
         public const string UsuarioDadosDiferente = "Dados diferente, vai atualizar";
         public const string PedidoDeletado = "Pedido deletado com sucesso";
+        public const string NotaFiscalCancelada = "Nota Fiscal cancelada com sucesso";
     }
 }

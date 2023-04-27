@@ -17,13 +17,14 @@ namespace RetaguardaESilva.Domain.ViewModels
         public string ChaveAcesso { get; set; }
         public DateTime? DataCadastroNotaFiscal { get; set; }
         public string StatusNota { get; set; }
+        public int Status { get; set; }
 
         public NotaFiscalViewModel()
         {
             
         }
 
-        public NotaFiscalViewModel(int id, int pedidoId, string nomeCliente, int quantidadeItens, decimal precoTotal, DateTime? dataCadastroNotaFiscal, string statusNota)
+        public NotaFiscalViewModel(int id, int pedidoId, string nomeCliente, int quantidadeItens, decimal precoTotal, DateTime? dataCadastroNotaFiscal, string statusNota, int status)
         {
             this.Id = id;
             this.PedidoId = pedidoId;
@@ -32,6 +33,7 @@ namespace RetaguardaESilva.Domain.ViewModels
             this.PrecoTotal = precoTotal;
             this.DataCadastroNotaFiscal = dataCadastroNotaFiscal;
             this.StatusNota = statusNota;
+            this.Status = status;
         }
     }
 

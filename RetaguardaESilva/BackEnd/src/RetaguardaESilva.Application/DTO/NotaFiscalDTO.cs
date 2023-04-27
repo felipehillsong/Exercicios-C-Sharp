@@ -31,13 +31,14 @@ namespace RetaguardaESilva.Application.DTO
         public decimal PrecoTotal { get; set; }
         public DateTime? DataCadastroNotaFiscal { get; set; }
         public string StatusNota { get; set; }
+        public int Status { get; set; }
 
         public NotasFiscaisDTO()
         {
 
         }
 
-        public NotasFiscaisDTO(int id, int pedidoId, string nomeCliente, int quantidadeItens, decimal precoTotal, DateTime? dataCadastroNotaFiscal, string statusNota)
+        public NotasFiscaisDTO(int id, int pedidoId, string nomeCliente, int quantidadeItens, decimal precoTotal, DateTime? dataCadastroNotaFiscal, string statusNota, int status)
         {
             this.Id = id;
             this.PedidoId = pedidoId;
@@ -46,6 +47,7 @@ namespace RetaguardaESilva.Application.DTO
             this.PrecoTotal = precoTotal;
             this.DataCadastroNotaFiscal = dataCadastroNotaFiscal;
             this.StatusNota = statusNota;
+            this.Status = status;
         }
     }
 

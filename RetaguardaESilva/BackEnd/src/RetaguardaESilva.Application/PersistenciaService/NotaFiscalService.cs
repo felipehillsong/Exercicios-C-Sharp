@@ -136,7 +136,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var notasFiscaisRetorno = _validacoesPersist.RetornarNotasFiscais(notasFiscais);
                     foreach (var item in notasFiscaisRetorno)
                     {
-                        notasFiscaisList.Add(new NotasFiscaisDTO(item.Id, item.PedidoId, item.NomeCliente, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, item.StatusNota));
+                        notasFiscaisList.Add(new NotasFiscaisDTO(item.Id, item.PedidoId, item.NomeCliente, item.QuantidadeItens, item.PrecoTotal, item.DataCadastroNotaFiscal, item.StatusNota, item.Status));
                     }
                     return notasFiscaisList;
                 }
@@ -288,9 +288,58 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<bool> DeleteNotaFiscal(int empresaId, int notafiscalId)
+        public async Task<bool> CancelarNotaFiscal(int empresaId, int notaFiscalId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var notaFiscal = await _notaFiscalPersist.GetNotaFiscalByIdAsync(empresaId, notaFiscalId);
+                var pedido = await _pedidoPersist.GetPedidoByIdAsync(notaFiscal.EmpresaId, notaFiscal.PedidoId);                
+                if (notaFiscal == null || pedido == null)
+                {
+                    throw new Exception(MensagemDeErro.NotaFiscalNaoEncontradaDelete);
+                }
+                else
+                {
+                    if (_validacoesPersist.AtualizarQuantidadeProdutoEstoquePosDeletePedido(pedido, out List<Produto> produtos, out List<Estoque> estoques, out List<PedidoNota> pedidosNotas))
+                    {
+                        foreach (var item in produtos)
+                        {
+                            if (item != null)
+                            {
+                                _geralPersist.Update<Produto>(item);
+                                await _geralPersist.SaveChangesAsync();
+                            }
+                        }
+                        foreach (var item in estoques)
+                        {
+                            if (item != null)
+                            {
+                                _geralPersist.Update<Estoque>(item);
+                                await _geralPersist.SaveChangesAsync();
+                            }
+                        }
+                        foreach (var item in pedidosNotas)
+                        {
+                            item.Status = (int)StatusPedido.PedidoCancelado;
+                            _geralPersist.Update(item);
+                            await _geralPersist.SaveChangesAsync();
+                        }
+
+                        notaFiscal.Status = (int)StatusNotaFiscal.NotaFiscalCancelada;
+                        _geralPersist.Update<NotaFiscal>(notaFiscal);
+                        await _geralPersist.SaveChangesAsync();
+
+                        pedido.Status = (int)StatusPedido.PedidoCancelado;
+                        _geralPersist.Update<Pedido>(pedido);
+                        return await _geralPersist.SaveChangesAsync();
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

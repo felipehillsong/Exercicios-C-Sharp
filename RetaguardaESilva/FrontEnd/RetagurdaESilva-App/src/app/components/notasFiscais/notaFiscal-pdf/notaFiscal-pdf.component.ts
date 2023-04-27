@@ -45,6 +45,7 @@ export class NotaFiscalPdfComponent implements OnInit {
         this.produtos = this.notaFiscal.produto;
         this.botaoVolta = true;
         this.botaoImprimir = true;
+        console.log(this.notaFiscal);
       },
       error => console.log(error)
     );

@@ -33,7 +33,9 @@
         <td>
           <button type="button" tooltip="Gerar PDF" *ngIf="visualizarGerarPDF" (click)="gerarPDF(notaFiscal.id)" class="btn btn-success btn-sm mr-2">
             <i class="fa-solid fa-file-pdf"></i></button>&nbsp;
-          <button type="button" tooltip="Cancelar NF" class="btn btn-danger btn-sm" *ngIf="visualizarCancelar" (click)="openModal($event, template, notaFiscal.nomeCliente, notaFiscal.id)">
+            <button *ngIf="notaFiscal.status == notaFiscalCancelada" type="button" tooltip="Nota Fiscal Cancelada" class="btn btn-warning btn-sm">
+              <i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
+          <button type="button" tooltip="Cancelar NF" class="btn btn-danger btn-sm" *ngIf="visualizarCancelar && notaFiscal.status == notaFiscalAprovada" (click)="openModal($event, template, notaFiscal.nomeCliente, notaFiscal.id)">
             <i class="fa fa-trash"></i></button>
         </td>
       </tr>

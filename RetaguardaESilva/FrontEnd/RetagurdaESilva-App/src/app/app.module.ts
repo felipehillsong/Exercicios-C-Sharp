@@ -116,6 +116,9 @@ import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-l
 import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
 import { NotaFiscalPdfComponent } from './components/notasFiscais/notaFiscal-pdf/notaFiscal-pdf.component';
 import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNotaFiscalPdf.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -181,6 +184,9 @@ registerLocaleData(ptBr);
     LoginComponent,
    ],
   imports: [
+    MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
     BrowserModule,
     MatSliderModule,
     MatSelectModule,
@@ -206,6 +212,11 @@ registerLocaleData(ptBr);
       progressBar: true,
     })
   ],
+exports: [
+  MatInputModule,
+  MatPaginatorModule,
+  MatTableModule
+],
   providers: [
     AuthGuardsService,
     AuthGuardsClienteService,
