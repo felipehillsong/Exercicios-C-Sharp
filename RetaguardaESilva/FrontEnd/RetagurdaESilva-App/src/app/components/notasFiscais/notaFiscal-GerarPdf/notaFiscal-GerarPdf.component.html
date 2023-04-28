@@ -1,16 +1,10 @@
 <br>
-<div class="d-flex justify-content-between">
-  <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Voltar" (click)="Voltar()"><i class="fa-solid fa-circle-left"></i></button>
-  <button type="button" class="btn btn-success btn-sm mr-2" tooltip="Gerar PDF" (click)="gerarPDF(notaFiscalId)"><i class="fa-solid fa-download"></i></button>
-</div>
-<br>
-<br>
 <div class="card rounded shadow-sm p-3" style="text-align: center;">
   <div style="display: inline-block; white-space: pre-line;">
     <h1><b>DANFE</b></h1>
     <h2><b>Número da Nota: {{notaFiscalId}}</b></h2>
     <h2>Entrada(1) Saida(2): 2</h2>
-    <h2>Valor Total da Nota: {{notaFiscal.precoTotal | currency: 'BRL' }}</h2>
+    <h2>Valor Total da Nota: {{notaFiscal.precoTotal}}</h2>
     <h2>Data: {{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</h2>
     <h2>Status da NF: {{notaFiscal.statusNota}}</h2>
   </div>

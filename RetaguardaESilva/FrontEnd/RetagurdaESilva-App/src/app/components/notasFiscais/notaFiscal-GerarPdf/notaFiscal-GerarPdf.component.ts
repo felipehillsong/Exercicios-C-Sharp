@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 import { Cliente } from 'src/app/models/cliente';
 import { Empresa } from 'src/app/models/empresa';
 import { NotaFiscal } from 'src/app/models/notaFiscal';
@@ -12,10 +14,10 @@ import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
   selector: 'app-notaFiscal-pdf',
-  templateUrl: './notaFiscal-pdf.component.html',
-  styleUrls: ['./notaFiscal-pdf.component.scss']
+  templateUrl: './notaFiscal-GerarPdf.component.html',
+  styleUrls: ['./notaFiscal-GerarPdf.component.scss']
 })
-export class NotaFiscalPdfComponent implements OnInit {
+export class NotaFiscalGerarPdfComponent implements OnInit {
   @ViewChild('content', {static: false}) el!: ElementRef;
   notaFiscal = {} as NotaFiscal;
   empresa = {} as Empresa;
@@ -23,16 +25,17 @@ export class NotaFiscalPdfComponent implements OnInit {
   transportador = {} as Transportador;
   produtos: Produto[] = [];
   notaFiscalId!: number;
-  botaoVolta: boolean = false;
-  botaoImprimir: boolean = false;
-  constructor(private notaFiscalService: NotaFiscalService, private route: ActivatedRoute, private router: Router, private authService: AuthService, public nav: NavService,public titu: TituloService) { }
+
+  constructor(private notaFiscalService: NotaFiscalService, private route: ActivatedRoute, private router: Router, private authService: AuthService, public nav: NavService,public titu: TituloService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.permissoesDeTela();
-    this.visualizarPDF();
+    this.criarPDF();
+    this.gerarPDF();
   }
 
-  public visualizarPDF(): void{
+  public criarPDF(): void{
+    this._changeDetectorRef.markForCheck();
     this.notaFiscalId = this.route.snapshot.params['id'];
     this.notaFiscalService.GerarPdf(this.notaFiscalId).subscribe(
       (_notaFiscal: NotaFiscal) => {
@@ -41,17 +44,25 @@ export class NotaFiscalPdfComponent implements OnInit {
         this.cliente = this.notaFiscal.cliente;
         this.transportador = this.notaFiscal.transportador;
         this.produtos = this.notaFiscal.produto;
-        this.botaoVolta = true;
-        this.botaoImprimir = true;
-        console.log(this.notaFiscal);
+        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
+    this._changeDetectorRef.markForCheck();
   }
 
-  gerarPDF(id: number): void {
-    this.router.navigate([`notasFiscais/gerarPdf/${id}`]);
-  }
+  public gerarPDF(){
+    this._changeDetectorRef.markForCheck();
+    html2canvas(document.body).then(canvas => {
+      console.log(document.body);
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+      var width = pdf.internal.pageSize.getWidth();
+      var height = canvas.height * width / canvas.width;
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
+      pdf.save('Nota Fiscal ' + this.notaFiscalId + '.pdf'); // Generated PDF
+      });
+    }
 
   public Voltar(){
     this.router.navigate(['notasFiscais/lista']);

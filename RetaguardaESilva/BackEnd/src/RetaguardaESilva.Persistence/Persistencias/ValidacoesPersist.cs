@@ -1584,13 +1584,14 @@ namespace RetaguardaESilva.Persistence.Persistencias
                             {
                                 var produtoView = new ProdutoViewModel()
                                 {
-                                    Id = produto.Id,
+                                    Id = item.ProdutoId,
                                     Nome = produto.Nome,
                                     Quantidade = produto.Quantidade,
                                     QuantidadeVenda = item.Quantidade,
                                     Ativo = produto.Ativo,
                                     PrecoCompra = produto.PrecoCompra,
-                                    PrecoVenda = produto.PrecoVenda,
+                                    PrecoVenda = item.PrecoVenda,
+                                    PrecoVendaTotal = item.PrecoTotal,
                                     Codigo = produto.Codigo,
                                     DataCadastroProduto = produto.DataCadastroProduto,
                                     EmpresaId = produto.EmpresaId,

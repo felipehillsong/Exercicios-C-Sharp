@@ -119,6 +119,7 @@ import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNo
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-GerarPdf/notaFiscal-GerarPdf.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -157,6 +158,7 @@ registerLocaleData(ptBr);
     NotaFiscalComponent,
     NotaFiscalListaComponent,
     NotaFiscalPdfComponent,
+    NotaFiscalGerarPdfComponent,
     ProdutoComponent,
     ProdutoCriarComponent,
     ProdutoEditarComponent,

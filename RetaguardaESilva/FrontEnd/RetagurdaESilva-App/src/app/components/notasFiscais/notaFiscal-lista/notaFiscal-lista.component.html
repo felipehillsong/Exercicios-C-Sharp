@@ -27,7 +27,7 @@
         <td>{{notaFiscal.pedidoId}}</td>
         <td>{{notaFiscal.nomeCliente}}</td>
         <td>{{notaFiscal.quantidadeItens}}</td>
-        <td>{{notaFiscal.precoTotal}}</td>
+        <td>{{notaFiscal.precoTotal | currency: 'BRL' }}</td>
         <td>{{notaFiscal.dataCadastroNotaFiscal | date: "dd/MM/yyyy"}}</td>
         <td>{{notaFiscal.statusNota}}</td>
         <td>
