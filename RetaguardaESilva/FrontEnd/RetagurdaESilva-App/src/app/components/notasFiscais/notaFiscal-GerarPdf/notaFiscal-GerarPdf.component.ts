@@ -13,7 +13,7 @@ import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.servic
 import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
-  selector: 'app-notaFiscal-pdf',
+  selector: 'app-notaFiscal-GerarPdf',
   templateUrl: './notaFiscal-GerarPdf.component.html',
   styleUrls: ['./notaFiscal-GerarPdf.component.scss']
 })
@@ -44,25 +44,27 @@ export class NotaFiscalGerarPdfComponent implements OnInit {
         this.cliente = this.notaFiscal.cliente;
         this.transportador = this.notaFiscal.transportador;
         this.produtos = this.notaFiscal.produto;
-        this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
     );
     this._changeDetectorRef.markForCheck();
   }
 
-  public gerarPDF(){
+  public gerarPDF() {
     this._changeDetectorRef.markForCheck();
-    html2canvas(document.body).then(canvas => {
-      console.log(document.body);
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-      var width = pdf.internal.pageSize.getWidth();
-      var height = canvas.height * width / canvas.width;
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
-      pdf.save('Nota Fiscal ' + this.notaFiscalId + '.pdf'); // Generated PDF
+    setTimeout(() => {
+      html2canvas(document.body).then(canvas => {
+        const contentDataURL = canvas.toDataURL('image/png')
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        var width = pdf.internal.pageSize.getWidth();
+        var height = canvas.height * width / canvas.width;
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
+        pdf.save('Nota Fiscal ' + this.notaFiscalId + '.pdf');
       });
-    }
+      this.Voltar();
+    }, 100); // 100 milissegundos de atraso
+  }
+
 
   public Voltar(){
     this.router.navigate(['notasFiscais/lista']);
