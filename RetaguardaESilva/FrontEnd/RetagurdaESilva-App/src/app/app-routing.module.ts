@@ -97,7 +97,7 @@ import { NotaFiscalListaComponent } from './components/notasFiscais/notaFiscal-l
 import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaFiscal.service';
 import { NotaFiscalPdfComponent } from './components/notasFiscais/notaFiscal-pdf/notaFiscal-pdf.component';
 import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNotaFiscalPdf.service';
-import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-GerarPdf/notaFiscal-GerarPdf.component';
+import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-gerarPdf/notaFiscal-gerarPdf.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },

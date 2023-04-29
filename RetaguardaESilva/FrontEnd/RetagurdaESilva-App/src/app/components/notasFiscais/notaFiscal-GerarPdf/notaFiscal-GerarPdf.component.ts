@@ -13,9 +13,9 @@ import { NotaFiscalService } from 'src/app/services/notaFiscal/notaFiscal.servic
 import { TituloService } from 'src/app/services/titulo/titulo.service';
 
 @Component({
-  selector: 'app-notaFiscal-GerarPdf',
-  templateUrl: './notaFiscal-GerarPdf.component.html',
-  styleUrls: ['./notaFiscal-GerarPdf.component.scss']
+  selector: 'app-notaFiscal-gerarPdf',
+  templateUrl: './notaFiscal-gerarPdf.component.html',
+  styleUrls: ['./notaFiscal-gerarPdf.component.scss']
 })
 export class NotaFiscalGerarPdfComponent implements OnInit {
   @ViewChild('content', {static: false}) el!: ElementRef;

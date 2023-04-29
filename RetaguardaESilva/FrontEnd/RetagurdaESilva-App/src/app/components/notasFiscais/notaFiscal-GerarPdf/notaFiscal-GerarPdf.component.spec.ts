@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NotaFiscalGerarPdfComponent } from './notaFiscal-GerarPdf.component';
+import { NotaFiscalGerarPdfComponent } from './notaFiscal-gerarPdf.component';
 
 describe('NotaFiscalGerarPdfComponent', () => {
   let component: NotaFiscalGerarPdfComponent;
