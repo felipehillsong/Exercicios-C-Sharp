@@ -65,10 +65,6 @@ export class TituloComponent implements OnInit {
         this.visualizarCadastros = false;
         this.validarCrud.emit([this.authService.visualizarNotaFiscalGerarPDF(), this.authService.visualizarNotaFiscalCancelar()]);
         break;
-      case Permissoes.CadastroRelatorios:
-        this.visualizarCadastros = this.authService.visualizarRelatorioCadastro();
-        this.validarCrud.emit([this.authService.visualizarRelatorioEditar(), this.authService.visualizarRelatorioDetalhe(), this.authService.visualizarRelatorioExcluir()]);
-        break;
     }
     return this.visualizarCadastros;
   }

@@ -10,5 +10,5 @@ export enum Permissoes {
   CadastroUsuario = '/usuarios/lista',
   CadastroPedido = '/pedidos/lista',
   CadastroNotasFiscais = '/notasFiscais/lista',
-  CadastroRelatorios = '/transportadores/lista',
+  GerarRelatorios = '/relatorios/gerarRelatorio',
 }

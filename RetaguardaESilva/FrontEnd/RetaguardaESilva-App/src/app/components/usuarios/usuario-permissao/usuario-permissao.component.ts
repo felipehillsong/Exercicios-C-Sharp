@@ -140,10 +140,6 @@ public validation(): void {
     produtoEditar: [null],
     produtoDetalhe: [null],
     produtoExcluir: [null],
-    relatorioCadastro: [null],
-    relatorioEditar: [null],
-    relatorioDetalhe: [null],
-    relatorioExcluir: [null],
     transportadorCadastro: [null],
     transportadorEditar: [null],
     transportadorDetalhe: [null],
@@ -169,7 +165,7 @@ public validation(): void {
     visualizarUsuario: [null],
     visualizarPedido: [null],
     visualizarNotaFiscal: [null],
-    visualizarRelatorio: [null],
+    gerarRelatorio: [null],
     visualizarEnderecoProduto: [null],
     empresaId: [null],
     usuarioId: [null]
@@ -370,20 +366,4 @@ public validation(): void {
       this.permissoes.visualizarNotaFiscal = true;
     }
   }
-
-  public todosRelatorios(){
-    if(this.permissoes.visualizarRelatorio == true){
-      this.permissoes.relatorioCadastro = false;
-      this.permissoes.relatorioEditar = false;
-      this.permissoes.relatorioDetalhe = false;
-      this.permissoes.relatorioExcluir = false;
-    }
-  }
-
-  public liberarTodosRelatorios(){
-    if(this.permissoes.relatorioCadastro == false || this.permissoes.relatorioEditar == false || this.permissoes.relatorioDetalhe == false || this.permissoes.relatorioExcluir == false){
-      this.permissoes.visualizarRelatorio = true;
-    }
-  }
-
 }

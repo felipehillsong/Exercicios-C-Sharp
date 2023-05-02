@@ -51,7 +51,7 @@ import { UsuarioEditarComponent } from './components/usuarios/usuario-editar/usu
 import { UsuarioListaComponent } from './components/usuarios/usuario-lista/usuario-lista.component';
 import { UsuarioPermissaoComponent } from './components/usuarios/usuario-permissao/usuario-permissao.component';
 import { UsuarioSelecionarFuncionarioComponent } from './components/usuarios/usuario-selecionar-funcionario/usuario-selecionar-funcionario.component';
-import { TituloComponent } from './shared/nav/titulo/titulo.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
 import { NavComponent } from './shared/nav/Nav.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AuthGuardsClienteCadastroService } from './guards/Cliente/AuthGuardsClienteCadastro.service';
@@ -120,6 +120,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-gerarPdf/notaFiscal-gerarPdf.component';
+import { RelatorioComponent } from './components/relatorios/relatorio.component';
+import { GerarRelatorioComponent } from './components/relatorios/gerarRelatorio/gerarRelatorio.component';
+
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -169,6 +172,8 @@ registerLocaleData(ptBr);
     PedidoEditarComponent,
     PedidoDetalheComponent,
     PedidoListaComponent,
+    RelatorioComponent,
+    GerarRelatorioComponent,
     TituloComponent,
     TransportadorComponent,
     TransportadorListaComponent,

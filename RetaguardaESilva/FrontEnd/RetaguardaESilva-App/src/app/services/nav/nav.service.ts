@@ -68,9 +68,9 @@ export class NavService {
 
   naoVisualizarNotaFiscal() { return this.visibleNotaFiscal = false; }
 
-  visualizarRelatorio() { return this.visibleRelatorio = true; }
+  gerarRelatorio() { return this.visibleRelatorio = true; }
 
-  naoVisualizarRelatorio() { return this.visibleRelatorio = false; }
+  naoGerarRelatorio() { return this.visibleRelatorio = false; }
 
   hideEmpresa() { this.visibleEmpresa = false; }
 

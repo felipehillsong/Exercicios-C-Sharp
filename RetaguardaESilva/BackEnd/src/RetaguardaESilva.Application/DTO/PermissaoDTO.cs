@@ -43,11 +43,7 @@ namespace RetaguardaESilva.Application.DTO
         public bool ProdutoEditar { get; set; }
         public bool ProdutoDetalhe { get; set; }
         public bool ProdutoExcluir { get; set; }
-        public bool VisualizarRelatorio { get; set; }
-        public bool RelatorioCadastro { get; set; }
-        public bool RelatorioEditar { get; set; }
-        public bool RelatorioDetalhe { get; set; }
-        public bool RelatorioExcluir { get; set; }
+        public bool GerarRelatorio { get; set; }
         public bool VisualizarTransportador { get; set; }
         public bool TransportadorCadastro { get; set; }
         public bool TransportadorEditar { get; set; }

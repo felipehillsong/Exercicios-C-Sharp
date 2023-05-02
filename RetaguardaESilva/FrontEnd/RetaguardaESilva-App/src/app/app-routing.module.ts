@@ -98,6 +98,9 @@ import { AuthGuardsNotaFiscalService } from './guards/notaFiscal/AuthGuardsNotaF
 import { NotaFiscalPdfComponent } from './components/notasFiscais/notaFiscal-pdf/notaFiscal-pdf.component';
 import { AuthGuardsNotaFiscalPdfService } from './guards/notaFiscal/AuthGuardsNotaFiscalPdf.service';
 import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-gerarPdf/notaFiscal-gerarPdf.component';
+import { RelatorioComponent } from './components/relatorios/relatorio.component';
+import { GerarRelatorioComponent } from './components/relatorios/gerarRelatorio/gerarRelatorio.component';
+import { AuthGuardsRelatorioService } from './guards/relatorio/AuthGuardsRelatorio.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -189,6 +192,11 @@ const routes: Routes = [
     {path: 'lista', title: 'NotaFiscal', component: NotaFiscalListaComponent },
     {path: 'pdf/:id', title: 'Visualizar DANFE', component: NotaFiscalPdfComponent, canActivate: [AuthGuardsNotaFiscalPdfService] },
     {path: 'gerarPdf/:id', title: 'Gerar DANFE', component: NotaFiscalGerarPdfComponent, canActivate: [AuthGuardsNotaFiscalPdfService] }
+  ]},
+  { path: 'relatorios',
+  component: RelatorioComponent, canActivate:[AuthGuardsService, AuthGuardsRelatorioService],
+  children:[
+    {path: 'gerarRelatorio', title: 'Relatorio', component: GerarRelatorioComponent }
   ]},
 ];
 

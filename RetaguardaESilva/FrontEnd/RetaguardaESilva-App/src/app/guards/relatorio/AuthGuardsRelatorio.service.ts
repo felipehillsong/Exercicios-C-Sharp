@@ -10,8 +10,8 @@ export class AuthGuardsRelatorioService implements CanActivate {
 
   constructor(private authService: AuthService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    var visualizarRelatorio = this.authService.permissoesDoUsuario()[0].visualizarRelatorio;
-    return visualizarRelatorio;
+    var gerarRelatorio = this.authService.permissoesDoUsuario()[0].gerarRelatorio;
+    return gerarRelatorio;
   }
 
 }

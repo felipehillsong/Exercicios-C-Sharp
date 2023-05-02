@@ -27,10 +27,6 @@ export interface Permissao {
   produtoEditar: boolean;
   produtoDetalhe: boolean;
   produtoExcluir: boolean;
-  relatorioCadastro: boolean;
-  relatorioEditar: boolean;
-  relatorioDetalhe: boolean;
-  relatorioExcluir: boolean;
   transportadorCadastro: boolean;
   transportadorEditar: boolean;
   transportadorDetalhe: boolean;
@@ -57,7 +53,7 @@ export interface Permissao {
   visualizarUsuario: boolean;
   visualizarPedido: boolean;
   visualizarNotaFiscal: boolean;
-  visualizarRelatorio: boolean;
+  gerarRelatorio: boolean;
   empresaId: number;
   usuarioId: number;
 }

@@ -391,11 +391,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             ProdutoEditar = false,
                             ProdutoDetalhe = false,
                             ProdutoExcluir = false,
-                            VisualizarRelatorio = false,
-                            RelatorioCadastro = false,
-                            RelatorioEditar = false,
-                            RelatorioDetalhe = false,
-                            RelatorioExcluir = false,
+                            GerarRelatorio = false,
                             VisualizarTransportador = false,
                             TransportadorCadastro = false,
                             TransportadorEditar = false,
@@ -461,11 +457,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             ProdutoEditar = usuarioPermissao.ProdutoEditar,
                             ProdutoDetalhe = usuarioPermissao.ProdutoDetalhe,
                             ProdutoExcluir = usuarioPermissao.ProdutoExcluir,
-                            VisualizarRelatorio = usuarioPermissao.VisualizarRelatorio,
-                            RelatorioCadastro = usuarioPermissao.RelatorioCadastro,
-                            RelatorioEditar = usuarioPermissao.RelatorioEditar,
-                            RelatorioDetalhe = usuarioPermissao.RelatorioDetalhe,
-                            RelatorioExcluir = usuarioPermissao.RelatorioExcluir,
+                            GerarRelatorio = usuarioPermissao.GerarRelatorio,
                             VisualizarTransportador = usuarioPermissao.VisualizarTransportador,
                             TransportadorCadastro = usuarioPermissao.TransportadorCadastro,
                             TransportadorEditar = usuarioPermissao.TransportadorEditar,
@@ -537,11 +529,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             &&permissaoBD.ProdutoEditar == permissaoDTO.ProdutoEditar
             &&permissaoBD.ProdutoDetalhe == permissaoDTO.ProdutoDetalhe
             &&permissaoBD.ProdutoExcluir == permissaoDTO.ProdutoExcluir
-            &&permissaoBD.VisualizarRelatorio == permissaoDTO.VisualizarRelatorio
-            &&permissaoBD.RelatorioCadastro == permissaoDTO.RelatorioCadastro
-            &&permissaoBD.RelatorioEditar == permissaoDTO.RelatorioEditar
-            &&permissaoBD.RelatorioDetalhe == permissaoDTO.RelatorioDetalhe
-            &&permissaoBD.RelatorioExcluir == permissaoDTO.RelatorioExcluir
+            &&permissaoBD.GerarRelatorio == permissaoDTO.GerarRelatorio
             &&permissaoBD.VisualizarTransportador == permissaoDTO.VisualizarTransportador
             &&permissaoBD.TransportadorCadastro == permissaoDTO.TransportadorCadastro
             &&permissaoBD.TransportadorEditar == permissaoDTO.TransportadorEditar
@@ -611,11 +599,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 ProdutoEditar = permissaoDTO.ProdutoEditar,
                 ProdutoDetalhe = permissaoDTO.ProdutoDetalhe,
                 ProdutoExcluir = permissaoDTO.ProdutoExcluir,
-                VisualizarRelatorio = permissaoDTO.VisualizarRelatorio,
-                RelatorioCadastro = permissaoDTO.RelatorioCadastro,
-                RelatorioEditar = permissaoDTO.RelatorioEditar,
-                RelatorioDetalhe = permissaoDTO.RelatorioDetalhe,
-                RelatorioExcluir = permissaoDTO.RelatorioExcluir,
+                GerarRelatorio = permissaoDTO.GerarRelatorio,
                 VisualizarTransportador = permissaoDTO.VisualizarTransportador,
                 TransportadorCadastro = permissaoDTO.TransportadorCadastro,
                 TransportadorEditar = permissaoDTO.TransportadorEditar,

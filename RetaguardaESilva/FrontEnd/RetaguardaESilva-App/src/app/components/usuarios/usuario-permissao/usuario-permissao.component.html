@@ -518,40 +518,8 @@
         <div class="row">
           <div class="form-group">
           <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Visualizar Relatorios</label>
-            <input class="form-check-input" (click)="todosRelatorios()" formControlName="visualizarRelatorio" [(ngModel)]="permissoes.visualizarRelatorio" type="checkbox">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-          <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Cadastro</label>
-            <input class="form-check-input" (click)="liberarTodosRelatorios()" formControlName="relatorioCadastro" [(ngModel)]="permissoes.relatorioCadastro" type="checkbox">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-          <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Editar</label>
-            <input class="form-check-input" (click)="liberarTodosRelatorios()" formControlName="relatorioEditar" [(ngModel)]="permissoes.relatorioEditar" type="checkbox">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-          <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Detalhe</label>
-            <input class="form-check-input" (click)="liberarTodosRelatorios()" formControlName="relatorioDetalhe" [(ngModel)]="permissoes.relatorioDetalhe" type="checkbox">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-          <div class="form-group form-check form-switch">
-            <label class="required" style="font-weight: bold;">Excluir</label>
-            <input class="form-check-input" (click)="liberarTodosRelatorios()" formControlName="relatorioExcluir" [(ngModel)]="permissoes.relatorioExcluir" type="checkbox">
+            <label class="required" style="font-weight: bold;">Gerar Relatorios</label>
+            <input class="form-check-input" formControlName="gerarRelatorio" [(ngModel)]="permissoes.gerarRelatorio" type="checkbox">
           </div>
         </div>
         </div>

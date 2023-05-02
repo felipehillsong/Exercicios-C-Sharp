@@ -339,34 +339,14 @@ public visualizarNotaFiscalCancelar():boolean{
 }
 
 public visualizarRelatorio():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].visualizarRelatorio;
+  var vizualizar = this.permissoesDoUsuario()[0].gerarRelatorio;
   if(vizualizar){
-    this.nav.visualizarRelatorio();
+    this.nav.gerarRelatorio();
     return vizualizar;
   }else{
-    this.nav.naoVisualizarRelatorio();
+    this.nav.naoGerarRelatorio();
     return vizualizar;
   }
-}
-
-public visualizarRelatorioCadastro():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].relatorioCadastro;
-  return vizualizar;
-}
-
-public visualizarRelatorioEditar():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].relatorioEditar;
-  return vizualizar;
-}
-
-public visualizarRelatorioDetalhe():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].relatorioDetalhe;
-  return vizualizar;
-}
-
-public visualizarRelatorioExcluir():boolean{
-  var vizualizar = this.permissoesDoUsuario()[0].relatorioExcluir;
-  return vizualizar;
 }
 
 public verificaPermissaoEmpresas():boolean{
