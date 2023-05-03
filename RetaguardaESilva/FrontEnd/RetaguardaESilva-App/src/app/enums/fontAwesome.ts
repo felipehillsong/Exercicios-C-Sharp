@@ -9,5 +9,5 @@ export enum FontAwesome {
   listaFuncionario = 'fa-solid fa-helmet-safety',
   listaTransportador = 'fa-solid fa-truck-fast',
   listaEmpresa = 'fa-solid fa-building',
-  listaUsuario = 'fa-solid fa-user'
+  listaUsuario = 'fa-solid fa-file-export'
 }

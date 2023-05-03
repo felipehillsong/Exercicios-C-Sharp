@@ -24,8 +24,8 @@ export class EstoqueDetalheComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute,  public titu: TituloService, private fb: FormBuilder, private estoqueService: EstoqueService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
-    this.getEstoqueById();
     this.permissoesDeTela();
+    this.getEstoqueById();
   }
 
   public getEstoqueById(): void{
@@ -46,16 +46,17 @@ export class EstoqueDetalheComponent implements OnInit {
   permissoesDeTela(){
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
-    this.authService.visualizarFornecedor();
-    this.authService.visualizarProduto();
     this.authService.visualizarEstoque();
     this.authService.visualizarEnderecoProduto();
+    this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
+    this.authService.visualizarProduto();
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
     this.authService.visualizarPedido();
     this.authService.visualizarNotaFiscal();
+    this.authService.visualizarRelatorio();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();

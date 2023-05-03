@@ -41,4 +41,5 @@ export enum Titulos {
   editarUsuario = 'Editar Usuario',
   detalheUsuario = 'Detalhe do Usuario',
   selecionarFuncionario = 'Selecionar Funcionário',
+  gerarRelatorio = 'Relatórios',
 }

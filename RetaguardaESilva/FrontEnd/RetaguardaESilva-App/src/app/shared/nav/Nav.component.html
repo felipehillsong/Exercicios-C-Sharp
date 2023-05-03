@@ -25,12 +25,6 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleTransportador">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="transportadores/lista">Transportador</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleEmpresa">
-          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="empresas/lista">Empresa</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleUsuario">
-          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="usuarios/lista">Usuario</a>
-        </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visiblePedido">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="pedidos/lista">Pedido</a>
         </li>
@@ -39,6 +33,12 @@
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleRelatorio">
           <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="relatorios/gerarRelatorio">Relatorio</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleUsuario">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="usuarios/lista">Usuario</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="nav.visibleEmpresa">
+          <a class="nav-link" aria-current="page" style="font-weight: bold;" routerLink="empresas/lista">Empresa</a>
         </li>
       </ul>
     </div>

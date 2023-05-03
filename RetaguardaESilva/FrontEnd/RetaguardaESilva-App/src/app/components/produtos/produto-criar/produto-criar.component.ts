@@ -30,8 +30,8 @@ export class ProdutoCriarComponent implements OnInit {
   constructor(private router: Router,  public titu: TituloService, private fb: FormBuilder, private produtoService: ProdutoService, private toastr: ToastrService, private spinner: NgxSpinnerService, public nav: NavService, private _changeDetectorRef: ChangeDetectorRef, private authService: AuthService) { }
 
   ngOnInit() {
-    this.getFornecedores();
     this.permissoesDeTela();
+    this.getFornecedores();
     this.produto.dataCadastroProduto = new Date().toISOString().split('T')[0];
     this.validation();
   }
@@ -123,16 +123,17 @@ export class ProdutoCriarComponent implements OnInit {
   permissoesDeTela(){
     this.authService.verificaAdministrador();
     this.authService.visualizarCliente();
-    this.authService.visualizarFornecedor();
-    this.authService.visualizarProduto();
     this.authService.visualizarEstoque();
     this.authService.visualizarEnderecoProduto();
+    this.authService.visualizarFornecedor();
     this.authService.visualizarFuncionario();
+    this.authService.visualizarProduto();
     this.authService.visualizarTransportador();
     this.authService.visualizarRelatorio();
     this.authService.visualizarUsuario();
     this.authService.visualizarPedido();
     this.authService.visualizarNotaFiscal();
+    this.authService.visualizarRelatorio();
     this.nav.hide();
     this.titu.hide();
     this.titu.showTitulo();
