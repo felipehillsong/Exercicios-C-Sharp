@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.DTO;
@@ -11,6 +12,7 @@ using RetaguardaESilva.Persistence.Contratos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,36 +33,47 @@ namespace RetaguardaESilva.Application.PersistenciaService
             _relatorioPersist = relatorioPersist;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ClienteDTO>> GetClientesAllAsync(int empresaId)
+        public async Task<IEnumerable<ClienteDTO>> GetClientesAllAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
-                var clientes = await _relatorioPersist.GetAllClientesAtivosInativosAsync(empresaId);
-                if (clientes == null)
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
                 {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
-                }
-                else if (clientes.Count() == 0)
-                {
-                    throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
                 }
                 else
                 {
-                    var resultadoClientes = _mapper.Map<IEnumerable<ClienteDTO>>(clientes);
-                    return resultadoClientes;
+                    var clientes = await _relatorioPersist.GetAllClientesAtivosInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (clientes == null)
+                    {
+                        throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
+                    }
+                    else if (clientes.Count() == 0)
+                    {
+                        throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
+                    }
+                    else
+                    {
+                        var resultadoClientes = _mapper.Map<IEnumerable<ClienteDTO>>(clientes);
+                        return resultadoClientes;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-        }
+        }   
 
-        public async Task<IEnumerable<ClienteDTO>> GetClientesAtivoAsync(int empresaId)
+        public async Task<IEnumerable<ClienteDTO>> GetClientesAtivoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
-                var clientes = await _relatorioPersist.GetAllClientesAtivosAsync(empresaId);
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var clientes = await _relatorioPersist.GetAllClientesAtivosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
                     throw new Exception(MensagemDeErro.ClienteAtivoNaoEncontrado);
@@ -81,11 +94,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<ClienteDTO>> GetClientesInativoAsync(int empresaId)
+        public async Task<IEnumerable<ClienteDTO>> GetClientesInativoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
-                var clientes = await _relatorioPersist.GetAllClientesInativosAsync(empresaId);
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var clientes = await _relatorioPersist.GetAllClientesInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
                     throw new Exception(MensagemDeErro.ClienteInativoNaoEncontrado);
@@ -106,11 +121,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<ClienteDTO>> GetClientesExcluidoAsync(int empresaId)
+        public async Task<IEnumerable<ClienteDTO>> GetClientesExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
-                var clientes = await _relatorioPersist.GetAllClientesExcluidosAsync(empresaId);
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var clientes = await _relatorioPersist.GetAllClientesExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
                     throw new Exception(MensagemDeErro.ClienteExcluidoNaoEncontrado);

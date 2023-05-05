@@ -9,9 +9,9 @@ namespace RetaguardaESilva.Persistence.Contratos
 {
     public interface IRelatorioPersist
     {
-        Task<IEnumerable<Cliente>> GetAllClientesAtivosInativosAsync(int empresaId);
-        Task<IEnumerable<Cliente>> GetAllClientesAtivosAsync(int empresaId);
-        Task<IEnumerable<Cliente>> GetAllClientesInativosAsync(int empresaId);
-        Task<IEnumerable<Cliente>> GetAllClientesExcluidosAsync(int empresaId);
+        Task<IEnumerable<Cliente>> GetAllClientesAtivosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Cliente>> GetAllClientesAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Cliente>> GetAllClientesInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Cliente>> GetAllClientesExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
     }
 }

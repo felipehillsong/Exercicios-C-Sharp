@@ -9,9 +9,9 @@ namespace RetaguardaESilva.Application.ContratosServices
 {
     public interface IRelatorioService
     {
-        Task<IEnumerable<ClienteDTO>> GetClientesAllAsync(int empresaId);
-        Task<IEnumerable<ClienteDTO>> GetClientesAtivoAsync(int empresaId);
-        Task<IEnumerable<ClienteDTO>> GetClientesInativoAsync(int empresaId);
-        Task<IEnumerable<ClienteDTO>> GetClientesExcluidoAsync(int empresaId);
+        Task<IEnumerable<ClienteDTO>> GetClientesAllAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<ClienteDTO>> GetClientesAtivoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<ClienteDTO>> GetClientesInativoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<ClienteDTO>> GetClientesExcluidoAsync(int empresaId, string dataIncio, string dataFinal);
     }
 }

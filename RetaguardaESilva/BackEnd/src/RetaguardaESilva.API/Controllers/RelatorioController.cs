@@ -16,35 +16,35 @@ namespace RetaguardaESilva.Controllers
         }
         // GET: api/Relatorio
         [HttpGet]
-        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio)
+        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string dataIncio, string dataFinal)
         {
             try
             {   
                 switch (codigoRelatorio)
                 {
                     case (int)TipoRelatorio.TodosClientesAtivosInativosExcluidos:
-                    var todosClientesAtivosInativos = await _relatorioService.GetClientesAllAsync(empresaId);
+                    var todosClientesAtivosInativos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
                         if (todosClientesAtivosInativos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosClientesAtivosInativos);
                     case (int)TipoRelatorio.TodosClientesAtivos:
-                        var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId);
+                        var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataIncio, dataFinal);
                         if (todosClientesAtivos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosClientesAtivos);
                     case (int)TipoRelatorio.TodosClientesInativos:
-                        var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId);
+                        var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId, dataIncio, dataFinal);
                         if (todosClientesInativos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosClientesInativos);
                     case (int)TipoRelatorio.TodosClientesExcluidos:
-                        var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId);
+                        var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId, dataIncio, dataFinal);
                         if (todosClientesExcluidos == null)
                         {
                             return NotFound();

@@ -41,6 +41,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
+                    model.StatusExclusao = Convert.ToBoolean(Situacao.Inativo);
                     model.Ativo = Convert.ToBoolean(Situacao.Ativo);
                     var clienteCreateDTO = _mapper.Map<Cliente>(model);
                     clienteCreateDTO.Nome = _validacoesPersist.AcertarNome(clienteCreateDTO.Nome);
@@ -75,7 +76,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         throw new Exception(mensagem);
                     }
                     else
-                    {   
+                    {
+                        model.StatusExclusao = Convert.ToBoolean(Situacao.Inativo);
                         var clienteUpdateDTO = _mapper.Map<Cliente>(model);
                         clienteUpdateDTO.Nome = _validacoesPersist.AcertarNome(clienteUpdateDTO.Nome);
                         _geralPersist.Update(clienteUpdateDTO);
@@ -106,6 +108,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 {
                     cliente.StatusExclusao = Convert.ToBoolean(Situacao.Excluido);
+                    cliente.Ativo = Convert.ToBoolean(Situacao.Inativo);
                     _geralPersist.Update<Cliente>(cliente);
                     return await _geralPersist.SaveChangesAsync();
                 }
