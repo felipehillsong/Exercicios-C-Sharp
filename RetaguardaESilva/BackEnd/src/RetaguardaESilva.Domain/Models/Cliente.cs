@@ -25,7 +25,8 @@ namespace RetaguardaESilva.Domain.Models
         public string? InscricaoMunicipal { get; set; }
         public string? InscricaoEstadual { get; set; }
         public DateTime? DataCadastroCliente { get; set; }
-        public bool Ativo { get; set; }        
-        public int EmpresaId { get; set; }        
+        public bool Ativo { get; set; }
+        public bool StatusExclusao { get; set; }
+        public int EmpresaId { get; set; }
     }
 }

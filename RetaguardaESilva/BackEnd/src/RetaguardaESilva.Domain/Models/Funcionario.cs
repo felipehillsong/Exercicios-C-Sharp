@@ -23,6 +23,7 @@ namespace RetaguardaESilva.Domain.Models
         public string CPF { get; set; }
         public DateTime? DataCadastroFuncionario { get; set; }
         public bool Ativo { get; set; }
-        public int EmpresaId { get; set; }        
+        public bool StatusExclusao { get; set; }
+        public int EmpresaId { get; set; }
     }
 }

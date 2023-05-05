@@ -25,6 +25,9 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ClienteJaCadastrado = "Você esta tentando cadastrar um cliente já cadastrado, reveja o CPF, CNPJ, Inscrição Municipal ou Inscrição Estadual";
         public const string ClienteNaoEncontrado = "Nenhum cliente encontrado";
         public const string ClienteNaoEncontradoEmpresa = "Não existem clientes cadastrados nessa empresa";
+        public const string ClienteAtivoNaoEncontrado = "Nenhum cliente ativo encontrado";
+        public const string ClienteInativoNaoEncontrado = "Nenhum cliente inativo encontrado";
+        public const string ClienteExcluidoNaoEncontrado = "Nenhum cliente excluido encontrado";
         public const string ClienteNaoEncontradoUpdate = "Cliente não encontrado para ser atualizado, verificar Id da empresa e Id do cliente";
         public const string ClienteNaoEncontradoDelete = "Cliente não encontrado para delete, verifique o Id da empresa e o Id do cliente";
         public const string FornecedorJaCadastrado = "Você esta tentando cadastrar ou atualizar para um fornecedor já cadastrado, reveja o CPF, CNPJ, Inscrição Municipal e Inscrição Estadual";

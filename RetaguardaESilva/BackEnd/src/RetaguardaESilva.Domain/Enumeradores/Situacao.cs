@@ -9,6 +9,7 @@ namespace RetaguardaESilva.Domain.Enumeradores
     public enum Situacao
     {
         Inativo = 0,
-        Ativo = 1
+        Ativo = 1,
+        Excluido = 1
     }
 }

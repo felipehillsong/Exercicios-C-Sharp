@@ -105,7 +105,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    _geralPersist.Delete<Cliente>(cliente);
+                    cliente.StatusExclusao = Convert.ToBoolean(Situacao.Excluido);
+                    _geralPersist.Update<Cliente>(cliente);
                     return await _geralPersist.SaveChangesAsync();
                 }
             }
