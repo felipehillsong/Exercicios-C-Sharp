@@ -31,6 +31,8 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ClienteNaoEncontradoUpdate = "Cliente não encontrado para ser atualizado, verificar Id da empresa e Id do cliente";
         public const string ClienteNaoEncontradoDelete = "Cliente não encontrado para delete, verifique o Id da empresa e o Id do cliente";
         public const string FornecedorJaCadastrado = "Você esta tentando cadastrar ou atualizar para um fornecedor já cadastrado, reveja o CPF, CNPJ, Inscrição Municipal e Inscrição Estadual";
+        public const string FornecedorAtivoNaoEncontrado = "Nenhum fornecedor ativo encontrado";
+        public const string FornecedorInativoNaoEncontrado = "Nenhum fornecedor inativo encontrado";
         public const string FornecedorNaoEcontradoUpdate = "Fornecedor não encontrado para ser atualizado, verificar Id da empresa e Id do fornecedor";
         public const string FornecedorNaoEncontradoDelete = "Fornecedor não encontrado para delete";
         public const string FornecedorNaoEncontrado = "Nenhum fornecedor encontrado";

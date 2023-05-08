@@ -21,4 +21,10 @@ namespace RetaguardaESilva.Domain.ViewModels
         public int EmpresaId { get; set; }
         public int FornecedorId { get; set; }
     }
+
+    public class ProdutoFornecedorViewModel : ProdutoViewModel
+    {
+        public bool Ativo { get; set; }
+        public bool StatusExclusao { get; set; }
+    }
 }

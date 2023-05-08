@@ -12,5 +12,13 @@ namespace RetaguardaESilva.Application.Enumeradores
         TodosClientesAtivos = 2,
         TodosClientesInativos = 3,
         TodosClientesExcluidos = 4,
+        TodosFornecedoresAtivosInativosExcluidos = 5,
+        TodosFornecedoresAtivos = 6,
+        TodosFornecedoresInativos = 7,
+        TodosFornecedoresExcluidos = 8,
+        TodosFornecedoresProdutosAtivoInativoExcluidos = 9,
+        TodosFornecedoresProdutosAtivos = 10,
+        TodosFornecedoresProdutosInativos = 11,
+        TodosFornecedoresProdutosExcluidos = 12
     }
 }

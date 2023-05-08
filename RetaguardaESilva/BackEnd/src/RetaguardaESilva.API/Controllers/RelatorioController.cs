@@ -23,12 +23,12 @@ namespace RetaguardaESilva.Controllers
                 switch (codigoRelatorio)
                 {
                     case (int)TipoRelatorio.TodosClientesAtivosInativosExcluidos:
-                    var todosClientesAtivosInativos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
-                        if (todosClientesAtivosInativos == null)
+                    var todosClientesAtivosInativosExcluidos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
+                        if (todosClientesAtivosInativosExcluidos == null)
                         {
                             return NotFound();
                         }
-                        return Ok(todosClientesAtivosInativos);
+                        return Ok(todosClientesAtivosInativosExcluidos);
                     case (int)TipoRelatorio.TodosClientesAtivos:
                         var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataIncio, dataFinal);
                         if (todosClientesAtivos == null)
@@ -50,6 +50,41 @@ namespace RetaguardaESilva.Controllers
                             return NotFound();
                         }
                         return Ok(todosClientesExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresAtivosInativosExcluidos:
+                        var todosFornecedoresAtivosInativosExcluidos = await _relatorioService.GetFornecedoresAllAsync(empresaId, dataIncio, dataFinal);
+                        if (todosFornecedoresAtivosInativosExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresAtivosInativosExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresAtivos:
+                        var todosFornecedoresAtivos = await _relatorioService.GetFornecedoresAtivoAsync(empresaId, dataIncio, dataFinal);
+                        if (todosFornecedoresAtivos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresAtivos);
+                    case (int)TipoRelatorio.TodosFornecedoresInativos:
+                        var todosFornecedoresInativos = await _relatorioService.GetFornecedoresInativoAsync(empresaId, dataIncio, dataFinal);
+                        if (todosFornecedoresInativos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresInativos);
+                    case (int)TipoRelatorio.TodosFornecedoresExcluidos:
+                        var todosFornecedoresExcluidos = await _relatorioService.GetFornecedoresExcluidoAsync(empresaId, dataIncio, dataFinal);
+                        if (todosFornecedoresExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresProdutosAtivoInativoExcluidos:
+                        var todosFornecedoresProdutosAtivoInativoExcluidos = await _relatorioService.GetFornecedoresProdutosAllAsync(empresaId, dataIncio, dataFinal);
+                        if (todosFornecedoresProdutosAtivoInativoExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresProdutosAtivoInativoExcluidos);
                 }
 
                 return NotFound();

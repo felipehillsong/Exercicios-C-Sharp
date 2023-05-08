@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RetaguardaESilva.Application.DTO
+namespace RetaguardaESilva.Domain.ViewModels
 {
-    public class FornecedorDTO
+    public class FornecedorViewModel
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -25,21 +25,12 @@ namespace RetaguardaESilva.Application.DTO
         public string InscricaoEstadual { get; set; }
         public DateTime? DataCadastroFornecedor { get; set; }
         public bool Ativo { get; set; }
+        public bool StatusExclusao { get; set; }
         public int EmpresaId { get; set; }
     }
 
-    public class FornecedorCreateDTO : FornecedorDTO
+    public class FornecedorProdutoViewModel : FornecedorViewModel
     {
-
-    }
-
-    public class FornecedorUpdateDTO : FornecedorDTO
-    {
-
-    }
-
-    public class FornecedorProdutoDTO : FornecedorDTO
-    {
-        public List<ProdutoPedidoDTO> Produtos { get; set; }
+        public List<ProdutoFornecedorViewModel> Produtos { get; set; }
     }
 }
