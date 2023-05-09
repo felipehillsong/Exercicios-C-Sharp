@@ -263,7 +263,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<FornecedorProdutoDTO>> GetFornecedoresProdutosAllAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAllAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
@@ -286,7 +286,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     }
                     else
                     {
-                        var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoDTO>>(fornecedoresProdutos);
+                        var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
                         return resultadoFornecedores;
                     }
                 }
@@ -297,17 +297,17 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public Task<IEnumerable<FornecedorProdutoDTO>> GetFornecedoresProdutosAtivoAsync(int empresaId, string dataIncio, string dataFinal)
+        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAtivoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FornecedorProdutoDTO>> GetFornecedoresProdutosInativoAsync(int empresaId, string dataIncio, string dataFinal)
+        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosInativoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FornecedorProdutoDTO>> GetFornecedoresProdutosExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
+        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
         {
             throw new NotImplementedException();
         }

@@ -56,60 +56,66 @@ namespace RetaguardaESilva.Persistence.Persistencias
         }
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosAllAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {   
-            var fornecedorProduto = new FornecedorProdutoViewModel();
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
-            fornecedorProduto.Produtos = new List<ProdutoFornecedorViewModel>();
+            var produtosFornecedor = new List<ProdutoFornecedorViewModel>();
             var fornecedores = GetAllFornecedoresAtivosInativosAsync(empresaId, dataInicio, dataFinal);
             foreach (var item in fornecedores.Result)
             {
-                int fornecedorId = item.Id;
-
-                fornecedorProduto.Id = item.Id;
-                fornecedorProduto.Nome = item.Nome;
-                fornecedorProduto.Endereco = item.Endereco;
-                fornecedorProduto.Bairro = item.Bairro;
-                fornecedorProduto.Numero = item.Numero;
-                fornecedorProduto.Municipio = item.Municipio;
-                fornecedorProduto.UF = item.UF;
-                fornecedorProduto.Pais = item.Pais;
-                fornecedorProduto.CEP = item.CEP;
-                fornecedorProduto.Complemento = item.Complemento;
-                fornecedorProduto.Telefone = item.Telefone;
-                fornecedorProduto.Email = item.Email;
-                fornecedorProduto.CNPJ = item.CNPJ;
-                fornecedorProduto.InscricaoMunicipal = item.InscricaoMunicipal;
-                fornecedorProduto.InscricaoEstadual = item.InscricaoEstadual;
-                fornecedorProduto.DataCadastroFornecedor = item.DataCadastroFornecedor;
-                fornecedorProduto.Ativo = item.Ativo;
-                fornecedorProduto.StatusExclusao = item.StatusExclusao;
-                fornecedorProduto.EmpresaId = item.EmpresaId;                
-
-                var produtos = await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.FornecedorId == item.Id).OrderBy(p => p.Nome).ToListAsync();
-                foreach (var item2 in produtos)
+                var fornecedorProduto = new FornecedorProdutoViewModel
                 {
-                    var produto = new ProdutoFornecedorViewModel
-                    {
-                        Id = item2.Id,
-                        Nome = item2.Nome,
-                        Quantidade = item2.Quantidade,
-                        Ativo = item2.Ativo,
-                        StatusExclusao = item2.StatusExclusao,
-                        PrecoCompra = item2.PrecoCompra,
-                        PrecoVenda = item2.PrecoVenda,
-                        Codigo = item2.Codigo,
-                        DataCadastroProduto = item2.DataCadastroProduto,
-                        EmpresaId = item2.EmpresaId,
-                        FornecedorId = item2.FornecedorId
-                    };
-
-                    if (item.Id == fornecedorId)
-                    {
-                        fornecedorProduto.Produtos.Add(produto);
-                    }
-                }
+                    Id = item.Id,
+                    Nome = item.Nome,
+                    Endereco = item.Endereco,
+                    Bairro = item.Bairro,
+                    Numero = item.Numero,
+                    Municipio = item.Municipio,
+                    UF = item.UF,
+                    Pais = item.Pais,
+                    CEP = item.CEP,
+                    Complemento = item.Complemento,
+                    Telefone = item.Telefone,
+                    Email = item.Email,
+                    CNPJ = item.CNPJ,
+                    InscricaoMunicipal = item.InscricaoMunicipal,
+                    InscricaoEstadual = item.InscricaoEstadual,
+                    DataCadastroFornecedor = item.DataCadastroFornecedor,
+                    Ativo = item.Ativo,
+                    StatusExclusao = item.StatusExclusao,
+                    EmpresaId = item.EmpresaId
+                };
 
                 fornecedorProdutoRetorno.Add(fornecedorProduto);
             }
+
+            foreach (var item in fornecedorProdutoRetorno)
+            {
+                var produtos = await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.FornecedorId == item.Id).OrderBy(p => p.Nome).ToListAsync();
+                foreach (var item1 in produtos)
+                {
+                    var produto = new ProdutoFornecedorViewModel
+                    {
+                        Id = item1.Id,
+                        Nome = item1.Nome,
+                        Quantidade = item1.Quantidade,
+                        Ativo = item1.Ativo,
+                        StatusExclusao = item1.StatusExclusao,
+                        PrecoCompra = item1.PrecoCompra,
+                        PrecoVenda = item1.PrecoVenda,
+                        Codigo = item1.Codigo,
+                        DataCadastroProduto = item1.DataCadastroProduto,
+                        EmpresaId = item1.EmpresaId,
+                        FornecedorId = item1.FornecedorId
+                    };
+                    produtosFornecedor.Add(produto);
+                }
+            }
+
+            foreach (var item in fornecedorProdutoRetorno)
+            {
+                var produtos = produtosFornecedor.Where(p => p.FornecedorId == item.Id).ToList();
+                item.Produtos = produtos;
+            }
+
             return fornecedorProdutoRetorno;
         }
 
