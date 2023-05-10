@@ -45,7 +45,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    var clientes = await _relatorioPersist.GetAllClientesAtivosInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    var clientes = await _relatorioPersist.GetAllClientesAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                     if (clientes == null)
                     {
                         throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
@@ -160,7 +160,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    var fornecedores = await _relatorioPersist.GetAllClientesAtivosInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    var fornecedores = await _relatorioPersist.GetAllFornecedoresAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                     if (fornecedores == null)
                     {
                         throw new Exception(MensagemDeErro.FornecedorNaoEncontrado);
@@ -263,32 +263,23 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAllAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAllAsync(int empresaId)
         {
             try
             {
-                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (dataFinalConvertida < dataInicioConvertida)
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresProdutosAllAsync(empresaId);
+                if (fornecedoresProdutos == null)
                 {
-                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
                 }
                 else
                 {
-                    var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresProdutosAllAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
-                    if (fornecedoresProdutos == null)
-                    {
-                        throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
-                    }
-                    else if (fornecedoresProdutos.Count() == 0)
-                    {
-                        throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
-                    }
-                    else
-                    {
-                        var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
-                        return resultadoFornecedores;
-                    }
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
                 }
             }
             catch (Exception ex)
@@ -297,19 +288,79 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAtivoAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosAtivoAsync(int empresaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresProdutosAtivoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosInativoAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosInativoAsync(int empresaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresProdutosInativoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresProdutosExcluidoAsync(int empresaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresProdutosExcluidoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

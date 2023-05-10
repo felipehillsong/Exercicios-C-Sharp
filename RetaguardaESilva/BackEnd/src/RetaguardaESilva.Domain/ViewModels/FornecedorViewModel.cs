@@ -31,6 +31,6 @@ namespace RetaguardaESilva.Domain.ViewModels
 
     public class FornecedorProdutoViewModel : FornecedorViewModel
     {
-        public List<ProdutoFornecedorViewModel> Produtos { get; set; }
+        public List<ProdutoViewModel> Produtos { get; set; }
     }
 }

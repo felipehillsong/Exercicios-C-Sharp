@@ -98,5 +98,6 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string NotaFiscalNaoEncontrada = "Nenhuma nota fiscal encontrada";
         public const string NotaFiscalNaoEncontradaDelete = "Nota fiscal encontrada para ser cancelada";
         public const string DataFinalMaiorFinal = "A data final não pode ser menor que a data inicial";
+        public const string SemDataRelatorio = "Esta faltando a data inicial ou final ";
     }
 }

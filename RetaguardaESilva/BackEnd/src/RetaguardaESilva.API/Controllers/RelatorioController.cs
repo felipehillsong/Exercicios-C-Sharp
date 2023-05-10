@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RetaguardaESilva.Application.ContratosServices;
 using RetaguardaESilva.Application.Enumeradores;
+using RetaguardaESilva.Domain.Mensagem;
 
 namespace RetaguardaESilva.Controllers
 {
@@ -16,75 +17,152 @@ namespace RetaguardaESilva.Controllers
         }
         // GET: api/Relatorio
         [HttpGet]
-        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string dataIncio, string dataFinal)
+        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string? dataIncio, string? dataFinal)
         {
             try
             {   
                 switch (codigoRelatorio)
                 {
                     case (int)TipoRelatorio.TodosClientesAtivosInativosExcluidos:
-                    var todosClientesAtivosInativosExcluidos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
-                        if (todosClientesAtivosInativosExcluidos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosClientesAtivosInativosExcluidos);
+                        else
+                        {
+                            var todosClientesAtivosInativosExcluidos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
+                            if (todosClientesAtivosInativosExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosClientesAtivosInativosExcluidos);
+                        }
                     case (int)TipoRelatorio.TodosClientesAtivos:
-                        var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosClientesAtivos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosClientesAtivos);
+                        else
+                        {
+                            var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosClientesAtivos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosClientesAtivos);
+                        }
                     case (int)TipoRelatorio.TodosClientesInativos:
-                        var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosClientesInativos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosClientesInativos);
+                        else
+                        {
+                            var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosClientesInativos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosClientesInativos);
+                        }
                     case (int)TipoRelatorio.TodosClientesExcluidos:
-                        var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosClientesExcluidos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosClientesExcluidos);
+                        else
+                        {
+                            var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosClientesExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosClientesExcluidos);
+                        }
                     case (int)TipoRelatorio.TodosFornecedoresAtivosInativosExcluidos:
-                        var todosFornecedoresAtivosInativosExcluidos = await _relatorioService.GetFornecedoresAllAsync(empresaId, dataIncio, dataFinal);
-                        if (todosFornecedoresAtivosInativosExcluidos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosFornecedoresAtivosInativosExcluidos);
+                        else
+                        {
+                            var todosFornecedoresAtivosInativosExcluidos = await _relatorioService.GetFornecedoresAllAsync(empresaId, dataIncio, dataFinal);
+                            if (todosFornecedoresAtivosInativosExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosFornecedoresAtivosInativosExcluidos);
+                        }
                     case (int)TipoRelatorio.TodosFornecedoresAtivos:
-                        var todosFornecedoresAtivos = await _relatorioService.GetFornecedoresAtivoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosFornecedoresAtivos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosFornecedoresAtivos);
+                        else
+                        {
+                            var todosFornecedoresAtivos = await _relatorioService.GetFornecedoresAtivoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosFornecedoresAtivos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosFornecedoresAtivos);
+                        }
                     case (int)TipoRelatorio.TodosFornecedoresInativos:
-                        var todosFornecedoresInativos = await _relatorioService.GetFornecedoresInativoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosFornecedoresInativos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosFornecedoresInativos);
+                        else
+                        {
+                            var todosFornecedoresInativos = await _relatorioService.GetFornecedoresInativoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosFornecedoresInativos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosFornecedoresInativos);
+                        }
                     case (int)TipoRelatorio.TodosFornecedoresExcluidos:
-                        var todosFornecedoresExcluidos = await _relatorioService.GetFornecedoresExcluidoAsync(empresaId, dataIncio, dataFinal);
-                        if (todosFornecedoresExcluidos == null)
+                        if (dataIncio == null || dataFinal == null)
                         {
-                            return NotFound();
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
-                        return Ok(todosFornecedoresExcluidos);
+                        else
+                        {
+                            var todosFornecedoresExcluidos = await _relatorioService.GetFornecedoresExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosFornecedoresExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosFornecedoresExcluidos);
+                        }
                     case (int)TipoRelatorio.TodosFornecedoresProdutosAtivoInativoExcluidos:
-                        var todosFornecedoresProdutosAtivoInativoExcluidos = await _relatorioService.GetFornecedoresProdutosAllAsync(empresaId, dataIncio, dataFinal);
+                        var todosFornecedoresProdutosAtivoInativoExcluidos = await _relatorioService.GetFornecedoresProdutosAllAsync(empresaId);
                         if (todosFornecedoresProdutosAtivoInativoExcluidos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosFornecedoresProdutosAtivoInativoExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresProdutosAtivos:
+                        var todosFornecedoresProdutosAtivos = await _relatorioService.GetFornecedoresProdutosAtivoAsync(empresaId);
+                        if (todosFornecedoresProdutosAtivos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresProdutosAtivos);
+                    case (int)TipoRelatorio.TodosFornecedoresProdutosInativos:
+                        var todosFornecedoresProdutosInativos = await _relatorioService.GetFornecedoresProdutosInativoAsync(empresaId);
+                        if (todosFornecedoresProdutosInativos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresProdutosInativos);
+                    case (int)TipoRelatorio.TodosFornecedoresProdutosExcluidos:
+                        var todosFornecedoresProdutosExcluidos = await _relatorioService.GetFornecedoresProdutosExcluidoAsync(empresaId);
+                        if (todosFornecedoresProdutosExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresProdutosExcluidos);
                 }
 
                 return NotFound();

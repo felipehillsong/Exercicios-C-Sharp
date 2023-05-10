@@ -24,6 +24,7 @@ namespace RetaguardaESilva.Application.DTO
         public string InscricaoMunicipal { get; set; }
         public string InscricaoEstadual { get; set; }
         public DateTime? DataCadastroFornecedor { get; set; }
+        public bool StatusExclusao { get; set; }
         public bool Ativo { get; set; }
         public int EmpresaId { get; set; }
     }

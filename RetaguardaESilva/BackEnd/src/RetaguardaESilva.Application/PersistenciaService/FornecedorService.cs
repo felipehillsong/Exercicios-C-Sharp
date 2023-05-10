@@ -7,6 +7,7 @@ using RetaguardaESilva.Domain.Enumeradores;
 using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Domain.Models;
 using RetaguardaESilva.Persistence.Contratos;
+using RetaguardaESilva.Persistence.Persistencias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,54 +101,13 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var fornecedor = await _fornecedorPersist.GetFornecedorByIdAsync(empresaId, fornecedorId);
                 if (fornecedor == null)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorNaoEncontradoDelete);
+                    throw new Exception(MensagemDeErro.FornecedorNaoEcontradoUpdate);
                 }
                 else
                 {
-                    var fornecedorProduto = await GetFornecedoresProdutosByIdAsync(fornecedor.EmpresaId, fornecedor.Id);
-                    if (fornecedorProduto != null)
-                    {
-                        foreach (var item in fornecedorProduto.ToList())
-                        {
-                            var zerarIdFornecedorProduto = new Produto()
-                            {
-                                Id = item.Id,
-                                Nome = item.Nome,
-                                Quantidade = item.Quantidade,
-                                Ativo = item.Ativo,
-                                PrecoVenda = item.PrecoVenda,
-                                PrecoCompra = item.PrecoCompra,
-                                Codigo = item.Codigo,
-                                DataCadastroProduto = item.DataCadastroProduto,
-                                EmpresaId = item.EmpresaId,
-                                FornecedorId = (int)ZerarIdFornecedor.FornecedorId
-                            };
-
-                            _geralPersist.Update<Produto>(zerarIdFornecedorProduto);
-                            await _geralPersist.SaveChangesAsync();
-                        }
-                    }
-
-                    var fornecedorEstoque = _fornecedorPersist.GetFornecedorByEstoqueAsync(fornecedor.EmpresaId, fornecedor.Id);
-                    if (fornecedorEstoque != null)
-                    {
-                        foreach (var item in fornecedorEstoque.Result.ToList())
-                        {
-                            var zerouFornecedorEstoque = new Estoque()
-                            {
-                                Id = item.Id,
-                                EmpresaId = item.EmpresaId,
-                                FornecedorId = (int)ZerarIdFornecedor.FornecedorId,
-                                ProdutoId = item.ProdutoId,
-                                Quantidade = item.Quantidade
-                            };
-
-                            _geralPersist.Update<Estoque>(zerouFornecedorEstoque);
-                            await _geralPersist.SaveChangesAsync();
-                        }
-                    }
-
-                    _geralPersist.Delete<Fornecedor>(fornecedor);
+                    fornecedor.StatusExclusao = Convert.ToBoolean(Situacao.Excluido);
+                    fornecedor.Ativo = Convert.ToBoolean(Situacao.Inativo);
+                    _geralPersist.Update<Fornecedor>(fornecedor);
                     return await _geralPersist.SaveChangesAsync();
                 }
             }

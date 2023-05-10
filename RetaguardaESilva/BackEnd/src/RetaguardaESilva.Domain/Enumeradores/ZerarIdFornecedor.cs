@@ -8,6 +8,7 @@ namespace RetaguardaESilva.Domain.Enumeradores
 {
     public enum ZerarIdFornecedor
     {
-        FornecedorId = 0
+        FornecedorId = 0,
+        FornecedorSemProduto = 0
     }
 }
