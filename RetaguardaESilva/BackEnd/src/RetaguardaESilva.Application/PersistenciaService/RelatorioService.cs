@@ -362,5 +362,203 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresInativosProdutosAllAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresInativosProdutosAllAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresInativosProdutosAtivoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresInativosProdutosAtivoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresInativosProdutosInativoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresInativosProdutosInativoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresInativosProdutosExcluidoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresInativosProdutosExcluidoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosAllAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresExcluidosProdutosAllAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosAtivoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresExcluidosProdutosAtivoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosInativoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresExcluidosProdutosInativoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosExcluidoAsync(int empresaId)
+        {
+            try
+            {
+                var fornecedoresProdutos = await _relatorioPersist.GetFornecedoresExcluidosProdutosExcluidoAsync(empresaId);
+                if (fornecedoresProdutos == null)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else if (fornecedoresProdutos.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFornecedores = _mapper.Map<IEnumerable<FornecedorProdutoRelatorioDTO>>(fornecedoresProdutos);
+                    return resultadoFornecedores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

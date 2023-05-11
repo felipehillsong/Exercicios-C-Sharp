@@ -135,34 +135,90 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosFornecedoresExcluidos);
                         }
-                    case (int)TipoRelatorio.TodosFornecedoresProdutosAtivoInativoExcluidos:
+                    case (int)TipoRelatorio.TodosFornecedoresAtivosProdutosAtivoInativoExcluidos:
                         var todosFornecedoresProdutosAtivoInativoExcluidos = await _relatorioService.GetFornecedoresProdutosAllAsync(empresaId);
                         if (todosFornecedoresProdutosAtivoInativoExcluidos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosFornecedoresProdutosAtivoInativoExcluidos);
-                    case (int)TipoRelatorio.TodosFornecedoresProdutosAtivos:
+                    case (int)TipoRelatorio.TodosFornecedoresAtivosProdutosAtivos:
                         var todosFornecedoresProdutosAtivos = await _relatorioService.GetFornecedoresProdutosAtivoAsync(empresaId);
                         if (todosFornecedoresProdutosAtivos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosFornecedoresProdutosAtivos);
-                    case (int)TipoRelatorio.TodosFornecedoresProdutosInativos:
+                    case (int)TipoRelatorio.TodosFornecedoresAtivosProdutosInativos:
                         var todosFornecedoresProdutosInativos = await _relatorioService.GetFornecedoresProdutosInativoAsync(empresaId);
                         if (todosFornecedoresProdutosInativos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosFornecedoresProdutosInativos);
-                    case (int)TipoRelatorio.TodosFornecedoresProdutosExcluidos:
+                    case (int)TipoRelatorio.TodosFornecedoresAtivosProdutosExcluidos:
                         var todosFornecedoresProdutosExcluidos = await _relatorioService.GetFornecedoresProdutosExcluidoAsync(empresaId);
                         if (todosFornecedoresProdutosExcluidos == null)
                         {
                             return NotFound();
                         }
                         return Ok(todosFornecedoresProdutosExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresInativosProdutosAtivoInativoExcluidos:
+                        var todosFornecedoresInativosProdutosInativosInativoExcluidos = await _relatorioService.GetFornecedoresInativosProdutosAllAsync(empresaId);
+                        if (todosFornecedoresInativosProdutosInativosInativoExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresInativosProdutosInativosInativoExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresInativosProdutosAtivos:
+                        var todosFornecedoresInativosProdutosAtivos = await _relatorioService.GetFornecedoresInativosProdutosAtivoAsync(empresaId);
+                        if (todosFornecedoresInativosProdutosAtivos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresInativosProdutosAtivos);
+                    case (int)TipoRelatorio.TodosFornecedoresInativosProdutosInativos:
+                        var todosFornecedoresInativosProdutosInativos = await _relatorioService.GetFornecedoresInativosProdutosInativoAsync(empresaId);
+                        if (todosFornecedoresInativosProdutosInativos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresInativosProdutosInativos);
+                    case (int)TipoRelatorio.TodosFornecedoresInativosProdutosExcluidos:
+                        var todosFornecedoresInativosProdutosExcluidos = await _relatorioService.GetFornecedoresInativosProdutosExcluidoAsync(empresaId);
+                        if (todosFornecedoresInativosProdutosExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresInativosProdutosExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresExcluidosProdutosAtivoInativoExcluidos:
+                        var todosFornecedoresExcluidosProdutosInativosInativoExcluidos = await _relatorioService.GetFornecedoresExcluidosProdutosAllAsync(empresaId);
+                        if (todosFornecedoresExcluidosProdutosInativosInativoExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresExcluidosProdutosInativosInativoExcluidos);
+                    case (int)TipoRelatorio.TodosFornecedoresExcluidosProdutosAtivos:
+                        var todosFornecedoresExcluidosProdutosAtivos = await _relatorioService.GetFornecedoresExcluidosProdutosAtivoAsync(empresaId);
+                        if (todosFornecedoresExcluidosProdutosAtivos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresExcluidosProdutosAtivos);
+                    case (int)TipoRelatorio.TodosFornecedoresExcluidosProdutosInativos:
+                        var todosFornecedoresExcluidosProdutosInativos = await _relatorioService.GetFornecedoresExcluidosProdutosInativoAsync(empresaId);
+                        if (todosFornecedoresExcluidosProdutosInativos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresExcluidosProdutosInativos);
+                    case (int)TipoRelatorio.TodosFornecedoresExcluidosProdutosExcluidos:
+                        var todosFornecedoresExcluidosProdutosExcluidos = await _relatorioService.GetFornecedoresExcluidosProdutosExcluidoAsync(empresaId);
+                        if (todosFornecedoresExcluidosProdutosExcluidos == null)
+                        {
+                            return NotFound();
+                        }
+                        return Ok(todosFornecedoresExcluidosProdutosExcluidos);
                 }
 
                 return NotFound();

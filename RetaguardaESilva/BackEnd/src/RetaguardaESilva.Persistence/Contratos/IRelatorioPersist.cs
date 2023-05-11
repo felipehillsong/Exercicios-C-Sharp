@@ -22,5 +22,13 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosAtivoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosInativoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosExcluidoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosAllAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosAtivoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosInativoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosExcluidoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosAllAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosAtivoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosInativoAsync(int empresaId);
+        Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosExcluidoAsync(int empresaId);
     }
 }
