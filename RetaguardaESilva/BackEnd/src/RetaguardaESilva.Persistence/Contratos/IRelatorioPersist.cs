@@ -30,5 +30,14 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosAtivoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosInativoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosExcluidoAsync(int empresaId);
+        Task<IEnumerable<Funcionario>> GetAllFuncionariosAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Funcionario>> GetAllFuncionariosAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Funcionario>> GetAllFuncionariosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Funcionario>> GetAllFuncionariosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Transportador>> GetAllTransportadoresAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Transportador>> GetAllTransportadoresAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Transportador>> GetAllTransportadoresInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<Transportador>> GetAllTransportadoresExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        Task<IEnumerable<UsuarioViewModel>> GetAllUsuariosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
     }
 }

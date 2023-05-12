@@ -23,35 +23,35 @@ namespace RetaguardaESilva.Persistence.Persistencias
         }
         public async Task<IEnumerable<Cliente>> GetAllClientesAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente >= dataInicio && c.DataCadastroCliente <= dataFinal).OrderBy(c => c.Nome).ToListAsync();
+            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente.Value.Date >= dataInicio && c.DataCadastroCliente.Value.Date <= dataFinal).OrderBy(c => c.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Cliente>> GetAllClientesAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente >= dataInicio && c.DataCadastroCliente <= dataFinal && c.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(c => c.Nome).ToListAsync();
+            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente.Value.Date >= dataInicio && c.DataCadastroCliente.Value.Date <= dataFinal && c.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(c => c.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Cliente>> GetAllClientesInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente >= dataInicio && c.DataCadastroCliente <= dataFinal && c.Ativo == Convert.ToBoolean(Situacao.Inativo) && c.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(c => c.Nome).ToListAsync();
+            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente.Value.Date >= dataInicio && c.DataCadastroCliente.Value.Date <= dataFinal && c.Ativo == Convert.ToBoolean(Situacao.Inativo) && c.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(c => c.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Cliente>> GetAllClientesExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente >= dataInicio && c.DataCadastroCliente <= dataFinal && c.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(c => c.Nome).ToListAsync();
+            return await _context.Cliente.AsNoTracking().Where(c => c.EmpresaId == empresaId && c.DataCadastroCliente.Value.Date >= dataInicio && c.DataCadastroCliente.Value.Date <= dataFinal && c.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(c => c.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor >= dataInicio && f.DataCadastroFornecedor <= dataFinal).OrderBy(f => f.Nome).ToListAsync();
+            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor.Value.Date >= dataInicio && f.DataCadastroFornecedor.Value.Date <= dataFinal).OrderBy(f => f.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor >= dataInicio && f.DataCadastroFornecedor <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(f => f.Nome).ToListAsync();
+            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor.Value.Date >= dataInicio && f.DataCadastroFornecedor.Value.Date <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(f => f.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor >= dataInicio && f.DataCadastroFornecedor <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Inativo) && f.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
+            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor.Value.Date >= dataInicio && f.DataCadastroFornecedor.Value.Date <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Inativo) && f.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
         }
         public async Task<IEnumerable<Fornecedor>> GetAllFornecedoresExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor >= dataInicio && f.DataCadastroFornecedor <= dataFinal && f.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
+            return await _context.Fornecedor.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFornecedor.Value.Date >= dataInicio && f.DataCadastroFornecedor.Value.Date <= dataFinal && f.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
         }
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosAllAsync(int empresaId)
         {   
@@ -125,7 +125,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosAtivoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -197,8 +196,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
 
             return fornecedorProdutoRetorno;
-        }     
-
+        }
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosInativoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -271,7 +269,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresProdutosExcluidoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -416,7 +413,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosAtivoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -489,7 +485,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosInativoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -562,7 +557,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresInativosProdutosExcluidoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -635,7 +629,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosAllAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -708,7 +701,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosAtivoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -781,7 +773,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosInativoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -854,7 +845,6 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return fornecedorProdutoRetorno;
         }
-
         public async Task<IEnumerable<FornecedorProdutoViewModel>> GetFornecedoresExcluidosProdutosExcluidoAsync(int empresaId)
         {
             var fornecedorProdutoRetorno = new List<FornecedorProdutoViewModel>();
@@ -926,6 +916,64 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
 
             return fornecedorProdutoRetorno;
+        }
+        public async Task<IEnumerable<Funcionario>> GetAllFuncionariosAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Funcionario.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFuncionario.Value.Date >= dataInicio && f.DataCadastroFuncionario.Value.Date <= dataFinal).OrderBy(f => f.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Funcionario>> GetAllFuncionariosAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Funcionario.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFuncionario.Value.Date >= dataInicio && f.DataCadastroFuncionario.Value.Date <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(f => f.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Funcionario>> GetAllFuncionariosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Funcionario.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFuncionario.Value.Date >= dataInicio && f.DataCadastroFuncionario.Value.Date <= dataFinal && f.Ativo == Convert.ToBoolean(Situacao.Inativo) && f.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Funcionario>> GetAllFuncionariosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Funcionario.AsNoTracking().Where(f => f.EmpresaId == empresaId && f.DataCadastroFuncionario.Value.Date >= dataInicio && f.DataCadastroFuncionario.Value.Date <= dataFinal && f.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(f => f.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Transportador>> GetAllTransportadoresAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Transportador.AsNoTracking().Where(t => t.EmpresaId == empresaId && t.DataCadastroTransportador.Value.Date >= dataInicio && t.DataCadastroTransportador.Value.Date <= dataFinal).OrderBy(t => t.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Transportador>> GetAllTransportadoresAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Transportador.AsNoTracking().Where(t => t.EmpresaId == empresaId && t.DataCadastroTransportador.Value.Date >= dataInicio && t.DataCadastroTransportador.Value.Date <= dataFinal && t.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(t => t.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Transportador>> GetAllTransportadoresInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Transportador.AsNoTracking().Where(t => t.EmpresaId == empresaId && t.DataCadastroTransportador.Value.Date >= dataInicio && t.DataCadastroTransportador.Value.Date <= dataFinal && t.Ativo == Convert.ToBoolean(Situacao.Inativo) && t.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(t => t.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Transportador>> GetAllTransportadoresExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Transportador.AsNoTracking().Where(t => t.EmpresaId == empresaId && t.DataCadastroTransportador.Value.Date >= dataInicio && t.DataCadastroTransportador.Value.Date <= dataFinal && t.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(t => t.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<UsuarioViewModel>> GetAllUsuariosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            List<UsuarioViewModel> usuariosRetorno = new List<UsuarioViewModel>();
+            var usuarios = (from users in _context.Usuario
+                            join func in _context.Funcionario on users.FuncionarioId equals func.Id
+                            join empre in _context.Empresa on users.EmpresaId equals empre.Id
+                            select new
+                            {
+                                Id = users.Id,
+                                NomeEmpresa = empre.Nome,
+                                Nome = func.Nome,
+                                Email = users.Email,
+                                Senha = users.Senha,
+                                DataCadastroUsuario = users.DataCadastroUsuario,
+                                Ativo = users.Ativo,
+                                EmpresaId = users.EmpresaId,
+                                FuncionarioId = users.FuncionarioId
+                            }).Where(u => u.EmpresaId == empresaId && u.DataCadastroUsuario.Value.Date >= dataInicio && u.DataCadastroUsuario.Value.Date <= dataFinal).ToList();
+
+            foreach (var item in usuarios)
+            {
+                usuariosRetorno.Add(new UsuarioViewModel(item.Id, item.NomeEmpresa, item.Nome, item.Email, item.Senha, item.DataCadastroUsuario, item.Ativo, item.FuncionarioId, item.EmpresaId));
+            }
+
+            return usuariosRetorno;
         }
     }
 }

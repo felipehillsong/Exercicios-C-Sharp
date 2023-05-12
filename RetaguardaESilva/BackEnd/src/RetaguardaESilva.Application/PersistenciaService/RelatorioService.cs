@@ -560,5 +560,262 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<FuncionarioDTO>> GetFuncionariosAllAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var funcionarios = await _relatorioPersist.GetAllFuncionariosAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (funcionarios == null)
+                    {
+                        throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                    }
+                    else if (funcionarios.Count() == 0)
+                    {
+                        throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                    }
+                    else
+                    {
+                        var resultadoFuncionarios = _mapper.Map<IEnumerable<FuncionarioDTO>>(funcionarios);
+                        return resultadoFuncionarios;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FuncionarioDTO>> GetFuncionariosAtivoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var funcionarios = await _relatorioPersist.GetAllFuncionariosAtivosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (funcionarios == null)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else if (funcionarios.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFuncionarios = _mapper.Map<IEnumerable<FuncionarioDTO>>(funcionarios);
+                    return resultadoFuncionarios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FuncionarioDTO>> GetFuncionariosInativoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var funcionarios = await _relatorioPersist.GetAllFuncionariosInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (funcionarios == null)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else if (funcionarios.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFuncionarios = _mapper.Map<IEnumerable<FuncionarioDTO>>(funcionarios);
+                    return resultadoFuncionarios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<FuncionarioDTO>> GetFuncionariosExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var funcionarios = await _relatorioPersist.GetAllFuncionariosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (funcionarios == null)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else if (funcionarios.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.FuncionarioRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoFuncionarios = _mapper.Map<IEnumerable<FuncionarioDTO>>(funcionarios);
+                    return resultadoFuncionarios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<TransportadorDTO>> GetTransportadoresAllAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var transportadores = await _relatorioPersist.GetAllTransportadoresAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (transportadores == null)
+                    {
+                        throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                    }
+                    else if (transportadores.Count() == 0)
+                    {
+                        throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                    }
+                    else
+                    {
+                        var resultadoTransportadores = _mapper.Map<IEnumerable<TransportadorDTO>>(transportadores);
+                        return resultadoTransportadores;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<TransportadorDTO>> GetTransportadoresAtivoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var transportadores = await _relatorioPersist.GetAllFuncionariosAtivosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (transportadores == null)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else if (transportadores.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoTransportadores = _mapper.Map<IEnumerable<TransportadorDTO>>(transportadores);
+                    return resultadoTransportadores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<TransportadorDTO>> GetTransportadoresInativoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var transportadores = await _relatorioPersist.GetAllTransportadoresInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (transportadores == null)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else if (transportadores.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoTransportadores = _mapper.Map<IEnumerable<TransportadorDTO>>(transportadores);
+                    return resultadoTransportadores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<TransportadorDTO>> GetTransportadoresExcluidoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var transportadores = await _relatorioPersist.GetAllTransportadoresExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (transportadores == null)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else if (transportadores.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.TransportadorRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoTransportadores = _mapper.Map<IEnumerable<TransportadorDTO>>(transportadores);
+                    return resultadoTransportadores;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<UsuarioDTO>> GetUsuarioAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var usuarios = await _relatorioPersist.GetAllUsuariosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
+                if (usuarios == null)
+                {
+                    throw new Exception(MensagemDeErro.UsuarioRelatorioNaoEncontrado);
+                }
+                else if (usuarios.Count() == 0)
+                {
+                    throw new Exception(MensagemDeErro.UsuarioRelatorioNaoEncontrado);
+                }
+                else
+                {
+                    var resultadoUsuarios = _mapper.Map<IEnumerable<UsuarioDTO>>(usuarios);
+                    return resultadoUsuarios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

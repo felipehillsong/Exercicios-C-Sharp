@@ -29,5 +29,14 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosAtivoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosInativoAsync(int empresaId);
         Task<IEnumerable<FornecedorProdutoRelatorioDTO>> GetFornecedoresExcluidosProdutosExcluidoAsync(int empresaId);
+        Task<IEnumerable<FuncionarioDTO>> GetFuncionariosAllAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<FuncionarioDTO>> GetFuncionariosAtivoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<FuncionarioDTO>> GetFuncionariosInativoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<FuncionarioDTO>> GetFuncionariosExcluidoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<TransportadorDTO>> GetTransportadoresAllAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<TransportadorDTO>> GetTransportadoresAtivoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<TransportadorDTO>> GetTransportadoresInativoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<TransportadorDTO>> GetTransportadoresExcluidoAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<UsuarioDTO>> GetUsuarioAsync(int empresaId, string dataIncio, string dataFinal);
     }
 }

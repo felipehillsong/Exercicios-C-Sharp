@@ -27,6 +27,15 @@ namespace RetaguardaESilva.Application.Enumeradores
         TodosFornecedoresExcluidosProdutosAtivoInativoExcluidos = 17,
         TodosFornecedoresExcluidosProdutosAtivos = 18,
         TodosFornecedoresExcluidosProdutosInativos = 19,
-        TodosFornecedoresExcluidosProdutosExcluidos = 20
+        TodosFornecedoresExcluidosProdutosExcluidos = 20,
+        TodosFuncionariosAtivosInativosExcluidos = 21,
+        TodosFuncionariosAtivos = 22,
+        TodosFuncionariosInativos = 23,
+        TodosFuncionariosExcluidos = 24,
+        TodosTransportadoresAtivosInativosExcluidos = 25,
+        TodosTransportadoresAtivos = 26,
+        TodosTransportadoresInativos = 27,
+        TodosTransportadoresExcluidos = 28,
+        TodosUsuarios = 29,
     }
 }

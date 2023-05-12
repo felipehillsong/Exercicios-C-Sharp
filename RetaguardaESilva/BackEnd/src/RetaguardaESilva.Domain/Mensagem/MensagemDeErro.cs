@@ -48,6 +48,9 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string FuncionarioNaoEncontradoDelete = "Funcionario não encontrado para delete, verifique o Id da empresa e o Id do funcionario";
         public const string FuncionarioNaoEncontrado = "Nenhum funcionario encontrado";
         public const string FuncionarioNaoEncontradoEmpresa = "Não existem funcionarios cadastrados nessa empresa";
+        public const string FuncionarioRelatorioNaoEncontrado = "Não foram encontrado nenhum funcionario nesse periodo";
+        public const string TransportadorRelatorioNaoEncontrado = "Não foram encontrado nenhum transportador nesse periodo";
+        public const string UsuarioRelatorioNaoEncontrado = "Não foram encontrado nenhum usuario nesse periodo";
         public const string EmpresaUsuarioInexistente = "Você esta tentando cadastrar um usuario em uma empresa inexistente!";
         public const string UsuarioSemId = "Algum erro ocorreu, possivelmente usuario sem Id";
         public const string UsuarioJaCadastrado = "Você esta tentando cadastrar ou atualizar um usuario para outro usuario já cadastrado, reveja o CPF";
