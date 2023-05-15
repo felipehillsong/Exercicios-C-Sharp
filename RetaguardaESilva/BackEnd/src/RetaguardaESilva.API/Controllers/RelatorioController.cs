@@ -345,6 +345,118 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosUsuarios);
                         }
+                    case (int)TipoRelatorio.TodosEmpresasAtivosInativosExcluidos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEmpresasAtivosInativosExcluidos = await _relatorioService.GetEmpresasAllAsync(empresaId, dataIncio, dataFinal);
+                            if (todosEmpresasAtivosInativosExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosEmpresasAtivosInativosExcluidos);
+                        }
+                    case (int)TipoRelatorio.TodosEmpresasAtivos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEmpresasAtivos = await _relatorioService.GetEmpresasAtivoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosEmpresasAtivos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosEmpresasAtivos);
+                        }
+                    case (int)TipoRelatorio.TodosEmpresasInativos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEmpresasInativos = await _relatorioService.GetEmpresasInativoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosEmpresasInativos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosEmpresasInativos);
+                        }
+                    case (int)TipoRelatorio.TodosEmpresasExcluidos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEmpresasExcluidos = await _relatorioService.GetEmpresasExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosEmpresasExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosEmpresasExcluidos);
+                        }
+                    case (int)TipoRelatorio.TodosProdutosAtivosInativosExcluidos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosProdutosAtivosInativosExcluidos = await _relatorioService.GetProdutosAllAsync(empresaId, dataIncio, dataFinal);
+                            if (todosProdutosAtivosInativosExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosProdutosAtivosInativosExcluidos);
+                        }
+                    case (int)TipoRelatorio.TodosProdutosAtivos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosProdutosAtivos = await _relatorioService.GetProdutosAtivoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosProdutosAtivos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosProdutosAtivos);
+                        }
+                    case (int)TipoRelatorio.TodosProdutosInativos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosProdutosInativos = await _relatorioService.GetProdutosInativoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosProdutosInativos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosProdutosInativos);
+                        }
+                    case (int)TipoRelatorio.TodosProdutosExcluidos:
+                        if (dataIncio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosProdutosExcluidos = await _relatorioService.GetProdutosExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            if (todosProdutosExcluidos == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosProdutosExcluidos);
+                        }
                 }
 
                 return NotFound();

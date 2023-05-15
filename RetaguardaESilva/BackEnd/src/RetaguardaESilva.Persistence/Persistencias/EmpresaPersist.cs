@@ -16,17 +16,17 @@ namespace RetaguardaESilva.Persistence.Persistencias
         private readonly RetaguardaESilvaContext _context;
         public EmpresaPersist(RetaguardaESilvaContext context)
         {
-            _context = context;            
+            _context = context;
         }
 
         public async Task<IEnumerable<Empresa>> GetAllEmpresasAsync()
         {
-            return await _context.Empresa.AsNoTracking().ToListAsync();           
+            return await _context.Empresa.AsNoTracking().ToListAsync();
         }
 
         public async Task<Empresa> GetEmpresaByIdAsync(int empresaId)
         {
-            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId).FirstOrDefaultAsync();            
+            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId).FirstOrDefaultAsync();
         }        
     }
 }

@@ -16,6 +16,7 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string ErroValidarEmpresa = "Algum erro ao validar a empresa";
         public const string ErroSalvarEmpresa = "Erro ao salvar Empresa";
         public const string ErroAtualizarEmpresa = "Erro ao atualizar Empresa";
+        public const string EmpresaDesativadaOuInativada = "Empresa inexistente ou desativada";
         public const string EmpresaNaoEncontradaParaDelete = "Empresa não encontrado para delete";
         public const string EmpresaNaoEncontrada = "Nenhuma empresa encontrada!";
         public const string EmpresaFornecedorInexistente = "Você esta tentando cadastrar ou atualizar um fornecedor em uma empresa inexistente!";
@@ -50,7 +51,9 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string FuncionarioNaoEncontradoEmpresa = "Não existem funcionarios cadastrados nessa empresa";
         public const string FuncionarioRelatorioNaoEncontrado = "Não foram encontrado nenhum funcionario nesse periodo";
         public const string TransportadorRelatorioNaoEncontrado = "Não foram encontrado nenhum transportador nesse periodo";
-        public const string UsuarioRelatorioNaoEncontrado = "Não foram encontrado nenhum usuario nesse periodo";
+        public const string EmpresaRelatorioNaoEncontrado = "Não foram encontrados nenhuma empresa nesse periodo";
+        public const string ProdutoRelatorioNaoEncontrado = "Não foram encontrados nenhum produto nesse periodo";
+        public const string UsuarioRelatorioNaoEncontrado = "Não foram encontrados nenhum usuario nesse periodo";
         public const string EmpresaUsuarioInexistente = "Você esta tentando cadastrar um usuario em uma empresa inexistente!";
         public const string UsuarioSemId = "Algum erro ocorreu, possivelmente usuario sem Id";
         public const string UsuarioJaCadastrado = "Você esta tentando cadastrar ou atualizar um usuario para outro usuario já cadastrado, reveja o CPF";

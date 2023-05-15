@@ -975,5 +975,37 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
             return usuariosRetorno;
         }
+        public async Task<IEnumerable<Empresa>> GetAllEmpresasAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId && e.DataCadastroEmpresa.Value.Date >= dataInicio && e.DataCadastroEmpresa.Value.Date <= dataFinal).OrderBy(e => e.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Empresa>> GetAllEmpresasAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId && e.DataCadastroEmpresa.Value.Date >= dataInicio && e.DataCadastroEmpresa.Value.Date <= dataFinal && e.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(e => e.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Empresa>> GetAllEmpresasInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId && e.DataCadastroEmpresa.Value.Date >= dataInicio && e.DataCadastroEmpresa.Value.Date <= dataFinal && e.Ativo == Convert.ToBoolean(Situacao.Inativo) && e.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(e => e.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Empresa>> GetAllEmpresasExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Empresa.AsNoTracking().Where(e => e.Id == empresaId && e.DataCadastroEmpresa.Value.Date >= dataInicio && e.DataCadastroEmpresa.Value.Date <= dataFinal && e.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(e => e.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Produto>> GetAllProdutosAtivosInativosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroProduto.Value.Date >= dataInicio && p.DataCadastroProduto.Value.Date <= dataFinal).OrderBy(p => p.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Produto>> GetAllProdutosAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroProduto.Value.Date >= dataInicio && p.DataCadastroProduto.Value.Date <= dataFinal && p.Ativo == Convert.ToBoolean(Situacao.Ativo)).OrderBy(p => p.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Produto>> GetAllProdutosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroProduto.Value.Date >= dataInicio && p.DataCadastroProduto.Value.Date <= dataFinal && p.Ativo == Convert.ToBoolean(Situacao.Inativo) && p.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).OrderBy(p => p.Nome).ToListAsync();
+        }
+        public async Task<IEnumerable<Produto>> GetAllProdutosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _context.Produto.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroProduto.Value.Date >= dataInicio && p.DataCadastroProduto.Value.Date <= dataFinal && p.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).OrderBy(p => p.Nome).ToListAsync();
+        }
     }
 }

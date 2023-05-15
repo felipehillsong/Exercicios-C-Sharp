@@ -37,5 +37,13 @@ namespace RetaguardaESilva.Application.Enumeradores
         TodosTransportadoresInativos = 27,
         TodosTransportadoresExcluidos = 28,
         TodosUsuarios = 29,
+        TodosEmpresasAtivosInativosExcluidos = 30,
+        TodosEmpresasAtivos = 31,
+        TodosEmpresasInativos = 32,
+        TodosEmpresasExcluidos = 33,
+        TodosProdutosAtivosInativosExcluidos = 34,
+        TodosProdutosAtivos = 35,
+        TodosProdutosInativos = 36,
+        TodosProdutosExcluidos = 37
     }
 }
