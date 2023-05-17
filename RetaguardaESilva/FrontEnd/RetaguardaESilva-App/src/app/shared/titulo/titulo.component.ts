@@ -13,6 +13,7 @@ export class TituloComponent implements OnInit {
   @Input() iconClass!: string;
   @Input() novo!: string;
   @Input() urlNF!: string;
+  @Input() nav!: boolean;
   @Output() validarCrud = new EventEmitter<boolean[]>();
   visualizarCadastros!: boolean;
   visualizarEnderecoProduto!:boolean;

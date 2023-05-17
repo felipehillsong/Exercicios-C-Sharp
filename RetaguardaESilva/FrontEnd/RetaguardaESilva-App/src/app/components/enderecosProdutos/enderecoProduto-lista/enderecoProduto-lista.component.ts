@@ -89,7 +89,7 @@ export class EnderecoProdutoListaComponent implements OnInit {
     this.authService.visualizarPedido();
     this.authService.visualizarNotaFiscal();
     this.authService.visualizarRelatorio();
-    this.nav.show();
+    this.nav.hide();
     this.titu.show();
     this.titu.hideTitulo();
   }

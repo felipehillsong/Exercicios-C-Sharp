@@ -17,20 +17,20 @@ namespace RetaguardaESilva.Controllers
         }
         // GET: api/Relatorio
         [HttpGet]
-        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string? dataIncio, string? dataFinal)
+        public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string? dataInicio, string? dataFinal)
         {
             try
             {   
                 switch (codigoRelatorio)
                 {
                     case (int)TipoRelatorio.TodosClientesAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosClientesAtivosInativosExcluidos = await _relatorioService.GetClientesAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosClientesAtivosInativosExcluidos = await _relatorioService.GetClientesAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosClientesAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -38,13 +38,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosClientesAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosClientesAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosClientesAtivos = await _relatorioService.GetClientesAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosClientesAtivos == null)
                             {
                                 return NotFound();
@@ -52,13 +52,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosClientesAtivos);
                         }
                     case (int)TipoRelatorio.TodosClientesInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosClientesInativos = await _relatorioService.GetClientesInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosClientesInativos == null)
                             {
                                 return NotFound();
@@ -66,13 +66,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosClientesInativos);
                         }
                     case (int)TipoRelatorio.TodosClientesExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosClientesExcluidos = await _relatorioService.GetClientesExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosClientesExcluidos == null)
                             {
                                 return NotFound();
@@ -80,13 +80,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosClientesExcluidos);
                         }
                     case (int)TipoRelatorio.TodosFornecedoresAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFornecedoresAtivosInativosExcluidos = await _relatorioService.GetFornecedoresAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosFornecedoresAtivosInativosExcluidos = await _relatorioService.GetFornecedoresAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosFornecedoresAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -94,13 +94,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFornecedoresAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosFornecedoresAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFornecedoresAtivos = await _relatorioService.GetFornecedoresAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFornecedoresAtivos = await _relatorioService.GetFornecedoresAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFornecedoresAtivos == null)
                             {
                                 return NotFound();
@@ -108,13 +108,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFornecedoresAtivos);
                         }
                     case (int)TipoRelatorio.TodosFornecedoresInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFornecedoresInativos = await _relatorioService.GetFornecedoresInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFornecedoresInativos = await _relatorioService.GetFornecedoresInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFornecedoresInativos == null)
                             {
                                 return NotFound();
@@ -122,13 +122,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFornecedoresInativos);
                         }
                     case (int)TipoRelatorio.TodosFornecedoresExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFornecedoresExcluidos = await _relatorioService.GetFornecedoresExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFornecedoresExcluidos = await _relatorioService.GetFornecedoresExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFornecedoresExcluidos == null)
                             {
                                 return NotFound();
@@ -220,13 +220,13 @@ namespace RetaguardaESilva.Controllers
                         }
                         return Ok(todosFornecedoresExcluidosProdutosExcluidos);
                     case (int)TipoRelatorio.TodosFuncionariosAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFuncionariosAtivosInativosExcluidos = await _relatorioService.GetFuncionariosAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosFuncionariosAtivosInativosExcluidos = await _relatorioService.GetFuncionariosAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosFuncionariosAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -234,13 +234,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFuncionariosAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosFuncionariosAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFuncionariosAtivos = await _relatorioService.GetFuncionariosAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFuncionariosAtivos = await _relatorioService.GetFuncionariosAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFuncionariosAtivos == null)
                             {
                                 return NotFound();
@@ -248,13 +248,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFuncionariosAtivos);
                         }
                     case (int)TipoRelatorio.TodosFuncionariosInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFuncionariosInativos = await _relatorioService.GetFuncionariosInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFuncionariosInativos = await _relatorioService.GetFuncionariosInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFuncionariosInativos == null)
                             {
                                 return NotFound();
@@ -262,13 +262,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFuncionariosInativos);
                         }
                     case (int)TipoRelatorio.TodosFuncionariosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosFuncionariosExcluidos = await _relatorioService.GetFuncionariosExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosFuncionariosExcluidos = await _relatorioService.GetFuncionariosExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosFuncionariosExcluidos == null)
                             {
                                 return NotFound();
@@ -276,13 +276,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosFuncionariosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosTransportadoresAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosTransportadoresAtivosInativosExcluidos = await _relatorioService.GetTransportadoresAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosTransportadoresAtivosInativosExcluidos = await _relatorioService.GetTransportadoresAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosTransportadoresAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -290,13 +290,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosTransportadoresAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosTransportadoresAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosTransportadoresAtivos = await _relatorioService.GetTransportadoresAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosTransportadoresAtivos = await _relatorioService.GetTransportadoresAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosTransportadoresAtivos == null)
                             {
                                 return NotFound();
@@ -304,13 +304,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosTransportadoresAtivos);
                         }
                     case (int)TipoRelatorio.TodosTransportadoresInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosTransportadoresInativos = await _relatorioService.GetTransportadoresInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosTransportadoresInativos = await _relatorioService.GetTransportadoresInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosTransportadoresInativos == null)
                             {
                                 return NotFound();
@@ -318,13 +318,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosTransportadoresInativos);
                         }
                     case (int)TipoRelatorio.TodosTransportadoresExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosTransportadoresExcluidos = await _relatorioService.GetTransportadoresExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosTransportadoresExcluidos = await _relatorioService.GetTransportadoresExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosTransportadoresExcluidos == null)
                             {
                                 return NotFound();
@@ -332,13 +332,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosTransportadoresExcluidos);
                         }
                     case (int)TipoRelatorio.TodosUsuarios:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosUsuarios = await _relatorioService.GetUsuarioAsync(empresaId, dataIncio, dataFinal);
+                            var todosUsuarios = await _relatorioService.GetUsuarioAsync(empresaId, dataInicio, dataFinal);
                             if (todosUsuarios == null)
                             {
                                 return NotFound();
@@ -346,13 +346,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosUsuarios);
                         }
                     case (int)TipoRelatorio.TodosEmpresasAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosEmpresasAtivosInativosExcluidos = await _relatorioService.GetEmpresasAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosEmpresasAtivosInativosExcluidos = await _relatorioService.GetEmpresasAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosEmpresasAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -360,13 +360,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosEmpresasAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosEmpresasAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosEmpresasAtivos = await _relatorioService.GetEmpresasAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosEmpresasAtivos = await _relatorioService.GetEmpresasAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosEmpresasAtivos == null)
                             {
                                 return NotFound();
@@ -374,13 +374,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosEmpresasAtivos);
                         }
                     case (int)TipoRelatorio.TodosEmpresasInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosEmpresasInativos = await _relatorioService.GetEmpresasInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosEmpresasInativos = await _relatorioService.GetEmpresasInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosEmpresasInativos == null)
                             {
                                 return NotFound();
@@ -388,13 +388,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosEmpresasInativos);
                         }
                     case (int)TipoRelatorio.TodosEmpresasExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosEmpresasExcluidos = await _relatorioService.GetEmpresasExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosEmpresasExcluidos = await _relatorioService.GetEmpresasExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosEmpresasExcluidos == null)
                             {
                                 return NotFound();
@@ -402,13 +402,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosEmpresasExcluidos);
                         }
                     case (int)TipoRelatorio.TodosProdutosAtivosInativosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosProdutosAtivosInativosExcluidos = await _relatorioService.GetProdutosAllAsync(empresaId, dataIncio, dataFinal);
+                            var todosProdutosAtivosInativosExcluidos = await _relatorioService.GetProdutosAllAsync(empresaId, dataInicio, dataFinal);
                             if (todosProdutosAtivosInativosExcluidos == null)
                             {
                                 return NotFound();
@@ -416,13 +416,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosProdutosAtivosInativosExcluidos);
                         }
                     case (int)TipoRelatorio.TodosProdutosAtivos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosProdutosAtivos = await _relatorioService.GetProdutosAtivoAsync(empresaId, dataIncio, dataFinal);
+                            var todosProdutosAtivos = await _relatorioService.GetProdutosAtivoAsync(empresaId, dataInicio, dataFinal);
                             if (todosProdutosAtivos == null)
                             {
                                 return NotFound();
@@ -430,13 +430,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosProdutosAtivos);
                         }
                     case (int)TipoRelatorio.TodosProdutosInativos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosProdutosInativos = await _relatorioService.GetProdutosInativoAsync(empresaId, dataIncio, dataFinal);
+                            var todosProdutosInativos = await _relatorioService.GetProdutosInativoAsync(empresaId, dataInicio, dataFinal);
                             if (todosProdutosInativos == null)
                             {
                                 return NotFound();
@@ -444,13 +444,13 @@ namespace RetaguardaESilva.Controllers
                             return Ok(todosProdutosInativos);
                         }
                     case (int)TipoRelatorio.TodosProdutosExcluidos:
-                        if (dataIncio == null || dataFinal == null)
+                        if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosProdutosExcluidos = await _relatorioService.GetProdutosExcluidoAsync(empresaId, dataIncio, dataFinal);
+                            var todosProdutosExcluidos = await _relatorioService.GetProdutosExcluidoAsync(empresaId, dataInicio, dataFinal);
                             if (todosProdutosExcluidos == null)
                             {
                                 return NotFound();
