@@ -1,3 +1,5 @@
+import { Produto } from "./produto";
+
 export interface Fornecedor {
   id: number;
   nome: string;
@@ -17,4 +19,5 @@ export interface Fornecedor {
   dataCadastroFornecedor: string;
   ativo: boolean;
   empresaId: number;
+  produto: Array<Produto>;
 }
