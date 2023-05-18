@@ -36,5 +36,8 @@ namespace RetaguardaESilva.Persistence.Contratos
         PedidoViewModel MontarPedidoRetorno(Pedido pedido);
         IEnumerable<NotaFiscalViewModel> RetornarNotasFiscais(IEnumerable<NotaFiscal> notaFiscal);
         NotaFiscalIdViewModel RetornarNotaFiscal(NotaFiscal notaFiscal);
+        bool VerificaPermissoes(Permissao permissaoBD, Permissao permissaoModel);
+        Permissao PreenchePermissoes(Permissao permissao);
+        List<Permissao> PermissaoUsuarioId(int empresaId, int usuarioId);
     }
 }

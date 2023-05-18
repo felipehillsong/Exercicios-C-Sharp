@@ -246,8 +246,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 {
                     var retornoUsuario = _validacoesPersist.RetornarUsuarioId(usuario.Id);
                     var resultadoUsuario = _mapper.Map<UsuarioDTO>(retornoUsuario);
-                    var usuarioPermissao = GetPermissaoByIdAsync(empresaId, usuarioId);
-                    resultadoUsuario.Permissoes = usuarioPermissao.Result;
+                    var usuarioPermissao = _validacoesPersist.PermissaoUsuarioId(empresaId, usuarioId);
+                    var resultadoPermissao = _mapper.Map<List<PermissaoDTO>>(usuarioPermissao);
+                    resultadoUsuario.Permissoes = resultadoPermissao;
                     return resultadoUsuario;
                 }
             }
@@ -303,28 +304,28 @@ namespace RetaguardaESilva.Application.PersistenciaService
         {
             try
             {
-                var permissao = _usuarioPersist.GetPermissaoByIdAsync(model[0].EmpresaId, model[0].UsuarioId, model[0].Id);                
-                if (permissao.Result == null)
+                var permissao = _usuarioPersist.GetPermissaoByIdAsync(model[0].EmpresaId, model[0].UsuarioId, model[0].Id);
+                if (permissao == null)
                 {
-                    var permissoes = PreenchePermissoes(model[0]);
-                    var Permissao = _mapper.Map<Permissao>(permissoes);
+                    var permissaoModel = _mapper.Map<Permissao>(model[0]);
+                    var permissoes = _validacoesPersist.PreenchePermissoes(permissaoModel);
                     mensagem = MensagemDeSucesso.UsuarioSemPermissao;
-                    return Permissao;
+                    return permissoes;
                 }
                 else
                 {
-                    var permissoes = VerificaPermissoes(permissao.Result, model[0]);
+                    var permissaoModel = _mapper.Map<Permissao>(model[0]);
+                    var permissoes = _validacoesPersist.VerificaPermissoes(permissao, permissaoModel);
                     if (permissoes)
                     {
                         mensagem = MensagemDeSucesso.UsuarioMesmoDado;
-                        return permissao.Result;
+                        return permissao;
                     }
                     else
                     {
-                        var permissoesAlterar = PreenchePermissoes(model[0]);
-                        var permissaoRetorno = _mapper.Map<Permissao>(permissoesAlterar);
+                        var permissoesRetorno = _validacoesPersist.PreenchePermissoes(permissaoModel);
                         mensagem = MensagemDeSucesso.UsuarioDadosDiferente;
-                        return permissaoRetorno;
+                        return permissoesRetorno;
                     }
                    
                     throw new Exception(MensagemDeErro.ErroAoAtualizarCriar);
@@ -337,292 +338,6 @@ namespace RetaguardaESilva.Application.PersistenciaService
             {
                 throw new Exception(ex.Message);
             }
-        }
-
-        public async Task<List<PermissaoDTO>> GetPermissaoByIdAsync(int empresaId, int usuarioId)
-        {
-            try
-            {
-                var usuarioPermissao = await _usuarioPersist.GetPermissaoUsuarioByIdAsync(empresaId, usuarioId);
-                var usuarioExistente = await _usuarioPersist.GetUsuarioByIdAsync(empresaId, usuarioId);
-                if (usuarioExistente == null)
-                {
-                    throw new Exception(MensagemDeErro.UsuarioNaoEncontrado);
-                }
-                else
-                {
-                    var retornoPermissao = new List<PermissaoDTO>();
-                    if (usuarioPermissao == null)
-                    {
-                        var PermissaoDTOMapper = new PermissaoDTO()
-                        {
-                            Id = (int)Ids.IdCreate,
-                            VisualizarCliente = false,
-                            ClienteCadastro = false,
-                            ClienteEditar = false,
-                            ClienteDetalhe = false,
-                            ClienteExcluir = false,
-                            VisualizarEmpresa = false,
-                            EmpresaCadastro = false,
-                            EmpresaEditar = false,
-                            EmpresaDetalhe = false,
-                            EmpresaExcluir = false,
-                            VisualizarEstoque = false,
-                            EstoqueEditar = false,
-                            EstoqueDetalhe = false,
-                            EstoqueExcluir = false,
-                            VisualizarEnderecoProduto = false,
-                            EnderecoProdutoCadastro = false,
-                            EnderecoProdutoEditar = false,
-                            EnderecoProdutoDetalhe = false,
-                            EnderecoProdutoExcluir = false,
-                            VisualizarFornecedor = false,
-                            FornecedorCadastro = false,
-                            FornecedorEditar = false,
-                            FornecedorDetalhe = false,
-                            FornecedorExcluir = false,
-                            VisualizarFuncionario = false,
-                            FuncionarioCadastro = false,
-                            FuncionarioEditar = false,
-                            FuncionarioDetalhe = false,
-                            FuncionarioExcluir = false,
-                            VisualizarProduto = false,
-                            ProdutoCadastro = false,
-                            ProdutoEditar = false,
-                            ProdutoDetalhe = false,
-                            ProdutoExcluir = false,
-                            GerarRelatorio = false,
-                            VisualizarTransportador = false,
-                            TransportadorCadastro = false,
-                            TransportadorEditar = false,
-                            TransportadorDetalhe = false,
-                            TransportadorExcluir = false,
-                            VisualizarUsuario = false,
-                            UsuarioCadastro = false,
-                            UsuarioEditar = false,
-                            UsuarioPermissoes = false,
-                            UsuarioExcluir = false,
-                            VisualizarPedido = false,
-                            PedidoCadastro = false,
-                            PedidoEditar = false,
-                            PedidoDetalhe = false,
-                            PedidoExcluir = false,
-                            VisualizarNotaFiscal = false,
-                            NotaFiscalCadastro = false,
-                            NotaFiscalGerarPDF = false,
-                            NotaFiscalCancelar = false,
-                            EmpresaId = usuarioExistente.EmpresaId,
-                            UsuarioId = usuarioExistente.Id
-                        };
-                        var resultadoPermissao = _mapper.Map<PermissaoDTO>(PermissaoDTOMapper);
-                        retornoPermissao.Add(resultadoPermissao);
-                        return retornoPermissao;
-                    }
-                    else
-                    {
-                        var PermissaoDTOMapper = new PermissaoDTO()
-                        {
-                            Id = usuarioPermissao.Id,
-                            VisualizarCliente = usuarioPermissao.VisualizarCliente,
-                            ClienteCadastro = usuarioPermissao.ClienteCadastro,
-                            ClienteEditar = usuarioPermissao.ClienteEditar,
-                            ClienteDetalhe = usuarioPermissao.ClienteDetalhe,
-                            ClienteExcluir = usuarioPermissao.ClienteExcluir,
-                            VisualizarEmpresa = usuarioPermissao.VisualizarEmpresa,
-                            EmpresaCadastro = usuarioPermissao.EmpresaCadastro,
-                            EmpresaEditar = usuarioPermissao.EmpresaEditar,
-                            EmpresaDetalhe = usuarioPermissao.EmpresaDetalhe,
-                            EmpresaExcluir = usuarioPermissao.EmpresaExcluir,
-                            VisualizarEstoque = usuarioPermissao.VisualizarEstoque,
-                            EstoqueEditar = usuarioPermissao.EstoqueEditar,
-                            EstoqueDetalhe = usuarioPermissao.EstoqueDetalhe,
-                            EstoqueExcluir = usuarioPermissao.EstoqueExcluir,
-                            VisualizarEnderecoProduto = usuarioPermissao.VisualizarEnderecoProduto,
-                            EnderecoProdutoCadastro = usuarioPermissao.EnderecoProdutoCadastro,
-                            EnderecoProdutoEditar = usuarioPermissao.EnderecoProdutoEditar,
-                            EnderecoProdutoDetalhe = usuarioPermissao.EnderecoProdutoDetalhe,
-                            EnderecoProdutoExcluir = usuarioPermissao.EnderecoProdutoExcluir,
-                            VisualizarFornecedor = usuarioPermissao.VisualizarFornecedor,
-                            FornecedorCadastro = usuarioPermissao.FornecedorCadastro,
-                            FornecedorEditar = usuarioPermissao.FornecedorEditar,
-                            FornecedorDetalhe = usuarioPermissao.FornecedorDetalhe,
-                            FornecedorExcluir = usuarioPermissao.FornecedorExcluir,
-                            VisualizarFuncionario = usuarioPermissao.VisualizarFuncionario,
-                            FuncionarioCadastro = usuarioPermissao.FuncionarioCadastro,
-                            FuncionarioEditar = usuarioPermissao.FuncionarioEditar,
-                            FuncionarioDetalhe = usuarioPermissao.FuncionarioDetalhe,
-                            FuncionarioExcluir = usuarioPermissao.FuncionarioExcluir,
-                            VisualizarProduto = usuarioPermissao.VisualizarProduto,
-                            ProdutoCadastro = usuarioPermissao.ProdutoCadastro,
-                            ProdutoEditar = usuarioPermissao.ProdutoEditar,
-                            ProdutoDetalhe = usuarioPermissao.ProdutoDetalhe,
-                            ProdutoExcluir = usuarioPermissao.ProdutoExcluir,
-                            GerarRelatorio = usuarioPermissao.GerarRelatorio,
-                            VisualizarTransportador = usuarioPermissao.VisualizarTransportador,
-                            TransportadorCadastro = usuarioPermissao.TransportadorCadastro,
-                            TransportadorEditar = usuarioPermissao.TransportadorEditar,
-                            TransportadorDetalhe = usuarioPermissao.TransportadorDetalhe,
-                            TransportadorExcluir = usuarioPermissao.TransportadorExcluir,
-                            VisualizarUsuario = usuarioPermissao.VisualizarUsuario,
-                            UsuarioCadastro = usuarioPermissao.UsuarioCadastro,
-                            UsuarioEditar = usuarioPermissao.UsuarioEditar,
-                            UsuarioPermissoes = usuarioPermissao.UsuarioPermissoes,
-                            UsuarioExcluir = usuarioPermissao.UsuarioExcluir,
-                            VisualizarPedido = usuarioPermissao.VisualizarPedido,
-                            PedidoCadastro = usuarioPermissao.PedidoCadastro,
-                            PedidoEditar = usuarioPermissao.PedidoEditar,
-                            PedidoDetalhe = usuarioPermissao.PedidoDetalhe,
-                            PedidoExcluir = usuarioPermissao.PedidoExcluir,
-                            VisualizarNotaFiscal = usuarioPermissao.VisualizarNotaFiscal,
-                            NotaFiscalCadastro = usuarioPermissao.NotaFiscalCadastro,
-                            NotaFiscalGerarPDF = usuarioPermissao.NotaFiscalGerarPDF,
-                            NotaFiscalCancelar = usuarioPermissao.NotaFiscalCancelar,
-                            EmpresaId = usuarioPermissao.EmpresaId,
-                            UsuarioId = usuarioPermissao.UsuarioId
-                        };
-                        var resultadoPermissao = _mapper.Map<PermissaoDTO>(PermissaoDTOMapper);
-                        retornoPermissao.Add(resultadoPermissao);
-                        return retornoPermissao;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public bool VerificaPermissoes(Permissao permissaoBD, PermissaoDTO permissaoDTO)
-        {
-            if (permissaoBD.Id == permissaoDTO.Id
-            &&permissaoBD.VisualizarCliente == permissaoDTO.VisualizarCliente
-            &&permissaoBD.ClienteCadastro == permissaoDTO.ClienteCadastro
-            &&permissaoBD.ClienteEditar == permissaoDTO.ClienteEditar
-            &&permissaoBD.ClienteDetalhe == permissaoDTO.ClienteDetalhe
-            &&permissaoBD.ClienteExcluir == permissaoDTO.ClienteExcluir
-            &&permissaoBD.VisualizarEmpresa == permissaoDTO.VisualizarEmpresa
-            &&permissaoBD.EmpresaCadastro == permissaoDTO.EmpresaCadastro
-            &&permissaoBD.EmpresaEditar == permissaoDTO.EmpresaEditar
-            &&permissaoBD.EmpresaDetalhe == permissaoDTO.EmpresaDetalhe
-            &&permissaoBD.EmpresaExcluir == permissaoDTO.EmpresaExcluir
-            &&permissaoBD.VisualizarEstoque == permissaoDTO.VisualizarEstoque
-            &&permissaoBD.EstoqueEditar == permissaoDTO.EstoqueEditar
-            &&permissaoBD.EstoqueDetalhe == permissaoDTO.EstoqueDetalhe
-            &&permissaoBD.EstoqueExcluir == permissaoDTO.EstoqueExcluir
-            &&permissaoBD.VisualizarEnderecoProduto == permissaoDTO.VisualizarEnderecoProduto
-            &&permissaoBD.EnderecoProdutoCadastro == permissaoDTO.EnderecoProdutoCadastro
-            &&permissaoBD.EnderecoProdutoEditar == permissaoDTO.EnderecoProdutoEditar
-            &&permissaoBD.EnderecoProdutoDetalhe == permissaoDTO.EnderecoProdutoDetalhe
-            &&permissaoBD.EnderecoProdutoExcluir == permissaoDTO.EnderecoProdutoExcluir
-            &&permissaoBD.VisualizarFornecedor == permissaoDTO.VisualizarFornecedor
-            &&permissaoBD.FornecedorCadastro == permissaoDTO.FornecedorCadastro
-            &&permissaoBD.FornecedorEditar == permissaoDTO.FornecedorEditar
-            &&permissaoBD.FornecedorDetalhe == permissaoDTO.FornecedorDetalhe
-            &&permissaoBD.FornecedorExcluir == permissaoDTO.FornecedorExcluir
-            &&permissaoBD.VisualizarFuncionario == permissaoDTO.VisualizarFuncionario
-            &&permissaoBD.FuncionarioCadastro == permissaoDTO.FuncionarioCadastro
-            &&permissaoBD.FuncionarioEditar == permissaoDTO.FuncionarioEditar
-            &&permissaoBD.FuncionarioDetalhe == permissaoDTO.FuncionarioDetalhe
-            &&permissaoBD.FuncionarioExcluir == permissaoDTO.FuncionarioExcluir
-            &&permissaoBD.VisualizarProduto == permissaoDTO.VisualizarProduto
-            &&permissaoBD.ProdutoCadastro == permissaoDTO.ProdutoCadastro
-            &&permissaoBD.ProdutoEditar == permissaoDTO.ProdutoEditar
-            &&permissaoBD.ProdutoDetalhe == permissaoDTO.ProdutoDetalhe
-            &&permissaoBD.ProdutoExcluir == permissaoDTO.ProdutoExcluir
-            &&permissaoBD.GerarRelatorio == permissaoDTO.GerarRelatorio
-            &&permissaoBD.VisualizarTransportador == permissaoDTO.VisualizarTransportador
-            &&permissaoBD.TransportadorCadastro == permissaoDTO.TransportadorCadastro
-            &&permissaoBD.TransportadorEditar == permissaoDTO.TransportadorEditar
-            &&permissaoBD.TransportadorDetalhe == permissaoDTO.TransportadorDetalhe
-            &&permissaoBD.TransportadorExcluir == permissaoDTO.TransportadorExcluir
-            &&permissaoBD.VisualizarUsuario == permissaoDTO.VisualizarUsuario
-            &&permissaoBD.UsuarioCadastro == permissaoDTO.UsuarioCadastro
-            &&permissaoBD.UsuarioEditar == permissaoDTO.UsuarioEditar
-            &&permissaoBD.UsuarioPermissoes == permissaoDTO.UsuarioPermissoes
-            &&permissaoBD.UsuarioExcluir == permissaoDTO.UsuarioExcluir
-            &&permissaoBD.VisualizarPedido == permissaoDTO.VisualizarPedido
-            &&permissaoBD.PedidoCadastro == permissaoDTO.PedidoCadastro
-            &&permissaoBD.PedidoEditar == permissaoDTO.PedidoEditar
-            &&permissaoBD.PedidoDetalhe == permissaoDTO.PedidoDetalhe
-            &&permissaoBD.PedidoExcluir == permissaoDTO.PedidoExcluir
-            &&permissaoBD.VisualizarNotaFiscal == permissaoDTO.VisualizarNotaFiscal
-            &&permissaoBD.NotaFiscalCadastro == permissaoDTO.NotaFiscalCadastro
-            &&permissaoBD.NotaFiscalGerarPDF == permissaoDTO.NotaFiscalGerarPDF
-            &&permissaoBD.NotaFiscalCancelar == permissaoDTO.NotaFiscalCancelar
-            &&permissaoBD.EmpresaId == permissaoDTO.EmpresaId
-            &&permissaoBD.UsuarioId == permissaoDTO.UsuarioId)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public PermissaoDTO PreenchePermissoes(PermissaoDTO permissaoDTO)
-        {
-            var PermissaoDTOMapper = new PermissaoDTO()
-            {
-                Id = permissaoDTO.Id,
-                VisualizarCliente = permissaoDTO.VisualizarCliente,
-                ClienteCadastro = permissaoDTO.ClienteCadastro,
-                ClienteEditar = permissaoDTO.ClienteEditar,
-                ClienteDetalhe = permissaoDTO.ClienteDetalhe,
-                ClienteExcluir = permissaoDTO.ClienteExcluir,
-                VisualizarEmpresa = permissaoDTO.VisualizarEmpresa,
-                EmpresaCadastro = permissaoDTO.EmpresaCadastro,
-                EmpresaEditar = permissaoDTO.EmpresaEditar,
-                EmpresaDetalhe = permissaoDTO.EmpresaDetalhe,
-                EmpresaExcluir = permissaoDTO.EmpresaExcluir,
-                VisualizarEstoque = permissaoDTO.VisualizarEstoque,
-                EstoqueEditar = permissaoDTO.EstoqueEditar,
-                EstoqueDetalhe = permissaoDTO.EstoqueDetalhe,
-                EstoqueExcluir = permissaoDTO.EstoqueExcluir,
-                VisualizarEnderecoProduto = permissaoDTO.VisualizarEnderecoProduto,
-                EnderecoProdutoCadastro = permissaoDTO.EnderecoProdutoCadastro,
-                EnderecoProdutoEditar = permissaoDTO.EnderecoProdutoEditar,
-                EnderecoProdutoDetalhe = permissaoDTO.EnderecoProdutoDetalhe,
-                EnderecoProdutoExcluir = permissaoDTO.EnderecoProdutoExcluir,
-                VisualizarFornecedor = permissaoDTO.VisualizarFornecedor,
-                FornecedorCadastro = permissaoDTO.FornecedorCadastro,
-                FornecedorEditar = permissaoDTO.FornecedorEditar,
-                FornecedorDetalhe = permissaoDTO.FornecedorDetalhe,
-                FornecedorExcluir = permissaoDTO.FornecedorExcluir,
-                VisualizarFuncionario = permissaoDTO.VisualizarFuncionario,
-                FuncionarioCadastro = permissaoDTO.FuncionarioCadastro,
-                FuncionarioEditar = permissaoDTO.FuncionarioEditar,
-                FuncionarioDetalhe = permissaoDTO.FuncionarioDetalhe,
-                FuncionarioExcluir = permissaoDTO.FuncionarioExcluir,
-                VisualizarProduto = permissaoDTO.VisualizarProduto,
-                ProdutoCadastro = permissaoDTO.ProdutoCadastro,
-                ProdutoEditar = permissaoDTO.ProdutoEditar,
-                ProdutoDetalhe = permissaoDTO.ProdutoDetalhe,
-                ProdutoExcluir = permissaoDTO.ProdutoExcluir,
-                GerarRelatorio = permissaoDTO.GerarRelatorio,
-                VisualizarTransportador = permissaoDTO.VisualizarTransportador,
-                TransportadorCadastro = permissaoDTO.TransportadorCadastro,
-                TransportadorEditar = permissaoDTO.TransportadorEditar,
-                TransportadorDetalhe = permissaoDTO.TransportadorDetalhe,
-                TransportadorExcluir = permissaoDTO.TransportadorExcluir,
-                VisualizarUsuario = permissaoDTO.VisualizarUsuario,
-                UsuarioCadastro = permissaoDTO.UsuarioCadastro,
-                UsuarioEditar = permissaoDTO.UsuarioEditar,
-                UsuarioPermissoes = permissaoDTO.UsuarioPermissoes,
-                UsuarioExcluir = permissaoDTO.UsuarioExcluir,
-                VisualizarPedido = permissaoDTO.VisualizarPedido,
-                PedidoCadastro = permissaoDTO.PedidoCadastro,
-                PedidoEditar = permissaoDTO.PedidoEditar,
-                PedidoDetalhe = permissaoDTO.PedidoDetalhe,
-                PedidoExcluir = permissaoDTO.PedidoExcluir,
-                VisualizarNotaFiscal = permissaoDTO.VisualizarNotaFiscal,
-                NotaFiscalCadastro = permissaoDTO.NotaFiscalCadastro,
-                NotaFiscalGerarPDF = permissaoDTO.NotaFiscalGerarPDF,
-                NotaFiscalCancelar = permissaoDTO.NotaFiscalCancelar,
-                EmpresaId = permissaoDTO.EmpresaId,
-                UsuarioId = permissaoDTO.UsuarioId
-            };
-            return PermissaoDTOMapper;
         }
     }
 }

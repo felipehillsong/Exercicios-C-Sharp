@@ -15,6 +15,6 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<Funcionario> GetFuncionarioUsuarioByIdAsync(int empresaId, int funcionarioId);
         Task<Usuario> GetUsuarioByIdAlteraLoginAsync(int usuarioId);
         Task<Permissao> GetPermissaoUsuarioByIdAsync(int empresaId, int usuarioId);
-        Task<Permissao> GetPermissaoByIdAsync(int empresaId, int usuarioId, int permissaoId);
+        Permissao GetPermissaoByIdAsync(int empresaId, int usuarioId, int permissaoId);
     }
 }

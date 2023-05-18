@@ -47,10 +47,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var permissoes = _usuarioPersist.GetPermissaoUsuarioByIdAsync(usuario.EmpresaId, usuario.Id);
                     if (permissoes.Result == null)
                     {
-                        var usuarioSemPermissoes = _usuarioService.GetPermissaoByIdAsync(usuario.EmpresaId, usuario.Id);
+                        var usuarioSemPermissoes = _validacoesPersist.PermissaoUsuarioId(usuario.EmpresaId, usuario.Id);
+                        var resultadoPermissao = _mapper.Map<List<PermissaoDTO>>(usuarioSemPermissoes);
                         var usuarioSemPermissaoRetorno = _mapper.Map<UsuarioLoginDTO>(usuario);
                         var usuarioNovoPermissao = new List<PermissaoDTO>();
-                        foreach (var item in usuarioSemPermissoes.Result)
+                        foreach (var item in resultadoPermissao)
                         {
                             usuarioNovoPermissao.Add(item);
                         }

@@ -47,9 +47,9 @@ namespace RetaguardaESilva.Persistence.Persistencias
         {
             return await _context.Permissao.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.UsuarioId == usuarioId).OrderBy(p => p.Id).FirstOrDefaultAsync();
         }
-        public async Task<Permissao> GetPermissaoByIdAsync(int empresaId, int usuarioId, int permissaoId)
+        public Permissao GetPermissaoByIdAsync(int empresaId, int usuarioId, int permissaoId)
         {
-            return await _context.Permissao.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.UsuarioId == usuarioId && p.Id == permissaoId).OrderBy(p => p.Id).FirstOrDefaultAsync();
+            return _context.Permissao.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.UsuarioId == usuarioId && p.Id == permissaoId).OrderBy(p => p.Id).FirstOrDefault();          
         }
     }
 }

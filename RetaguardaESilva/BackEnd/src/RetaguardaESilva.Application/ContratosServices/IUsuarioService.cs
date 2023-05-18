@@ -19,8 +19,5 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<FuncionarioDTO> GetFuncionarioUsuarioByIdAsync(int empresaId, int funcionarioId);
         Task<UsuarioDTO> GetUsuarioByIdAlteraLoginAsync(int funcionarioId);
         Permissao UpdatePermissao(List<PermissaoDTO> model, out string mensagem);
-        Task<List<PermissaoDTO>> GetPermissaoByIdAsync(int empresaId, int usuarioId);
-        bool VerificaPermissoes(Permissao permissaoBD, PermissaoDTO permissaoDTO);
-        PermissaoDTO PreenchePermissoes(PermissaoDTO permissaoDTO);
     }
 }
