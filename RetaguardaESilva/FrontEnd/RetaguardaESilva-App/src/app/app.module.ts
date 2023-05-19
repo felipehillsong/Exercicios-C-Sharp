@@ -122,8 +122,6 @@ import { MatTableModule } from '@angular/material/table';
 import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFiscal-gerarPdf/notaFiscal-gerarPdf.component';
 import { RelatorioComponent } from './components/relatorios/relatorio.component';
 import { GerarRelatorioComponent } from './components/relatorios/gerarRelatorio/gerarRelatorio.component';
-import { RelatorioDetalheComponent } from './components/relatorios/relatorio-detalhe/relatorio-detalhe.component';
-
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -175,7 +173,6 @@ registerLocaleData(ptBr);
     PedidoListaComponent,
     RelatorioComponent,
     GerarRelatorioComponent,
-    RelatorioDetalheComponent,
     TituloComponent,
     TransportadorComponent,
     TransportadorListaComponent,

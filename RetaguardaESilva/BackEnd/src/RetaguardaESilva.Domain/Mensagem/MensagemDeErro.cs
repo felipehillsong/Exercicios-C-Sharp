@@ -54,6 +54,8 @@ namespace RetaguardaESilva.Domain.Mensagem
         public const string EmpresaRelatorioNaoEncontrado = "Não foram encontrados nenhuma empresa nesse periodo";
         public const string ProdutoRelatorioNaoEncontrado = "Não foram encontrados nenhum produto nesse periodo";
         public const string UsuarioRelatorioNaoEncontrado = "Não foram encontrados nenhum usuario nesse periodo";
+        public const string ClienteRelatorioNaoEncontrado = "Não foram encontrados nenhum cliente nesse periodo";
+        public const string FornecedorRelatorioNaoEncontrado = "Não foram encontrados nenhum fornecedor nesse periodo";
         public const string EmpresaUsuarioInexistente = "Você esta tentando cadastrar um usuario em uma empresa inexistente!";
         public const string UsuarioSemId = "Algum erro ocorreu, possivelmente usuario sem Id";
         public const string UsuarioJaCadastrado = "Você esta tentando cadastrar ou atualizar um usuario para outro usuario já cadastrado, reveja o CPF";

@@ -1,4 +1,5 @@
 export enum Relatorio {
+  Selecione = 'Selecione o Relatório',
   TodosClientesAtivosInativosExcluidos = 'Todos os Clientes',
   TodosClientesAtivos = 'Clientes Cadastrados Ativos',
   TodosClientesInativos = 'Clientes Cadastrados Inativos',
@@ -35,5 +36,5 @@ export enum Relatorio {
   TodosProdutosAtivosInativosExcluidos = 'Todos os Produtos',
   TodosProdutosAtivos = 'Produtos Cadastrados Ativos',
   TodosProdutosInativos = 'Produtos Cadastrados Inativos',
-  TodosProdutosExcluidos = 'Produtos Excluidos',
+  TodosProdutosExcluidos = 'Produtos Excluidos'
 }

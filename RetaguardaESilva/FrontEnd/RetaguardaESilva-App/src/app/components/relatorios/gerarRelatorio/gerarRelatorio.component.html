@@ -6,7 +6,7 @@
       <div class="form-group">
         <mat-form-field>
           <mat-label>Selecione o Relatório</mat-label>
-          <mat-select [(ngModel)]="valorRelatorio" (ngModelChange)="onDropdownChange($event)">
+          <mat-select [(ngModel)]="valorRelatorio" [disabled]="inputDatas" (ngModelChange)="onDropdownChange($event)">
             <mat-option>Nenhum</mat-option>
             <mat-option *ngFor="let relatorio of relatorios" [value]="relatorio">{{relatorio}}</mat-option>
           </mat-select>
@@ -16,19 +16,25 @@
     <div *ngIf="inputData" class="col-md-3">
       <div class="form-group">
         <label class="required" style="font-weight: bold;">Data Inicio</label>
-        <input type="date" class="form-control" placeholder="Data Inicio" [(ngModel)]="dataInicio">
+        <input type="date" class="form-control" [readonly]="inputDatas" placeholder="Data Inicio" [(ngModel)]="dataInicio">
       </div>
     </div>
     <div *ngIf="inputData" class="col-md-3">
       <div class="form-group">
         <label class="required" style="font-weight: bold;">Data Final</label>
-        <input type="date" class="form-control" placeholder="Data Final" [(ngModel)]="dataFinal">
+        <input type="date" class="form-control" [readonly]="inputDatas" placeholder="Data Final" [(ngModel)]="dataFinal">
       </div>
     </div>
     <div *ngIf="botaoGerar" class="col-md-3">
       <div class="form-group">
         <br>
         <button class="btn btn-sm btn-success btn-block" (click)="Gerar()" type="submit">Gerar</button>
+      </div>
+    </div>
+    <div *ngIf="botaoResetar" class="col-md-3">
+      <div class="form-group">
+        <br>
+        <button class="btn btn-sm btn-warning btn-block" (click)="Resetar()" type="submit">Resetar</button>
       </div>
     </div>
 </div>

@@ -51,11 +51,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var clientes = await _relatorioPersist.GetAllClientesAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                     if (clientes == null)
                     {
-                        throw new Exception(MensagemDeErro.ClienteNaoEncontrado);
+                        throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                     }
                     else if (clientes.Count() == 0)
                     {
-                        throw new Exception(MensagemDeErro.ClienteNaoEncontradoEmpresa);
+                        throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                     }
                     else
                     {
@@ -79,11 +79,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var clientes = await _relatorioPersist.GetAllClientesAtivosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
-                    throw new Exception(MensagemDeErro.ClienteAtivoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else if (clientes.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.ClienteAtivoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else
                 {
@@ -106,11 +106,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var clientes = await _relatorioPersist.GetAllClientesInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
-                    throw new Exception(MensagemDeErro.ClienteInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else if (clientes.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.ClienteInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else
                 {
@@ -133,11 +133,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var clientes = await _relatorioPersist.GetAllClientesExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (clientes == null)
                 {
-                    throw new Exception(MensagemDeErro.ClienteExcluidoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else if (clientes.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.ClienteExcluidoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.ClienteRelatorioNaoEncontrado);
                 }
                 else
                 {
@@ -166,11 +166,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var fornecedores = await _relatorioPersist.GetAllFornecedoresAtivosInativosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                     if (fornecedores == null)
                     {
-                        throw new Exception(MensagemDeErro.FornecedorNaoEncontrado);
+                        throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                     }
                     else if (fornecedores.Count() == 0)
                     {
-                        throw new Exception(MensagemDeErro.FornecedorNaoEncontradoEmpresa);
+                        throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                     }
                     else
                     {
@@ -194,11 +194,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var fornecedores = await _relatorioPersist.GetAllFornecedoresAtivosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (fornecedores == null)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorAtivoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else if (fornecedores.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorAtivoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else
                 {
@@ -221,11 +221,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var fornecedores = await _relatorioPersist.GetAllFornecedoresInativosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (fornecedores == null)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else if (fornecedores.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.FornecedorInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else
                 {
@@ -248,11 +248,11 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 var fornecedores = await _relatorioPersist.GetAllFornecedoresExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
                 if (fornecedores == null)
                 {
-                    throw new Exception(MensagemDeErro.ClienteInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else if (fornecedores.Count() == 0)
                 {
-                    throw new Exception(MensagemDeErro.ClienteInativoNaoEncontrado);
+                    throw new Exception(MensagemDeErro.FornecedorRelatorioNaoEncontrado);
                 }
                 else
                 {

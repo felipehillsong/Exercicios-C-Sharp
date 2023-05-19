@@ -101,7 +101,6 @@ import { NotaFiscalGerarPdfComponent } from './components/notasFiscais/notaFisca
 import { RelatorioComponent } from './components/relatorios/relatorio.component';
 import { GerarRelatorioComponent } from './components/relatorios/gerarRelatorio/gerarRelatorio.component';
 import { AuthGuardsRelatorioService } from './guards/relatorio/AuthGuardsRelatorio.service';
-import { RelatorioDetalheComponent } from './components/relatorios/relatorio-detalhe/relatorio-detalhe.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', title: 'Login' },
@@ -197,8 +196,7 @@ const routes: Routes = [
   { path: 'relatorios',
   component: RelatorioComponent, canActivate:[AuthGuardsService, AuthGuardsRelatorioService],
   children:[
-    {path: 'gerarRelatorio', title: 'Relatorio', component: GerarRelatorioComponent },
-    {path: 'detalhe/:codigoRelatorio/:dataInicio/:dataFinal', title: 'Detalhe', component: RelatorioDetalheComponent, canActivate:[AuthGuardsRelatorioService] }
+    {path: 'gerarRelatorio', title: 'Relatorio', component: GerarRelatorioComponent }
   ]},
 ];
 
