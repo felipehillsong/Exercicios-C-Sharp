@@ -35,43 +35,14 @@ export class GerarRelatorioComponent implements OnInit {
   public usuarios: Usuario[] = [];
   public empresas: Empresa[] = [];
   public produtos: Produto[] = [];
-  todosClientesAtivosInativosExcluidos:boolean = false;
-  todosClientesAtivos:boolean = false;
-  todosClientesInativos:boolean = false;
-  todosClientesExcluidos:boolean = false;
-  todosFornecedoresAtivosInativosExcluidos:boolean = false;
-  todosFornecedoresAtivos:boolean = false;
-  todosFornecedoresInativos:boolean = false;
-  todosFornecedoresExcluidos:boolean = false;
-  todosFornecedoresAtivosProdutosAtivoInativoExcluidos:boolean = false;
-  todosFornecedoresAtivosProdutosAtivos:boolean = false;
-  todosFornecedoresAtivosProdutosInativos:boolean = false;
-  todosFornecedoresAtivosProdutosExcluidos:boolean = false;
-  todosFornecedoresInativosProdutosAtivoInativoExcluidos:boolean = false;
-  todosFornecedoresInativosProdutosAtivos:boolean = false;
-  todosFornecedoresInativosProdutosInativos:boolean = false;
-  todosFornecedoresInativosProdutosExcluidos:boolean = false;
-  todosFornecedoresExcluidosProdutosAtivoInativoExcluidos:boolean = false;
-  todosFornecedoresExcluidosProdutosAtivos:boolean = false;
-  todosFornecedoresExcluidosProdutosInativos:boolean = false;
-  todosFornecedoresExcluidosProdutosExcluidos:boolean = false;
-  todosFuncionariosAtivosInativosExcluidos:boolean = false;
-  todosFuncionariosAtivos:boolean = false;
-  todosFuncionariosInativos:boolean = false;
-  todosFuncionariosExcluidos:boolean = false;
-  todosTransportadoresAtivosInativosExcluidos:boolean = false;
-  todosTransportadoresAtivos:boolean = false;
-  todosTransportadoresInativos:boolean = false;
-  todosTransportadoresExcluidos:boolean = false;
+  todosClientes:boolean = false;
+  todosFornecedores:boolean = false;
+  todosFornecedoresProdutos:boolean = false;
+  todosFuncionarios:boolean = false;
+  todosTransportadores:boolean = false;
   todosUsuarios:boolean = false;
-  todosEmpresasAtivosInativosExcluidos:boolean = false;
-  todosEmpresasAtivos:boolean = false;
-  todosEmpresasInativos:boolean = false;
-  todosEmpresasExcluidos:boolean = false;
-  todosProdutosAtivosInativosExcluidos:boolean = false;
-  todosProdutosAtivos:boolean = false;
-  todosProdutosInativos:boolean = false;
-  todosProdutosExcluidos:boolean = false;
+  todosEmpresas:boolean = false;
+  todosProdutos:boolean = false;
   codigoRelatorio!:number;
   dataInicio!:string;
   dataFinal!:string;
@@ -80,6 +51,7 @@ export class GerarRelatorioComponent implements OnInit {
   divData:boolean = false;
   botaoGerar:boolean = false;
   botaoResetar:boolean = false;
+  botaoGerarExcel:boolean = false;
   valorRelatorio: string = '';
   relatorios!: string[]
 
@@ -137,11 +109,7 @@ export class GerarRelatorioComponent implements OnInit {
 
   onDropdownChange(value: string) {
     if(value == undefined){
-      this.divData = false;
-      this.dataInicio = 'null';
-      this.dataFinal = 'null';
-      this.botaoGerar = false;
-      this.botaoResetar = false;
+      this.Resetar();
     }
     else if(value == Relatorio.TodosFornecedoresAtivosProdutosAtivoInativoExcluidos || value == Relatorio.TodosFornecedoresAtivosProdutosAtivos || value == Relatorio.TodosFornecedoresAtivosProdutosInativos || value == Relatorio.TodosFornecedoresAtivosProdutosExcluidos || value == Relatorio.TodosFornecedoresInativosProdutosAtivoInativoExcluidos || value == Relatorio.TodosFornecedoresInativosProdutosAtivos || value == Relatorio.TodosFornecedoresInativosProdutosInativos || value == Relatorio.TodosFornecedoresInativosProdutosExcluidos || value == Relatorio.TodosFornecedoresExcluidosProdutosAtivoInativoExcluidos || value == Relatorio.TodosFornecedoresExcluidosProdutosAtivos || value == Relatorio.TodosFornecedoresExcluidosProdutosInativos || value == Relatorio.TodosFornecedoresExcluidosProdutosExcluidos){
       this.divData = false;
@@ -170,13 +138,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioCliente(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_clientes: Cliente[]) => {
               this.clientes = _clientes;
-              this.todosClientesAtivosInativosExcluidos = true;
+              this.todosClientes = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -196,13 +165,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioCliente(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_clientes: Cliente[]) => {
               this.clientes = _clientes;
-              this.todosClientesAtivos = true;
+              this.todosClientes = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -222,13 +192,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioCliente(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_clientes: Cliente[]) => {
             this.clientes = _clientes;
-            this.todosClientesInativos = true;
+            this.todosClientes = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -248,13 +219,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioCliente(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_clientes: Cliente[]) => {
             this.clientes = _clientes;
-            this.todosClientesExcluidos = true;
+            this.todosClientes = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -274,13 +246,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioFornecedores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_fornecedores: Fornecedor[]) => {
               this.fornecedores = _fornecedores;
-              this.todosFornecedoresAtivosInativosExcluidos = true;
+              this.todosFornecedores = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -300,13 +273,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresAtivos = true;
+            this.todosFornecedores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -326,13 +300,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresInativos = true;
+            this.todosFornecedores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -352,13 +327,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresExcluidos = true;
+            this.todosFornecedores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -374,10 +350,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresAtivosProdutosAtivoInativoExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -388,10 +365,11 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
             (_fornecedores: Fornecedor[]) => {
               this.fornecedores = _fornecedores;
-              this.todosFornecedoresAtivosProdutosAtivos = true;
+              this.todosFornecedoresProdutos = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -402,10 +380,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresAtivosProdutosInativos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -416,10 +395,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresAtivosProdutosExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -430,10 +410,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresInativosProdutosAtivoInativoExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -444,10 +425,11 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
             (_fornecedores: Fornecedor[]) => {
               this.fornecedores = _fornecedores;
-              this.todosFornecedoresInativosProdutosAtivos = true;
+              this.todosFornecedoresProdutos = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -458,10 +440,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresInativosProdutosInativos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -472,10 +455,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresInativosProdutosExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -486,10 +470,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresExcluidosProdutosAtivoInativoExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -500,10 +485,11 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
             (_fornecedores: Fornecedor[]) => {
               this.fornecedores = _fornecedores;
-              this.todosFornecedoresExcluidosProdutosAtivos = true;
+              this.todosFornecedoresProdutos = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -514,10 +500,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresExcluidosProdutosInativos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -527,10 +514,11 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFornecedoresProdutos(this.codigoRelatorio).subscribe(
           (_fornecedores: Fornecedor[]) => {
             this.fornecedores = _fornecedores;
-            this.todosFornecedoresExcluidosProdutosExcluidos = true;
+            this.todosFornecedoresProdutos = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -545,13 +533,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFuncionarios(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_funcionarios: Funcionario[]) => {
             this.funcionarios = _funcionarios;
-            this.todosFuncionariosAtivosInativosExcluidos = true;
+            this.todosFuncionarios = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -571,13 +560,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioFuncionarios(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_funcionarios: Funcionario[]) => {
               this.funcionarios = _funcionarios;
-              this.todosFuncionariosInativos = true;
+              this.todosFuncionarios = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -597,13 +587,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFuncionarios(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_funcionarios: Funcionario[]) => {
             this.funcionarios = _funcionarios;
-            this.todosFuncionariosInativos = true;
+            this.todosFuncionarios = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -623,13 +614,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioFuncionarios(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_funcionarios: Funcionario[]) => {
             this.funcionarios = _funcionarios;
-            this.todosFuncionariosExcluidos = true;
+            this.todosFuncionarios = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -649,13 +641,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioTransportadores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_transportadores: Transportador[]) => {
             this.transportadores = _transportadores;
-            this.todosTransportadoresAtivosInativosExcluidos = true;
+            this.todosTransportadores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -675,13 +668,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioTransportadores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_transportadores: Transportador[]) => {
             this.transportadores = _transportadores;
-            this.todosTransportadoresAtivos = true;
+            this.todosTransportadores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -701,13 +695,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioTransportadores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_transportadores: Transportador[]) => {
             this.transportadores = _transportadores;
-            this.todosTransportadoresInativos = true;
+            this.todosTransportadores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -727,13 +722,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioTransportadores(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_transportadores: Transportador[]) => {
             this.transportadores = _transportadores;
-            this.todosTransportadoresExcluidos = true;
+            this.todosTransportadores = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -760,6 +756,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -779,13 +776,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioEmpresas(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_empresas: Empresa[]) => {
               this.empresas = _empresas;
-              this.todosEmpresasAtivosInativosExcluidos = true;
+              this.todosEmpresas = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -805,13 +803,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioEmpresas(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_empresas: Empresa[]) => {
             this.empresas = _empresas;
-            this.todosEmpresasAtivos = true;
+            this.todosEmpresas = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -831,13 +830,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioEmpresas(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_empresas: Empresa[]) => {
             this.empresas = _empresas;
-            this.todosEmpresasInativos = true;
+            this.todosEmpresas = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -857,13 +857,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioEmpresas(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_empresas: Empresa[]) => {
             this.empresas = _empresas;
-            this.todosEmpresasExcluidos = true;
+            this.todosEmpresas = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+              this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -883,13 +884,14 @@ export class GerarRelatorioComponent implements OnInit {
           this.relatorioService.getRelatorioProdutos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
             (_produtos: Produto[]) => {
               this.produtos = _produtos;
-              this.todosProdutosAtivosInativosExcluidos = true;
+              this.todosProdutos = true;
               this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
               this.inputData = true;
               this.dropRelatorio = true;
               this.botaoGerar = false;
               this.botaoResetar = true;
+              this.botaoGerarExcel = true;
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -909,13 +911,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioProdutos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_produtos: Produto[]) => {
             this.produtos = _produtos;
-            this.todosProdutosAtivos = true;
+            this.todosProdutos = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -935,13 +938,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioProdutos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_produtos: Produto[]) => {
             this.produtos = _produtos;
-            this.todosProdutosInativos = true;
+            this.todosProdutos = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -961,13 +965,14 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioProdutos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_produtos: Produto[]) => {
             this.produtos = _produtos;
-            this.todosProdutosExcluidos = true;
+            this.todosProdutos = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.inputData = true;
             this.dropRelatorio = true;
             this.botaoGerar = false;
             this.botaoResetar = true;
+            this.botaoGerarExcel = true;
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -984,6 +989,10 @@ export class GerarRelatorioComponent implements OnInit {
     }
   }
 
+  public GerarExcel(){
+
+  }
+
   public Resetar(){
     this.dataInicio = new Date().toISOString().split('T')[0];
     this.dataFinal = new Date().toISOString().split('T')[0];
@@ -995,6 +1004,15 @@ export class GerarRelatorioComponent implements OnInit {
     this.inputData = false;
     this.dropRelatorio = false;
     this.botaoGerar = false;
+    this.todosClientes = false;
+    this.todosFornecedores = false;
+    this.todosFornecedoresProdutos = false;
+    this.todosFuncionarios = false;
+    this.todosTransportadores = false;
+    this.todosUsuarios = false;
+    this.todosEmpresas = false;
+    this.todosProdutos = false;
+    this.botaoGerarExcel = false;
   }
 
   permissoesDeTela(){

@@ -19,5 +19,5 @@ export interface Fornecedor {
   dataCadastroFornecedor: string;
   ativo: boolean;
   empresaId: number;
-  produto: Array<Produto>;
+  produtos: Array<Produto>;
 }
