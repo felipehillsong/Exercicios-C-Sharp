@@ -18,6 +18,7 @@ import { AuthService } from 'src/app/services/login/auth.service';
 import { NavService } from 'src/app/services/nav/nav.service';
 import { RelatorioService } from 'src/app/services/relatorio/relatorio.service';
 import { TituloService } from 'src/app/services/titulo/titulo.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-gerarRelatorio',
@@ -54,6 +55,7 @@ export class GerarRelatorioComponent implements OnInit {
   botaoGerarExcel:boolean = false;
   valorRelatorio: string = '';
   relatorios!: string[]
+  fileName= '';
 
 
   constructor(private router: Router, private _changeDetectorRef: ChangeDetectorRef, private toastr: ToastrService, private spinner: NgxSpinnerService, private authService: AuthService, private relatorioService: RelatorioService, public titu: TituloService, public nav: NavService, private fb: FormBuilder) { }
@@ -146,6 +148,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosClientesAtivosInativosExcluidos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -173,6 +176,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosClientesAtivos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -200,6 +204,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosClientesInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -227,6 +232,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosClientesExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -254,6 +260,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosFornecedoresAtivosInativosExcluidos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -281,6 +288,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresAtivos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -308,6 +316,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -335,6 +344,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -355,6 +365,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresAtivosProdutosAtivoInativoExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -370,6 +381,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosFornecedoresAtivosProdutosAtivos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -385,6 +397,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresAtivosProdutosInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -400,6 +413,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresAtivosProdutosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -415,6 +429,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresInativosProdutosAtivoInativoExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -430,6 +445,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosFornecedoresInativosProdutosAtivos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -445,6 +461,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresInativosProdutosInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -460,6 +477,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresInativosProdutosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -475,6 +493,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresExcluidosProdutosAtivoInativoExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -490,6 +509,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosFornecedoresExcluidosProdutosAtivos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => alert(error.error)
@@ -505,6 +525,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresExcluidosProdutosInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -519,6 +540,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFornecedoresExcluidosProdutosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => alert(error.error)
@@ -541,6 +563,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFuncionariosAtivosInativosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -568,6 +591,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosFuncionariosAtivos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -595,6 +619,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFuncionariosInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -622,6 +647,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosFuncionariosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -649,6 +675,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosTransportadoresAtivosInativosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -676,6 +703,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosTransportadoresAtivos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -703,6 +731,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosTransportadoresInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -730,6 +759,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosTransportadoresExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -757,6 +787,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosUsuarios + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -784,6 +815,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosEmpresasAtivosInativosExcluidos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -811,6 +843,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosEmpresasAtivos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -838,6 +871,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosEmpresasInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -865,6 +899,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosEmpresasExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -892,6 +927,7 @@ export class GerarRelatorioComponent implements OnInit {
               this.botaoGerar = false;
               this.botaoResetar = true;
               this.botaoGerarExcel = true;
+              this.fileName = Relatorio.TodosProdutosAtivosInativosExcluidos + '.xlsx';
               this._changeDetectorRef.markForCheck();
             },
             error => {
@@ -919,6 +955,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosProdutosAtivos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -946,6 +983,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosProdutosInativos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -973,6 +1011,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosProdutosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -990,6 +1029,58 @@ export class GerarRelatorioComponent implements OnInit {
   }
 
   public GerarExcel(){
+    let clientes = document.getElementById('excel-clientes');
+    let fornecedores = document.getElementById('excel-fornecedores');
+    let fornecedoresProdutos = document.getElementById('excel-fornecedoresProdutos');
+    let funcionarios = document.getElementById('excel-funcionarios');
+    let transportadores = document.getElementById('excel-transportadores');
+    let usuarios = document.getElementById('excel-usuarios');
+    let empresas = document.getElementById('excel-empresas');
+    let produtos = document.getElementById('excel-produtos');
+    if(clientes){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(clientes);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(fornecedores){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(fornecedores);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(fornecedoresProdutos){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(fornecedoresProdutos);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(funcionarios){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(funcionarios);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(transportadores){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(transportadores);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(usuarios){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(usuarios);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(empresas){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(empresas);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }else if(produtos){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(produtos);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
+    }
+    else{
+      alert('Erro ao gerar o relatório em excel');
+    }
 
   }
 
@@ -1013,6 +1104,7 @@ export class GerarRelatorioComponent implements OnInit {
     this.todosEmpresas = false;
     this.todosProdutos = false;
     this.botaoGerarExcel = false;
+    this.fileName = '';
   }
 
   permissoesDeTela(){
