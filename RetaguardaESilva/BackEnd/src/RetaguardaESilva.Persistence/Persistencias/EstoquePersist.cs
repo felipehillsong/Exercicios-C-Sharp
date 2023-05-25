@@ -24,6 +24,11 @@ namespace RetaguardaESilva.Persistence.Persistencias
             return await _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).OrderBy(e => e.Id).ToListAsync();
         }
 
+        public async Task<IEnumerable<Estoque>> GetAllEstoqueRelatorioAsync(int empresaId)
+        {
+            return await _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId).OrderBy(e => e.Id).ToListAsync();
+        }
+
         public async Task<Estoque> GetEstoqueByProdutoIdAsync(int empresaId, int produtoId)
         {            
             return await _context.Estoque.AsNoTracking().Where(e => e.ProdutoId == produtoId && e.EmpresaId == empresaId && e.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)).FirstOrDefaultAsync();

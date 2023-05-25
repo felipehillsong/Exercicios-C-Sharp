@@ -47,5 +47,6 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<IEnumerable<Produto>> GetAllProdutosAtivosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
         Task<IEnumerable<Produto>> GetAllProdutosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
         Task<IEnumerable<Produto>> GetAllProdutosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        IEnumerable<EstoqueViewModelEnderecoProduto> RetornarProdutosEstoqueRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
     }
 }

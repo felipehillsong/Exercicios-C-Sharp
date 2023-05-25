@@ -15,6 +15,7 @@ namespace RetaguardaESilva.Application.DTO
         public int FornecedorId { get; set; }
         public int ProdutoId { get; set; }
         public int Quantidade { get; set; }
+        public DateTime? DataCadastroEstoque { get; set; }
         public bool StatusExclusao { get; set; }
     }
 

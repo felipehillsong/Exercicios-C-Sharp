@@ -25,14 +25,16 @@ namespace RetaguardaESilva.Application.PersistenciaService
         private readonly IGeralPersist _geralPersist;
         private readonly IValidacoesPersist _validacoesPersist;
         private readonly IUsuarioPersist _usuarioPersist;
+        private readonly IEstoquePersist _estoquePersist;
         private readonly IRelatorioPersist _relatorioPersist;
         private readonly IMapper _mapper;
 
-        public RelatorioService(IGeralPersist geralPersist, IValidacoesPersist validacoesPersist, IRelatorioPersist relatorioPersist, IUsuarioPersist usuarioPersist, IMapper mapper)
+        public RelatorioService(IGeralPersist geralPersist, IEstoquePersist estoquePersist, IValidacoesPersist validacoesPersist, IRelatorioPersist relatorioPersist, IUsuarioPersist usuarioPersist, IMapper mapper)
         {
             _geralPersist = geralPersist;
             _validacoesPersist = validacoesPersist;
             _usuarioPersist = usuarioPersist;
+            _estoquePersist = estoquePersist;
             _relatorioPersist = relatorioPersist;
             _mapper = mapper;
         }
@@ -1049,6 +1051,34 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 {
                     var resultadoProdutos = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
                     return resultadoProdutos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EstoqueViewModelDTO>> GetAllEstoquesAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var estoques = await _estoquePersist.GetAllEstoqueRelatorioAsync(empresaId);
+                if (estoques == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    List<EstoqueViewModelDTO> EstoqueProdutoRetorno = new List<EstoqueViewModelDTO>();
+                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    foreach (var produtoEstoque in estoqueProduto)
+                    {
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.EnderecoProdutoId));
+                    }
+                    return EstoqueProdutoRetorno;
                 }
             }
             catch (Exception ex)

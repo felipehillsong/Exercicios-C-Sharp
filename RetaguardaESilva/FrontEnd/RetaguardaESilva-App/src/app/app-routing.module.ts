@@ -152,7 +152,7 @@ const routes: Routes = [
     {path: 'detalhe/:id', title: 'Detalhe', component: FuncionarioDetalheComponent, canActivate: [AuthGuardsFuncionarioDetalheService] }
   ]},
   { path: 'login', component: LoginComponent, title: 'Login' },
-  { path: 'home', component: HomeComponent, title: 'Home', canActivate:[AuthGuardsService] },
+  { path: 'home', component: HomeComponent, title: 'Retaguarda E Silva', canActivate:[AuthGuardsService] },
   { path: 'produtos',
   component: ProdutoComponent, canActivate:[AuthGuardsService, AuthGuardsProdutoService],
   children:[
