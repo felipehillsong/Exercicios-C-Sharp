@@ -62,4 +62,24 @@ namespace RetaguardaESilva.Application.DTO
         {
         }
     }
+
+    public class EstoqueRelatorioDTO
+    {
+        public int Id { get; set; }
+        public int ProdutoId { get; set; }
+        public string ProdutoNome { get; set; }
+        public int Quantidade { get; set; }
+        public bool StatusExclusao { get; set; }
+        public DateTime? DataCadastroEstoque { get; set; }
+
+        public EstoqueRelatorioDTO(int id, int produtoId, string produtoNome, int quantidade, bool statusExclusao, DateTime? dataCadastroEstoque)
+        {
+            this.Id = id;
+            this.ProdutoId = produtoId;
+            this.ProdutoNome = produtoNome;
+            this.Quantidade = quantidade;
+            this.StatusExclusao = statusExclusao;
+            this.DataCadastroEstoque = dataCadastroEstoque;
+        }
+    }
 }

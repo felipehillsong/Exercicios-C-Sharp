@@ -457,6 +457,20 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosProdutosExcluidos);
                         }
+                    case (int)TipoRelatorio.TodosEstoques:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEstoques = await _relatorioService.GetAllEstoquesAsync(empresaId, dataInicio, dataFinal);
+                            if (todosEstoques == null)
+                            {
+                                return NotFound();
+                            }
+                            return Ok(todosEstoques);
+                        }
                 }
 
                 return NotFound();

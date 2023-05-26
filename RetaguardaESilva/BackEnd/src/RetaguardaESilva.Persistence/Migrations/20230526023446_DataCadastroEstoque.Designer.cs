@@ -12,8 +12,8 @@ using RetaguardaESilva.Persistence.Data;
 namespace RetaguardaESilva.Persistence.Migrations
 {
     [DbContext(typeof(RetaguardaESilvaContext))]
-    [Migration("20230515174925_statusExclusaoEmpresa")]
-    partial class statusExclusaoEmpresa
+    [Migration("20230526023446_DataCadastroEstoque")]
+    partial class DataCadastroEstoque
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,6 +218,9 @@ namespace RetaguardaESilva.Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("DataCadastroEstoque")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");

@@ -217,6 +217,9 @@ namespace RetaguardaESilva.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("DataCadastroEstoque")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 

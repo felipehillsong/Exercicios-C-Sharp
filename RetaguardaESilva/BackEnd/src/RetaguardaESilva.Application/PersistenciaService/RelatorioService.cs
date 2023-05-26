@@ -1059,7 +1059,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public async Task<IEnumerable<EstoqueViewModelDTO>> GetAllEstoquesAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesAsync(int empresaId, string dataIncio, string dataFinal)
         {
             try
             {
@@ -1072,13 +1072,20 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 }
                 else
                 {
-                    List<EstoqueViewModelDTO> EstoqueProdutoRetorno = new List<EstoqueViewModelDTO>();
-                    var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    List<EstoqueRelatorioDTO> EstoqueProdutoRetorno = new List<EstoqueRelatorioDTO>();
+                    var estoqueProduto = _relatorioPersist.GetAllEstoqueRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
                     foreach (var produtoEstoque in estoqueProduto)
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.EnderecoProdutoId));
+                        EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
                     }
-                    return EstoqueProdutoRetorno;
+                    if (EstoqueProdutoRetorno.Count == 0)
+                    {
+                        throw new Exception(MensagemDeErro.EstoqueRelatorioNaoEncontrado);
+                    }
+                    else
+                    {
+                        return EstoqueProdutoRetorno;
+                    }
                 }
             }
             catch (Exception ex)

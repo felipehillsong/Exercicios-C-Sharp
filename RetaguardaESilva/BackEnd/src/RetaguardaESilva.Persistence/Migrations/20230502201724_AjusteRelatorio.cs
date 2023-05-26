@@ -23,20 +23,10 @@ namespace RetaguardaESilva.Persistence.Migrations
             migrationBuilder.DropColumn(
                 name: "RelatorioExcluir",
                 table: "Permissao");
-
-            migrationBuilder.RenameColumn(
-                name: "VisualizarRelatorio",
-                table: "Permissao",
-                newName: "GerarRelatorio");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "GerarRelatorio",
-                table: "Permissao",
-                newName: "VisualizarRelatorio");
-
             migrationBuilder.AddColumn<bool>(
                 name: "RelatorioCadastro",
                 table: "Permissao",
