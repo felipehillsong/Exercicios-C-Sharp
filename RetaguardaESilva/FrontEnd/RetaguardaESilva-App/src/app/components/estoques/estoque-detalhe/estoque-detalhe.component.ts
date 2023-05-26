@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
@@ -33,6 +34,8 @@ export class EstoqueDetalheComponent implements OnInit {
     this.estoqueService.getEstoquesById(this.estoqueId).subscribe(
       (_estoque: Estoque) => {
         this.estoque = _estoque;
+        var dataBD = moment(  this.estoque.dataCadastroEstoque).format('YYYY-MM-DD');
+        this.estoque.dataCadastroEstoque = dataBD;
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)

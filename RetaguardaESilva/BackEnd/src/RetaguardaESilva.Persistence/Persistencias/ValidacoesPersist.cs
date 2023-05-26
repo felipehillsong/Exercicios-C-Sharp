@@ -1080,6 +1080,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                        from esto in estoques
                                        from forn in fornecedor
                                        from emp in empresa
+                                       from endPro in enderecoProduto
                                        where esto.ProdutoId == prod.Id && esto.FornecedorId == forn.Id && esto.EmpresaId == empresaId
                                        select new
                                        {
@@ -1090,26 +1091,55 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                            FornecedorNome = forn.Nome,
                                            ProdutoId = prod.Id,
                                            ProdutoNome = prod.Nome,
-                                           Quantidade = esto.Quantidade
-                                       };
-                foreach (var produtosComFornecedor in produtosEstoques)
+                                           Quantidade = esto.Quantidade,
+                                           DataCadastroEstoque = esto.DataCadastroEstoque,
+                                           DataCadastroEnderecoProduto = endPro.DataCadastroEnderecoProduto
+                                        };
+                if (produtosEstoques.Count() != 0)
                 {
-                    foreach (var enderecosProdutos in enderecoProduto)
+                    foreach (var produtosComFornecedor in produtosEstoques)
                     {
-                        var existeEstoqueId = produtosEstoques.Where(pe => pe.Id == enderecosProdutos.EstoqueId);
-                        var existeEnderecoProdutoId = EstoqueProdutoRetorno.Where(pe => pe.EnderecoProdutoId == enderecosProdutos.Id).FirstOrDefault();
-                        if (existeEstoqueId != null && existeEnderecoProdutoId == null)
+                        foreach (var enderecosProdutos in enderecoProduto)
                         {
-                            foreach (var item in existeEstoqueId)
+                            var existeEstoqueId = produtosEstoques.Where(pe => pe.Id == enderecosProdutos.EstoqueId);
+                            var existeNaLista = EstoqueProdutoRetorno.FirstOrDefault(ep => ep.Id == enderecosProdutos.EstoqueId);
+                            if (existeEstoqueId != null && existeNaLista == null)
                             {
-                                EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(item.Id, item.EmpresaId, item.EmpresaNome, item.FornecedorId, item.FornecedorNome, item.ProdutoId, item.ProdutoNome, item.Quantidade, enderecosProdutos.Id, enderecosProdutos.NomeEndereco, enderecosProdutos.Ativo));
+                                foreach (var item in existeEstoqueId)
+                                {
+                                    EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(item.Id, item.EmpresaId, item.EmpresaNome, item.FornecedorId, item.FornecedorNome, item.ProdutoId, item.ProdutoNome, item.Quantidade, enderecosProdutos.Id, enderecosProdutos.NomeEndereco, enderecosProdutos.Ativo, (DateTime)item.DataCadastroEstoque, (DateTime)item.DataCadastroEnderecoProduto));
+                                }
                             }
                         }
+                        var naoExisteEnderecoProdutoId = EstoqueProdutoRetorno.Where(pe => pe.Id == produtosComFornecedor.Id).FirstOrDefault();
+                        if (naoExisteEnderecoProdutoId == null)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosComFornecedor.Id, produtosComFornecedor.EmpresaId, produtosComFornecedor.EmpresaNome, produtosComFornecedor.FornecedorId, produtosComFornecedor.FornecedorNome, produtosComFornecedor.ProdutoId, produtosComFornecedor.ProdutoNome, produtosComFornecedor.Quantidade, (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco, MensagemDeAlerta.ProdutoSemEndereco, false, (DateTime)produtosComFornecedor.DataCadastroEstoque, null));
+                        }
                     }
-                    var naoExisteEnderecoProdutoId = EstoqueProdutoRetorno.Where(pe => pe.Id == produtosComFornecedor.Id).FirstOrDefault();
-                    if (naoExisteEnderecoProdutoId == null)
+                }
+                else
+                {
+                    var produtosLista = from prod in produtos
+                                           from esto in estoques
+                                           from forn in fornecedor
+                                           from emp in empresa
+                                           where esto.ProdutoId == prod.Id && esto.FornecedorId == forn.Id && esto.EmpresaId == empresaId
+                                           select new
+                                           {
+                                               Id = esto.Id,
+                                               EmpresaId = emp.Id,
+                                               EmpresaNome = emp.Nome,
+                                               FornecedorId = forn.Id,
+                                               FornecedorNome = forn.Nome,
+                                               ProdutoId = prod.Id,
+                                               ProdutoNome = prod.Nome,
+                                               Quantidade = esto.Quantidade,
+                                               DataCadastroEstoque = esto.DataCadastroEstoque
+                                           };
+                    foreach (var produtoLista in produtosLista)
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtosComFornecedor.Id, produtosComFornecedor.EmpresaId, produtosComFornecedor.EmpresaNome, produtosComFornecedor.FornecedorId, produtosComFornecedor.FornecedorNome, produtosComFornecedor.ProdutoId, produtosComFornecedor.ProdutoNome, produtosComFornecedor.Quantidade, (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco, MensagemDeAlerta.ProdutoSemEndereco, false));
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelEnderecoProduto(produtoLista.Id, produtoLista.EmpresaId, produtoLista.EmpresaNome, produtoLista.FornecedorId, produtoLista.FornecedorNome, produtoLista.ProdutoId, produtoLista.ProdutoNome, produtoLista.Quantidade, (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco, MensagemDeAlerta.ProdutoSemEndereco, false, (DateTime)produtoLista.DataCadastroEstoque, null));
                     }
                 }
                 return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
@@ -1129,12 +1159,12 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var empresa = _context.Empresa.AsNoTracking().FirstOrDefault(em => em.Id == empresaId);
             if (fornecedor == null)
             {
-                produtoEstoqueSemFornecedor = new EstoqueProdutoViewModelUpdate(estoque.Id, estoque.EmpresaId, empresa.Nome, (int)ZerarIdFornecedor.FornecedorId, MensagemDeAlerta.ProdutoSemFornecedor, produto.Id, produto.Nome, estoque.Quantidade);
+                produtoEstoqueSemFornecedor = new EstoqueProdutoViewModelUpdate(estoque.Id, estoque.EmpresaId, empresa.Nome, (int)ZerarIdFornecedor.FornecedorId, MensagemDeAlerta.ProdutoSemFornecedor, produto.Id, produto.Nome, estoque.Quantidade, (DateTime)estoque.DataCadastroEstoque);
 
             }
             else
             {
-                produtoEstoqueSemFornecedor = new EstoqueProdutoViewModelUpdate(estoque.Id, estoque.EmpresaId, empresa.Nome, fornecedor.Id, fornecedor.Nome, produto.Id, produto.Nome, estoque.Quantidade);
+                produtoEstoqueSemFornecedor = new EstoqueProdutoViewModelUpdate(estoque.Id, estoque.EmpresaId, empresa.Nome, fornecedor.Id, fornecedor.Nome, produto.Id, produto.Nome, estoque.Quantidade, (DateTime)estoque.DataCadastroEstoque);
             }
             return produtoEstoqueSemFornecedor;
         }
@@ -1286,27 +1316,65 @@ namespace RetaguardaESilva.Persistence.Persistencias
             var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
             foreach (var item in pedidoNota)
             {
-                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
-                if (produto != null)
+                var produtoExcluido = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                if (produtoExcluido != null)
                 {
                     var produtoView = new ProdutoViewModel()
                     {
-                        Id = produto.Id,
-                        Nome = produto.Nome,
-                        Quantidade = produto.Quantidade,
+                        Id = item.ProdutoId,
+                        Nome = produtoExcluido.Nome,
+                        Quantidade = produtoExcluido.Quantidade,
                         QuantidadeVenda = item.Quantidade,
-                        Ativo = produto.Ativo,
-                        PrecoCompra = produto.PrecoCompra,
-                        PrecoVenda = produto.PrecoVenda,
-                        Codigo = produto.Codigo,
-                        DataCadastroProduto = produto.DataCadastroProduto,
-                        EmpresaId = produto.EmpresaId,
-                        FornecedorId = produto.FornecedorId
+                        Ativo = produtoExcluido.Ativo,
+                        PrecoCompra = produtoExcluido.PrecoCompra,
+                        PrecoVenda = item.PrecoVenda,
+                        PrecoVendaTotal = item.PrecoTotal,
+                        Codigo = item.CodigoProduto,
+                        DataCadastroProduto = produtoExcluido.DataCadastroProduto,
+                        EmpresaId = produtoExcluido.EmpresaId,
+                        FornecedorId = produtoExcluido.FornecedorId,
+                        StatusExclusao = produtoExcluido.StatusExclusao
                     };
 
                     if (produtoView != null)
                     {
                         produtos.Add(produtoView);
+                    }
+                    else
+                    {
+                        produtos.Add(null);
+                    }
+                }
+                else
+                {
+                    var produtoExistente = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoExcluido));
+                    if (produtoExistente != null)
+                    {
+                        var produtoView = new ProdutoViewModel()
+                        {
+                            Id = item.ProdutoId,
+                            Nome = produtoExistente.Nome,
+                            Quantidade = produtoExistente.Quantidade,
+                            QuantidadeVenda = item.Quantidade,
+                            Ativo = produtoExistente.Ativo,
+                            PrecoCompra = produtoExistente.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoTotal,
+                            Codigo = item.CodigoProduto,
+                            DataCadastroProduto = produtoExistente.DataCadastroProduto,
+                            EmpresaId = produtoExistente.EmpresaId,
+                            FornecedorId = produtoExistente.FornecedorId,
+                            StatusExclusao = produtoExistente.StatusExclusao
+                        };
+
+                        if (produtoView != null)
+                        {
+                            produtos.Add(produtoView);
+                        }
+                        else
+                        {
+                            produtos.Add(null);
+                        }
                     }
                 }
             }
@@ -1457,23 +1525,24 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
                         foreach (var item in pedidoNota)
                         {
-                            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
-                            if (produto != null)
+                            var produtoExcluido = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                            if (produtoExcluido != null)
                             {
                                 var produtoView = new ProdutoViewModel()
                                 {
                                     Id = item.ProdutoId,
-                                    Nome = produto.Nome,
-                                    Quantidade = produto.Quantidade,
+                                    Nome = produtoExcluido.Nome,
+                                    Quantidade = produtoExcluido.Quantidade,
                                     QuantidadeVenda = item.Quantidade,
-                                    Ativo = produto.Ativo,
-                                    PrecoCompra = produto.PrecoCompra,
+                                    Ativo = produtoExcluido.Ativo,
+                                    PrecoCompra = produtoExcluido.PrecoCompra,
                                     PrecoVenda = item.PrecoVenda,
                                     PrecoVendaTotal = item.PrecoTotal,
-                                    Codigo = produto.Codigo,
-                                    DataCadastroProduto = produto.DataCadastroProduto,
-                                    EmpresaId = produto.EmpresaId,
-                                    FornecedorId = produto.FornecedorId
+                                    Codigo = item.CodigoProduto,
+                                    DataCadastroProduto = produtoExcluido.DataCadastroProduto,
+                                    EmpresaId = produtoExcluido.EmpresaId,
+                                    FornecedorId = produtoExcluido.FornecedorId,
+                                    StatusExclusao = produtoExcluido.StatusExclusao
                                 };
 
                                 if (produtoView != null)
@@ -1483,6 +1552,38 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                 else
                                 {
                                     notaFiscalRetorno.Produto.Add(null);
+                                }
+                            }
+                            else
+                            {
+                                var produtoExistente = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoExcluido));
+                                if (produtoExistente != null)
+                                {
+                                    var produtoView = new ProdutoViewModel()
+                                    {
+                                        Id = item.ProdutoId,
+                                        Nome = produtoExistente.Nome,
+                                        Quantidade = produtoExistente.Quantidade,
+                                        QuantidadeVenda = item.Quantidade,
+                                        Ativo = produtoExistente.Ativo,
+                                        PrecoCompra = produtoExistente.PrecoCompra,
+                                        PrecoVenda = item.PrecoVenda,
+                                        PrecoVendaTotal = item.PrecoTotal,
+                                        Codigo = item.CodigoProduto,
+                                        DataCadastroProduto = produtoExistente.DataCadastroProduto,
+                                        EmpresaId = produtoExistente.EmpresaId,
+                                        FornecedorId = produtoExistente.FornecedorId,
+                                        StatusExclusao = produtoExistente.StatusExclusao
+                                    };
+
+                                    if (produtoView != null)
+                                    {
+                                        notaFiscalRetorno.Produto.Add(produtoView);
+                                    }
+                                    else
+                                    {
+                                        notaFiscalRetorno.Produto.Add(null);
+                                    }
                                 }
                             }
                         }
@@ -1553,23 +1654,24 @@ namespace RetaguardaESilva.Persistence.Persistencias
 
                         foreach (var item in pedidoNota)
                         {
-                            var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
-                            if (produto != null)
+                            var produtoExcluido = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido));
+                            if (produtoExcluido != null)
                             {
                                 var produtoView = new ProdutoViewModel()
                                 {
                                     Id = item.ProdutoId,
-                                    Nome = produto.Nome,
-                                    Quantidade = produto.Quantidade,
+                                    Nome = produtoExcluido.Nome,
+                                    Quantidade = produtoExcluido.Quantidade,
                                     QuantidadeVenda = item.Quantidade,
-                                    Ativo = produto.Ativo,
-                                    PrecoCompra = produto.PrecoCompra,
+                                    Ativo = produtoExcluido.Ativo,
+                                    PrecoCompra = produtoExcluido.PrecoCompra,
                                     PrecoVenda = item.PrecoVenda,
                                     PrecoVendaTotal = item.PrecoTotal,
-                                    Codigo = produto.Codigo,
-                                    DataCadastroProduto = produto.DataCadastroProduto,
-                                    EmpresaId = produto.EmpresaId,
-                                    FornecedorId = produto.FornecedorId
+                                    Codigo = item.CodigoProduto,
+                                    DataCadastroProduto = produtoExcluido.DataCadastroProduto,
+                                    EmpresaId = produtoExcluido.EmpresaId,
+                                    FornecedorId = produtoExcluido.FornecedorId,
+                                    StatusExclusao = produtoExcluido.StatusExclusao
                                 };
 
                                 if (produtoView != null)
@@ -1581,14 +1683,44 @@ namespace RetaguardaESilva.Persistence.Persistencias
                                     notaFiscalRetorno.Produto.Add(null);
                                 }
                             }
+                            else
+                            {
+                                var produtoExistente = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == pedido.EmpresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(StatusProduto.ProdutoExcluido));
+                                if (produtoExistente != null)
+                                {
+                                    var produtoView = new ProdutoViewModel()
+                                    {
+                                        Id = item.ProdutoId,
+                                        Nome = produtoExistente.Nome,
+                                        Quantidade = produtoExistente.Quantidade,
+                                        QuantidadeVenda = item.Quantidade,
+                                        Ativo = produtoExistente.Ativo,
+                                        PrecoCompra = produtoExistente.PrecoCompra,
+                                        PrecoVenda = item.PrecoVenda,
+                                        PrecoVendaTotal = item.PrecoTotal,
+                                        Codigo = item.CodigoProduto,
+                                        DataCadastroProduto = produtoExistente.DataCadastroProduto,
+                                        EmpresaId = produtoExistente.EmpresaId,
+                                        FornecedorId = produtoExistente.FornecedorId,
+                                        StatusExclusao = produtoExistente.StatusExclusao
+                                    };
+
+                                    if (produtoView != null)
+                                    {
+                                        notaFiscalRetorno.Produto.Add(produtoView);
+                                    }
+                                    else
+                                    {
+                                        notaFiscalRetorno.Produto.Add(null);
+                                    }
+                                }
+                            }
                         }
                     }
-
                 }
             }
             return notaFiscalRetorno;
-        }
-
+        } 
         public bool VerificaPermissoes(Permissao permissaoBD, Permissao permissaoModel)
         {
             if (permissaoBD.Id == permissaoModel.Id

@@ -14,6 +14,7 @@
       <th>Nome do Produto</th>
       <th>Quantidade</th>
       <th>Nome do Fornecedor</th>
+      <th>Data de Cadastro</th>
       <th>Opções</th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
       <td>{{estoque.produtoNome}}</td>
       <td>{{estoque.quantidade}}</td>
       <td>{{estoque.fornecedorNome}}</td>
+      <td>{{estoque.dataCadastroEstoque | date: "dd/MM/yyyy"}}</td>
       <td>
         <button type="button" tooltip="Editar" class="btn btn-primary btn-sm mr-2" *ngIf="visualizarEditar" (click)="editar(estoque.id)">
           <i class="fa fa-edit"></i></button>&nbsp;

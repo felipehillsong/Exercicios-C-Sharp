@@ -16,6 +16,7 @@
       <tr>
         <th>Nome do Endereço</th>
       <th>Nome do Produto</th>
+      <th>Data de Cadastro</th>
       <th>Ativo</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
     <tr *ngFor="let enderecoProduto of enderecosProdutosFiltrados">
       <td>{{enderecoProduto.nomeEndereco}}</td>
       <td>{{enderecoProduto.produtoNome}}</td>
+      <td>{{enderecoProduto.dataCadastroEnderecoProduto | date: "dd/MM/yyyy"}}</td>
       <td>{{enderecoProduto.ativoView}}</td>
     </tr>
   </tbody>

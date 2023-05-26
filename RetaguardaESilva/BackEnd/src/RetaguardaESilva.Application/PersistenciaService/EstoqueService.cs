@@ -52,7 +52,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                         _geralPersist.Update(produto);
                         await _geralPersist.SaveChangesAsync();
                         var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueId(empresaId, estoqueId);
-                        var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade);
+                        var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade, (int)Ids.IdCreate, (DateTime)estoque.DataCadastroEstoque);
                         return estoqueProdutoRetorno;
                     }
 
@@ -140,7 +140,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     var estoqueProduto = _validacoesPersist.RetornarProdutosEstoque(empresaId);
                     foreach (var produtoEstoque in estoqueProduto)
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.EnderecoProdutoId));
+                        EstoqueProdutoRetorno.Add(new EstoqueViewModelDTO(produtoEstoque.Id, produtoEstoque.EmpresaId, produtoEstoque.EmpresaNome, produtoEstoque.FornecedorId, produtoEstoque.FornecedorNome, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.EnderecoProdutoId, produtoEstoque.DataCadastroEstoque));
                     }
                     return EstoqueProdutoRetorno;
                 }
@@ -163,7 +163,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 else
                 { 
                     var estoqueProduto = _validacoesPersist.RetornarProdutosEstoqueId(empresaId, estoqueId);
-                    var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade);
+                    var estoqueProdutoRetorno = new EstoqueViewModelUpdateDTO(estoqueProduto.Id, estoqueProduto.EmpresaId, estoqueProduto.EmpresaNome, estoqueProduto.FornecedorId, estoqueProduto.FornecedorNome, estoqueProduto.ProdutoId, estoqueProduto.ProdutoNome, estoqueProduto.Quantidade, (int)Ids.IdCreate, (DateTime)estoque.DataCadastroEstoque);
                     return estoqueProdutoRetorno;
                 }
             }
@@ -275,7 +275,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                     {
                         if (produtoEstoque.EnderecoProdutoId != null && produtoEstoque.EnderecoProdutoId != (int)ExisteEnderecoProdutoEnum.NaoExisteEndereco)
                         {
-                            enderecoProdutoRetorno.Add(new EnderecoProdutoViewModelDTO(produtoEstoque.ProdutoNome, produtoEstoque.NomeEndereco, produtoEstoque.Ativo));
+                            enderecoProdutoRetorno.Add(new EnderecoProdutoViewModelDTO(produtoEstoque.ProdutoNome, produtoEstoque.NomeEndereco, produtoEstoque.Ativo, produtoEstoque.DataCadastroEnderecoProduto));
                         }
                     }
                     return enderecoProdutoRetorno;

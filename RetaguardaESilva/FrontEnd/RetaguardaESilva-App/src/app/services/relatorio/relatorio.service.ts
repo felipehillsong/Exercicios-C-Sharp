@@ -10,6 +10,7 @@ import { Transportador } from 'src/app/models/transportador';
 import { Usuario } from 'src/app/models/usuario';
 import { Empresa } from 'src/app/models/empresa';
 import { Produto } from 'src/app/models/produto';
+import { Estoque } from 'src/app/models/estoque';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,10 @@ public getRelatorioEmpresas(codigoRelatorio: number, dataInicio: string, dataFin
 
 public getRelatorioProdutos(codigoRelatorio: number, dataInicio: string, dataFinal: string) : Observable<Produto[]>{
   return this.http.get<Produto[]>(`${this.baseURL}empresaId=${this.authService.empresaId()}&codigoRelatorio=${codigoRelatorio}&dataInicio=${dataInicio}&dataFinal=${dataFinal}`).pipe(take(1));
+}
+
+public getRelatorioEstoques(codigoRelatorio: number, dataInicio: string, dataFinal: string) : Observable<Estoque[]>{
+  return this.http.get<Estoque[]>(`${this.baseURL}empresaId=${this.authService.empresaId()}&codigoRelatorio=${codigoRelatorio}&dataInicio=${dataInicio}&dataFinal=${dataFinal}`).pipe(take(1));
 }
 
 }

@@ -30,19 +30,9 @@ namespace RetaguardaESilva.Application.DTO
         public string ProdutoNome { get; set; }
         public int Quantidade { get; set; }
         public int EnderecoProdutoId { get; set; }
+        public DateTime DataCadastroEstoque { get; set; }
 
-        public EstoqueViewModelDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade)
-        {
-            this.Id = estoqueId;
-            this.EmpresaId = empresaId;
-            this.EmpresaNome = empresaNome;
-            this.FornecedorId = fornecedorId;
-            this.FornecedorNome = fornecedorNome;
-            this.ProdutoId = produtoId;
-            this.ProdutoNome = produtoNome;
-            this.Quantidade = quantidade;
-        }
-        public EstoqueViewModelDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId)
+        public EstoqueViewModelDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId, DateTime dataCadastroEstoque)
         {
             this.Id = estoqueId;
             this.EmpresaId = empresaId;
@@ -53,12 +43,13 @@ namespace RetaguardaESilva.Application.DTO
             this.ProdutoNome = produtoNome;
             this.Quantidade = quantidade;
             this.EnderecoProdutoId = enderecoProdutoId;
+            this.DataCadastroEstoque = dataCadastroEstoque;
         }
     }
 
     public class EstoqueViewModelUpdateDTO : EstoqueViewModelDTO
     {
-        public EstoqueViewModelUpdateDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        public EstoqueViewModelUpdateDTO(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId, DateTime dataCadastroEstoque) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade, enderecoProdutoId, dataCadastroEstoque)
         {
         }
     }

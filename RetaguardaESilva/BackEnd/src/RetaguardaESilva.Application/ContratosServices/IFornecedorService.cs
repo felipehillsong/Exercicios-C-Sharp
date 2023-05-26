@@ -15,6 +15,5 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<bool> DeleteFornecedor(int empresaId, int fornecedorId);
         Task<IEnumerable<FornecedorDTO>> GetAllFornecedoresAsync(int empresaId);
         Task<FornecedorDTO> GetFornecedorByIdAsync(int empresaId, int fornecedorId);
-        Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int produtoId);
     }
 }

@@ -32,12 +32,14 @@ namespace RetaguardaESilva.Application.DTO
         public string ProdutoNome { get; set; }
         public string NomeEndereco { get; set; }
         public bool Ativo { get; set; }
+        public DateTime? DataCadastroEnderecoProduto { get; set; }
 
-        public EnderecoProdutoViewModelDTO(string produtoNome, string nomeEndereco, bool ativo)
+        public EnderecoProdutoViewModelDTO(string produtoNome, string nomeEndereco, bool ativo, DateTime? dataCadastroEnderecoProduto)
         {
             this.ProdutoNome = produtoNome;
             this.NomeEndereco = nomeEndereco;
             this.Ativo = ativo;
+            this.DataCadastroEnderecoProduto = dataCadastroEnderecoProduto;
         }
     }
 }

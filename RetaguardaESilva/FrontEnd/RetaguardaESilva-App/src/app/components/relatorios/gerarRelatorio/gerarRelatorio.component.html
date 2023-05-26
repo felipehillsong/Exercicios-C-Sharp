@@ -328,3 +328,21 @@
   </tbody>
   </table>
 </div>
+<div *ngIf="todosEstoques">
+  <table id="excel-estoques" class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+      <th>Nome do Produto</th>
+      <th>Quantidade</th>
+      <th>Data de Cadastro</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="estoques && estoques.length">
+    <tr *ngFor="let estoque of estoques">
+      <td>{{estoque.produtoNome}}</td>
+      <td>{{estoque.quantidade}}</td>
+      <td>{{estoque.dataCadastroEstoque | date: "dd/MM/yyyy"}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>

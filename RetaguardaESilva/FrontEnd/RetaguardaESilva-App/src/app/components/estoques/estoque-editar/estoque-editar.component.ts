@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, NumberValueAccessor } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Titulos } from 'src/app/enums/titulos';
@@ -39,6 +40,9 @@ export class EstoqueEditarComponent implements OnInit {
         this.estoque = _estoque;
         this.produtoId = this.estoque.produtoId;
         this.fornecedorId = this.estoque.fornecedorId;
+        var dataBD = moment(  this.estoque.dataCadastroEstoque).format('YYYY-MM-DD');
+        this.estoque.dataCadastroEstoque = dataBD;
+        console.log(this.estoque);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)
@@ -75,6 +79,7 @@ public preencherEstoque(){
     this.form = this.fb.group({
       produtoNome: [null],
       fornecedorNome: [null],
+      dataCadastroEstoque: [null],
       quantidade: [null, Validators.required]
     });
   }

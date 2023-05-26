@@ -7,5 +7,6 @@ fornecedorNome:string;
 produtoId:number;
 produtoNome:string;
 quantidade:number;
+dataCadastroEstoque: string;
 enderecoProdutoId:number;
 }

@@ -12,6 +12,7 @@ namespace RetaguardaESilva.Domain.Models
         public int PedidoId { get; set; }
         public int ClienteId { get; set; }
         public int FornecedorId { get; set; }
+        public double CodigoProduto { get; set; }
         public int ProdutoId { get; set; }
         public int EmpresaId { get; set; }
         public int TransportadorId { get; set; }

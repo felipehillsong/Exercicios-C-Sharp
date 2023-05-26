@@ -16,8 +16,10 @@ namespace RetaguardaESilva.Domain.ViewModels
         public int ProdutoId { get; set; }
         public string ProdutoNome { get; set; }
         public int Quantidade { get; set;}
+        public DateTime DataCadastroEstoque { get; set; }
+        public DateTime? DataCadastroEnderecoProduto { get; set; }
 
-        public EstoqueProdutoViewModel(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade)
+        public EstoqueProdutoViewModel(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, DateTime dataCadastroEstoque)
         {
             this.Id = estoqueId;
             this.EmpresaId = empresaId;
@@ -27,6 +29,21 @@ namespace RetaguardaESilva.Domain.ViewModels
             this.ProdutoId = produtoId;
             this.ProdutoNome = produtoNome;
             this.Quantidade = quantidade;
+            this.DataCadastroEstoque = dataCadastroEstoque;
+        }
+
+        public EstoqueProdutoViewModel(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, DateTime dataCadastroEstoque, DateTime? dataCadastroEnderecoProduto)
+        {
+            this.Id = estoqueId;
+            this.EmpresaId = empresaId;
+            this.EmpresaNome = empresaNome;
+            this.FornecedorId = fornecedorId;
+            this.FornecedorNome = fornecedorNome;
+            this.ProdutoId = produtoId;
+            this.ProdutoNome = produtoNome;
+            this.Quantidade = quantidade;
+            this.DataCadastroEstoque = dataCadastroEstoque;
+            this.DataCadastroEnderecoProduto = dataCadastroEnderecoProduto;
         }
         public EstoqueProdutoViewModel()
         {
@@ -35,7 +52,7 @@ namespace RetaguardaESilva.Domain.ViewModels
 
     public class EstoqueProdutoViewModelUpdate : EstoqueProdutoViewModel
     {      
-        public EstoqueProdutoViewModelUpdate(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        public EstoqueProdutoViewModelUpdate(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, DateTime dataCadastroEstoque) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade, dataCadastroEstoque)
         {
         }
         public EstoqueProdutoViewModelUpdate()
@@ -49,11 +66,11 @@ namespace RetaguardaESilva.Domain.ViewModels
         public string NomeEndereco { get; set; }
         public bool Ativo { get; set; }
 
-        public EstoqueViewModelEnderecoProduto(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId, string nomeEndereco, bool ativo) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade)
+        public EstoqueViewModelEnderecoProduto(int estoqueId, int empresaId, string empresaNome, int fornecedorId, string fornecedorNome, int produtoId, string produtoNome, int quantidade, int enderecoProdutoId, string nomeEndereco, bool ativo, DateTime dataCadastroEstoque, DateTime? dataCadastroEnderecoProduto) : base(estoqueId, empresaId, empresaNome, fornecedorId, fornecedorNome, produtoId, produtoNome, quantidade, dataCadastroEstoque, dataCadastroEnderecoProduto)
         {
             this.EnderecoProdutoId = enderecoProdutoId;
             this.NomeEndereco = nomeEndereco;
-            this.Ativo = ativo;  
+            this.Ativo = ativo;
         }
     }
 

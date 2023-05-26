@@ -36,7 +36,6 @@ export class ClienteDetalheComponent implements OnInit {
         var dataBD = moment(this.cliente.dataCadastroCliente).format('YYYY-MM-DD');
         this.cliente.dataCadastroCliente = dataBD;
         this._changeDetectorRef.markForCheck();
-        console.log(this.cliente);
       },
       error => console.log(error)
     );

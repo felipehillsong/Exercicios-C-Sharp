@@ -9,6 +9,7 @@ import { Relatorio } from 'src/app/enums/relatorio.enum';
 import { Titulos } from 'src/app/enums/titulos';
 import { Cliente } from 'src/app/models/cliente';
 import { Empresa } from 'src/app/models/empresa';
+import { Estoque } from 'src/app/models/estoque';
 import { Fornecedor } from 'src/app/models/fornecedor';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Produto } from 'src/app/models/produto';
@@ -36,6 +37,7 @@ export class GerarRelatorioComponent implements OnInit {
   public usuarios: Usuario[] = [];
   public empresas: Empresa[] = [];
   public produtos: Produto[] = [];
+  public estoques: Estoque[] = [];
   todosClientes:boolean = false;
   todosFornecedores:boolean = false;
   todosFornecedoresProdutos:boolean = false;
@@ -44,6 +46,7 @@ export class GerarRelatorioComponent implements OnInit {
   todosUsuarios:boolean = false;
   todosEmpresas:boolean = false;
   todosProdutos:boolean = false;
+  todosEstoques:boolean = false;
   codigoRelatorio!:number;
   dataInicio!:string;
   dataFinal!:string;
@@ -105,7 +108,8 @@ export class GerarRelatorioComponent implements OnInit {
       Relatorio.TodosProdutosAtivosInativosExcluidos,
       Relatorio.TodosProdutosAtivos,
       Relatorio.TodosProdutosInativos,
-      Relatorio.TodosProdutosExcluidos
+      Relatorio.TodosProdutosExcluidos,
+      Relatorio.TodosEstoques
     ];
   }
 
@@ -1022,6 +1026,35 @@ export class GerarRelatorioComponent implements OnInit {
           }
         );
           break;
+      case Relatorio.TodosEstoques:
+        this.codigoRelatorio = 38;
+        if(this.dataInicio != "null" && this.dataFinal != "null"){
+          this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+          this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+        }
+        this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+          (_estoques: Estoque[]) => {
+            this.estoques = _estoques;
+            console.log(this.estoques);
+            this.todosEstoques = true;
+            this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            this.inputData = true;
+            this.dropRelatorio = true;
+            this.botaoGerar = false;
+            this.botaoResetar = true;
+            this.botaoGerarExcel = true;
+            this.fileName = Relatorio.TodosEstoques + '.xlsx';
+            this._changeDetectorRef.markForCheck();
+          },
+          error => {
+            this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            this._changeDetectorRef.markForCheck();
+            alert(error.error)
+          }
+        );
+          break;
       default:
           alert("Erro ao gerar Relatorio");
           break;
@@ -1037,6 +1070,7 @@ export class GerarRelatorioComponent implements OnInit {
     let usuarios = document.getElementById('excel-usuarios');
     let empresas = document.getElementById('excel-empresas');
     let produtos = document.getElementById('excel-produtos');
+    let estoques = document.getElementById('excel-estoques');
     if(clientes){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(clientes);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -1077,6 +1111,11 @@ export class GerarRelatorioComponent implements OnInit {
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
       XLSX.writeFile(wb, this.fileName);
+    }else if(estoques){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(estoques);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
     }
     else{
       alert('Erro ao gerar o relatório em excel');
@@ -1103,6 +1142,7 @@ export class GerarRelatorioComponent implements OnInit {
     this.todosUsuarios = false;
     this.todosEmpresas = false;
     this.todosProdutos = false;
+    this.todosEstoques = false;
     this.botaoGerarExcel = false;
     this.fileName = '';
   }

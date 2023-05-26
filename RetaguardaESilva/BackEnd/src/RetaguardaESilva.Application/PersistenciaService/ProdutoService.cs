@@ -11,6 +11,7 @@ using RetaguardaESilva.Domain.Mensagem;
 using RetaguardaESilva.Application.DTO;
 using AutoMapper;
 using RetaguardaESilva.Domain.Enumeradores;
+using RetaguardaESilva.Persistence.Migrations;
 
 namespace RetaguardaESilva.Application.PersistenciaService
 {
@@ -57,7 +58,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                 Quantidade = produtoCreateDTO.Quantidade,
                                 EmpresaId = produtoCreateDTO.EmpresaId,
                                 FornecedorId = produtoCreateDTO.FornecedorId,
-                                StatusExclusao = produtoCreateDTO.StatusExclusao
+                                StatusExclusao = produtoCreateDTO.StatusExclusao,
+                                DataCadastroEstoque = produtoCreateDTO.DataCadastroProduto
                             };
                             var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
                             _geralPersist.Update<Estoque>(estoqueDTO);
@@ -94,8 +96,9 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             Quantidade = produtoRetorno.Result.Quantidade,
                             EmpresaId = produtoRetorno.Result.EmpresaId,
                             FornecedorId = produtoRetorno.Result.FornecedorId,
-                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido)
-                    };
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoNaoExcluido),
+                            DataCadastroEstoque = produtoRetorno.Result.DataCadastroProduto
+                        };
                         var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
                         _geralPersist.Add<Estoque>(estoqueDTO);
                         if (await _geralPersist.SaveChangesAsync())
@@ -152,7 +155,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     ProdutoId = produtoAtualizaQuantidade.Id,
                                     Quantidade = produtoAtualizaQuantidade.Quantidade,
                                     EmpresaId = produtoAtualizaQuantidade.EmpresaId,
-                                    FornecedorId = produtoAtualizaQuantidade.FornecedorId
+                                    FornecedorId = produtoAtualizaQuantidade.FornecedorId,
+                                    DataCadastroEstoque = produtoAtualizaQuantidade.DataCadastroProduto
                                 };
 
                                 var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
@@ -182,7 +186,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                                     ProdutoId = produto.Id,
                                     Quantidade = produto.Quantidade,
                                     EmpresaId = produto.EmpresaId,
-                                    FornecedorId = produto.FornecedorId
+                                    FornecedorId = produto.FornecedorId,
+                                    DataCadastroEstoque = produto.DataCadastroProduto
                                 };
                                 var estoqueDTO = _mapper.Map<Estoque>(estoqueDTOMapper);
                                 _geralPersist.Update<Estoque>(estoqueDTO);
@@ -243,7 +248,8 @@ namespace RetaguardaESilva.Application.PersistenciaService
                             FornecedorId = estoque.FornecedorId,
                             ProdutoId = estoque.ProdutoId,
                             Quantidade = (int)StatusProduto.ZerarQuantidade,
-                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido)
+                            StatusExclusao = Convert.ToBoolean(StatusProduto.ProdutoExcluido),
+                            DataCadastroEstoque = estoque.DataCadastroEstoque
                         };
                         _geralPersist.Update<Estoque>(estoques);
                         await _geralPersist.SaveChangesAsync();

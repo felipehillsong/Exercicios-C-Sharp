@@ -13,6 +13,7 @@ namespace RetaguardaESilva.Application.DTO
         public int ClienteId { get; set; }
         public int FornecedorId { get; set; }
         public int ProdutoId { get; set; }
+        public double CodigoProduto { get; set; }
         public int EmpresaId { get; set; }
         public int TransportadorId { get; set; }
         public int UsuarioId { get; set; }

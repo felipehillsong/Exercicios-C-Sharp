@@ -1013,7 +1013,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
             List<Produto> produtos = new List<Produto>();
             List<EnderecoProduto> enderecoProduto = new List<EnderecoProduto>();
             List<EstoqueViewModelRelatorio> EstoqueProdutoRetorno = new List<EstoqueViewModelRelatorio>();
-            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal).ToList();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal && e.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).ToList();
 
             foreach (var item in estoques)
             {

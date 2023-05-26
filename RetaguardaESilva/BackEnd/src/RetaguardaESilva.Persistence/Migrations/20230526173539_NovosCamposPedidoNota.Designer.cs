@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RetaguardaESilva.Persistence.Data;
 
@@ -11,9 +12,10 @@ using RetaguardaESilva.Persistence.Data;
 namespace RetaguardaESilva.Persistence.Migrations
 {
     [DbContext(typeof(RetaguardaESilvaContext))]
-    partial class RetaguardaESilvaContextModelSnapshot : ModelSnapshot
+    [Migration("20230526173539_NovosCamposPedidoNota")]
+    partial class NovosCamposPedidoNota
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -489,6 +491,10 @@ namespace RetaguardaESilva.Persistence.Migrations
 
                     b.Property<int>("FornecedorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("NomeProduto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");

@@ -162,25 +162,5 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
-
-        public async Task<IEnumerable<Produto>> GetFornecedoresProdutosByIdAsync(int empresaId, int fornecedorId)
-        {
-            try
-            {
-                var produtosFornecedor = await _fornecedorPersist.GetFornecedoresProdutosByIdAsync(empresaId, fornecedorId);
-                if (produtosFornecedor == null)
-                {
-                    throw new Exception(MensagemDeErro.FornecedorProdutoNaoEncontrado);
-                }
-                else
-                {
-                    return produtosFornecedor;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
     }
 }
