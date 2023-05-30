@@ -1039,11 +1039,7 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 var produtos = await _relatorioPersist.GetAllProdutosExcluidosAsync(empresaId, dataInicioConvertida, dataFinalConvertida);
-                if (produtos == null)
-                {
-                    throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
-                }
-                else if (produtos.Count() == 0)
+                if (produtos.Any())
                 {
                     throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
                 }
@@ -1074,17 +1070,122 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 {
                     List<EstoqueRelatorioDTO> EstoqueProdutoRetorno = new List<EstoqueRelatorioDTO>();
                     var estoqueProduto = _relatorioPersist.GetAllEstoqueRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
-                    foreach (var produtoEstoque in estoqueProduto)
+                    if (estoqueProduto.Any())
                     {
-                        EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
-                    }
-                    if (EstoqueProdutoRetorno.Count == 0)
-                    {
-                        throw new Exception(MensagemDeErro.EstoqueRelatorioNaoEncontrado);
+                        foreach (var produtoEstoque in estoqueProduto)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
+                        }
+                        return EstoqueProdutoRetorno;
                     }
                     else
                     {
+                        throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesAtivoAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var estoques = await _estoquePersist.GetAllEstoqueRelatorioAsync(empresaId);
+                if (estoques == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    List<EstoqueRelatorioDTO> EstoqueProdutoRetorno = new List<EstoqueRelatorioDTO>();
+                    var estoqueProduto = _relatorioPersist.GetAllEstoqueAtivoRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);                    
+                    if (estoqueProduto.Any())
+                    {
+                        foreach (var produtoEstoque in estoqueProduto)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
+                        }
                         return EstoqueProdutoRetorno;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesInativosAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var estoques = await _estoquePersist.GetAllEstoqueRelatorioAsync(empresaId);
+                if (estoques == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    List<EstoqueRelatorioDTO> EstoqueProdutoRetorno = new List<EstoqueRelatorioDTO>();
+                    var estoqueProduto = _relatorioPersist.GetAllEstoqueInativoRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (estoqueProduto.Any())
+                    {
+                        foreach (var produtoEstoque in estoqueProduto)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
+                        }
+                        return EstoqueProdutoRetorno;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesExcluidosAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                var estoques = await _estoquePersist.GetAllEstoqueRelatorioAsync(empresaId);
+                if (estoques == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    List<EstoqueRelatorioDTO> EstoqueProdutoRetorno = new List<EstoqueRelatorioDTO>();
+                    var estoqueProduto = _relatorioPersist.GetAllEstoqueExcluidoRelatorio(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (estoqueProduto.Any())
+                    {
+                        foreach (var produtoEstoque in estoqueProduto)
+                        {
+                            EstoqueProdutoRetorno.Add(new EstoqueRelatorioDTO(produtoEstoque.Id, produtoEstoque.ProdutoId, produtoEstoque.ProdutoNome, produtoEstoque.Quantidade, produtoEstoque.StatusExclusao, produtoEstoque.DataCadastroEstoque));
+                        }
+                        return EstoqueProdutoRetorno;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.ProdutoRelatorioNaoEncontrado);
                     }
                 }
             }

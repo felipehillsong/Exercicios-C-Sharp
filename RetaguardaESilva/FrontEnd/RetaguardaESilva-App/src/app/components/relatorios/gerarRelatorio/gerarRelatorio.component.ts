@@ -109,7 +109,10 @@ export class GerarRelatorioComponent implements OnInit {
       Relatorio.TodosProdutosAtivos,
       Relatorio.TodosProdutosInativos,
       Relatorio.TodosProdutosExcluidos,
-      Relatorio.TodosEstoques
+      Relatorio.TodosEstoquesAtivosInativosExcluidos,
+      Relatorio.TodosEstoquesAtivos,
+      Relatorio.TodosEstoquesInativos,
+      Relatorio.TodosEstoquesExcluidos
     ];
   }
 
@@ -1026,7 +1029,7 @@ export class GerarRelatorioComponent implements OnInit {
           }
         );
           break;
-      case Relatorio.TodosEstoques:
+      case Relatorio.TodosEstoquesAtivosInativosExcluidos:
         this.codigoRelatorio = 38;
         if(this.dataInicio != "null" && this.dataFinal != "null"){
           this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
@@ -1044,7 +1047,7 @@ export class GerarRelatorioComponent implements OnInit {
             this.botaoGerar = false;
             this.botaoResetar = true;
             this.botaoGerarExcel = true;
-            this.fileName = Relatorio.TodosEstoques + '.xlsx';
+            this.fileName = Relatorio.TodosEstoquesAtivosInativosExcluidos + '.xlsx';
             this._changeDetectorRef.markForCheck();
           },
           error => {
@@ -1055,6 +1058,93 @@ export class GerarRelatorioComponent implements OnInit {
           }
         );
           break;
+      case Relatorio.TodosEstoquesAtivos:
+            this.codigoRelatorio = 39;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_estoques: Estoque[]) => {
+                this.estoques = _estoques;
+                console.log(this.estoques);
+                this.todosEstoques = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosEstoquesAtivos + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+         case Relatorio.TodosEstoquesInativos:
+            this.codigoRelatorio = 40;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_estoques: Estoque[]) => {
+                this.estoques = _estoques;
+                console.log(this.estoques);
+                this.todosEstoques = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosEstoquesInativos + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+        case Relatorio.TodosEstoquesExcluidos:
+            this.codigoRelatorio = 41;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_estoques: Estoque[]) => {
+                this.estoques = _estoques;
+                console.log(this.estoques);
+                this.todosEstoques = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosEstoquesExcluidos + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
       default:
           alert("Erro ao gerar Relatorio");
           break;
@@ -1074,47 +1164,47 @@ export class GerarRelatorioComponent implements OnInit {
     if(clientes){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(clientes);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(fornecedores){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(fornecedores);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(fornecedoresProdutos){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(fornecedoresProdutos);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(funcionarios){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(funcionarios);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(transportadores){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(transportadores);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(usuarios){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(usuarios);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(empresas){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(empresas);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(produtos){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(produtos);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }else if(estoques){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(estoques);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
     }
     else{

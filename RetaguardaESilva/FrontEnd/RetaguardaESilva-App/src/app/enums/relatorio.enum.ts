@@ -37,5 +37,8 @@ export enum Relatorio {
   TodosProdutosAtivos = 'Produtos Cadastrados Ativos',
   TodosProdutosInativos = 'Produtos Cadastrados Inativos',
   TodosProdutosExcluidos = 'Produtos Excluidos',
-  TodosEstoques = 'Todos os Estoques'
+  TodosEstoquesAtivosInativosExcluidos = 'Todos os Estoques',
+  TodosEstoquesAtivos = 'Todos os Estoques Com Produtos Ativos',
+  TodosEstoquesInativos = 'Todos os Estoques Com Produtos Inativos',
+  TodosEstoquesExcluidos = 'Todos os Estoques Com Produtos Excluidos'
 }

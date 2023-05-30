@@ -48,5 +48,8 @@ namespace RetaguardaESilva.Persistence.Contratos
         Task<IEnumerable<Produto>> GetAllProdutosInativosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
         Task<IEnumerable<Produto>> GetAllProdutosExcluidosAsync(int empresaId, DateTime dataInicio, DateTime dataFinal);
         IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueAtivoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueInativoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
+        IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueExcluidoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
     }
 }

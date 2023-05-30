@@ -1013,14 +1013,18 @@ namespace RetaguardaESilva.Persistence.Persistencias
             List<Produto> produtos = new List<Produto>();
             List<EnderecoProduto> enderecoProduto = new List<EnderecoProduto>();
             List<EstoqueViewModelRelatorio> EstoqueProdutoRetorno = new List<EstoqueViewModelRelatorio>();
-            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal && e.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).ToList();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal).ToList();
 
             foreach (var item in estoques)
             {
-                produtos.Add(_context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == item.ProdutoId));
+                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == item.ProdutoId);
+                if (produto != null)
+                {
+                    produtos.Add(produto);
+                }
             }
             
-            if (estoques.Count != (int)ZerarIdFornecedor.FornecedorId)
+            if (estoques.Any())
             {
                 var estoquesProdutos = from prod in produtos
                                                     from esto in estoques
@@ -1041,7 +1045,132 @@ namespace RetaguardaESilva.Persistence.Persistencias
             }
             else
             {
-                EstoqueProdutoRetorno.Add(null);
+                return EstoqueProdutoRetorno;
+            }
+            return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
+        }
+
+        public IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueAtivoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            List<Produto> produtos = new List<Produto>();
+            List<EnderecoProduto> enderecoProduto = new List<EnderecoProduto>();
+            List<EstoqueViewModelRelatorio> EstoqueProdutoRetorno = new List<EstoqueViewModelRelatorio>();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal && e.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).ToList();
+
+            foreach (var item in estoques)
+            {
+                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == item.ProdutoId && p.Ativo == Convert.ToBoolean(Situacao.Ativo));
+                if (produto != null)
+                {
+                    produtos.Add(produto);
+                }
+            }
+
+            if (estoques.Any())
+            {
+                var estoquesProdutos = from prod in produtos
+                                       from esto in estoques
+                                       where esto.ProdutoId == prod.Id && esto.EmpresaId == empresaId
+                                       select new
+                                       {
+                                           Id = esto.Id,
+                                           ProdutoId = prod.Id,
+                                           ProdutoNome = prod.Nome,
+                                           Quantidade = esto.Quantidade,
+                                           StatusExclusao = esto.StatusExclusao,
+                                           DataCadastroEstoque = esto.DataCadastroEstoque
+                                       };
+                foreach (var produtosRetorno in estoquesProdutos)
+                {
+                    EstoqueProdutoRetorno.Add(new EstoqueViewModelRelatorio(produtosRetorno.Id, produtosRetorno.ProdutoId, produtosRetorno.ProdutoNome, produtosRetorno.Quantidade, produtosRetorno.StatusExclusao, produtosRetorno.DataCadastroEstoque));
+                }
+            }
+            else
+            {
+                return EstoqueProdutoRetorno;
+            }
+            return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
+        }
+
+        public IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueInativoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            List<Produto> produtos = new List<Produto>();
+            List<EnderecoProduto> enderecoProduto = new List<EnderecoProduto>();
+            List<EstoqueViewModelRelatorio> EstoqueProdutoRetorno = new List<EstoqueViewModelRelatorio>();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal && e.StatusExclusao != Convert.ToBoolean(Situacao.Excluido)).ToList();
+
+            foreach (var item in estoques)
+            {
+                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == item.ProdutoId && p.Ativo == Convert.ToBoolean(Situacao.Inativo) && p.StatusExclusao != Convert.ToBoolean(Situacao.Excluido));                
+                if (produto != null)
+                {
+                    produtos.Add(produto);
+                }
+            }
+            if (estoques.Any())
+            {
+                var estoquesProdutos = from prod in produtos
+                                       from esto in estoques
+                                       where esto.ProdutoId == prod.Id && esto.EmpresaId == empresaId
+                                       select new
+                                       {
+                                           Id = esto.Id,
+                                           ProdutoId = prod.Id,
+                                           ProdutoNome = prod.Nome,
+                                           Quantidade = esto.Quantidade,
+                                           StatusExclusao = esto.StatusExclusao,
+                                           DataCadastroEstoque = esto.DataCadastroEstoque
+                                       };
+                foreach (var produtosRetorno in estoquesProdutos)
+                {
+                    EstoqueProdutoRetorno.Add(new EstoqueViewModelRelatorio(produtosRetorno.Id, produtosRetorno.ProdutoId, produtosRetorno.ProdutoNome, produtosRetorno.Quantidade, produtosRetorno.StatusExclusao, produtosRetorno.DataCadastroEstoque));
+                }
+            }
+            else
+            {
+                return EstoqueProdutoRetorno;
+            }
+            return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
+        }
+
+        public IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueExcluidoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            List<Produto> produtos = new List<Produto>();
+            List<EnderecoProduto> enderecoProduto = new List<EnderecoProduto>();
+            List<EstoqueViewModelRelatorio> EstoqueProdutoRetorno = new List<EstoqueViewModelRelatorio>();
+            var estoques = _context.Estoque.AsNoTracking().Where(e => e.EmpresaId == empresaId && e.DataCadastroEstoque.Value.Date >= dataInicio && e.DataCadastroEstoque.Value.Date <= dataFinal && e.StatusExclusao == Convert.ToBoolean(Situacao.Excluido)).ToList();
+
+            foreach (var item in estoques)
+            {
+                var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == empresaId && p.Id == item.ProdutoId && p.StatusExclusao == Convert.ToBoolean(Situacao.Excluido));
+                if (produto != null)
+                {
+                    produtos.Add(produto);
+                }
+            }
+
+            if (estoques.Any())
+            {
+                var estoquesProdutos = from prod in produtos
+                                       from esto in estoques
+                                       where esto.ProdutoId == prod.Id && esto.EmpresaId == empresaId
+                                       select new
+                                       {
+                                           Id = esto.Id,
+                                           ProdutoId = prod.Id,
+                                           ProdutoNome = prod.Nome,
+                                           Quantidade = esto.Quantidade,
+                                           StatusExclusao = esto.StatusExclusao,
+                                           DataCadastroEstoque = esto.DataCadastroEstoque
+                                       };
+                foreach (var produtosRetorno in estoquesProdutos)
+                {
+                    EstoqueProdutoRetorno.Add(new EstoqueViewModelRelatorio(produtosRetorno.Id, produtosRetorno.ProdutoId, produtosRetorno.ProdutoNome, produtosRetorno.Quantidade, produtosRetorno.StatusExclusao, produtosRetorno.DataCadastroEstoque));
+                }
+            }
+            else
+            {
+                return EstoqueProdutoRetorno;
             }
             return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
         }

@@ -20,7 +20,7 @@ namespace RetaguardaESilva.Controllers
         public async Task<ActionResult> GetRelatorio(int empresaId, int codigoRelatorio, string? dataInicio, string? dataFinal)
         {
             try
-            {   
+            {
                 switch (codigoRelatorio)
                 {
                     case (int)TipoRelatorio.TodosClientesAtivosInativosExcluidos:
@@ -457,23 +457,66 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosProdutosExcluidos);
                         }
-                    case (int)TipoRelatorio.TodosEstoques:
+                    case (int)TipoRelatorio.TodosEstoquesAtivosInativosExcluidos:
                         if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosEstoques = await _relatorioService.GetAllEstoquesAsync(empresaId, dataInicio, dataFinal);
-                            if (todosEstoques == null)
+                            var todosEstoquesAtivosInativosExcluidos = await _relatorioService.GetAllEstoquesAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosEstoquesAtivosInativosExcluidos.Any())
                             {
                                 return NotFound();
                             }
-                            return Ok(todosEstoques);
+                            return Ok(todosEstoquesAtivosInativosExcluidos);
                         }
-                }
+                    case (int)TipoRelatorio.TodosEstoquesAtivos:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var TodosEstoquesAtivos = await _relatorioService.GetAllEstoquesAtivoAsync(empresaId, dataInicio, dataFinal);
+                            if (!TodosEstoquesAtivos.Any())
+                            {
+                                return NotFound();
+                            }
+                            return Ok(TodosEstoquesAtivos);
+                        }
+                    case (int)TipoRelatorio.TodosEstoquesInativos:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEstoquesInativos = await _relatorioService.GetAllEstoquesInativosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosEstoquesInativos.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosEstoquesInativos);
+                        }
+                    case (int)TipoRelatorio.TodosEstoquesExcluidos:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosEstoquesExcluidos = await _relatorioService.GetAllEstoquesExcluidosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosEstoquesExcluidos.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosEstoquesExcluidos);
+                        }
+                    default:
+                    return NotFound(MensagemDeErro.RelatorioNaoEncontrado);
 
-                return NotFound();
+                }
             }
             catch (Exception ex)
             {
