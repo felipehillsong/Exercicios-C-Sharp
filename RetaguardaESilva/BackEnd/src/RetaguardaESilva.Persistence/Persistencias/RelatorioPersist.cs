@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using RetaguardaESilva.Domain.ViewModels;
 using RetaguardaESilva.Persistence.Migrations;
 using System.Runtime.ConstrainedExecution;
+using RetaguardaESilva.Domain.Mensagem;
 
 namespace RetaguardaESilva.Persistence.Persistencias
 {
@@ -1173,6 +1174,79 @@ namespace RetaguardaESilva.Persistence.Persistencias
                 return EstoqueProdutoRetorno;
             }
             return EstoqueProdutoRetorno.OrderBy(p => p.ProdutoNome);
+        }
+
+        public IEnumerable<PedidoViewModel> RetornarPedidosView(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            List<PedidoViewModel> pedidosRetorno = new List<PedidoViewModel>();
+            List<ProdutoViewModel> produtos = new List<ProdutoViewModel>();
+            var pedidos = _context.Pedido.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroPedido.Value.Date >= dataInicio && p.DataCadastroPedido.Value.Date <= dataFinal).ToListAsync();            
+            foreach (var pedido in pedidos.Result)
+            {
+                var pedidoNota = _context.PedidoNota.Where(pn => pn.PedidoId == pedido.Id).ToListAsync();
+                foreach (var item in pedidoNota.Result)
+                {
+                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);
+                    var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.Id == pedido.ClienteId);
+                    var transportador = _context.Transportador.AsNoTracking().FirstOrDefault(t => t.Id == pedido.TransportadorId);
+                    var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
+                    if (produto != null)
+                    {
+                        var produtoView = new ProdutoViewModel()
+                        {
+                            Id = pedido.Id,
+                            Nome = produto.Nome,
+                            Quantidade = produto.Quantidade,
+                            QuantidadeVenda = item.Quantidade,
+                            Ativo = produto.Ativo,
+                            PrecoCompra = produto.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoTotal,
+                            Codigo = item.CodigoProduto,
+                            DataCadastroProduto = produto.DataCadastroProduto,
+                            EmpresaId = produto.EmpresaId,
+                            FornecedorId = produto.FornecedorId,
+                            StatusExclusao = produto.StatusExclusao
+                        };
+
+                        if (cliente != null && transportador != null && usuario != null && produtos != null)
+                        {
+                            var statusPedido = string.Empty;
+                            switch (pedido.Status)
+                            {
+                                case 1:
+                                    statusPedido = MensagemDeAlerta.PedidoEmAnalise;
+                                    pedidosRetorno = new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, produtos);
+                                    break;
+                                case 2:
+                                    statusPedido = MensagemDeAlerta.PedidoConfirmado;
+                                    pedidosRetorno = new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, produtos);
+                                    break;
+                                case 3:
+                                    statusPedido = MensagemDeAlerta.PedidoCancelado;
+                                    pedidosRetorno = new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, produtos);
+                                    break;
+                            }
+                        }
+
+                        if (produtoView != null)
+                        {
+                            produtos.Add(produtoView);
+                        }
+                        else
+                        {
+                            produtos.Add(null);
+                        }
+                    }
+                    else
+                    {
+                        produtos.Add(null);
+                    }
+                }
+            }
+
+            
+            return pedidoRetorno;
         }
     }
 }

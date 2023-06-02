@@ -1194,5 +1194,10 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
