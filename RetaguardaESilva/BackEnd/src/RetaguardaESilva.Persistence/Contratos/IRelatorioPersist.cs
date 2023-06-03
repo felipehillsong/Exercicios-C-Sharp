@@ -51,6 +51,6 @@ namespace RetaguardaESilva.Persistence.Contratos
         IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueAtivoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
         IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueInativoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
         IEnumerable<EstoqueViewModelRelatorio> GetAllEstoqueExcluidoRelatorio(int empresaId, DateTime dataInicio, DateTime dataFinal);
-        IEnumerable<PedidoViewModel> RetornarPedidosView(int empresaId, DateTime dataInicio, DateTime dataFinal);        
+        IEnumerable<PedidoViewModel> GetAllPedidos(int empresaId, DateTime dataInicio, DateTime dataFinal);        
     }
 }

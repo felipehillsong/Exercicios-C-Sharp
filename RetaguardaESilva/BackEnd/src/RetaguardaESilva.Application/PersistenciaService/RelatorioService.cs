@@ -1195,9 +1195,34 @@ namespace RetaguardaESilva.Application.PersistenciaService
             }
         }
 
-        public Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId, string dataIncio, string dataFinal)
+        public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId, string dataIncio, string dataFinal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var pedidos = _relatorioPersist.GetAllPedidos(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (pedidos.Any())
+                    {
+                        var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidos);
+                        return resultadoPedidos;
+                    }                    
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.PedidoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

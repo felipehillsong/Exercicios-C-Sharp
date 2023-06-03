@@ -513,9 +513,22 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosEstoquesExcluidos);
                         }
+                    case (int)TipoRelatorio.TodosPedidosAtivosInativosExcluidos:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosPedidosAtivosInativosExcluidos = await _relatorioService.GetAllPedidosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosPedidosAtivosInativosExcluidos.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosPedidosAtivosInativosExcluidos);
+                        }
                     default:
                     return NotFound(MensagemDeErro.RelatorioNaoEncontrado);
-
                 }
             }
             catch (Exception ex)

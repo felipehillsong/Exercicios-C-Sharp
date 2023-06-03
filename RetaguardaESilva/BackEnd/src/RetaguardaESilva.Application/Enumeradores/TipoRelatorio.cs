@@ -48,6 +48,7 @@ namespace RetaguardaESilva.Application.Enumeradores
         TodosEstoquesAtivosInativosExcluidos = 38,
         TodosEstoquesAtivos = 39,
         TodosEstoquesInativos = 40,
-        TodosEstoquesExcluidos = 41
+        TodosEstoquesExcluidos = 41,
+        TodosPedidosAtivosInativosExcluidos = 42
     }
 }
