@@ -1186,7 +1186,7 @@ namespace RetaguardaESilva.Persistence.Persistencias
                 var pedidoNota = _context.PedidoNota.Where(pn => pn.PedidoId == pedido.Id).ToListAsync();
                 foreach (var item in pedidoNota.Result)
                 {
-                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);                    
+                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);
                     if (produto != null)
                     {
                         var produtoView = new ProdutoViewModel()
@@ -1238,6 +1238,171 @@ namespace RetaguardaESilva.Persistence.Persistencias
                             pedidosRetorno.Add(new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, new List<ProdutoViewModel>(produtos)));
                             break;
                     }
+                }
+                produtos.Clear();
+            }
+            return pedidosRetorno;
+        }
+
+        public IEnumerable<PedidoViewModel> GetAllPedidosEmAnalise(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            var pedidosRetorno = new List<PedidoViewModel>();
+            List<ProdutoViewModel> produtos = new List<ProdutoViewModel>();
+            var pedidos = _context.Pedido.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroPedido.Value.Date >= dataInicio && p.DataCadastroPedido.Value.Date <= dataFinal && p.Status == (int)StatusPedido.PedidoEmAnalise).ToListAsync();
+            foreach (var pedido in pedidos.Result)
+            {
+                var pedidoNota = _context.PedidoNota.Where(pn => pn.PedidoId == pedido.Id && pn.Status == (int)StatusPedido.PedidoEmAnalise).ToListAsync();
+                foreach (var item in pedidoNota.Result)
+                {
+                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);
+                    if (produto != null)
+                    {
+                        var produtoView = new ProdutoViewModel()
+                        {
+                            Id = item.ProdutoId,
+                            Nome = produto.Nome,
+                            Quantidade = produto.Quantidade,
+                            QuantidadeVenda = item.Quantidade,
+                            Ativo = produto.Ativo,
+                            PrecoCompra = produto.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoTotal,
+                            Codigo = item.CodigoProduto,
+                            DataCadastroProduto = produto.DataCadastroProduto,
+                            EmpresaId = produto.EmpresaId,
+                            FornecedorId = produto.FornecedorId,
+                            StatusExclusao = produto.StatusExclusao
+                        };
+
+                        if (produtoView != null)
+                        {
+                            produtos.Add(produtoView);
+                        }
+                        else
+                        {
+                            produtos.Add(null);
+                        }
+                    }
+                }
+
+                var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.Id == pedido.ClienteId);
+                var transportador = _context.Transportador.AsNoTracking().FirstOrDefault(t => t.Id == pedido.TransportadorId);
+                var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
+                if (cliente != null && transportador != null && usuario != null && produtos != null)
+                {
+                    var statusPedido = string.Empty;
+                    statusPedido = MensagemDeAlerta.PedidoEmAnalise;
+                    pedidosRetorno.Add(new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, new List<ProdutoViewModel>(produtos)));
+                }
+                produtos.Clear();
+            }
+            return pedidosRetorno;
+        }
+
+        public IEnumerable<PedidoViewModel> GetAllPedidosConfirmados(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            var pedidosRetorno = new List<PedidoViewModel>();
+            List<ProdutoViewModel> produtos = new List<ProdutoViewModel>();
+            var pedidos = _context.Pedido.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroPedido.Value.Date >= dataInicio && p.DataCadastroPedido.Value.Date <= dataFinal && p.Status == (int)StatusPedido.PedidoConfirmado).ToListAsync();
+            foreach (var pedido in pedidos.Result)
+            {
+                var pedidoNota = _context.PedidoNota.Where(pn => pn.PedidoId == pedido.Id && pn.Status == (int)StatusPedido.PedidoConfirmado).ToListAsync();
+                foreach (var item in pedidoNota.Result)
+                {
+                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);
+                    if (produto != null)
+                    {
+                        var produtoView = new ProdutoViewModel()
+                        {
+                            Id = item.ProdutoId,
+                            Nome = produto.Nome,
+                            Quantidade = produto.Quantidade,
+                            QuantidadeVenda = item.Quantidade,
+                            Ativo = produto.Ativo,
+                            PrecoCompra = produto.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoTotal,
+                            Codigo = item.CodigoProduto,
+                            DataCadastroProduto = produto.DataCadastroProduto,
+                            EmpresaId = produto.EmpresaId,
+                            FornecedorId = produto.FornecedorId,
+                            StatusExclusao = produto.StatusExclusao
+                        };
+
+                        if (produtoView != null)
+                        {
+                            produtos.Add(produtoView);
+                        }
+                        else
+                        {
+                            produtos.Add(null);
+                        }
+                    }
+                }
+
+                var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.Id == pedido.ClienteId);
+                var transportador = _context.Transportador.AsNoTracking().FirstOrDefault(t => t.Id == pedido.TransportadorId);
+                var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
+                if (cliente != null && transportador != null && usuario != null && produtos != null)
+                {
+                    var statusPedido = string.Empty;
+                    statusPedido = MensagemDeAlerta.PedidoConfirmado;
+                    pedidosRetorno.Add(new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, new List<ProdutoViewModel>(produtos)));
+                }
+                produtos.Clear();
+            }
+            return pedidosRetorno;
+        }
+
+        public IEnumerable<PedidoViewModel> GetAllPedidosCancelados(int empresaId, DateTime dataInicio, DateTime dataFinal)
+        {
+            var pedidosRetorno = new List<PedidoViewModel>();
+            List<ProdutoViewModel> produtos = new List<ProdutoViewModel>();
+            var pedidos = _context.Pedido.AsNoTracking().Where(p => p.EmpresaId == empresaId && p.DataCadastroPedido.Value.Date >= dataInicio && p.DataCadastroPedido.Value.Date <= dataFinal && p.Status == (int)StatusPedido.PedidoCancelado).ToListAsync();
+            foreach (var pedido in pedidos.Result)
+            {
+                var pedidoNota = _context.PedidoNota.Where(pn => pn.PedidoId == pedido.Id && pn.Status == (int)StatusPedido.PedidoCancelado).ToListAsync();
+                foreach (var item in pedidoNota.Result)
+                {
+                    var produto = _context.Produto.AsNoTracking().FirstOrDefault(p => p.EmpresaId == item.EmpresaId && p.Id == item.ProdutoId);
+                    if (produto != null)
+                    {
+                        var produtoView = new ProdutoViewModel()
+                        {
+                            Id = item.ProdutoId,
+                            Nome = produto.Nome,
+                            Quantidade = produto.Quantidade,
+                            QuantidadeVenda = item.Quantidade,
+                            Ativo = produto.Ativo,
+                            PrecoCompra = produto.PrecoCompra,
+                            PrecoVenda = item.PrecoVenda,
+                            PrecoVendaTotal = item.PrecoTotal,
+                            Codigo = item.CodigoProduto,
+                            DataCadastroProduto = produto.DataCadastroProduto,
+                            EmpresaId = produto.EmpresaId,
+                            FornecedorId = produto.FornecedorId,
+                            StatusExclusao = produto.StatusExclusao
+                        };
+
+                        if (produtoView != null)
+                        {
+                            produtos.Add(produtoView);
+                        }
+                        else
+                        {
+                            produtos.Add(null);
+                        }
+                    }
+                }
+
+                var cliente = _context.Cliente.AsNoTracking().FirstOrDefault(c => c.Id == pedido.ClienteId);
+                var transportador = _context.Transportador.AsNoTracking().FirstOrDefault(t => t.Id == pedido.TransportadorId);
+                var usuario = _context.Usuario.AsNoTracking().FirstOrDefault(u => u.Id == pedido.UsuarioId);
+                if (cliente != null && transportador != null && usuario != null && produtos != null)
+                {
+                    var statusPedido = string.Empty;
+                    statusPedido = MensagemDeAlerta.PedidoCancelado;
+                    pedidosRetorno.Add(new PedidoViewModel(pedido.Id, cliente.Id, cliente.Nome, transportador.Id, transportador.Nome, pedido.EmpresaId, usuario.Id, pedido.PrecoTotal, pedido.DataCadastroPedido, statusPedido, new List<ProdutoViewModel>(produtos)));
                 }
                 produtos.Clear();
             }

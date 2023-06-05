@@ -513,19 +513,61 @@ namespace RetaguardaESilva.Controllers
                             }
                             return Ok(todosEstoquesExcluidos);
                         }
-                    case (int)TipoRelatorio.TodosPedidosAtivosInativosExcluidos:
+                    case (int)TipoRelatorio.TodosPedidosConfirmadosCancelados:
                         if (dataInicio == null || dataFinal == null)
                         {
                             return NotFound(MensagemDeErro.SemDataRelatorio);
                         }
                         else
                         {
-                            var todosPedidosAtivosInativosExcluidos = await _relatorioService.GetAllPedidosAsync(empresaId, dataInicio, dataFinal);
-                            if (!todosPedidosAtivosInativosExcluidos.Any())
+                            var todosPedidosConfirmadosCancelados = await _relatorioService.GetAllPedidosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosPedidosConfirmadosCancelados.Any())
                             {
                                 return NotFound(MensagemDeErro.RelatorioSemRegistro);
                             }
-                            return Ok(todosPedidosAtivosInativosExcluidos);
+                            return Ok(todosPedidosConfirmadosCancelados);
+                        }
+                    case (int)TipoRelatorio.TodosPedidosEmAnalise:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosPedidosEmAnalise = await _relatorioService.GetAllPedidosEmAnaliseAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosPedidosEmAnalise.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosPedidosEmAnalise);
+                        }
+                    case (int)TipoRelatorio.TodosPedidosConfirmados:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosPedidosConfirmados = await _relatorioService.GetAllPedidosConfirmadosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosPedidosConfirmados.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosPedidosConfirmados);
+                        }
+                    case (int)TipoRelatorio.TodosPedidosCancelados:
+                        if (dataInicio == null || dataFinal == null)
+                        {
+                            return NotFound(MensagemDeErro.SemDataRelatorio);
+                        }
+                        else
+                        {
+                            var todosPedidosCancelados = await _relatorioService.GetAllPedidosCanceladosAsync(empresaId, dataInicio, dataFinal);
+                            if (!todosPedidosCancelados.Any())
+                            {
+                                return NotFound(MensagemDeErro.RelatorioSemRegistro);
+                            }
+                            return Ok(todosPedidosCancelados);
                         }
                     default:
                     return NotFound(MensagemDeErro.RelatorioNaoEncontrado);

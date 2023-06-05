@@ -346,3 +346,30 @@
   </tbody>
   </table>
 </div>
+<div *ngIf="todosPedidos">
+  <table id="excel-pedidos" class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+      <th>Cliente</th>
+      <th>Nome do Transportador</th>
+      <th>Preço Total</th>
+      <th>Status Pedido</th>
+      <th>Data de Cadastro do Pedido</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="pedidos && pedidos.length">
+    <ng-container *ngFor="let pedido of pedidos">
+      <tr>
+        <td [attr.rowspan]="pedido.produtos.length + 1">{{ pedido.clienteNome }}</td>
+        <td [attr.rowspan]="pedido.produtos.length + 1">{{ pedido.transportadorNome }}</td>
+        <td [attr.rowspan]="pedido.produtos.length + 1">{{ pedido.precoTotal }}</td>
+        <td [attr.rowspan]="pedido.produtos.length + 1">{{ pedido.statusPedido }}</td>
+        <td [attr.rowspan]="pedido.produtos.length + 1">{{ pedido.dataCadastroPedido | date: 'dd/MM/yyyy' }}</td>
+      </tr>
+      <tr *ngFor="let produto of pedido.produtos">
+        <td>{{ produto.nome }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+  </table>
+</div>

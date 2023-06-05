@@ -40,5 +40,9 @@ export enum Relatorio {
   TodosEstoquesAtivosInativosExcluidos = 'Todos os Estoques',
   TodosEstoquesAtivos = 'Todos os Estoques Com Produtos Ativos',
   TodosEstoquesInativos = 'Todos os Estoques Com Produtos Inativos',
-  TodosEstoquesExcluidos = 'Todos os Estoques Com Produtos Excluidos'
+  TodosEstoquesExcluidos = 'Todos os Estoques Com Produtos Excluidos',
+  TodosPedidosEmAnaliseConfirmadosCancelados = 'Todos os Pedidos',
+  TodosPedidosEmAnalise = 'Todos os Pedidos em Analise',
+  TodosPedidosConfirmados = 'Todos os Pedidos Confirmados',
+  TodosPedidosCancelados = 'Todos os Pedidos Cancelados',
 }

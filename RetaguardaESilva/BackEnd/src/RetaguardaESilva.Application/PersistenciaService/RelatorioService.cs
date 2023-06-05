@@ -1224,5 +1224,95 @@ namespace RetaguardaESilva.Application.PersistenciaService
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosEmAnaliseAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var pedidos = _relatorioPersist.GetAllPedidosEmAnalise(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (pedidos.Any())
+                    {
+                        var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidos);
+                        return resultadoPedidos;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.PedidoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosConfirmadosAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var pedidos = _relatorioPersist.GetAllPedidosConfirmados(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (pedidos.Any())
+                    {
+                        var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidos);
+                        return resultadoPedidos;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.PedidoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosCanceladosAsync(int empresaId, string dataIncio, string dataFinal)
+        {
+            try
+            {
+                DateTime dataInicioConvertida = DateTime.ParseExact(dataIncio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataFinalConvertida = DateTime.ParseExact(dataFinal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (dataFinalConvertida < dataInicioConvertida)
+                {
+                    throw new Exception(MensagemDeErro.DataFinalMaiorFinal);
+                }
+                else
+                {
+                    var pedidos = _relatorioPersist.GetAllPedidosCancelados(empresaId, dataInicioConvertida, dataFinalConvertida);
+                    if (pedidos.Any())
+                    {
+                        var resultadoPedidos = _mapper.Map<IEnumerable<PedidoRetornoDTO>>(pedidos);
+                        return resultadoPedidos;
+                    }
+                    else
+                    {
+                        throw new Exception(MensagemDeErro.PedidoRelatorioNaoEncontrado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ import { Empresa } from 'src/app/models/empresa';
 import { Estoque } from 'src/app/models/estoque';
 import { Fornecedor } from 'src/app/models/fornecedor';
 import { Funcionario } from 'src/app/models/funcionario';
+import { Pedido } from 'src/app/models/pedido';
 import { Produto } from 'src/app/models/produto';
 import { Transportador } from 'src/app/models/transportador';
 import { Usuario } from 'src/app/models/usuario';
@@ -38,6 +39,7 @@ export class GerarRelatorioComponent implements OnInit {
   public empresas: Empresa[] = [];
   public produtos: Produto[] = [];
   public estoques: Estoque[] = [];
+  public pedidos: Pedido[] = [];
   todosClientes:boolean = false;
   todosFornecedores:boolean = false;
   todosFornecedoresProdutos:boolean = false;
@@ -47,6 +49,7 @@ export class GerarRelatorioComponent implements OnInit {
   todosEmpresas:boolean = false;
   todosProdutos:boolean = false;
   todosEstoques:boolean = false;
+  todosPedidos:boolean = false;
   codigoRelatorio!:number;
   dataInicio!:string;
   dataFinal!:string;
@@ -112,7 +115,11 @@ export class GerarRelatorioComponent implements OnInit {
       Relatorio.TodosEstoquesAtivosInativosExcluidos,
       Relatorio.TodosEstoquesAtivos,
       Relatorio.TodosEstoquesInativos,
-      Relatorio.TodosEstoquesExcluidos
+      Relatorio.TodosEstoquesExcluidos,
+      Relatorio.TodosPedidosEmAnaliseConfirmadosCancelados,
+      Relatorio.TodosPedidosEmAnalise,
+      Relatorio.TodosPedidosConfirmados,
+      Relatorio.TodosPedidosCancelados
     ];
   }
 
@@ -1038,7 +1045,6 @@ export class GerarRelatorioComponent implements OnInit {
         this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
           (_estoques: Estoque[]) => {
             this.estoques = _estoques;
-            console.log(this.estoques);
             this.todosEstoques = true;
             this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
             this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -1067,7 +1073,6 @@ export class GerarRelatorioComponent implements OnInit {
             this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
               (_estoques: Estoque[]) => {
                 this.estoques = _estoques;
-                console.log(this.estoques);
                 this.todosEstoques = true;
                 this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
                 this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -1096,7 +1101,6 @@ export class GerarRelatorioComponent implements OnInit {
             this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
               (_estoques: Estoque[]) => {
                 this.estoques = _estoques;
-                console.log(this.estoques);
                 this.todosEstoques = true;
                 this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
                 this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -1125,7 +1129,6 @@ export class GerarRelatorioComponent implements OnInit {
             this.relatorioService.getRelatorioEstoques(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
               (_estoques: Estoque[]) => {
                 this.estoques = _estoques;
-                console.log(this.estoques);
                 this.todosEstoques = true;
                 this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
                 this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -1135,6 +1138,35 @@ export class GerarRelatorioComponent implements OnInit {
                 this.botaoResetar = true;
                 this.botaoGerarExcel = true;
                 this.fileName = Relatorio.TodosEstoquesExcluidos + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+        case Relatorio.TodosPedidosEmAnaliseConfirmadosCancelados:
+            this.codigoRelatorio = 42;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioPedidos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_pedidos: Pedido[]) => {
+                this.pedidos = _pedidos;
+                console.log(this.pedidos);
+                this.todosPedidos = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosPedidosEmAnaliseConfirmadosCancelados + '.xlsx';
                 this._changeDetectorRef.markForCheck();
               },
               error => {
@@ -1161,6 +1193,7 @@ export class GerarRelatorioComponent implements OnInit {
     let empresas = document.getElementById('excel-empresas');
     let produtos = document.getElementById('excel-produtos');
     let estoques = document.getElementById('excel-estoques');
+    let pedidos = document.getElementById('excel-pedidos');
     if(clientes){
       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(clientes);
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -1206,6 +1239,11 @@ export class GerarRelatorioComponent implements OnInit {
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
       XLSX.writeFile(wb, this.fileName);
+    }else if(pedidos){
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(pedidos);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
+      XLSX.writeFile(wb, this.fileName);
     }
     else{
       alert('Erro ao gerar o relatório em excel');
@@ -1233,6 +1271,7 @@ export class GerarRelatorioComponent implements OnInit {
     this.todosEmpresas = false;
     this.todosProdutos = false;
     this.todosEstoques = false;
+    this.todosPedidos = false;
     this.botaoGerarExcel = false;
     this.fileName = '';
   }

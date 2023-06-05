@@ -51,5 +51,8 @@ namespace RetaguardaESilva.Application.ContratosServices
         Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesInativosAsync(int empresaId, string dataIncio, string dataFinal);
         Task<IEnumerable<EstoqueRelatorioDTO>> GetAllEstoquesExcluidosAsync(int empresaId, string dataIncio, string dataFinal);
         Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosEmAnaliseAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosConfirmadosAsync(int empresaId, string dataIncio, string dataFinal);
+        Task<IEnumerable<PedidoRetornoDTO>> GetAllPedidosCanceladosAsync(int empresaId, string dataIncio, string dataFinal);
     }
 }
