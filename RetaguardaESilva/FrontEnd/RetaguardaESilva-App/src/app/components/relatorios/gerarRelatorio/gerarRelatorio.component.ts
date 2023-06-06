@@ -1157,7 +1157,6 @@ export class GerarRelatorioComponent implements OnInit {
             this.relatorioService.getRelatorioPedidos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
               (_pedidos: Pedido[]) => {
                 this.pedidos = _pedidos;
-                console.log(this.pedidos);
                 this.todosPedidos = true;
                 this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
                 this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -1167,6 +1166,90 @@ export class GerarRelatorioComponent implements OnInit {
                 this.botaoResetar = true;
                 this.botaoGerarExcel = true;
                 this.fileName = Relatorio.TodosPedidosEmAnaliseConfirmadosCancelados + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+        case Relatorio.TodosPedidosEmAnalise:
+            this.codigoRelatorio = 43;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioPedidos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_pedidos: Pedido[]) => {
+                this.pedidos = _pedidos;
+                this.todosPedidos = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosPedidosEmAnalise + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+        case Relatorio.TodosPedidosConfirmados:
+            this.codigoRelatorio = 44;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioPedidos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_pedidos: Pedido[]) => {
+                this.pedidos = _pedidos;
+                this.todosPedidos = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosPedidosConfirmados + '.xlsx';
+                this._changeDetectorRef.markForCheck();
+              },
+              error => {
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this._changeDetectorRef.markForCheck();
+                alert(error.error)
+              }
+            );
+              break;
+        case Relatorio.TodosPedidosCancelados:
+            this.codigoRelatorio = 45;
+            if(this.dataInicio != "null" && this.dataFinal != "null"){
+              this.dataInicio = moment(this.dataInicio).format('DD/MM/YYYY');
+              this.dataFinal = moment(this.dataFinal).format('DD/MM/YYYY');
+            }
+            this.relatorioService.getRelatorioPedidos(this.codigoRelatorio, this.dataInicio, this.dataFinal).subscribe(
+              (_pedidos: Pedido[]) => {
+                this.pedidos = _pedidos;
+                this.todosPedidos = true;
+                this.dataInicio = moment(this.dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.dataFinal = moment(this.dataFinal, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                this.inputData = true;
+                this.dropRelatorio = true;
+                this.botaoGerar = false;
+                this.botaoResetar = true;
+                this.botaoGerarExcel = true;
+                this.fileName = Relatorio.TodosPedidosCancelados + '.xlsx';
                 this._changeDetectorRef.markForCheck();
               },
               error => {

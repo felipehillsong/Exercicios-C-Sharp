@@ -124,7 +124,7 @@
       <div class="card-footer">
         <div id="botaoCadastrar">
           <button class="btn btn-lg btn-primary btn-block" *ngIf="editarPedido && !pedido.possuiNotaFiscal" (click)="EditarPedido()" type="submit">Editar Pedido</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="btn btn-lg btn-success btn-block" *ngIf="editarPedido && !pedido.possuiNotaFiscal && criarNotaFiscal" (click)="FinalizarPedido()" type="submit">Finalizar Pedido</button>
+          <button class="btn btn-lg btn-success btn-block" *ngIf="editarPedido && !pedido.possuiNotaFiscal" (click)="FinalizarPedido()" type="submit">Finalizar Pedido</button>
         </div>
       </div>
             </form>
