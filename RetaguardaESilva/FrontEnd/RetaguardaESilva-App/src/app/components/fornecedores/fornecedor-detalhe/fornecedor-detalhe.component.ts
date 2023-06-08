@@ -46,7 +46,6 @@ export class FornecedorDetalheComponent implements OnInit {
         var dataBD = moment(this.fornecedor.dataCadastroFornecedor).format('YYYY-MM-DD');
         this.fornecedor.dataCadastroFornecedor = dataBD;
         this._changeDetectorRef.markForCheck();
-        console.log(this.fornecedor);
       },
       error => console.log(error)
     );

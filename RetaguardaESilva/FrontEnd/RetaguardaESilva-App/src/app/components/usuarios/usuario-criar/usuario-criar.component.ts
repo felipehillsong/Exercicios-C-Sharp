@@ -46,7 +46,6 @@ export class UsuarioCriarComponent implements OnInit {
         this.funcionarioUsuario.dataCadastroFuncionario = dataBD;
         this.funcionarioNome = this.funcionarioUsuario.nome;
         this._changeDetectorRef.markForCheck();
-        console.log(this.funcionarioUsuario);
       },
       error => console.log(error)
     );

@@ -48,7 +48,6 @@ export class PedidoDetalheComponent implements OnInit {
       (_pedido: Pedido) => {
         this.pedido = _pedido;
         this.getNotaFiscalPedidoById();
-        console.log(this.pedido);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)

@@ -56,7 +56,6 @@ export class FuncionarioEditarComponent implements OnInit {
         this.funcionario.dataCadastroFuncionario = dataBD;
         this.usuarioLogin = this.authService.dadosDoUsuario();
         this._changeDetectorRef.markForCheck();
-        console.log(this.funcionario);
       },
       error => console.log(error)
     );

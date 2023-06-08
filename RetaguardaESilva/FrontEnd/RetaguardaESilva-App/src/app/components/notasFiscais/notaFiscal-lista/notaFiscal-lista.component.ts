@@ -62,7 +62,6 @@ export class NotaFiscalListaComponent implements OnInit {
       (_notasFiscais: NotaFiscal[]) => {
         this.notasFiscais = _notasFiscais;
         this.notasFiscaisFiltradas = this.notasFiscais;
-        console.log(this.notasFiscais);
       },
       error => console.log(error)
     );

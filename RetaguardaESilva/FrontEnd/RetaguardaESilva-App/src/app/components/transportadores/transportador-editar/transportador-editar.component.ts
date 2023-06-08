@@ -49,7 +49,6 @@ export class TransportadorEditarComponent implements OnInit {
         var dataBD = moment(this.transportador.dataCadastroTransportador).format('YYYY-MM-DD');
         this.transportador.dataCadastroTransportador = dataBD;
         this._changeDetectorRef.markForCheck();
-        console.log(this.transportador);
       },
       error => console.log(error)
     );

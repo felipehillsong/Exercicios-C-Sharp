@@ -56,7 +56,6 @@ export class EnderecoProdutoListaComponent implements OnInit {
         this.enderecosProdutos = _enderecoProduto;
         this.PreencherAtivo(this.enderecosProdutos);
         this.enderecosProdutosFiltrados = this.enderecosProdutos;
-        console.log(this.enderecosProdutos);
       },
       error => console.log(error)
     );

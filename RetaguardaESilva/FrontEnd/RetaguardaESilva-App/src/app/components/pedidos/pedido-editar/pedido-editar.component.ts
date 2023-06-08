@@ -101,7 +101,6 @@ export class PedidoEditarComponent implements OnInit {
         this.PreencherProdutos(this.gerarPedido.produtos);
         this.PreencherStatusPedido(this.pedido.statusPedido);
         this.getNotaFiscalPedidoById();
-        console.log(this.pedidoId);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)

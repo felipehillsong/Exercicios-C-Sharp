@@ -63,7 +63,6 @@ export class FornecedorListaComponent implements OnInit {
       (_fornecedores: Fornecedor[]) => {
         this.fornecedores = _fornecedores;
         this.fornecedoresFiltrados = this.fornecedores;
-        console.log(this.fornecedores);
       },
       error => console.log(error)
     );

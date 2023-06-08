@@ -42,7 +42,6 @@ export class EstoqueEditarComponent implements OnInit {
         this.fornecedorId = this.estoque.fornecedorId;
         var dataBD = moment(  this.estoque.dataCadastroEstoque).format('YYYY-MM-DD');
         this.estoque.dataCadastroEstoque = dataBD;
-        console.log(this.estoque);
         this._changeDetectorRef.markForCheck();
       },
       error => console.log(error)

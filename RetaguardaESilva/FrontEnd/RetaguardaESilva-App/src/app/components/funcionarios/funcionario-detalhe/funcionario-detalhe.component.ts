@@ -45,7 +45,6 @@ export class FuncionarioDetalheComponent implements OnInit {
         var dataBD = moment(this.funcionario.dataCadastroFuncionario).format('YYYY-MM-DD');
         this.funcionario.dataCadastroFuncionario = dataBD;
         this._changeDetectorRef.markForCheck();
-        console.log(this.funcionario);
       },
       error => console.log(error)
     );

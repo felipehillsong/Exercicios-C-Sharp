@@ -49,7 +49,6 @@ export class EmpresaEditarComponent implements OnInit {
         var dataBD = moment(this.empresa.dataCadastroEmpresa).format('YYYY-MM-DD');
         this.empresa.dataCadastroEmpresa = dataBD;
         this._changeDetectorRef.markForCheck();
-        console.log(this.empresa);
       },
       error => console.log(error)
     );
