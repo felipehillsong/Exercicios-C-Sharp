@@ -1377,5 +1377,4 @@ export class GerarRelatorioComponent implements OnInit {
     this.titu.show();
     this.titu.hideTitulo();
   }
-
 }
