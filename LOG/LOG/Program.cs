@@ -12,7 +12,7 @@ namespace LOG {
             Console.WriteLine("Escolha um operador numerico: ");
             string operador = Console.ReadLine();
             if (operador == "+") {
-                LogSoma();               
+                LogSoma();
             } else if (operador == "-") {
                 LogSubtracao();
             } else if (operador == "*") {
@@ -21,6 +21,7 @@ namespace LOG {
                 LogDivisao();
             } else {
                 Console.WriteLine("ERRO!");
+                Console.WriteLine("BURRO!");
             }
 
         }       
